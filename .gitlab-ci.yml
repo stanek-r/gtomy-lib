@@ -1,3 +1,6 @@
+include:
+  - template: Security/SAST.gitlab-ci.yml
+
 stages:
   - format-check
   - test
@@ -17,7 +20,12 @@ format-check:
 sast:
   stage: test
   allow_failure: true
+  artifacts:
+    name: sast
+    paths:
+      - gl-sast-report.json
+    reports:
+      sast: gl-sast-report.json
+    when: always
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master" || $CI_COMMIT_REF_NAME == "development"'
-include:
-- template: Security/SAST.gitlab-ci.yml
