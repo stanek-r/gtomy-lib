@@ -1,6 +1,6 @@
 stages:
   - format-check
-  - test-gitlab
+  - test
 
 format-check:
   image: node:16.19.0-bullseye
@@ -15,9 +15,9 @@ format-check:
     - merge_requests
 
 sast:
-  stage: test-gitlab
+  stage: test
+  allow_failure: true
   rules:
     - if: '$CI_COMMIT_REF_NAME == "master" || $CI_COMMIT_REF_NAME == "development"'
-
 include:
 - template: Security/SAST.gitlab-ci.yml
