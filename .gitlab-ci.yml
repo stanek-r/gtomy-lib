@@ -16,9 +16,8 @@ format-check:
 
 sast:
   stage: test-gitlab
-  only:
-    - development
-    - master
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master" || $CI_COMMIT_REF_NAME == "development"'
 
 include:
 - template: Security/SAST.gitlab-ci.yml
