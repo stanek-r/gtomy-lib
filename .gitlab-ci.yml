@@ -3,6 +3,7 @@ include:
 
 stages:
   - format-check
+  - audit
   - test
 
 format-check:
@@ -12,6 +13,16 @@ format-check:
     - npm install --silent
   script:
     - npm run format-check
+  only:
+    - development
+    - master
+    - merge_requests
+
+audit:
+  image: node:16.19.0-bullseye
+  stage: audit
+  script:
+    - npm audit --audit-level=critical
   only:
     - development
     - master
