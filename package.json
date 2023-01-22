@@ -1,6 +1,6 @@
 {
   "name": "gtomy-lib",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Shared lib for react projects",
   "main": "dist/index.js",
   "files": [
@@ -22,15 +22,25 @@
     "url": "https://gitlab.com/GTomy/gtomy-lib/issues"
   },
   "homepage": "https://gitlab.com/GTomy/gtomy-lib#readme",
+  "dependencies": {
+    "daisyui": "^2.47.0"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-typescript": "^11.0.0",
     "@types/react": "^18.0.27",
+    "autoprefixer": "^10.4.13",
+    "cssnano": "^5.1.14",
+    "postcss": "^8.4.21",
+    "postcss-import": "^15.1.0",
+    "postcss-preset-env": "^7.8.3",
     "prettier": "^2.8.3",
     "react": "^18.2.0",
     "rollup": "^3.10.1",
-    "rollup-plugin-dts": "^5.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tailwindcss": "^3.2.4",
     "tslib": "^2.4.1",
     "typescript": "^4.9.4"
   }
