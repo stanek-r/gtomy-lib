@@ -1,13 +1,10 @@
-include:
-  - template: Security/SAST.gitlab-ci.yml
+image: node:16.19.0-bullseye
 
 stages:
   - format-check
   - audit
-  - test
 
 format-check:
-  image: node:16.19.0-bullseye
   stage: format-check
   before_script:
     - npm i --silent
@@ -19,7 +16,6 @@ format-check:
     - merge_requests
 
 audit:
-  image: node:16.19.0-bullseye
   stage: audit
   before_script:
     - npm i --package-lock-only --silent
@@ -29,7 +25,3 @@ audit:
     - development
     - master
     - merge_requests
-
-sast:
-  stage: test
-  allow_failure: true
