@@ -10,7 +10,7 @@ format-check:
   image: node:16.19.0-bullseye
   stage: format-check
   before_script:
-    - npm install --silent
+    - npm i --silent
   script:
     - npm run format-check
   only:
@@ -21,6 +21,8 @@ format-check:
 audit:
   image: node:16.19.0-bullseye
   stage: audit
+  before_script:
+    - npm i --package-lock-only --silent
   script:
     - npm audit --audit-level=critical
   only:
