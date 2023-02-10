@@ -28,6 +28,7 @@ export default [
         extract: true,
       }),
     ],
+    external: ["react", "react-dom", "react-router-dom", "react-hook-form", "theme-change"],
   },
   {
     input: 'dist/types/index.d.ts',

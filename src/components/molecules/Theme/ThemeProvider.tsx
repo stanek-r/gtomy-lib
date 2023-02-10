@@ -10,5 +10,5 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     themeChange(false);
   }, []);
 
-  return children;
+  return <>{children}</>;
 }
