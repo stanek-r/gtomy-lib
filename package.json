@@ -13,49 +13,6 @@
     "lint:check": "eslint ./src",
     "lint:fix": "eslint ./src --fix"
   },
-  "eslintConfig": {
-    "extends": [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:prettier/recommended"
-    ],
-    "plugins": [
-      "react",
-      "@typescript-eslint"
-    ],
-    "rules": {
-      "quotes": [
-        "error",
-        "single",
-        {
-          "avoidEscape": true
-        }
-      ],
-      "no-useless-escape": "off",
-      "@typescript-eslint/no-namespace": "off",
-      "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/no-non-null-assertion": "off",
-      "react/react-in-jsx-scope": "off",
-      "semi": [
-        "error",
-        "always",
-        {
-          "omitLastInOneLineBlock": true
-        }
-      ],
-      "semi-style": [
-        "error",
-        "last"
-      ]
-    },
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
-    },
-    "root": true
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.com/GTomy/gtomy-lib.git"
