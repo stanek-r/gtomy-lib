@@ -1,8 +1,9 @@
-image: node:16.19.0-bullseye
+image: node:16.19-bullseye
 
 stages:
   - lint-check
   - audit
+  - build
 
 lint-check:
   stage: lint-check
@@ -17,11 +18,31 @@ lint-check:
 
 audit:
   stage: audit
-  before_script:
-    - npm i --package-lock-only --silent
+  allow_failure: true
   script:
     - npm audit --audit-level=critical
   only:
     - development
     - master
     - merge_requests
+
+build:
+  stage: build
+  before_script:
+    - npm i --silent
+  script:
+    - npm run build
+  only:
+    - development
+    - merge_requests
+
+build-deploy:
+  stage: build
+  before_script:
+    - npm i --silent
+  after_script:
+    - curl -X POST "https://jenkins.gtomy.net/generic-webhook-trigger/invoke?token=$JENKINS_DEPLOY_HOOK_TOKEN"
+  script:
+    - npm run build
+  only:
+    - master
