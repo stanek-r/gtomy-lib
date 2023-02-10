@@ -1,9 +1,9 @@
 import React, { ComponentPropsWithRef } from 'react';
 import classNames from 'classnames';
 
-type Props = ComponentPropsWithRef<'button'>;
+export type ButtonBaseProps = ComponentPropsWithRef<'button'>;
 
-export function ButtonBase({ children, type, className, ...other }: Props) {
+export function ButtonBase({ children, type, className, ...other }: ButtonBaseProps) {
   return (
     <button type={type ? type : 'button'} className={classNames('btn', className)} {...other}>
       {children}
