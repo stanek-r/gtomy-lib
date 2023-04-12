@@ -1,5 +1,4 @@
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import postcss from 'rollup-plugin-postcss';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
@@ -22,11 +21,6 @@ export default [
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
-      postcss({
-        minimize: true,
-        modules: true,
-        extract: true,
-      }),
     ],
     external: ["react", "react-dom", "react-router-dom", "react-hook-form", "theme-change"],
   },
@@ -34,8 +28,5 @@ export default [
     input: 'dist/types/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     plugins: [dts.default()],
-    external: [
-      './index.css',
-    ],
   },
 ];

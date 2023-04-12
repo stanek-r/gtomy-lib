@@ -9,9 +9,16 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && rollup -c --bundleConfigAsCjs",
-    "build:watch": "rimraf dist && npx rollup -c -w --bundleConfigAsCjs",
+    "build:watch": "rimraf dist && npx rollup -c -w --bundleConfigAsCjs --watch.buildDelay 500",
+    "prepare": "husky install",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "lint:check": "eslint ./src",
     "lint:fix": "eslint ./src --fix"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "repository": {
     "type": "git",
@@ -27,13 +34,11 @@
     "@heroicons/react": "^2.0.14",
     "autoprefixer": "^10.4.13",
     "classnames": "^2.3.2",
-    "daisyui": "^2.47.0",
-    "postcss": "^8.4.21",
-    "postcss-js": "^4.0.0",
-    "tailwindcss": "^3.2.4",
     "zustand": "^4.3.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.5.1",
+    "@commitlint/config-conventional": "^17.4.4",
     "@rollup/plugin-commonjs": "^24.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-typescript": "^11.0.0",
@@ -42,23 +47,27 @@
     "@typescript-eslint/parser": "^5.50.0",
     "autoprefixer": "^10.4.13",
     "cssnano": "^5.1.14",
+    "daisyui": "^2.47.0",
     "eslint": "^8.33.0",
-    "theme-change": "^2.3.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.3",
+    "postcss": "^8.4.21",
     "postcss-import": "^15.1.0",
+    "postcss-js": "^4.0.0",
     "postcss-preset-env": "^7.8.3",
     "prettier": "^2.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.2",
     "react-hook-form": "^7.39.4",
+    "react-router-dom": "^6.4.2",
     "rimraf": "^4.1.2",
     "rollup": "^3.10.1",
     "rollup-plugin-dts": "^5.1.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2",
+    "tailwindcss": "^3.2.4",
+    "theme-change": "^2.3.0",
     "tslib": "^2.4.1",
     "typescript": "^4.9.4"
   }
