@@ -1,6 +1,6 @@
 {
   "name": "gtomy-lib",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Shared lib for react projects",
   "main": "dist/index.js",
   "files": [
@@ -13,7 +13,9 @@
     "prepare": "husky install",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "lint:check": "eslint ./src",
-    "lint:fix": "eslint ./src --fix"
+    "lint:fix": "eslint ./src --fix",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "commitlint": {
     "extends": [
@@ -31,34 +33,45 @@
   },
   "homepage": "https://gitlab.com/GTomy/gtomy-lib#readme",
   "dependencies": {
+    "@heroicons/react": "^2.0.14",
+    "axios": "^1.4.0",
+    "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.4",
     "react-router-dom": "^6.4.2",
     "theme-change": "^2.3.0",
-    "axios": "^1.4.0",
-    "zustand": "^4.3.2",
-    "classnames": "^2.3.2",
-    "@heroicons/react": "^2.0.14"
+    "zustand": "^4.3.2"
   },
   "peerDependencies": {
+    "@heroicons/react": "^2.0.14",
+    "axios": "^1.4.0",
+    "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.4",
     "react-router-dom": "^6.4.2",
     "theme-change": "^2.3.0",
-    "axios": "^1.4.0",
-    "zustand": "^4.3.2",
-    "classnames": "^2.3.2",
-    "@heroicons/react": "^2.0.14"
+    "zustand": "^4.3.2"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.21.5",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.21.5",
     "@commitlint/cli": "^17.5.1",
     "@commitlint/config-conventional": "^17.4.4",
     "@rollup/plugin-commonjs": "^24.0.0",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-typescript": "^11.0.0",
+    "@storybook/addon-essentials": "^7.0.9",
+    "@storybook/addon-styling": "^1.0.6",
+    "@storybook/addon-interactions": "^7.0.9",
+    "@storybook/addon-links": "^7.0.9",
+    "@storybook/blocks": "^7.0.9",
+    "@storybook/react": "^7.0.9",
+    "@storybook/react-webpack5": "^7.0.9",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@types/react": "^18.0.27",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
@@ -69,16 +82,19 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-storybook": "^0.6.12",
     "husky": "^8.0.3",
     "postcss": "^8.4.21",
     "postcss-import": "^15.1.0",
     "postcss-js": "^4.0.0",
     "postcss-preset-env": "^7.8.3",
     "prettier": "^2.8.3",
+    "prop-types": "^15.8.1",
     "rimraf": "^4.1.2",
     "rollup": "^3.10.1",
     "rollup-plugin-dts": "^5.1.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "storybook": "^7.0.9",
     "tailwindcss": "^3.2.4",
     "tslib": "^2.4.1",
     "typescript": "^4.9.4"

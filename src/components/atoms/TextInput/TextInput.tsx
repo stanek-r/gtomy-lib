@@ -1,14 +1,31 @@
-import React, { ComponentPropsWithRef } from 'react';
+import React, { ComponentPropsWithRef, useId } from 'react';
 import classNames from 'classnames';
 
-export type TextInputProps = ComponentPropsWithRef<'input'>;
+export interface TextInputProps extends ComponentPropsWithRef<'input'> {
+  label?: string;
+  hint?: string;
+}
 
 export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
-  ({ children, className, ...other }: TextInputProps, ref) => {
+  ({ children, className, label, hint, ...other }: TextInputProps, ref) => {
+    const id = useId();
+
     return (
-      <input ref={ref} type="text" className={classNames('input', className)} {...other}>
-        {children}
-      </input>
+      <div className="form-control">
+        {label && (
+          <label className="label" htmlFor={id}>
+            <span className="label-text">{label}</span>
+          </label>
+        )}
+        <input id={id} ref={ref} type="text" className={classNames('input input-bordered', className)} {...other}>
+          {children}
+        </input>
+        {hint && (
+          <div className="label">
+            <span className="label-text-alt">{hint}</span>
+          </div>
+        )}
+      </div>
     );
   }
 );
