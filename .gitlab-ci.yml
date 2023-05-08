@@ -4,6 +4,7 @@ stages:
   - lint-check
   - audit
   - build
+  - deploy
   - storybook
 
 lint-check:
@@ -35,20 +36,17 @@ build:
     - npm run build
   only:
     - development
+    - master
     - merge_requests
 
-build-deploy:
-  stage: build
-  before_script:
-    - npm i --silent
-  after_script:
-    - curl -X POST "https://jenkins.gtomy.net/generic-webhook-trigger/invoke?token=$JENKINS_DEPLOY_HOOK_TOKEN"
+deploy:
+  stage: deploy
   script:
-    - npm run build
+    - curl -X POST "https://jenkins.gtomy.net/generic-webhook-trigger/invoke?token=$JENKINS_DEPLOY_HOOK_TOKEN"
   only:
     - master
 
-storybook-deploy:
+pages:
   stage: storybook
   allow_failure: true
   before_script:
