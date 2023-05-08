@@ -16,7 +16,7 @@ export interface AuthStore {
   reset: () => void;
 }
 
-const useConversationStore = create(
+export const useAuthStore = create(
   persist(
     (set) => ({
       user: null,
@@ -31,5 +31,3 @@ const useConversationStore = create(
     }
   )
 );
-
-export default useConversationStore;

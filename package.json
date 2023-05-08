@@ -31,11 +31,26 @@
   },
   "homepage": "https://gitlab.com/GTomy/gtomy-lib#readme",
   "dependencies": {
-    "@heroicons/react": "^2.0.14",
-    "autoprefixer": "^10.4.13",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.39.4",
+    "react-router-dom": "^6.4.2",
+    "theme-change": "^2.3.0",
     "axios": "^1.4.0",
+    "zustand": "^4.3.2",
     "classnames": "^2.3.2",
-    "zustand": "^4.3.2"
+    "@heroicons/react": "^2.0.14"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.39.4",
+    "react-router-dom": "^6.4.2",
+    "theme-change": "^2.3.0",
+    "axios": "^1.4.0",
+    "zustand": "^4.3.2",
+    "classnames": "^2.3.2",
+    "@heroicons/react": "^2.0.14"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.5.1",
@@ -60,16 +75,11 @@
     "postcss-js": "^4.0.0",
     "postcss-preset-env": "^7.8.3",
     "prettier": "^2.8.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.39.4",
-    "react-router-dom": "^6.4.2",
     "rimraf": "^4.1.2",
     "rollup": "^3.10.1",
     "rollup-plugin-dts": "^5.1.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "tailwindcss": "^3.2.4",
-    "theme-change": "^2.3.0",
     "tslib": "^2.4.1",
     "typescript": "^4.9.4"
   }

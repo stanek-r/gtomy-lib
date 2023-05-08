@@ -1,5 +1,5 @@
 import axios from 'axios';
-import useAuthStore, { User } from './storage/useAuthStore';
+import { useAuthStore, User } from './storage/useAuthStore';
 
 interface UseAuth {
   isAuthenticated: boolean;
