@@ -4,6 +4,7 @@ stages:
   - lint-check
   - audit
   - build
+  - storybook
 
 lint-check:
   stage: lint-check
@@ -46,3 +47,16 @@ build-deploy:
     - npm run build
   only:
     - master
+
+storybook-deploy:
+  stage: storybook
+  allow_failure: true
+  before_script:
+    - npm i --silent
+  script:
+    - npm run build-storybook
+  artifacts:
+    paths:
+      - public
+  only:
+    - development
