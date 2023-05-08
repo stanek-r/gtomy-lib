@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useAuthStore, User } from './storage/useAuthStore';
+import { HttpClient } from '../auth';
 
 interface UseAuth {
   isAuthenticated: boolean;
@@ -22,13 +23,13 @@ export function useAuth(): UseAuth {
   const login = async (username: string, password: string): Promise<boolean> => {
     return axios
       .post('https://auth.gtomy.net/login', { username, password })
-      .then((response) => {
+      .then(async (response) => {
         if (!response.data?.access_token) {
           console.error('No access token');
           return false;
         }
         setToken(response.data.access_token);
-        refreshUser();
+        await refreshUser();
         return true;
       })
       .catch((error) => {
@@ -37,11 +38,12 @@ export function useAuth(): UseAuth {
       });
   };
 
-  const refreshUser = async (): Promise<void> => {
-    return axios
+  const refreshUser = async (forceToken?: string): Promise<void> => {
+    const client = new HttpClient(forceToken ?? token);
+    return client
       .get<User>('https://auth.gtomy.net/profile')
-      .then((response) => {
-        setUser(response.data);
+      .then((user) => {
+        setUser(user);
       })
       .catch((error) => {
         console.log(error);
