@@ -6,7 +6,7 @@ interface Props {
   backURL?: string;
 }
 
-export function Login({ backURL }: Props) {
+export function LoginPage({ backURL }: Props) {
   const { isAuthenticated, login, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
 
@@ -27,7 +27,7 @@ export function Login({ backURL }: Props) {
 
   if (isAuthenticated) {
     return (
-      <div className="d-flex flex-col w-[500px] gap-y-3">
+      <div className="flex flex-col w-[500px] gap-y-3">
         <h1 className="text-3xl font-bold">You are already logged in!</h1>
         <Button onClick={logout}>Logout</Button>
       </div>
@@ -35,10 +35,10 @@ export function Login({ backURL }: Props) {
   }
 
   return (
-    <div className="d-flex flex-col w-[500px] gap-y-3">
+    <div className="flex flex-col w-[500px] mx-auto gap-y-3">
       <h1 className="text-3xl font-bold">Login</h1>
-      <TextInput ref={usernameRef} placeholder="Username" />
-      <TextInput ref={passwordRef} placeholder="Password" />
+      <TextInput ref={usernameRef} placeholder="Username" name="username" />
+      <TextInput type="password" ref={passwordRef} placeholder="Password" name="password" />
       {error && <p className="text-red-500">{error}</p>}
       <Button onClick={handleSubmit}>Login</Button>
     </div>
