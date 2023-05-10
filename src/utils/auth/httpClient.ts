@@ -1,13 +1,18 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
+export interface HttpClientConfig {
+  baseURL?: string;
+  token?: string;
+}
+
 export class HttpClient {
   httpClient: AxiosInstance;
 
-  constructor(token: string, baseURL?: string) {
+  constructor({ token, baseURL }: HttpClientConfig) {
     this.httpClient = axios.create({
       baseURL: baseURL,
       headers: {
-        authorization: `Bearer ${token}`,
+        authorization: token ? `Bearer ${token}` : undefined,
       },
     });
 

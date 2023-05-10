@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Button, TextInput } from '../atoms';
 import { useAuth } from '../../utils';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   backURL?: string;
@@ -9,6 +10,7 @@ interface Props {
 export function LoginPage({ backURL }: Props) {
   const { isAuthenticated, login, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -18,7 +20,7 @@ export function LoginPage({ backURL }: Props) {
     if (usernameRef.current.value.trim() === '' || passwordRef.current.value.trim() === '') return;
     login(usernameRef.current.value, passwordRef.current.value).then((value) => {
       if (value) {
-        window.location.replace(backURL || '/');
+        navigate(backURL || '/');
       } else {
         setError('Invalid username or password');
       }
