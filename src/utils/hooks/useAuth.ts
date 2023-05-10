@@ -29,7 +29,7 @@ export function useAuth(): UseAuth {
           return false;
         }
         setToken(response.data.access_token);
-        await refreshUser();
+        await refreshUser(response.data.access_token);
         return true;
       })
       .catch((error) => {
