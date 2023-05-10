@@ -1,6 +1,6 @@
 {
   "name": "gtomy-lib",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Shared lib for react projects",
   "main": "dist/index.js",
   "files": [
@@ -15,7 +15,7 @@
     "lint:check": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build -o public"
   },
   "commitlint": {
     "extends": [

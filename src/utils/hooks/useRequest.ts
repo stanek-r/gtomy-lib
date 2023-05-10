@@ -11,26 +11,24 @@ interface UseRequest {
   delete: <T>(url: string, config?: AxiosRequestConfig<T>) => Promise<T>;
 }
 
-interface Props {
-  baseURL?: string;
-}
-
-export function useRequest({ baseURL = config.backendUrl }: Props): UseRequest {
+export function useRequest(baseURL = config.backendUrl): UseRequest {
   const { token } = useAuth();
-  const [client, setClient] = useState<HttpClient | null>(null);
+  const [client, setClient] = useState<HttpClient>(
+    token ? new HttpClient({ token, baseURL }) : new HttpClient({ baseURL })
+  );
 
   useEffect(() => {
     if (token) {
-      setClient(new HttpClient(token, baseURL));
+      setClient(new HttpClient({ token, baseURL }));
     } else {
-      setClient(null);
+      setClient(new HttpClient({ baseURL }));
     }
   }, [token]);
 
   return {
-    get: client!.get,
-    post: client!.post,
-    put: client!.put,
-    delete: client!.delete,
+    get: client.get,
+    post: client.post,
+    put: client.put,
+    delete: client.delete,
   };
 }
