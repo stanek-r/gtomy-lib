@@ -1,13 +1,14 @@
 import React, { ComponentPropsWithRef, useId } from 'react';
 import classNames from 'classnames';
 
-export interface TextInputProps extends ComponentPropsWithRef<'input'> {
+export interface TextareaInputProps extends ComponentPropsWithRef<'textarea'> {
   label?: string;
   hint?: string;
+  resizable?: boolean;
 }
 
-export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
-  ({ children, className, label, hint, type, ...other }: TextInputProps, ref) => {
+export const TextareaInput = React.forwardRef<HTMLTextAreaElement, TextareaInputProps>(
+  ({ children, className, label, hint, resizable, rows, ...other }: TextareaInputProps, ref) => {
     const id = useId();
 
     return (
@@ -17,15 +18,13 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
             <span className="label-text">{label}</span>
           </label>
         )}
-        <input
-          id={id}
+        <textarea
           ref={ref}
-          type={type ?? 'text'}
-          className={classNames('input input-bordered', className)}
+          className={classNames('textarea textarea-bordered', resizable ? 'resize-y' : 'resize-none', className)}
+          placeholder="Write something interesting"
+          rows={rows ?? 5}
           {...other}
-        >
-          {children}
-        </input>
+        ></textarea>
         {hint && (
           <div className="label">
             <span className="label-text-alt">{hint}</span>
@@ -36,4 +35,4 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   }
 );
 
-TextInput.displayName = 'TextInput';
+TextareaInput.displayName = 'TextareaInput';

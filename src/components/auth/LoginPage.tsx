@@ -40,7 +40,7 @@ export function LoginPage({ backURL }: Props) {
     <div className="flex flex-col w-[400px] mx-auto gap-y-3">
       <h1 className="text-3xl font-bold text-center mb-8">Login</h1>
       <TextInput ref={usernameRef} placeholder="Username" name="username" />
-      <TextInput type="password" ref={passwordRef} placeholder="Password" name="password" />
+      <TextInput ref={passwordRef} type="password" placeholder="Password" name="password" />
       {error && <p className="text-red-500">{error}</p>}
       <div className="flex justify-center">
         <Button onClick={handleSubmit}>Login</Button>

@@ -1,13 +1,19 @@
 import React, { ComponentPropsWithRef, useId } from 'react';
 import classNames from 'classnames';
 
-export interface TextInputProps extends ComponentPropsWithRef<'input'> {
+export const fileInputSizeClasses = {
+  sm: 'file-input-sm',
+  lg: 'file-input-lg',
+};
+
+export interface FileInputProps extends Omit<ComponentPropsWithRef<'input'>, 'size'> {
   label?: string;
   hint?: string;
+  size?: 'sm' | 'lg';
 }
 
-export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
-  ({ children, className, label, hint, type, ...other }: TextInputProps, ref) => {
+export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
+  ({ children, className, label, size, hint, ...other }: FileInputProps, ref) => {
     const id = useId();
 
     return (
@@ -20,8 +26,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         <input
           id={id}
           ref={ref}
-          type={type ?? 'text'}
-          className={classNames('input input-bordered', className)}
+          type="file"
+          className={classNames('file-input file-input-bordered', size && fileInputSizeClasses[size], className)}
           {...other}
         >
           {children}
@@ -36,4 +42,4 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   }
 );
 
-TextInput.displayName = 'TextInput';
+FileInput.displayName = 'FileInput';
