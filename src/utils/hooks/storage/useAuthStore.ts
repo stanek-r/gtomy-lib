@@ -5,7 +5,9 @@ export interface User {
   userId: string;
   username: string;
   email: string;
+  emailVerified: boolean;
   role: 'user' | 'subscriber' | 'admin';
+  displayName: string;
 }
 
 export interface AuthStore {

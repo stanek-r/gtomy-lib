@@ -39,7 +39,7 @@ export function useAuth(): UseAuth {
   };
 
   const refreshUser = async (forceToken?: string): Promise<void> => {
-    const client = new HttpClient(forceToken ?? token);
+    const client = new HttpClient({ token: forceToken ?? token });
     return client
       .get<User>('https://auth.gtomy.net/profile')
       .then((user) => {
