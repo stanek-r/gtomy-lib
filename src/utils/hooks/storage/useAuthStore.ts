@@ -11,21 +11,21 @@ export interface User {
 }
 
 export interface AuthStore {
-  user: User | null;
-  token: string | null;
-  setUser: (user: User | null) => void;
-  setToken: (token: string | null) => void;
+  user: User | undefined;
+  token: string | undefined;
+  setUser: (user: User | undefined) => void;
+  setToken: (token: string | undefined) => void;
   reset: () => void;
 }
 
 export const useAuthStore = create(
   persist(
     (set) => ({
-      user: null,
-      token: null,
-      setUser: (user: User | null) => set((state: AuthStore) => ({ user: user })),
-      setToken: (token: string | null) => set((state: AuthStore) => ({ token: token })),
-      reset: () => set(() => ({ user: null, token: null })),
+      user: undefined,
+      token: undefined,
+      setUser: (user: User | undefined) => set((state: AuthStore) => ({ user: user })),
+      setToken: (token: string | undefined) => set((state: AuthStore) => ({ token: token })),
+      reset: () => set(() => ({ user: undefined, token: undefined })),
     }),
     {
       name: 'auth-storage',

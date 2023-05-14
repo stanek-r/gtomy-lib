@@ -1,6 +1,7 @@
-import React, { ComponentPropsWithRef, ReactNode } from 'react';
+import React, { ReactNode, ElementType, ForwardedRef } from 'react';
 import classNames from 'classnames';
 import { isSvgIcon, SvgIconType } from '../../../models/svg.model';
+import { forwardRefWithTypes, PropsAs } from '../../../utils/typeHelpers';
 
 export const buttonColorClasses = {
   primary: 'btn-primary',
@@ -17,7 +18,8 @@ export const buttonSizeClasses = {
   lg: 'btn-lg',
 };
 
-export interface ButtonProps extends ComponentPropsWithRef<'button'> {
+export interface ButtonProps<T extends ElementType> {
+  as?: T;
   color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info' | 'ghost';
   size?: 'sm' | 'lg';
   wide?: boolean;
@@ -25,28 +27,31 @@ export interface ButtonProps extends ComponentPropsWithRef<'button'> {
   endIcon?: ReactNode | SvgIconType;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, type, color, size, className, startIcon, endIcon, ...other }: ButtonProps, ref) => {
-    if (isSvgIcon(startIcon)) {
-      startIcon = React.createElement(startIcon, { className: 'w-5 h-5 mr-1.5' });
-    }
-    if (isSvgIcon(endIcon)) {
-      endIcon = React.createElement(endIcon, { className: 'w-5 h-5 ml-1.5' });
-    }
-
-    return (
-      <button
-        ref={ref}
-        type={type ? type : 'button'}
-        className={classNames('btn', color && buttonColorClasses[color], size && buttonSizeClasses[size], className)}
-        {...other}
-      >
-        {startIcon}
-        {children}
-        {endIcon}
-      </button>
-    );
+export function ButtonInner<T extends ElementType = 'button'>(
+  { as, children, color, size, className, startIcon, endIcon, ...other }: PropsAs<ButtonProps<T>, T>,
+  ref: ForwardedRef<HTMLButtonElement>
+) {
+  if (isSvgIcon(startIcon)) {
+    startIcon = React.createElement(startIcon, { className: 'w-5 h-5 mr-1.5' });
   }
-);
+  if (isSvgIcon(endIcon)) {
+    endIcon = React.createElement(endIcon, { className: 'w-5 h-5 ml-1.5' });
+  }
 
-Button.displayName = 'Button';
+  const Component = as ?? 'button';
+  const type = Component === 'button' ? 'button' : undefined;
+  return (
+    <Component
+      ref={ref}
+      type={type}
+      className={classNames('btn', color && buttonColorClasses[color], size && buttonSizeClasses[size], className)}
+      {...other}
+    >
+      {startIcon}
+      {children}
+      {endIcon}
+    </Component>
+  );
+}
+
+export const Button = forwardRefWithTypes(ButtonInner);

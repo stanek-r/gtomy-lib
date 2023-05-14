@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Button, TextInput } from '../atoms';
 import { useAuth } from '../../utils';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface Props {
   backURL?: string;
@@ -27,23 +27,32 @@ export function LoginPage({ backURL }: Props) {
     });
   };
 
-  if (isAuthenticated) {
+  if (!isAuthenticated) {
     return (
-      <div className="flex flex-col w-[500px] gap-y-3">
-        <h1 className="text-3xl font-bold">You are already logged in!</h1>
-        <Button onClick={logout}>Logout</Button>
+      <div className="flex justify-center items-center w-full h-full">
+        <div className="flex flex-col w-[400px] gap-y-4">
+          <h1 className="text-3xl text-center font-bold">You are already logged in!</h1>
+          <div className="flex justify-center gap-x-2">
+            <Button as={Link} to="/">
+              Back
+            </Button>
+            <Button onClick={logout}>Logout</Button>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col w-[400px] mx-auto gap-y-3">
-      <h1 className="text-3xl font-bold text-center mb-8">Login</h1>
-      <TextInput ref={usernameRef} placeholder="Username" name="username" />
-      <TextInput ref={passwordRef} type="password" placeholder="Password" name="password" />
-      {error && <p className="text-red-500">{error}</p>}
-      <div className="flex justify-center">
-        <Button onClick={handleSubmit}>Login</Button>
+    <div className="flex justify-center items-center w-full h-full">
+      <div className="flex flex-col w-[400px] gap-y-3">
+        <h1 className="text-3xl font-bold text-center mb-8">Login</h1>
+        <TextInput ref={usernameRef} placeholder="Username" name="username" />
+        <TextInput ref={passwordRef} type="password" placeholder="Password" name="password" />
+        {error && <p className="text-red-500">{error}</p>}
+        <div className="flex justify-center">
+          <Button onClick={handleSubmit}>Login</Button>
+        </div>
       </div>
     </div>
   );

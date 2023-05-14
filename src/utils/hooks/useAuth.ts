@@ -4,8 +4,8 @@ import { HttpClient } from '../auth';
 
 interface UseAuth {
   isAuthenticated: boolean;
-  token: string | null;
-  user: User | null;
+  token: string | undefined;
+  user: User | undefined;
   login: (username: string, password: string) => Promise<boolean>;
   logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
