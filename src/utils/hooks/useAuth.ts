@@ -33,8 +33,7 @@ export function useAuth(): UseAuth {
         await refreshUser(response.data.access_token);
         return true;
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         return false;
       });
   };
@@ -45,8 +44,7 @@ export function useAuth(): UseAuth {
       .then(() => {
         return true;
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         return false;
       });
   };
@@ -58,9 +56,7 @@ export function useAuth(): UseAuth {
       .then((user) => {
         setUser(user);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch();
   };
 
   return {
