@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, TextInput } from '../atoms';
+import { Button, TextInput, Typography } from '../atoms';
 import { useAuth } from '../../utils';
 import { Link, useNavigate } from 'react-router-dom';
 import { config } from '../../config';
@@ -32,8 +32,10 @@ export function LoginPage({ backURL }: Props) {
   if (isAuthenticated) {
     return (
       <div className="flex justify-center items-center w-full h-screen">
-        <div className="flex flex-col w-[400px] max-w-full gap-y-4">
-          <span className="text-3xl text-center font-bold">You are already logged in as {user?.displayName}!</span>
+        <div className="flex flex-col w-[500px] max-w-full gap-y-4">
+          <Typography size="3xl" weight="bold" className="text-center">
+            You are already logged in as {user?.displayName}!
+          </Typography>
           <div className="flex justify-center gap-x-2">
             <Button as={Link} to="/">
               Back
@@ -44,28 +46,43 @@ export function LoginPage({ backURL }: Props) {
       </div>
     );
   }
-
-  let registerUrl = Applications.GTOMY_NET.baseUrl + '/register';
+  let registerUrl: string | undefined;
   if (config.application) {
-    registerUrl += '?backApp=' + config.application.name;
+    if (config.application.name !== Applications.GTOMY_NET.name) {
+      registerUrl = Applications.GTOMY_NET.baseUrl + '/register?backApp=' + config.application.name;
+    }
+  } else {
+    registerUrl = Applications.GTOMY_NET.baseUrl + '/register';
   }
 
   return (
     <div className="flex justify-center items-center w-full h-screen">
       <div className="flex flex-col w-[400px] max-w-full gap-y-3">
         {config.application?.displayName && (
-          <h1 className="text-3xl font-bold text-center mb-8">{config.application.displayName}</h1>
+          <Typography as="h1" size="3xl" weight="bold" className="text-center mb-3">
+            {config.application.displayName}
+          </Typography>
         )}
         <TextInput ref={usernameRef} placeholder="Username" name="username" />
         <TextInput ref={passwordRef} type="password" placeholder="Password" name="password" />
-        {error && <p className="text-red-500">{error}</p>}
+        {error && (
+          <Typography color="red" className="text-center">
+            {error}
+          </Typography>
+        )}
         <div className="btn-group justify-center">
           <Button onClick={handleSubmit} className="w-1/2 sm:w-1/3" color="primary">
             Login
           </Button>
-          <Button as="a" href={registerUrl} className="w-1/2 sm:w-1/3">
-            Register
-          </Button>
+          {registerUrl ? (
+            <Button as="a" href={registerUrl} className="w-1/2 sm:w-1/3">
+              Register
+            </Button>
+          ) : (
+            <Button as={Link} to="/register" className="w-1/2 sm:w-1/3">
+              Register
+            </Button>
+          )}
         </div>
       </div>
     </div>

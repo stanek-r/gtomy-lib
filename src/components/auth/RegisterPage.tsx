@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, TextInput } from '../atoms';
+import { Button, TextInput, Typography } from '../atoms';
 import { useAuth } from '../../utils';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { config } from '../../config';
@@ -49,8 +49,10 @@ export function RegisterPage() {
   if (isAuthenticated) {
     return (
       <div className="flex justify-center items-center w-full h-screen">
-        <div className="flex flex-col w-[400px] max-w-full gap-y-4">
-          <span className="text-3xl text-center font-bold">You are already logged in as {user?.displayName}!</span>
+        <div className="flex flex-col w-[500px] max-w-full gap-y-4">
+          <Typography size="3xl" weight="bold" className="text-center">
+            You are already logged in as {user?.displayName}!
+          </Typography>
           <div className="flex justify-center gap-x-2">
             {backAppLoginUrl ? (
               <Button as="a" href={backAppLoginUrl}>
@@ -72,13 +74,19 @@ export function RegisterPage() {
     <div className="flex justify-center items-center w-full h-screen">
       <div className="flex flex-col w-[400px] max-w-full gap-y-3">
         {config.application?.displayName && (
-          <h1 className="text-3xl font-bold text-center mb-8">{config.application.displayName}</h1>
+          <Typography as="h1" size="3xl" weight="bold" className="text-center mb-3">
+            {config.application.displayName}
+          </Typography>
         )}
         <TextInput ref={usernameRef} placeholder="Username" name="username" />
         <TextInput ref={passwordRef} type="password" placeholder="Password" name="password" />
         <TextInput ref={password2Ref} type="password" placeholder="Password again" name="passwordAgain" />
         <TextInput ref={emailRef} type="email" placeholder="Email" name="email" />
-        {error && <p className="text-red-500">{error}</p>}
+        {error && (
+          <Typography color="red" className="text-center">
+            {error}
+          </Typography>
+        )}
         <div className="btn-group justify-center">
           {backAppLoginUrl ? (
             <Button as="a" href={backAppLoginUrl} className="w-1/2 sm:w-1/3">
