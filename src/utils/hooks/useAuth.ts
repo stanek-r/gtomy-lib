@@ -7,6 +7,7 @@ interface UseAuth {
   token: string | undefined;
   user: User | undefined;
   login: (username: string, password: string) => Promise<boolean>;
+  register: (username: string, password: string, email: string) => Promise<boolean>;
   logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
 }
@@ -38,6 +39,18 @@ export function useAuth(): UseAuth {
       });
   };
 
+  const register = async (username: string, password: string, email: string): Promise<boolean> => {
+    return axios
+      .post('https://auth.gtomy.net/register', { username, password, email })
+      .then(() => {
+        return true;
+      })
+      .catch((error) => {
+        console.log(error);
+        return false;
+      });
+  };
+
   const refreshUser = async (forceToken?: string): Promise<void> => {
     const client = new HttpClient({ token: forceToken ?? token });
     return client
@@ -55,6 +68,7 @@ export function useAuth(): UseAuth {
     token: token,
     user: user,
     login,
+    register,
     logout: reset,
     refreshUser,
   };
