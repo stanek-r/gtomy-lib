@@ -1,5 +1,12 @@
-import { config, GTomyLibConfig } from './config';
+import { config } from './config';
+import { Applications } from './utils/applications';
 
-export function initGTomyLib(initConfig: GTomyLibConfig): void {
-  Object.assign(config, initConfig);
+interface GTomyLibInitConfig {
+  appName: string;
+}
+
+export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
+  Object.assign(config, {
+    application: Applications.getByName(initConfig.appName),
+  });
 }

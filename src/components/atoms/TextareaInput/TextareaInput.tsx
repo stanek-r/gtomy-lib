@@ -8,7 +8,7 @@ export interface TextareaInputProps extends ComponentPropsWithRef<'textarea'> {
 }
 
 export const TextareaInput = React.forwardRef<HTMLTextAreaElement, TextareaInputProps>(
-  ({ children, className, label, hint, resizable, rows, ...other }: TextareaInputProps, ref) => {
+  ({ className, label, hint, resizable, rows, ...other }: TextareaInputProps, ref) => {
     const id = useId();
 
     return (

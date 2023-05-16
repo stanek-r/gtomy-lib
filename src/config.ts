@@ -1,5 +1,7 @@
+import { Application } from './utils/applications';
+
 export interface GTomyLibConfig {
-  backendUrl?: string;
+  application?: Application;
 }
 
 export const config: GTomyLibConfig = {};
