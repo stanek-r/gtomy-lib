@@ -5,3 +5,4 @@ export * from './TextareaInput';
 export * from './CodeMockup';
 export * from './FileInput';
 export * from './Typography';
+export * from './SelectInput';

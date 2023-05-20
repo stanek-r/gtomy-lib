@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof RegisterPage> = {
-  title: 'RegisterPage',
+  title: 'Auth/RegisterPage',
   component: RegisterPage,
   decorators: [(Story) => <BrowserRouter>{Story()}</BrowserRouter>],
 };

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TextInput } from './TextInput';
 
 const meta: Meta<typeof TextInput> = {
-  title: 'TextInput',
+  title: 'Atoms/TextInput',
   component: TextInput,
 };
 
@@ -20,5 +20,14 @@ export const WithForm: Story = {
     placeholder: 'TextInput',
     label: 'Label',
     hint: 'Hint',
+  },
+};
+
+export const WithFormError: Story = {
+  args: {
+    placeholder: 'TextInput',
+    label: 'Label',
+    hint: 'Hint',
+    error: 'Error',
   },
 };

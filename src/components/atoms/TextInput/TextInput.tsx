@@ -1,13 +1,15 @@
 import React, { ComponentPropsWithRef, useId } from 'react';
 import classNames from 'classnames';
+import { Text } from '../Typography/Text';
 
 export interface TextInputProps extends ComponentPropsWithRef<'input'> {
   label?: string;
   hint?: string;
+  error?: string;
 }
 
 export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
-  ({ children, className, label, hint, type, ...other }: TextInputProps, ref) => {
+  ({ children, className, label, hint, error, type, ...other }: TextInputProps, ref) => {
     const id = useId();
 
     return (
@@ -21,12 +23,19 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           id={id}
           ref={ref}
           type={type ?? 'text'}
-          className={classNames('input input-bordered', className)}
+          className={classNames('input input-bordered', error && 'input-error', className)}
           {...other}
         >
           {children}
         </input>
-        {hint && (
+        {error && (
+          <div className="label">
+            <Text color="red" className="label-text-alt">
+              {error}
+            </Text>
+          </div>
+        )}
+        {hint && !error && (
           <div className="label">
             <span className="label-text-alt">{hint}</span>
           </div>
