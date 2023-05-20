@@ -4,7 +4,7 @@ import { ButtonIcon } from './ButtonIcon';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 
 const meta: Meta<typeof ButtonIcon> = {
-  title: 'ButtonIcon',
+  title: 'Atoms/ButtonIcon',
   component: ButtonIcon,
 };
 

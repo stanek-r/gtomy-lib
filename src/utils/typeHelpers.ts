@@ -19,3 +19,18 @@ export function assignRefs<T>(...refs: Ref<T | null>[]) {
     });
   };
 }
+
+export const ControlledFormTransformer = {
+  from: (value: string): string | null => {
+    if (value === undefined || value === null || value === '') {
+      return null;
+    }
+    return value;
+  },
+  to: (value: string | null | undefined): string => {
+    if (value === undefined || value === null) {
+      return '';
+    }
+    return value;
+  },
+};

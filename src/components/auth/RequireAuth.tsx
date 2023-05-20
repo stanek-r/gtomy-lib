@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useAuth } from '../../utils';
+import { useAuth, useCommonTranslation } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 import { Button, Typography } from '../atoms';
 
@@ -12,6 +12,7 @@ export function RequireAuth({
 }) {
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
+  const { t, st } = useCommonTranslation('auth');
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -25,12 +26,12 @@ export function RequireAuth({
   if ((minimalRole === 'subscriber' && user!.role === 'user') || (minimalRole === 'admin' && user!.role !== 'admin')) {
     return (
       <div className="flex justify-center items-center w-full h-screen">
-        <div className="flex flex-col w-[400px] max-w-full gap-y-4">
+        <div className="flex flex-col w-[500px] max-w-full gap-y-4 p-4">
           <Typography size="3xl" weight="bold" className="text-center">
-            You don&apos;t have access to this service, need {minimalRole}!
+            {t('noAccess', { minimalRole: st('role.' + minimalRole) })}
           </Typography>
           <div className="flex justify-center gap-x-2">
-            <Button onClick={logout}>Logout</Button>
+            <Button onClick={logout}>{t('logout')}</Button>
           </div>
         </div>
       </div>

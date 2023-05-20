@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CodeMockup } from './CodeMockup';
 
 const meta: Meta<typeof CodeMockup> = {
-  title: 'CodeMockup',
+  title: 'Atoms/CodeMockup',
   component: CodeMockup,
 };
 

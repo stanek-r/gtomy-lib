@@ -1,6 +1,6 @@
 {
   "name": "gtomy-lib",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Shared lib for react projects",
   "main": "dist/index.js",
   "files": [
@@ -36,9 +36,12 @@
     "@heroicons/react": "^2.0.14",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
+    "i18next": "^22.5.0",
+    "i18next-browser-languagedetector": "^7.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.4",
+    "react-i18next": "^12.3.1",
     "react-router-dom": "^6.4.2",
     "theme-change": "^2.3.0",
     "zustand": "^4.3.2"
@@ -65,9 +68,9 @@
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-typescript": "^11.0.0",
     "@storybook/addon-essentials": "^7.0.9",
-    "@storybook/addon-styling": "^1.0.6",
     "@storybook/addon-interactions": "^7.0.9",
     "@storybook/addon-links": "^7.0.9",
+    "@storybook/addon-styling": "^1.0.6",
     "@storybook/blocks": "^7.0.9",
     "@storybook/react": "^7.0.9",
     "@storybook/react-webpack5": "^7.0.9",

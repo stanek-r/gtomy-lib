@@ -1,20 +1,29 @@
-import React, { useRef, useState } from 'react';
-import { Button, TextInput, Typography } from '../atoms';
-import { useAuth } from '../../utils';
+import React, { useState } from 'react';
+import { Button, Typography } from '../atoms';
+import { useAuth, useCommonTranslation, Applications } from '../../utils';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { config } from '../../config';
-import { Applications } from '../../utils/applications';
+import { ThemeSelect } from '../molecules';
+import { LanguageSelect } from '../molecules/LanguageSelect/LanguageSelect';
+import { useForm } from 'react-hook-form';
+import { FormTextInput } from '../form';
+
+interface RegisterForm {
+  username: string;
+  password: string;
+  passwordAgain: string;
+  email: string;
+}
 
 export function RegisterPage() {
   const { isAuthenticated, user, register, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-
-  const usernameRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
-  const password2Ref = useRef<HTMLInputElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
+  const { t, st } = useCommonTranslation('auth');
+  const { control, handleSubmit } = useForm<RegisterForm>({
+    defaultValues: { username: undefined, password: undefined, passwordAgain: undefined, email: undefined },
+  });
 
   let backAppLoginUrl: string | undefined;
   if (searchParams.has('backApp')) {
@@ -24,16 +33,8 @@ export function RegisterPage() {
     }
   }
 
-  const handleSubmit = () => {
-    if (!usernameRef.current || !passwordRef.current || !password2Ref.current || !emailRef.current) return;
-    if (
-      usernameRef.current.value.trim() === '' ||
-      passwordRef.current.value.trim() === '' ||
-      emailRef.current.value.trim() === ''
-    )
-      return;
-    if (passwordRef.current.value !== password2Ref.current.value) return;
-    register(usernameRef.current.value, passwordRef.current.value, emailRef.current.value).then((value) => {
+  const onHandleSubmit = (value: RegisterForm) => {
+    register(value.username, value.password, value.email).then((value) => {
       if (value) {
         if (backAppLoginUrl) {
           window.location.href = backAppLoginUrl;
@@ -41,7 +42,7 @@ export function RegisterPage() {
           navigate('/login');
         }
       } else {
-        setError('Cannot register with this username or password');
+        setError(st('cannotRegister'));
       }
     });
   };
@@ -49,21 +50,21 @@ export function RegisterPage() {
   if (isAuthenticated) {
     return (
       <div className="flex justify-center items-center w-full h-screen">
-        <div className="flex flex-col w-[500px] max-w-full gap-y-4">
+        <div className="flex flex-col w-[500px] max-w-full gap-y-4 p-4">
           <Typography size="3xl" weight="bold" className="text-center">
-            You are already logged in as {user?.displayName}!
+            {t('alreadyLoggedIn', { name: user?.displayName })}
           </Typography>
           <div className="flex justify-center gap-x-2">
             {backAppLoginUrl ? (
               <Button as="a" href={backAppLoginUrl}>
-                Back
+                {t('common:back')}
               </Button>
             ) : (
               <Button as={Link} to="/">
-                Back
+                {t('common:back')}
               </Button>
             )}
-            <Button onClick={logout}>Logout</Button>
+            <Button onClick={logout}>{t('logout')}</Button>
           </div>
         </div>
       </div>
@@ -71,17 +72,35 @@ export function RegisterPage() {
   }
 
   return (
-    <div className="flex justify-center items-center w-full h-screen">
-      <div className="flex flex-col w-[400px] max-w-full gap-y-3">
+    <form onSubmit={handleSubmit(onHandleSubmit)} className="flex justify-center items-center w-full h-screen">
+      <div className="flex flex-col w-[500px] max-w-full gap-y-3 p-4">
         {config.application?.displayName && (
           <Typography as="h1" size="3xl" weight="bold" className="text-center mb-3">
             {config.application.displayName}
           </Typography>
         )}
-        <TextInput ref={usernameRef} placeholder="Username" name="username" />
-        <TextInput ref={passwordRef} type="password" placeholder="Password" name="password" />
-        <TextInput ref={password2Ref} type="password" placeholder="Password again" name="passwordAgain" />
-        <TextInput ref={emailRef} type="email" placeholder="Email" name="email" />
+        <FormTextInput control={control} name="username" rules={{ required: true }} placeholder={st('username')} />
+        <FormTextInput
+          control={control}
+          name="password"
+          type="password"
+          rules={{ required: true }}
+          placeholder={st('password')}
+        />
+        <FormTextInput
+          control={control}
+          name="passwordAgain"
+          type="password"
+          rules={{ required: true }}
+          placeholder={st('passwordConfirmation')}
+        />
+        <FormTextInput
+          control={control}
+          name="email"
+          type="email"
+          rules={{ required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g }}
+          placeholder={st('email')}
+        />
         {error && (
           <Typography color="red" className="text-center">
             {error}
@@ -90,18 +109,22 @@ export function RegisterPage() {
         <div className="btn-group justify-center">
           {backAppLoginUrl ? (
             <Button as="a" href={backAppLoginUrl} className="w-1/2 sm:w-1/3">
-              Login
+              {t('login')}
             </Button>
           ) : (
             <Button as={Link} to="/login" className="w-1/2 sm:w-1/3">
-              Login
+              {t('login')}
             </Button>
           )}
-          <Button onClick={handleSubmit} className="w-1/2 sm:w-1/3" color="primary">
-            Register
+          <Button type="submit" className="w-1/2 sm:w-1/3" color="primary">
+            {t('register')}
           </Button>
         </div>
+        <div className="flex justify-between mt-3">
+          <ThemeSelect />
+          <LanguageSelect />
+        </div>
       </div>
-    </div>
+    </form>
   );
 }
