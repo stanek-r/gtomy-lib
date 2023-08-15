@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAuth } from '../../utils';
 
 export function OptionalAuth({ children }: { children: JSX.Element }) {
