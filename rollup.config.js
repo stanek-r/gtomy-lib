@@ -24,7 +24,7 @@ export default [
       json(),
       typescript({ tsconfig: './tsconfig.json' }),
     ],
-    external: ["react", "react-dom", "react-router-dom", "react-hook-form", "theme-change", "axios", "zustand", "classnames", "@heroicons/react"],
+    external: ["react", "react-dom", "react-router-dom", "react-hook-form", "theme-change", "axios", "zustand", "classnames", "@heroicons/react", "@sentry/react"],
   },
   {
     input: 'dist/types/index.d.ts',
