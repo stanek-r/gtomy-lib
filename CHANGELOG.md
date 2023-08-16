@@ -19,16 +19,16 @@ All notable changes to this project will be documented in this file. See [standa
 * implement user authorization ([a8575bd](https://gitlab.com/GTomy/gtomy-lib/commit/a8575bdefb2d3de6a947a672f59aaba02ffb5724))
 * use navigate instead of redirecting ([395c846](https://gitlab.com/GTomy/gtomy-lib/commit/395c8461ec7e22a22b26cf7f9b9f8234481ffe26))
 
-## [0.0.5](https://gitlab.com/GTomy/gtomy-lib/-/tags/v0.0.5) (2023-02-10) - [Build 12](https://jenkins.gtomy.net/job/gtomy-lib/12/)
+### 0.0.5 (2023-02-10)
 
 ### Features
-* General project structure
+* general project structure
 
 ### Bug Fixes
-* Theme provider JSX.Element fix
+* theme provider JSX.Element fix
 
 
-## 0.0.1 - 0.0.4 (2023-02-10)
+### 0.0.1 - 0.0.4 (2023-02-10)
 
 ### Features
 * Initialize project
