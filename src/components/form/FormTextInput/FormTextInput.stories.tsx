@@ -21,7 +21,7 @@ interface FieldValues {
   test: string;
 }
 
-export const Default: ComponentStory<typeof FormTextInput<FieldValues>> = (args) => {
+export const Default: ComponentStory<typeof FormTextInput<FieldValues>> = () => {
   const { control, handleSubmit } = useForm<FieldValues>({
     defaultValues: { test: 'Test value' },
   });

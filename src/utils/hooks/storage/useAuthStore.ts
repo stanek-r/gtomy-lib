@@ -23,8 +23,8 @@ export const useAuthStore = create(
     (set) => ({
       user: undefined,
       token: undefined,
-      setUser: (user: User | undefined) => set((state: AuthStore) => ({ user: user })),
-      setToken: (token: string | undefined) => set((state: AuthStore) => ({ token: token })),
+      setUser: (user: User | undefined) => set(() => ({ user: user })),
+      setToken: (token: string | undefined) => set(() => ({ token: token })),
       reset: () => set(() => ({ user: undefined, token: undefined })),
     }),
     {

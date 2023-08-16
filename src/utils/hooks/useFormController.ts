@@ -23,7 +23,7 @@ function useFieldErrorMessage(error: FieldError | undefined): string | undefined
 
 export function useFormController<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: UseControllerProps<TFieldValues, TName>) {
   const { st } = useCommonTranslation('form');
   const { field, fieldState, formState } = useController(props);

@@ -9,7 +9,7 @@ import { TextInput } from '../../atoms';
  */
 export interface FormTextInputProps<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends UseControllerProps<TFieldValues, TName> {
   label?: string;
   hint?: string;
@@ -24,7 +24,7 @@ export interface FormTextInputProps<
  */
 export function FormTextInput<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({ label, hint, placeholder, className, type, ...useControllerProps }: FormTextInputProps<TFieldValues, TName>) {
   const {
     field: { onChange, value, ...other },

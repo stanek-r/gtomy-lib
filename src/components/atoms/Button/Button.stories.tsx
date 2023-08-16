@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
 import { KeyIcon, XMarkIcon } from '@heroicons/react/20/solid';
