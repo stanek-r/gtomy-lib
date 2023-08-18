@@ -34,6 +34,7 @@
   "homepage": "https://gitlab.com/GTomy/gtomy-lib#readme",
   "dependencies": {
     "@heroicons/react": "^2.0.14",
+    "@radix-ui/react-dialog": "^1.0.4",
     "@sentry/react": "^7.64.0",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",

@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithRef } from 'react';
 import classNames from 'classnames';
-import { useCommonTranslation } from '../../../utils';
+import { useTranslation } from 'react-i18next';
 
 export type ThemeSelectProps = ComponentPropsWithRef<'select'>;
 
@@ -30,7 +30,7 @@ export type ThemeSelectProps = ComponentPropsWithRef<'select'>;
  * @return The ThemeSelect component.
  */
 export function ThemeSelect({ className, children, ...other }: ThemeSelectProps) {
-  const { t } = useCommonTranslation();
+  const { t } = useTranslation('common');
 
   return (
     <select data-choose-theme className={classNames('select select-bordered', className)} {...other}>

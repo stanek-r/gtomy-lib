@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Typography } from '../atoms';
-import { useAuth, useCommonTranslation, Applications } from '../../utils';
+import { useAuth, Applications } from '../../utils';
 import { Link, useNavigate } from 'react-router-dom';
 import { config } from '../../config';
 import { ThemeSelect } from '../molecules';
 import { LanguageSelect } from '../molecules/LanguageSelect/LanguageSelect';
 import { useForm } from 'react-hook-form';
 import { FormTextInput } from '../form';
+import { useTranslation } from 'react-i18next';
 
 interface LoginForm {
   username: string;
@@ -21,7 +22,7 @@ export function LoginPage({ backURL }: Props) {
   const { isAuthenticated, user, login, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { t, st } = useCommonTranslation('auth');
+  const { t } = useTranslation('auth');
   const { control, handleSubmit } = useForm<LoginForm>({
     defaultValues: { username: undefined, password: undefined },
   });
@@ -40,7 +41,7 @@ export function LoginPage({ backURL }: Props) {
       if (value) {
         navigate(backURL || '/');
       } else {
-        setError(st('invalidCredentials'));
+        setError(t('invalidCredentials'));
       }
     });
   };
@@ -71,13 +72,13 @@ export function LoginPage({ backURL }: Props) {
             {config.application.displayName}
           </Typography>
         )}
-        <FormTextInput control={control} name="username" rules={{ required: true }} placeholder={st('username')} />
+        <FormTextInput control={control} name="username" rules={{ required: true }} placeholder={t('username')} />
         <FormTextInput
           control={control}
           name="password"
           type="password"
           rules={{ required: true }}
-          placeholder={st('password')}
+          placeholder={t('password')}
         />
         {error && (
           <Typography color="red" className="text-center">

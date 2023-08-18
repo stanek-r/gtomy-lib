@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Typography } from '../atoms';
-import { useAuth, useCommonTranslation, Applications } from '../../utils';
+import { useAuth, Applications } from '../../utils';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { config } from '../../config';
 import { ThemeSelect } from '../molecules';
 import { LanguageSelect } from '../molecules/LanguageSelect/LanguageSelect';
 import { useForm } from 'react-hook-form';
 import { FormTextInput } from '../form';
+import { useTranslation } from 'react-i18next';
 
 interface RegisterForm {
   username: string;
@@ -20,7 +21,7 @@ export function RegisterPage() {
   const [error, setError] = useState<string | null>(null);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { t, st } = useCommonTranslation('auth');
+  const { t } = useTranslation('auth');
   const { control, handleSubmit } = useForm<RegisterForm>({
     defaultValues: { username: undefined, password: undefined, passwordAgain: undefined, email: undefined },
   });
@@ -42,7 +43,7 @@ export function RegisterPage() {
           navigate('/login');
         }
       } else {
-        setError(st('cannotRegister'));
+        setError(t('cannotRegister'));
       }
     });
   };
@@ -79,27 +80,27 @@ export function RegisterPage() {
             {config.application.displayName}
           </Typography>
         )}
-        <FormTextInput control={control} name="username" rules={{ required: true }} placeholder={st('username')} />
+        <FormTextInput control={control} name="username" rules={{ required: true }} placeholder={t('username')} />
         <FormTextInput
           control={control}
           name="password"
           type="password"
           rules={{ required: true }}
-          placeholder={st('password')}
+          placeholder={t('password')}
         />
         <FormTextInput
           control={control}
           name="passwordAgain"
           type="password"
           rules={{ required: true }}
-          placeholder={st('passwordConfirmation')}
+          placeholder={t('passwordConfirmation')}
         />
         <FormTextInput
           control={control}
           name="email"
           type="email"
           rules={{ required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g }}
-          placeholder={st('email')}
+          placeholder={t('email')}
         />
         {error && (
           <Typography color="red" className="text-center">
