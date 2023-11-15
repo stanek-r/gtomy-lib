@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.19](https://gitlab.com/GTomy/gtomy-lib/compare/v0.0.18...v0.0.19) (2023-11-15)
+
+
+### Features
+
+* add form number input and form select ([c2b9a2f](https://gitlab.com/GTomy/gtomy-lib/commit/c2b9a2f416790ad15133378ba9d0c4665b2b2713))
+* add dialog and useDialog hook for easy usage ([fa85214](https://gitlab.com/GTomy/gtomy-lib/commit/fa852149f63af87ff4a47c44e46e6a5aa49b932e))
+
 ### 0.0.18 (2023-08-16)
 
 

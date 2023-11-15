@@ -1,5 +1,7 @@
 import * as Sentry from '@sentry/react';
 
+let sentryEnabled = false;
+
 export interface SentryConfig {
   enabled: boolean;
   dsn: string;
@@ -30,4 +32,12 @@ export function initSentry(config: SentryConfig) {
     release: config.release,
     environment: config.environment,
   });
+  sentryEnabled = true;
+}
+
+/**
+ * Returns whether Sentry is enabled or not.
+ */
+export function isSentryEnabled(): boolean {
+  return sentryEnabled;
 }
