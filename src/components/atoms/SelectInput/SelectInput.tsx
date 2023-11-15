@@ -1,5 +1,6 @@
-import classNames from 'classnames';
 import React, { ComponentPropsWithRef, useId } from 'react';
+import classNames from 'classnames';
+import { Text } from '../Typography/Text';
 
 export interface Option {
   value: string;
@@ -11,10 +12,11 @@ export interface SelectInputProps extends Omit<ComponentPropsWithRef<'select'>, 
   hint?: string;
   options: Option[];
   allowEmpty?: boolean;
+  error?: string;
 }
 
 export const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>(
-  ({ className, label, hint, options, allowEmpty, ...other }: SelectInputProps, ref) => {
+  ({ className, label, hint, options, allowEmpty, error, ...other }: SelectInputProps, ref) => {
     const id = useId();
 
     return (
@@ -32,7 +34,14 @@ export const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>
             </option>
           ))}
         </select>
-        {hint && (
+        {error && (
+          <div className="label">
+            <Text color="red" className="label-text-alt">
+              {error}
+            </Text>
+          </div>
+        )}
+        {hint && !error && (
           <div className="label">
             <span className="label-text-alt">{hint}</span>
           </div>

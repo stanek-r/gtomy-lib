@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Option, SelectInput } from './SelectInput';
 
 const meta: Meta<typeof SelectInput> = {
-  title: 'Atoms/SelectInput',
+  title: 'Atoms/Inputs/SelectInput',
   component: SelectInput,
 };
 
