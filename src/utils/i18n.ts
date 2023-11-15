@@ -39,7 +39,7 @@ export const changeLanguage = (language: string) => {
  * @param resource - resource to add (e.g. { 'key': 'value' })
  */
 export function addTranslationResource(namespace: string, language: string, resource: Record<string, any>) {
-  i18n.addResourceBundle(language, 'translation', resource, true, true);
+  i18n.addResourceBundle(language, namespace, resource, true, true);
 }
 
 /**
