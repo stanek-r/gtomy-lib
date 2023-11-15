@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.20](https://gitlab.com/GTomy/gtomy-lib/compare/v0.0.19...v0.0.20) (2023-11-15)
+
+
+### Features
+
+* add FormFileInput ([ea00c7a](https://gitlab.com/GTomy/gtomy-lib/commit/ea00c7a9c801627f2e4d0295824b95f90ff48741))
+* publish to npm from gitlab pipeline ([298031e](https://gitlab.com/GTomy/gtomy-lib/commit/298031ed573a6d91bca24c4082a911a8d3273af1))
+
+
+### Bug Fixes
+
+* correct component exports ([f4707a9](https://gitlab.com/GTomy/gtomy-lib/commit/f4707a9cc7708081df263b857e99db73b3a069c3))
+* npm vulnerabilities ([4999017](https://gitlab.com/GTomy/gtomy-lib/commit/49990179246a8ef98c26fed5b1275b609dc8d531))
+
 ### [0.0.19](https://gitlab.com/GTomy/gtomy-lib/compare/v0.0.18...v0.0.19) (2023-11-15)
 
 
