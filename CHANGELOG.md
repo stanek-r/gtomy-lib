@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * add form number input and form select ([c2b9a2f](https://gitlab.com/GTomy/gtomy-lib/commit/c2b9a2f416790ad15133378ba9d0c4665b2b2713))
-* **components:** add dialog and useDialog hook for easy usage ([fa85214](https://gitlab.com/GTomy/gtomy-lib/commit/fa852149f63af87ff4a47c44e46e6a5aa49b932e))
+* add dialog and useDialog hook for easy usage ([fa85214](https://gitlab.com/GTomy/gtomy-lib/commit/fa852149f63af87ff4a47c44e46e6a5aa49b932e))
 
 ### 0.0.18 (2023-08-16)
 
