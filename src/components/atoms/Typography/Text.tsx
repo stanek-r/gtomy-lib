@@ -3,7 +3,7 @@ import { Typography } from './Typography';
 
 export interface TextProps extends Omit<Omit<HTMLProps<HTMLSpanElement>, 'color'>, 'size'> {
   as?: 'p' | 'span';
-  color?: 'inherit' | 'white' | 'gray' | 'red';
+  color?: 'inherit' | 'white' | 'gray' | 'lightgray' | 'red';
   decoration?: 'underline' | 'line-through' | 'overline';
 }
 

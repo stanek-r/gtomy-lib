@@ -1,6 +1,6 @@
 import { FieldError, FieldPath, FieldValues, useController, UseControllerProps } from 'react-hook-form';
 import { useMemo } from 'react';
-import { useCommonTranslation } from './useCommonTranslation';
+import { useTranslation } from 'react-i18next';
 
 function getFieldErrorMessage(error: FieldError | undefined): string | undefined {
   if (!error) {
@@ -25,13 +25,13 @@ export function useFormController<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: UseControllerProps<TFieldValues, TName>) {
-  const { st } = useCommonTranslation('form');
+  const { t } = useTranslation('form');
   const { field, fieldState, formState } = useController(props);
   const errorMessage = useFieldErrorMessage(fieldState.error);
   return {
     field,
     fieldState,
     formState,
-    errorMessage: errorMessage ? st(errorMessage) : undefined,
+    errorMessage: errorMessage ? t(errorMessage) : undefined,
   };
 }

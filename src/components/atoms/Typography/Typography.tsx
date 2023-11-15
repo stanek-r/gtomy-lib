@@ -5,6 +5,7 @@ import classNames from 'classnames';
 export const typographyColorClasses = {
   inherit: 'text-inherit',
   white: 'text-base-content',
+  lightgray: 'text-base-100',
   gray: 'text-base-300',
   red: 'text-error',
 };
@@ -44,7 +45,7 @@ export const typographyDecorationClasses = {
 export interface TypographyProps<T extends ElementType> {
   as?: T;
   className?: string;
-  color?: 'inherit' | 'white' | 'gray' | 'red';
+  color?: 'inherit' | 'white' | 'gray' | 'lightgray' | 'red';
   size?: 'inherit' | 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl';
   weight?: 'inherit' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
   decoration?: 'underline' | 'line-through' | 'overline';

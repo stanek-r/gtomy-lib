@@ -1,6 +1,7 @@
 import React, { ComponentPropsWithRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SelectInput } from '../../atoms';
+import { changeLanguage } from '../../../utils';
 
 export type LanguageSelectProps = Omit<Omit<Omit<ComponentPropsWithRef<'select'>, 'children'>, 'onChange'>, 'value'>;
 
@@ -16,7 +17,7 @@ export function LanguageSelect(props: LanguageSelectProps) {
     <SelectInput
       options={options}
       value={i18n.language}
-      onChange={(event) => i18n.changeLanguage(event.target.value)}
+      onChange={(event) => changeLanguage(event.target.value)}
       {...props}
     />
   );
