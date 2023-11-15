@@ -36,13 +36,16 @@ build:
     - npm run build
   only:
     - development
-    - master
     - merge_requests
 
 deploy:
   stage: deploy
+  before_script:
+    - npm i --silent
   script:
-    - curl -X POST "https://jenkins.gtomy.net/generic-webhook-trigger/invoke?token=$JENKINS_DEPLOY_HOOK_TOKEN"
+    - npm run build
+    - echo "//registry.npmjs.org/:_authToken=${CI_NPM_TOKEN}" > .npmrc
+    - npm publish
   only:
     - master
 
