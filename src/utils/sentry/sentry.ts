@@ -46,7 +46,7 @@ function handleHttpRequestError(error: AxiosError): string {
     extra: {
       status: error.status || error.response?.status,
       message: error.message,
-      data: error.response?.data,
+      data: captureData && error.response?.data,
       __serialized__: error,
     },
     level: 'error',

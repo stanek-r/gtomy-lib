@@ -1,5 +1,6 @@
 import React, { ComponentPropsWithRef, useId } from 'react';
 import classNames from 'classnames';
+import { Text } from '../Typography/Text';
 
 export const fileInputSizeClasses = {
   sm: 'file-input-sm',
@@ -9,11 +10,12 @@ export const fileInputSizeClasses = {
 export interface FileInputProps extends Omit<ComponentPropsWithRef<'input'>, 'size'> {
   label?: string;
   hint?: string;
+  error?: string;
   size?: 'sm' | 'lg';
 }
 
 export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
-  ({ children, className, label, size, hint, ...other }: FileInputProps, ref) => {
+  ({ children, className, label, size, hint, error, ...other }: FileInputProps, ref) => {
     const id = useId();
 
     return (
@@ -32,7 +34,14 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
         >
           {children}
         </input>
-        {hint && (
+        {error && (
+          <div className="label">
+            <Text color="red" className="label-text-alt">
+              {error}
+            </Text>
+          </div>
+        )}
+        {hint && !error && (
           <div className="label">
             <span className="label-text-alt">{hint}</span>
           </div>

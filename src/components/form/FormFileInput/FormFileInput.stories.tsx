@@ -1,12 +1,12 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
+import { FormFileInput } from './FormFileInput';
 import { Button } from '../../atoms/Button';
-import { FormNumberInput } from './FormNumberInput';
 
 export default {
-  title: 'Form/FormNumberInput',
-  component: FormNumberInput,
+  title: 'Form/FormFileInput',
+  component: FormFileInput,
   argTypes: {
     onClick: { action: 'clicked' },
     disabled: {
@@ -15,13 +15,13 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FormNumberInput>;
+} as ComponentMeta<typeof FormFileInput>;
 
 interface FieldValues {
   test: string | null;
 }
 
-export const Default: ComponentStory<typeof FormNumberInput<FieldValues>> = () => {
+export const Default: ComponentStory<typeof FormFileInput<FieldValues>> = () => {
   const { control, handleSubmit } = useForm<FieldValues>({
     defaultValues: { test: null },
   });
@@ -32,12 +32,12 @@ export const Default: ComponentStory<typeof FormNumberInput<FieldValues>> = () =
 
   return (
     <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col gap-y-4">
-      <FormNumberInput
+      <FormFileInput
         control={control}
         name="test"
         rules={{ required: true }}
-        label="FormSelectInput Label"
-        placeholder="FormSelectInput placeholder"
+        label="FormFileInput Label"
+        placeholder="FormFileInput placeholder"
       />
       <Button type="submit">Submit</Button>
     </form>

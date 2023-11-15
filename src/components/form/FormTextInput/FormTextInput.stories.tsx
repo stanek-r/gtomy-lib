@@ -18,7 +18,7 @@ export default {
 } as ComponentMeta<typeof FormTextInput>;
 
 interface FieldValues {
-  test: string;
+  test: string | null;
 }
 
 export const Default: ComponentStory<typeof FormTextInput<FieldValues>> = () => {
