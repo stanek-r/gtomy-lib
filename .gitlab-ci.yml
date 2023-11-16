@@ -30,20 +30,22 @@ audit:
 
 build:
   stage: build
+  artifacts:
+    untracked: true
   before_script:
     - npm i --silent
   script:
     - npm run build
   only:
     - development
+    - master
     - merge_requests
 
 deploy:
   stage: deploy
-  before_script:
-    - npm i --silent
+  dependencies:
+    - build
   script:
-    - npm run build
     - echo "//registry.npmjs.org/:_authToken=${CI_NPM_TOKEN}" > .npmrc
     - npm publish
   only:
