@@ -1,18 +1,20 @@
 import { config } from './config';
-import { Applications } from './utils/applications';
 import { initSentry, SentryConfig } from './utils';
 
 interface GTomyLibInitConfig {
   appName: string;
+  authUrl?: string;
+  backendUrl?: string;
   sentryConfig?: SentryConfig;
 }
 
 export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
   Object.assign(config, {
-    application: Applications.getByName(initConfig.appName),
+    appName: initConfig.appName,
+    backendUrl: initConfig.backendUrl,
   });
 
   if (initConfig.sentryConfig?.enabled) {
-    initSentry(initConfig.sentryConfig);
+    initSentry(initConfig.sentryConfig, initConfig.authUrl, initConfig.backendUrl);
   }
 }

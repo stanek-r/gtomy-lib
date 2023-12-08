@@ -8,28 +8,26 @@ export interface User {
   emailVerified: boolean;
   role: 'user' | 'subscriber' | 'admin';
   displayName: string;
+
+  // JWT
+  iat: number;
+  exp: number;
 }
 
 export interface AuthStore {
-  user: User | undefined;
   token: string | undefined;
-  setUser: (user: User | undefined) => void;
   setToken: (token: string | undefined) => void;
-  reset: () => void;
 }
 
 export const useAuthStore = create(
   persist(
     (set) => ({
-      user: undefined,
       token: undefined,
-      setUser: (user: User | undefined) => set(() => ({ user: user })),
       setToken: (token: string | undefined) => set(() => ({ token: token })),
-      reset: () => set(() => ({ user: undefined, token: undefined })),
     }),
     {
       name: 'auth-storage',
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );

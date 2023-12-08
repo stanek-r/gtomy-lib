@@ -11,7 +11,7 @@ interface UseRequest {
   delete: <T>(url: string, config?: AxiosRequestConfig<T>) => Promise<T>;
 }
 
-export function useRequest(baseURL = config.application?.backendUrl): UseRequest {
+export function useRequest(baseURL = config.backendUrl): UseRequest {
   const { token } = useAuth();
   const [client, setClient] = useState<HttpClient>(
     token ? new HttpClient({ token, baseURL }) : new HttpClient({ baseURL })

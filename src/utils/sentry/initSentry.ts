@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/react';
 
 let sentryEnabled = false;
+let ignoredStatusCodes: number[] = [];
 
 export interface SentryConfig {
   enabled: boolean;
@@ -8,17 +9,21 @@ export interface SentryConfig {
   additionalTracePropagationTargets: string[];
   environment: string;
   release: string;
+  ignoredStatusCodes?: number[];
 }
 
-export function initSentry(config: SentryConfig) {
+export function initSentry(config: SentryConfig, authUrl?: string, backendUrl?: string) {
+  if (config.ignoredStatusCodes) {
+    ignoredStatusCodes = config.ignoredStatusCodes;
+  }
   Sentry.init({
     dsn: config.dsn,
     integrations: [
       new Sentry.BrowserTracing({
         // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
         tracePropagationTargets: [
-          'https://gtomy.net/',
-          'https://auth.gtomy.net/',
+          ...(authUrl ? [authUrl] : []),
+          ...(backendUrl ? [backendUrl] : []),
           ...config.additionalTracePropagationTargets,
         ],
       }),
@@ -40,4 +45,11 @@ export function initSentry(config: SentryConfig) {
  */
 export function isSentryEnabled(): boolean {
   return sentryEnabled;
+}
+
+/**
+ * Returns the ignored status codes.
+ */
+export function getIgnoredStatusCodes(): number[] {
+  return ignoredStatusCodes;
 }

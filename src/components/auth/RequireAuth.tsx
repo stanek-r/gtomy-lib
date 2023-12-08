@@ -12,8 +12,8 @@ export function RequireAuth({
   children: JSX.Element;
 }) {
   const { isAuthenticated, user, logout } = useAuth();
-  const navigate = useNavigate();
   const { t } = useTranslation('auth');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isAuthenticated) {
