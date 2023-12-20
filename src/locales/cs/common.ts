@@ -7,4 +7,7 @@ export const common = {
   'theme.system': 'Systém',
   'theme.light': 'Světlý',
   'theme.dark': 'Tmavý',
+  'state.loading': 'Načítání...',
+  'state.error': 'Při načítání došlo k chybě.',
+  'state.retry': 'Zkusit znovu',
 };

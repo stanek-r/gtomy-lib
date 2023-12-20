@@ -1,8 +1,8 @@
 import React, { ElementType, ForwardedRef, ReactNode } from 'react';
 import classNames from 'classnames';
-import { isSvgIcon, SvgIconType } from '../../../models/svg.model';
-import { buttonSizeClasses, buttonColorClasses } from '../Button';
-import { forwardRefWithTypes, PropsAs } from '../../../utils';
+import { isSvgIcon, SvgIconType } from '@/models/svg.model';
+import { buttonSizeClasses, buttonColorClasses } from '@/components/atoms/Button';
+import { forwardRefWithTypes, PropsAs } from '@/utils/typeHelpers';
 
 export const buttonVariantClasses = {
   square: 'btn-square',

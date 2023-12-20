@@ -1,8 +1,8 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 import { FormTextareaInput } from './FormTextareaInput';
-import { Button } from '../../atoms/Button';
+import { Button } from '@/components/atoms/Button';
 
 export default {
   title: 'Form/FormTextareaInput',
@@ -15,7 +15,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FormTextareaInput>;
+};
 
 interface FieldValues {
   test: string;

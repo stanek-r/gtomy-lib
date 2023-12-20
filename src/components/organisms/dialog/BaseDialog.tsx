@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { XMarkIcon } from '@heroicons/react/20/solid';
-import { ButtonIcon } from '../../atoms';
+import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import classNames from 'classnames';
 
 export const maxWidthOptions = {

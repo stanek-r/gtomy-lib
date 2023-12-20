@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import axios from 'axios';
-import { useAuthStore, User } from './storage/useAuthStore';
-import { config } from '../../config';
-import { logError } from '../sentry';
+import { useAuthStore, User } from '@/utils/hooks/storage/useAuthStore';
+import { config } from '@/config';
+import { logError } from '@/utils/sentry';
 import { jwtDecode } from 'jwt-decode';
 
 const mapTokenToUser = (token?: string): User | undefined => {

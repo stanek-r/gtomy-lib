@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Typography } from '../atoms';
-import { useAuth } from '../../utils';
+import { Button, Typography } from '@/components/atoms';
+import { useAuth } from '@/utils';
 import { Link, useNavigate } from 'react-router-dom';
-import { config } from '../../config';
-import { ThemeSelect } from '../molecules';
-import { LanguageSelect } from '../molecules/LanguageSelect/LanguageSelect';
+import { config } from '@/config';
+import { ThemeSelect } from '@/components/molecules/Theme/ThemeSelect';
+import { LanguageSelect } from '@/components/molecules/LanguageSelect/LanguageSelect';
 import { useForm } from 'react-hook-form';
-import { FormTextInput } from '../form';
+import { FormTextInput } from '@/components/form/FormTextInput';
 import { useTranslation } from 'react-i18next';
 
 interface LoginForm {

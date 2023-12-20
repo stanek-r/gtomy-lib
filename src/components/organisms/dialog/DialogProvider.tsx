@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { useDialog } from '../../../utils/hooks/useDialog';
+import { useDialog } from '@/utils/hooks/useDialog';
 
 export interface DialogProviderProps {
   children: ReactNode;

@@ -1,7 +1,7 @@
 import React from 'react';
 import type { ComponentStory, Meta } from '@storybook/react';
-import { useDialog } from '../../../utils/hooks/useDialog';
-import { Button, Text, Typography } from '../../atoms';
+import { useDialog } from '@/utils/hooks/useDialog';
+import { Button, Text, Typography } from '@/components/atoms';
 import { BaseDialog } from './BaseDialog';
 import { DialogProvider } from './DialogProvider';
 import * as Dialog from '@radix-ui/react-dialog';

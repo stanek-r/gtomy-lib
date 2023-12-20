@@ -1,5 +1,5 @@
 import React, { ElementType } from 'react';
-import { PropsAs } from '../../../utils';
+import { PropsAs } from '@/utils';
 import classNames from 'classnames';
 
 export const typographyColorClasses = {

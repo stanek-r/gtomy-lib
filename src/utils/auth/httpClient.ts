@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { logError } from '@/utils/sentry';
 
 export interface HttpClientConfig {
   baseURL?: string;
@@ -25,6 +26,7 @@ export class HttpClient {
           window.location.replace('/login');
           return;
         }
+        logError(error);
         return Promise.reject(error);
       }
     );
