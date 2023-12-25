@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.0.20...v0.1.0) (2023-12-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* refactor authentication and remove unnecessary auth calls
+
+### Features
+
+* add useQuery hook ([b19584f](https://gitlab.com/gtomy-services/gtomy-lib/commit/b19584fb49f4cf70c43c87c0227732cde843500e))
+* refactor authentication and remove unnecessary auth calls ([5943aa2](https://gitlab.com/gtomy-services/gtomy-lib/commit/5943aa2aeec5ab4367fc1ca32fde388995598ab9))
+
 ### [0.0.20](https://gitlab.com/GTomy/gtomy-lib/compare/v0.0.19...v0.0.20) (2023-11-15)
 
 
