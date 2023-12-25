@@ -1,8 +1,8 @@
-import { HttpClient } from '../auth';
+import { HttpClient } from '@/utils/auth/httpClient';
 import { AxiosRequestConfig } from 'axios';
 import { useAuth } from './useAuth';
 import { useEffect, useState } from 'react';
-import { config } from '../../config';
+import { config } from '@/config';
 
 interface UseRequest {
   get: <T>(url: string, config?: AxiosRequestConfig<T>) => Promise<T>;
@@ -11,7 +11,7 @@ interface UseRequest {
   delete: <T>(url: string, config?: AxiosRequestConfig<T>) => Promise<T>;
 }
 
-export function useRequest(baseURL = config.application?.backendUrl): UseRequest {
+export function useRequest(baseURL = config.backendUrl): UseRequest {
   const { token } = useAuth();
   const [client, setClient] = useState<HttpClient>(
     token ? new HttpClient({ token, baseURL }) : new HttpClient({ baseURL })

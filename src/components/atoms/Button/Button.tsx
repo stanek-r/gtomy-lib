@@ -1,7 +1,7 @@
 import React, { ReactNode, ElementType, ForwardedRef } from 'react';
 import classNames from 'classnames';
-import { isSvgIcon, SvgIconType } from '../../../models/svg.model';
-import { forwardRefWithTypes, PropsAs } from '../../../utils/typeHelpers';
+import { isSvgIcon, SvgIconType } from '@/models/svg.model';
+import { forwardRefWithTypes, PropsAs } from '@/utils/typeHelpers';
 
 export const buttonColorClasses = {
   primary: 'btn-primary',

@@ -1,7 +1,7 @@
-import { Application } from './utils/applications';
-
 export interface GTomyLibConfig {
-  application?: Application;
+  appName?: string;
+  authUrl?: string;
+  backendUrl?: string;
 }
 
 export const config: GTomyLibConfig = {};

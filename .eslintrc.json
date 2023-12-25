@@ -4,12 +4,10 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
-  "plugins": [
-    "react",
-    "@typescript-eslint"
-  ],
+  "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "quotes": [
       "error",
@@ -31,10 +29,7 @@
         "omitLastInOneLineBlock": true
       }
     ],
-    "semi-style": [
-      "error",
-      "last"
-    ]
+    "semi-style": ["error", "last"]
   },
   "settings": {
     "react": {

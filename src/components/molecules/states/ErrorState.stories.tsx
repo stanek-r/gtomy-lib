@@ -1,0 +1,20 @@
+import React from 'react';
+import { ComponentStory } from '@storybook/react';
+import { ErrorState } from './ErrorState';
+
+export default {
+  title: 'Molecules/States/ErrorState',
+  component: ErrorState,
+  argTypes: {
+    onClick: { action: 'clicked' },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
+};
+
+export const Default: ComponentStory<typeof ErrorState> = () => {
+  return <ErrorState error={{ hello: 'bug' }} />;
+};

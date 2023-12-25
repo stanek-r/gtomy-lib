@@ -1,6 +1,27 @@
+import { useMemo } from 'react';
 import axios from 'axios';
-import { useAuthStore, User } from './storage/useAuthStore';
-import { HttpClient } from '../auth';
+import { useAuthStore, User } from '@/utils/hooks/storage/useAuthStore';
+import { config } from '@/config';
+import { logError } from '@/utils/sentry';
+import { jwtDecode } from 'jwt-decode';
+
+const mapTokenToUser = (token?: string): User | undefined => {
+  if (!token) {
+    return;
+  }
+  try {
+    const decodedToken: User = jwtDecode(token);
+    const expirationDate = new Date(decodedToken.exp * 1000);
+    const currentDate = new Date();
+    if (expirationDate < currentDate) {
+      return;
+    }
+    return decodedToken;
+  } catch (e: any) {
+    logError(e);
+    return;
+  }
+};
 
 interface UseAuth {
   isAuthenticated: boolean;
@@ -8,55 +29,48 @@ interface UseAuth {
   user: User | undefined;
   login: (username: string, password: string) => Promise<boolean>;
   register: (username: string, password: string, email: string) => Promise<boolean>;
-  logout: () => Promise<void>;
-  refreshUser: () => Promise<void>;
+  logout: () => void;
 }
 
 export function useAuth(): UseAuth {
-  const [token, setToken, user, setUser, reset] = useAuthStore((state: any) => [
-    state.token,
-    state.setToken,
-    state.user,
-    state.setUser,
-    state.reset,
-  ]);
+  const [token, setToken] = useAuthStore((state: any) => [state.token, state.setToken]);
+  const user = useMemo(() => mapTokenToUser(token), [token]);
 
   const login = async (username: string, password: string): Promise<boolean> => {
     return axios
-      .post('https://auth.gtomy.net/login', { username, password })
+      .post(`${config.authUrl}/login`, { username, password })
       .then(async (response) => {
         if (!response.data?.access_token) {
           console.error('No access token');
           return false;
         }
+        const user = mapTokenToUser(response.data.access_token);
+        if (!user) {
+          return false;
+        }
         setToken(response.data.access_token);
-        await refreshUser(response.data.access_token);
         return true;
       })
-      .catch(() => {
+      .catch((e) => {
+        logError(e);
         return false;
       });
   };
 
   const register = async (username: string, password: string, email: string): Promise<boolean> => {
     return axios
-      .post('https://auth.gtomy.net/register', { username, password, email })
+      .post(`${config.authUrl}/register`, { username, password, email })
       .then(() => {
         return true;
       })
-      .catch(() => {
+      .catch((e) => {
+        logError(e);
         return false;
       });
   };
 
-  const refreshUser = async (forceToken?: string): Promise<void> => {
-    const client = new HttpClient({ token: forceToken ?? token });
-    return client
-      .get<User>('https://auth.gtomy.net/profile')
-      .then((user) => {
-        setUser(user);
-      })
-      .catch();
+  const logout = (): void => {
+    setToken(undefined);
   };
 
   return {
@@ -65,7 +79,6 @@ export function useAuth(): UseAuth {
     user: user,
     login,
     register,
-    logout: reset,
-    refreshUser,
+    logout: logout,
   };
 }

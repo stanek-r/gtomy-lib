@@ -1,4 +1,4 @@
-import { DialogObject, useDialogStore } from './storage';
+import { DialogObject, useDialogStore } from '@/utils/hooks/storage';
 import { useEffect, useState } from 'react';
 
 export interface UseDialogReturn {

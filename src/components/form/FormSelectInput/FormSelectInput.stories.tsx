@@ -1,9 +1,9 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
-import { Button } from '../../atoms/Button';
+import { Button } from '@/components/atoms/Button';
 import { FormSelectInput } from './FormSelectInput';
-import { Option } from '../../atoms/SelectInput';
+import { Option } from '@/components/atoms/SelectInput';
 
 export default {
   title: 'Form/FormSelectInput',
@@ -16,7 +16,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FormSelectInput>;
+};
 
 const options: Option[] = [
   {

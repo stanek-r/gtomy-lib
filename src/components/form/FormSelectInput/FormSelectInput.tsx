@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
-import { ControlledFormTransformer, useFormController } from '../../../utils';
-import { SelectInput, Option } from '../../atoms/SelectInput';
+import { ControlledFormTransformer, useFormController } from '@/utils';
+import { SelectInput, Option } from '@/components/atoms/SelectInput';
 
 /**
  * @group Components

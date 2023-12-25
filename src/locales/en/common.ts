@@ -7,4 +7,7 @@ export const common = {
   'theme.system': 'System',
   'theme.light': 'Light',
   'theme.dark': 'Dark',
+  'state.loading': 'Loading...',
+  'state.error': 'An error occurred while loading.',
+  'state.retry': 'Retry',
 };

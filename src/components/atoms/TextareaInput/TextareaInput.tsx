@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithRef, useId } from 'react';
 import classNames from 'classnames';
-import { Text } from '../Typography';
+import { Text } from '@/components/atoms/Typography';
 
 export interface TextareaInputProps extends ComponentPropsWithRef<'textarea'> {
   label?: string;

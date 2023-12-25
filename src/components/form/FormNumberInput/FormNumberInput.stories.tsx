@@ -1,7 +1,7 @@
 import React from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
-import { Button } from '../../atoms/Button';
+import { Button } from '@/components/atoms/Button';
 import { FormNumberInput } from './FormNumberInput';
 
 export default {
@@ -15,7 +15,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof FormNumberInput>;
+};
 
 interface FieldValues {
   test: string | null;
