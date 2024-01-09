@@ -1,5 +1,6 @@
 import React from 'react';
-import { ErrorState, LoadingState } from '@/components/molecules/states';
+import { ErrorState } from '@/components/atoms/ErrorState';
+import { LoadingState } from '@/components/atoms/LoadingState';
 
 export interface WrapperProps {
   children?: JSX.Element;

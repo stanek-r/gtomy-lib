@@ -1,4 +1,4 @@
-export * from './DialogProvider';
 export * from './BaseDialog';
-export * from './info';
+export * from './DialogProvider';
 export * from './alert';
+export * from './info';

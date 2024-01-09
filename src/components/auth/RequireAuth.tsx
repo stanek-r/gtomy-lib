@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useAuth } from '@/utils';
 import { useNavigate } from 'react-router-dom';
-import { Button, Typography } from '@/components/atoms';
+import { Button } from '@/components/atoms/Button';
+import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from 'react-i18next';
 
 export function RequireAuth({
