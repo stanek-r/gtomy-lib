@@ -1,2 +1,2 @@
-export * from './ThemeSelect';
 export * from './ThemeProvider';
+export * from './ThemeSelect';

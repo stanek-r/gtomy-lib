@@ -2,12 +2,12 @@ import React from 'react';
 import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from 'react-i18next';
 
-export interface ErrorStateProps {
+export interface LoadingStateProps {
   message?: string;
   showLoading: boolean;
 }
 
-export function LoadingState({ message, showLoading }: ErrorStateProps) {
+export function LoadingState({ message, showLoading }: LoadingStateProps) {
   const { t } = useTranslation('common');
 
   if (!showLoading) {

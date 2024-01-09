@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 export interface ErrorStateProps {
   error?: any;
   showRetry?: boolean;
-  retry: () => void;
+  retry?: () => void;
 }
 
 export function ErrorState({ error, retry, showRetry }: ErrorStateProps) {

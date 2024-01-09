@@ -3,7 +3,7 @@ import { ComponentStory } from '@storybook/react';
 import { ErrorState } from './ErrorState';
 
 export default {
-  title: 'Molecules/States/ErrorState',
+  title: 'Atoms/ErrorState',
   component: ErrorState,
   argTypes: {
     onClick: { action: 'clicked' },
