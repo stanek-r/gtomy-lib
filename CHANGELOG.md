@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.0...v0.1.1) (2024-01-11)
+
+
+### Features
+
+* **components:** implement Menu ([93bfe00](https://gitlab.com/gtomy-services/gtomy-lib/commit/93bfe00862f9ddd928197d72187472e26ac2c253))
+* **utils:** implement useBreakpoint and userUtils ([50b3f27](https://gitlab.com/gtomy-services/gtomy-lib/commit/50b3f2783d87cad98d6db6376b0c5e32daa85484))
+
 ## [0.1.0](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.0.20...v0.1.0) (2023-12-25)
 
 
