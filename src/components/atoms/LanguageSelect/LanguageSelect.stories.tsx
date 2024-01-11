@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { LanguageSelect } from './LanguageSelect';
 
 const meta: Meta<typeof LanguageSelect> = {
-  title: 'Molecules/LanguageSelect',
+  title: 'Atoms/LanguageSelect',
   component: LanguageSelect,
 };
 
