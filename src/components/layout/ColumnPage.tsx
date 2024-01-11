@@ -17,7 +17,5 @@ export interface ColumnPageProps {
 export function ColumnPage({ children, width = 'xl' }: ColumnPageProps) {
   const widthClass = columnPageWidthClasses[width];
 
-  return (
-    <div className={classNames('max-w-full mx-auto flex flex-col gap-4 text-center p-4', widthClass)}>{children}</div>
-  );
+  return <div className={classNames('max-w-full mx-auto flex flex-col gap-4 p-4', widthClass)}>{children}</div>;
 }

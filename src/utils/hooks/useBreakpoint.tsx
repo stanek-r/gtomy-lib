@@ -19,7 +19,7 @@ const breakpointPoints = {
 
 export interface UseBreakpoint {
   breakpoint: Breakpoint;
-  isUnderBreakpoint?: boolean;
+  isOverBreakpoint?: boolean;
 }
 
 export function useBreakpoint(breakpoint?: Breakpoint): UseBreakpoint {
@@ -41,8 +41,8 @@ export function useBreakpoint(breakpoint?: Breakpoint): UseBreakpoint {
     }
     return 'sm';
   }, [windowDimensions]);
-  const isUnderBreakpoint =
-    selectedBreakpoint != null ? selectedBreakpoint < breakpointPoints[currentBreakpoint] : undefined;
+  const isOverBreakpoint =
+    selectedBreakpoint != null ? selectedBreakpoint <= breakpointPoints[currentBreakpoint] : undefined;
 
   useEffect(() => {
     function handleResize() {
@@ -53,8 +53,12 @@ export function useBreakpoint(breakpoint?: Breakpoint): UseBreakpoint {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  console.log(selectedBreakpoint);
+  console.log(breakpointPoints[currentBreakpoint]);
+  console.log(isOverBreakpoint);
+
   return {
     breakpoint: currentBreakpoint,
-    isUnderBreakpoint: isUnderBreakpoint,
+    isOverBreakpoint: isOverBreakpoint,
   };
 }
