@@ -5,6 +5,7 @@ export * from './components/atoms/ButtonIcon';
 export * from './components/atoms/CodeMockup';
 export * from './components/atoms/ErrorState';
 export * from './components/atoms/FileInput';
+export * from './components/atoms/Footer';
 export * from './components/atoms/LanguageSelect';
 export * from './components/atoms/LoadingState';
 export * from './components/atoms/Menu';

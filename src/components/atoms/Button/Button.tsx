@@ -1,4 +1,4 @@
-import React, { ReactNode, ElementType, ForwardedRef } from 'react';
+import React, { ElementType, ForwardedRef, ReactNode } from 'react';
 import classNames from 'classnames';
 import { isSvgIcon, SvgIconType } from '@/models/svg.model';
 import { forwardRefWithTypes, PropsAs } from '@/utils/typeHelpers';

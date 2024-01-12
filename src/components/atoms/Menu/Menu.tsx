@@ -17,7 +17,7 @@ export function Menu({ children, showAuth }: MenuProps) {
 
   if (isOverBreakpoint) {
     return (
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-neutral">
         <div className="flex-1">
           <Link className="btn btn-ghost text-xl" to="/">
             {config.appName}a
@@ -36,7 +36,7 @@ export function Menu({ children, showAuth }: MenuProps) {
                   </div>
                   <ul
                     tabIndex={0}
-                    className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                    className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-neutral rounded-box w-52"
                   >
                     <li>
                       <Link to="/logout">{t('logout')}</Link>
@@ -56,7 +56,7 @@ export function Menu({ children, showAuth }: MenuProps) {
   }
 
   return (
-    <div className="navbar bg-base-100 lg:bg-amber-400">
+    <div className="navbar bg-neutral lg:bg-amber-400">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -70,7 +70,7 @@ export function Menu({ children, showAuth }: MenuProps) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" />
             </svg>
           </div>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral rounded-box w-52">
             {children}
           </ul>
         </div>
@@ -92,7 +92,7 @@ export function Menu({ children, showAuth }: MenuProps) {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-neutral rounded-box w-52"
                 >
                   <li>
                     <Link to="/logout">{t('logout')}</Link>
