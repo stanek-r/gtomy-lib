@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.1...v0.1.2) (2024-01-12)
+
+
+### Features
+
+* **components:** add Footer, update menu colors ([7666ab6](https://gitlab.com/gtomy-services/gtomy-lib/commit/7666ab6c8e353f17c8a5856ce8516d3ae347e073))
+* **components:** general code cleanup, add AuthDialog ([1a5af9f](https://gitlab.com/gtomy-services/gtomy-lib/commit/1a5af9f7997f6fc7b03b1399aa9051e67aa51d27))
+
+
+### Bug Fixes
+
+* **components:** page breakpoint layout ([37ffbeb](https://gitlab.com/gtomy-services/gtomy-lib/commit/37ffbebbdbe96728e91088df355500e32d212c93))
+
 ### [0.1.1](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.0...v0.1.1) (2024-01-11)
 
 
