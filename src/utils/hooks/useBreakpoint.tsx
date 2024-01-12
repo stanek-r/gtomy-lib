@@ -53,10 +53,6 @@ export function useBreakpoint(breakpoint?: Breakpoint): UseBreakpoint {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  console.log(selectedBreakpoint);
-  console.log(breakpointPoints[currentBreakpoint]);
-  console.log(isOverBreakpoint);
-
   return {
     breakpoint: currentBreakpoint,
     isOverBreakpoint: isOverBreakpoint,

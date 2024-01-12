@@ -1,9 +1,11 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import axios from 'axios';
 import { useAuthStore, User } from '@/utils/hooks/storage/useAuthStore';
 import { config } from '@/config';
 import { logError } from '@/utils/sentry';
 import { jwtDecode } from 'jwt-decode';
+import { useDialog } from '@/utils';
+import { AuthDialog } from '@/components/auth/AuthDialog';
 
 const mapTokenToUser = (token?: string): User | undefined => {
   if (!token) {
@@ -30,11 +32,16 @@ interface UseAuth {
   login: (username: string, password: string) => Promise<boolean>;
   register: (username: string, password: string, email: string) => Promise<boolean>;
   logout: () => void;
+  openLoginDialog: () => void;
 }
 
 export function useAuth(): UseAuth {
   const [token, setToken] = useAuthStore((state: any) => [state.token, state.setToken]);
   const user = useMemo(() => mapTokenToUser(token), [token]);
+  const { openDialog } = useDialog({
+    id: 'auth-dialog',
+    element: <AuthDialog />,
+  });
 
   const login = async (username: string, password: string): Promise<boolean> => {
     return axios
@@ -80,5 +87,6 @@ export function useAuth(): UseAuth {
     login,
     register,
     logout: logout,
+    openLoginDialog: () => openDialog(),
   };
 }

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useAuth, useBreakpoint } from '@/utils';
 import { useTranslation } from 'react-i18next';
 import { getUserFirstChar, getUserProfileImageUrl } from '@/utils/auth/userUtils';
+import { Button } from '@/components/atoms/Button';
 
 export interface MenuProps {
   children?: ReactNode;
@@ -11,7 +12,7 @@ export interface MenuProps {
 }
 
 export function Menu({ children, showAuth }: MenuProps) {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user, logout, openLoginDialog } = useAuth();
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
 
@@ -19,9 +20,11 @@ export function Menu({ children, showAuth }: MenuProps) {
     return (
       <div className="navbar bg-neutral">
         <div className="flex-1">
-          <Link className="btn btn-ghost text-xl" to="/">
-            {config.appName}a
-          </Link>
+          {config.appName && (
+            <Link className="btn btn-ghost text-xl" to="/">
+              {config.appName}
+            </Link>
+          )}
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">{children}</ul>
@@ -39,14 +42,14 @@ export function Menu({ children, showAuth }: MenuProps) {
                     className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-neutral rounded-box w-52"
                   >
                     <li>
-                      <Link to="/logout">{t('logout')}</Link>
+                      <button type="button" onClick={logout}>
+                        {t('logout')}
+                      </button>
                     </li>
                   </ul>
                 </div>
               ) : (
-                <Link className="btn" to="/login">
-                  {t('login')}
-                </Link>
+                <Button onClick={openLoginDialog}>{t('login')}</Button>
               )}
             </>
           )}
@@ -76,9 +79,11 @@ export function Menu({ children, showAuth }: MenuProps) {
         </div>
       </div>
       <div className="navbar-center">
-        <Link className="btn btn-ghost text-xl" to="/">
-          {config.appName}
-        </Link>
+        {config.appName && (
+          <Link className="btn btn-ghost text-xl" to="/">
+            {config.appName}
+          </Link>
+        )}
       </div>
       {showAuth && (
         <>
@@ -95,16 +100,16 @@ export function Menu({ children, showAuth }: MenuProps) {
                   className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-neutral rounded-box w-52"
                 >
                   <li>
-                    <Link to="/logout">{t('logout')}</Link>
+                    <button type="button" onClick={logout}>
+                      {t('logout')}
+                    </button>
                   </li>
                 </ul>
               </div>
             </div>
           ) : (
             <div className="navbar-end">
-              <Link className="btn" to="/login">
-                {t('login')}
-              </Link>
+              <Button onClick={openLoginDialog}>{t('login')}</Button>
             </div>
           )}
         </>

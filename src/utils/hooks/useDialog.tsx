@@ -1,5 +1,5 @@
 import { DialogObject, useDialogStore } from '@/utils/hooks/storage';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export interface UseDialogReturn {
   dialogs: DialogObject[];
@@ -18,17 +18,15 @@ export function useDialog(dialog?: DialogObjectWithoutOpen): UseDialogReturn {
     state.addDialog,
     state.setOpened,
   ]);
-  const [controlledId, setControlledId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (dialog) {
       createDialog(dialog);
-      setControlledId(dialog.id);
     }
   }, []);
 
-  const openDialog = (id?: string) => setOpened(id ?? controlledId, true);
-  const closeDialog = (id?: string) => setOpened(id ?? controlledId, false);
+  const openDialog = (id?: string) => setOpened(id ?? dialog?.id, true);
+  const closeDialog = (id?: string) => setOpened(id ?? dialog?.id, false);
   const createDialog = (newDialog: DialogObjectWithoutOpen) => {
     if (dialogs.find((d: DialogObject) => d.id === newDialog.id)) {
       return;

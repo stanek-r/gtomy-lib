@@ -9,6 +9,7 @@ import { LanguageSelect } from '@/components/atoms/LanguageSelect/LanguageSelect
 import { useForm } from 'react-hook-form';
 import { FormTextInput } from '@/components/form/FormTextInput';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
 
 interface LoginForm {
   username: string;
@@ -17,9 +18,12 @@ interface LoginForm {
 
 interface Props {
   backURL?: string;
+  isInDialog?: boolean;
+  toggleRegister?: () => void;
+  closeDialog?: () => void;
 }
 
-export function LoginPage({ backURL }: Props) {
+export function LoginPage({ backURL, isInDialog, toggleRegister, closeDialog }: Props) {
   const { isAuthenticated, user, login, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -31,7 +35,11 @@ export function LoginPage({ backURL }: Props) {
   const onHandleSubmit = (value: LoginForm) => {
     login(value.username, value.password).then((value) => {
       if (value) {
-        navigate(backURL || '/');
+        if (isInDialog) {
+          closeDialog?.();
+        } else {
+          navigate(backURL || '/');
+        }
       } else {
         setError(t('invalidCredentials'));
       }
@@ -40,15 +48,17 @@ export function LoginPage({ backURL }: Props) {
 
   if (isAuthenticated) {
     return (
-      <div className="flex justify-center items-center w-full h-screen">
+      <div className={classNames('flex justify-center items-center w-full', isInDialog ? 'py-8' : 'h-screen')}>
         <div className="flex flex-col w-[500px] max-w-full gap-y-4 p-4">
           <Typography size="3xl" weight="bold" className="text-center">
             {t('alreadyLoggedIn', { name: user?.displayName })}
           </Typography>
           <div className="flex justify-center gap-x-2">
-            <Button as={Link} to="/">
-              {t('common:back')}
-            </Button>
+            {!isInDialog && (
+              <Button as={Link} to="/">
+                {t('common:back')}
+              </Button>
+            )}
             <Button onClick={logout}>{t('logout')}</Button>
           </div>
         </div>
@@ -57,7 +67,10 @@ export function LoginPage({ backURL }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onHandleSubmit)} className="flex justify-center items-center w-full h-screen">
+    <form
+      onSubmit={handleSubmit(onHandleSubmit)}
+      className={classNames('flex justify-center items-center w-full', isInDialog ? 'py-8' : 'h-screen')}
+    >
       <div className="flex flex-col w-[500px] max-w-full gap-y-3 p-4">
         {config.appName && (
           <Typography as="h1" size="3xl" weight="bold" className="text-center mb-3">
@@ -81,9 +94,15 @@ export function LoginPage({ backURL }: Props) {
           <Button type="submit" className="w-1/2 sm:w-1/3" color="primary">
             {t('login')}
           </Button>
-          <Button as={Link} to="/register" className="w-1/2 sm:w-1/3">
-            {t('register')}
-          </Button>
+          {isInDialog ? (
+            <Button onClick={toggleRegister} className="w-1/2 sm:w-1/3">
+              {t('register')}
+            </Button>
+          ) : (
+            <Button as={Link} to="/register" className="w-1/2 sm:w-1/3">
+              {t('register')}
+            </Button>
+          )}
         </div>
         <div className="flex justify-between mt-3">
           <ThemeSelect />

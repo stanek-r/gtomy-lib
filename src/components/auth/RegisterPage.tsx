@@ -9,6 +9,7 @@ import { LanguageSelect } from '@/components/atoms/LanguageSelect/LanguageSelect
 import { useForm } from 'react-hook-form';
 import { FormTextInput } from '@/components/form/FormTextInput';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
 
 interface RegisterForm {
   username: string;
@@ -17,7 +18,12 @@ interface RegisterForm {
   email: string;
 }
 
-export function RegisterPage() {
+interface Props {
+  isInDialog?: boolean;
+  toggleRegister?: () => void;
+}
+
+export function RegisterPage({ isInDialog, toggleRegister }: Props) {
   const { isAuthenticated, user, register, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -29,7 +35,11 @@ export function RegisterPage() {
   const onHandleSubmit = (value: RegisterForm) => {
     register(value.username, value.password, value.email).then((value) => {
       if (value) {
-        navigate('/login');
+        if (isInDialog) {
+          toggleRegister?.();
+        } else {
+          navigate('/login');
+        }
       } else {
         setError(t('cannotRegister'));
       }
@@ -38,15 +48,17 @@ export function RegisterPage() {
 
   if (isAuthenticated) {
     return (
-      <div className="flex justify-center items-center w-full h-screen">
+      <div className={classNames('flex justify-center items-center w-full', !isInDialog ? 'py-4' : 'h-screen')}>
         <div className="flex flex-col w-[500px] max-w-full gap-y-4 p-4">
           <Typography size="3xl" weight="bold" className="text-center">
             {t('alreadyLoggedIn', { name: user?.displayName })}
           </Typography>
           <div className="flex justify-center gap-x-2">
-            <Button as={Link} to="/">
-              {t('common:back')}
-            </Button>
+            {!isInDialog && (
+              <Button as={Link} to="/">
+                {t('common:back')}
+              </Button>
+            )}
             <Button onClick={logout}>{t('logout')}</Button>
           </div>
         </div>
@@ -55,7 +67,10 @@ export function RegisterPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onHandleSubmit)} className="flex justify-center items-center w-full h-screen">
+    <form
+      onSubmit={handleSubmit(onHandleSubmit)}
+      className={classNames('flex justify-center items-center w-full', isInDialog ? 'py-4' : 'h-screen')}
+    >
       <div className="flex flex-col w-[500px] max-w-full gap-y-3 p-4">
         {config.appName && (
           <Typography as="h1" size="3xl" weight="bold" className="text-center mb-3">
@@ -90,9 +105,15 @@ export function RegisterPage() {
           </Typography>
         )}
         <div className="btn-group justify-center">
-          <Button as={Link} to="/login" className="w-1/2 sm:w-1/3">
-            {t('login')}
-          </Button>
+          {isInDialog ? (
+            <Button onClick={toggleRegister} className="w-1/2 sm:w-1/3">
+              {t('login')}
+            </Button>
+          ) : (
+            <Button as={Link} to="/login" className="w-1/2 sm:w-1/3">
+              {t('login')}
+            </Button>
+          )}
           <Button type="submit" className="w-1/2 sm:w-1/3" color="primary">
             {t('register')}
           </Button>
