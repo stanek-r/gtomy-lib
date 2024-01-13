@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.2...v0.1.3) (2024-01-13)
+
+
+### Features
+
+* **utils:** add custom useTranslation hook ([ae42877](https://gitlab.com/gtomy-services/gtomy-lib/commit/ae42877f523c8822ba8ddaaa07d235f7e60767b4))
+
+
+### Bug Fixes
+
+* **components:** color fixes ([041e629](https://gitlab.com/gtomy-services/gtomy-lib/commit/041e6298d7b271c2866f97b9d2a34db22845e1b8))
+
 ### [0.1.2](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.1...v0.1.2) (2024-01-12)
 
 
