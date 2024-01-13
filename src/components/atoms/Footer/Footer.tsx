@@ -25,7 +25,7 @@ export function Footer({ title, subtitle, height = 'short', links = [], socialMe
   if (height === 'short') {
     if (socialMedia == null) {
       return (
-        <footer className="footer footer-center p-4 bg-neutral text-base-content">
+        <footer className="footer footer-center p-4 bg-neutral text-neutral-content">
           <aside className="items-center grid-flow-col">
             <FooterIcon />
             <p>{title}</p>
@@ -68,7 +68,7 @@ export function Footer({ title, subtitle, height = 'short', links = [], socialMe
   }
   if (socialMedia == null) {
     return (
-      <footer className="footer p-10 bg-neutral text-base-content">
+      <footer className="footer p-10 bg-neutral text-neutral-content">
         <aside>
           <FooterIcon />
           <p>
@@ -93,7 +93,7 @@ export function Footer({ title, subtitle, height = 'short', links = [], socialMe
 
   return (
     <>
-      <footer className="footer p-10 bg-neutral text-base-content">
+      <footer className="footer p-10 bg-neutral text-neutral-content">
         {links.map((link, index) => (
           <nav key={index}>
             <header className="footer-title">{link.header}</header>
@@ -101,7 +101,7 @@ export function Footer({ title, subtitle, height = 'short', links = [], socialMe
           </nav>
         ))}
       </footer>
-      <footer className="footer px-10 py-4 border-t bg-neutral text-base-content border-base-300">
+      <footer className="footer px-10 py-4 border-t bg-neutral text-neutral-content border-base-300">
         <aside className="items-center grid-flow-col">
           <FooterIcon />
           <p>
