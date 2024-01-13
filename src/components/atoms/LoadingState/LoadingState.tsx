@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '@/components/atoms/Typography';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 export interface LoadingStateProps {
   message?: string;

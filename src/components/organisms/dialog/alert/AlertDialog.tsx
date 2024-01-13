@@ -1,9 +1,9 @@
 import React from 'react';
 import { BaseDialog, BaseDialogProps } from '@/components/organisms/dialog/BaseDialog';
 import { Button } from '@/components/atoms/Button';
-import { Typography, Text } from '@/components/atoms/Typography';
+import { Text, Typography } from '@/components/atoms/Typography';
 import { useDialog } from '@/utils/hooks/useDialog';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 export interface AlertDialogProps extends BaseDialogProps {
   title: string;

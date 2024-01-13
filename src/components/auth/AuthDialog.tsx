@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BaseDialog, BaseDialogProps } from '@/components/organisms/dialog/BaseDialog';
 import { Typography } from '@/components/atoms/Typography';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 import { LoginPage } from '@/components/auth/LoginPage';
 import { RegisterPage } from '@/components/auth/RegisterPage';
 

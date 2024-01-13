@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithRef } from 'react';
 import classNames from 'classnames';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 export type ThemeSelectProps = ComponentPropsWithRef<'select'>;
 

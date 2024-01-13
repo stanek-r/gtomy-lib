@@ -8,7 +8,7 @@ import { ThemeSelect } from '@/components/atoms/Theme/ThemeSelect';
 import { LanguageSelect } from '@/components/atoms/LanguageSelect/LanguageSelect';
 import { useForm } from 'react-hook-form';
 import { FormTextInput } from '@/components/form/FormTextInput';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 import classNames from 'classnames';
 
 interface RegisterForm {

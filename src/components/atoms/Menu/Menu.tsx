@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { config } from '@/config';
 import { Link } from 'react-router-dom';
 import { useAuth, useBreakpoint } from '@/utils';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 import { getUserFirstChar, getUserProfileImageUrl } from '@/utils/auth/userUtils';
 import { Button } from '@/components/atoms/Button';
 
