@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.3...v0.1.4) (2024-01-16)
+
+
+### Bug Fixes
+
+* initGTomyLib function ([cc054d1](https://gitlab.com/gtomy-services/gtomy-lib/commit/cc054d10da924b03d9d464d1855184ab9c876d70))
+
 ### [0.1.3](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.2...v0.1.3) (2024-01-13)
 
 
