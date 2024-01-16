@@ -12,7 +12,7 @@ export interface SentryConfig {
   ignoredStatusCodes?: number[];
 }
 
-export function initSentry(config: SentryConfig, authUrl?: string, backendUrl?: string) {
+export function initSentry(config: SentryConfig, tracePropagationTargets: string[] = []) {
   if (config.ignoredStatusCodes) {
     ignoredStatusCodes.push(...config.ignoredStatusCodes);
   }
@@ -20,11 +20,7 @@ export function initSentry(config: SentryConfig, authUrl?: string, backendUrl?: 
     dsn: config.dsn,
     integrations: [
       new Sentry.BrowserTracing({
-        tracePropagationTargets: [
-          ...(authUrl ? [authUrl] : []),
-          ...(backendUrl ? [backendUrl] : []),
-          ...config.additionalTracePropagationTargets,
-        ],
+        tracePropagationTargets: [...tracePropagationTargets, ...config.additionalTracePropagationTargets],
       }),
       new Sentry.Replay(),
     ],
