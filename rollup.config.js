@@ -23,7 +23,6 @@ export default [
       'react-dom',
       'react-router-dom',
       'react-hook-form',
-      'theme-change',
       'axios',
       'zustand',
       'tailwind-merge',

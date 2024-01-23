@@ -3,6 +3,7 @@ import { initSentry, SentryConfig } from './utils';
 
 interface GTomyLibInitConfig {
   appName: string;
+  themes?: string[];
   authUrl?: string;
   backendUrl?: string;
   sentryConfig?: SentryConfig;
@@ -11,6 +12,7 @@ interface GTomyLibInitConfig {
 export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
   Object.assign(config, {
     appName: initConfig.appName,
+    themes: initConfig.themes ? ['system', ...initConfig.themes] : ['system'],
     backendUrl: initConfig.backendUrl,
     authUrl: initConfig.authUrl,
   });

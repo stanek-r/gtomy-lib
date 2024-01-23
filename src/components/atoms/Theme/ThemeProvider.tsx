@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
-import { themeChange } from 'theme-change';
+import React from 'react';
+import { useThemeStore } from '@/utils/hooks/storage/useThemeStore';
 
 export interface ThemeProviderProps {
   children?: React.ReactNode;
 }
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  useEffect(() => {
-    themeChange(false);
-  }, []);
+  const [theme] = useThemeStore((state: any) => [state.theme]);
 
-  return <>{children}</>;
+  if (theme == null || theme === 'system') {
+    return <div>{children}</div>;
+  }
+  return <div data-theme={theme}>{children}</div>;
 }

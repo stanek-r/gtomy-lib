@@ -14,11 +14,6 @@ export interface User {
   exp: number;
 }
 
-export interface AuthStore {
-  token: string | undefined;
-  setToken: (token: string | undefined) => void;
-}
-
 export const useAuthStore = create(
   persist(
     (set) => ({
