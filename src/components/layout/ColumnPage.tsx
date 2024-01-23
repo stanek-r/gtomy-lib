@@ -18,5 +18,7 @@ export interface ColumnPageProps {
 export function ColumnPage({ children, width = 'xl', className }: ColumnPageProps) {
   const widthClass = columnPageWidthClasses[width];
 
-  return <div className={twMerge('max-w-full mx-auto flex flex-col gap-4 p-4', widthClass, className)}>{children}</div>;
+  return (
+    <div className={twMerge('max-w-full mx-auto flex flex-col gap-4 p-4 pt-8', widthClass, className)}>{children}</div>
+  );
 }

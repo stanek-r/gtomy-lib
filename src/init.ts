@@ -15,7 +15,7 @@ export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
     authUrl: initConfig.authUrl,
   });
 
-  if (initConfig.sentryConfig?.enabled) {
+  if (initConfig.sentryConfig?.enabled === true) {
     const tracePropagationTargets: string[] = [];
     if (initConfig.authUrl) {
       tracePropagationTargets.push(initConfig.authUrl);
