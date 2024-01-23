@@ -10,7 +10,7 @@ A shared REACT JS component and utils library for my projects.
 * Heroicons
 * TailwindCSS
 * Daisy UI
-* Classnames
+* tailwind-merge
 * PostCSS
 * Theme change
 * Zustand

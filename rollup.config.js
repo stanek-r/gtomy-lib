@@ -26,7 +26,7 @@ export default [
       'theme-change',
       'axios',
       'zustand',
-      'classnames',
+      'tailwind-merge',
       '@heroicons/react',
       '@sentry/react',
       '@tanstack/react-query',
