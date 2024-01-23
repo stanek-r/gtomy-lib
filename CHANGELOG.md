@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.4...v0.1.5) (2024-01-23)
+
+
+### Features
+
+* add eslint plugin for tailwind ([20fcd6c](https://gitlab.com/gtomy-services/gtomy-lib/commit/20fcd6cd9d8d8641263038286e89f86399fc0de2))
+* add twMerge library ([6122663](https://gitlab.com/gtomy-services/gtomy-lib/commit/61226633be4b4a2404eab78c8f6c636d9c9c4e5c))
+* allow classes to be added to pages ([dc5d815](https://gitlab.com/gtomy-services/gtomy-lib/commit/dc5d8155ff13b503f6b426e2ba44b1413c0bbe49))
+
 ### [0.1.4](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.3...v0.1.4) (2024-01-16)
 
 
