@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 export const codeMockupColorClasses = {
   primary: 'bg-primary text-primary-content',
@@ -19,7 +19,7 @@ export interface CodeMockupProps {
 
 export function CodeMockup({ rows, color, className, numbered = true }: CodeMockupProps) {
   return (
-    <div className={classNames('mockup-code', color && codeMockupColorClasses[color], className)}>
+    <div className={twMerge('mockup-code', color && codeMockupColorClasses[color], className)}>
       {rows.map((row, index) =>
         numbered ? (
           <pre key={index} data-prefix={index + 1}>

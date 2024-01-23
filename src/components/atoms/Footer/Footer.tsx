@@ -25,8 +25,8 @@ export function Footer({ title, subtitle, height = 'short', links = [], socialMe
   if (height === 'short') {
     if (socialMedia == null) {
       return (
-        <footer className="footer footer-center p-4 bg-neutral text-neutral-content">
-          <aside className="items-center grid-flow-col">
+        <footer className="footer footer-center bg-neutral p-4 text-neutral-content">
+          <aside className="grid-flow-col items-center">
             <FooterIcon />
             <p>{title}</p>
           </aside>
@@ -34,8 +34,8 @@ export function Footer({ title, subtitle, height = 'short', links = [], socialMe
       );
     }
     return (
-      <footer className="footer items-center p-4 bg-neutral text-neutral-content">
-        <aside className="items-center grid-flow-col">
+      <footer className="footer items-center bg-neutral p-4 text-neutral-content">
+        <aside className="grid-flow-col items-center">
           <FooterIcon />
           <p>{title}</p>
         </aside>
@@ -46,7 +46,7 @@ export function Footer({ title, subtitle, height = 'short', links = [], socialMe
 
   if (links.length === 0) {
     return (
-      <footer className="footer p-10 bg-neutral text-neutral-content">
+      <footer className="footer bg-neutral p-10 text-neutral-content">
         <aside>
           <FooterIcon />
           <p>
@@ -68,7 +68,7 @@ export function Footer({ title, subtitle, height = 'short', links = [], socialMe
   }
   if (socialMedia == null) {
     return (
-      <footer className="footer p-10 bg-neutral text-neutral-content">
+      <footer className="footer bg-neutral p-10 text-neutral-content">
         <aside>
           <FooterIcon />
           <p>
@@ -93,7 +93,7 @@ export function Footer({ title, subtitle, height = 'short', links = [], socialMe
 
   return (
     <>
-      <footer className="footer p-10 bg-neutral text-neutral-content">
+      <footer className="footer bg-neutral p-10 text-neutral-content">
         {links.map((link, index) => (
           <nav key={index}>
             <header className="footer-title">{link.header}</header>
@@ -101,8 +101,8 @@ export function Footer({ title, subtitle, height = 'short', links = [], socialMe
           </nav>
         ))}
       </footer>
-      <footer className="footer px-10 py-4 border-t bg-neutral text-neutral-content border-base-300">
-        <aside className="items-center grid-flow-col">
+      <footer className="footer border-t border-base-300 bg-neutral px-10 py-4 text-neutral-content">
+        <aside className="grid-flow-col items-center">
           <FooterIcon />
           <p>
             {title}

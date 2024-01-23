@@ -27,8 +27,8 @@ export function RequireAuth({
   }
   if ((minimalRole === 'subscriber' && user!.role === 'user') || (minimalRole === 'admin' && user!.role !== 'admin')) {
     return (
-      <div className="flex justify-center items-center w-full h-screen">
-        <div className="flex flex-col w-[500px] max-w-full gap-y-4 p-4">
+      <div className="flex h-screen w-full items-center justify-center">
+        <div className="flex w-[500px] max-w-full flex-col gap-y-4 p-4">
           <Typography size="3xl" weight="bold" className="text-center">
             {t('noAccess', { minimalRole: t('role.' + minimalRole) })}
           </Typography>

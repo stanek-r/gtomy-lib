@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 export const columnPageWidthClasses = {
   sm: 'w-[640px]',
@@ -12,10 +12,11 @@ export const columnPageWidthClasses = {
 export interface ColumnPageProps {
   children?: ReactNode;
   width?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  className?: string;
 }
 
-export function ColumnPage({ children, width = 'xl' }: ColumnPageProps) {
+export function ColumnPage({ children, width = 'xl', className }: ColumnPageProps) {
   const widthClass = columnPageWidthClasses[width];
 
-  return <div className={classNames('max-w-full mx-auto flex flex-col gap-4 p-4', widthClass)}>{children}</div>;
+  return <div className={twMerge('max-w-full mx-auto flex flex-col gap-4 p-4', widthClass, className)}>{children}</div>;
 }

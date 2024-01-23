@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithRef, useId } from 'react';
-import classNames from 'classnames';
 import { Text } from '@/components/atoms/Typography/Text';
+import { twMerge } from 'tailwind-merge';
 
 export interface TextInputProps extends ComponentPropsWithRef<'input'> {
   label?: string;
@@ -23,7 +23,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           id={id}
           ref={ref}
           type={type ?? 'text'}
-          className={classNames('input input-bordered', error && 'input-error', className)}
+          className={twMerge('input input-bordered', error && 'input-error', className)}
           {...other}
         >
           {children}

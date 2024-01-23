@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithRef } from 'react';
-import classNames from 'classnames';
 import { useTranslation } from '@/utils/hooks/useTranslation';
+import { twMerge } from 'tailwind-merge';
 
 export type ThemeSelectProps = ComponentPropsWithRef<'select'>;
 
@@ -33,7 +33,7 @@ export function ThemeSelect({ className, children, ...other }: ThemeSelectProps)
   const { t } = useTranslation('common');
 
   return (
-    <select data-choose-theme className={classNames('select select-bordered', className)} {...other}>
+    <select data-choose-theme className={twMerge('select select-bordered', className)} {...other}>
       {children ? (
         children
       ) : (

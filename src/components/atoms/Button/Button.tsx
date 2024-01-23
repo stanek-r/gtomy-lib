@@ -1,7 +1,7 @@
 import React, { ElementType, ForwardedRef, ReactNode } from 'react';
-import classNames from 'classnames';
 import { isSvgIcon, SvgIconType } from '@/models/svg.model';
 import { forwardRefWithTypes, PropsAs } from '@/utils/typeHelpers';
+import { twMerge } from 'tailwind-merge';
 
 export const buttonColorClasses = {
   primary: 'btn-primary',
@@ -44,7 +44,7 @@ export function ButtonInner<T extends ElementType = 'button'>(
     <Component
       ref={ref}
       type={type}
-      className={classNames('btn', color && buttonColorClasses[color], size && buttonSizeClasses[size], className)}
+      className={twMerge('btn', color && buttonColorClasses[color], size && buttonSizeClasses[size], className)}
       {...other}
     >
       {startIcon}

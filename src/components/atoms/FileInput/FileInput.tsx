@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithRef, useId } from 'react';
-import classNames from 'classnames';
 import { Text } from '@/components/atoms/Typography/Text';
+import { twMerge } from 'tailwind-merge';
 
 export const fileInputSizeClasses = {
   sm: 'file-input-sm',
@@ -29,7 +29,7 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
           id={id}
           ref={ref}
           type="file"
-          className={classNames('file-input file-input-bordered', size && fileInputSizeClasses[size], className)}
+          className={twMerge('file-input file-input-bordered', size && fileInputSizeClasses[size], className)}
           {...other}
         >
           {children}

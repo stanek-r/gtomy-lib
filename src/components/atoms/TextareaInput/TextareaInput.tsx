@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithRef, useId } from 'react';
-import classNames from 'classnames';
 import { Text } from '@/components/atoms/Typography';
+import { twMerge } from 'tailwind-merge';
 
 export interface TextareaInputProps extends ComponentPropsWithRef<'textarea'> {
   label?: string;
@@ -22,7 +22,7 @@ export const TextareaInput = React.forwardRef<HTMLTextAreaElement, TextareaInput
         )}
         <textarea
           ref={ref}
-          className={classNames(
+          className={twMerge(
             'textarea textarea-bordered',
             error && 'textarea-error',
             resizable ? 'resize-y' : 'resize-none',

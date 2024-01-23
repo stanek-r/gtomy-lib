@@ -9,7 +9,7 @@ import { LanguageSelect } from '@/components/atoms/LanguageSelect/LanguageSelect
 import { useForm } from 'react-hook-form';
 import { FormTextInput } from '@/components/form/FormTextInput';
 import { useTranslation } from '@/utils/hooks/useTranslation';
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 interface LoginForm {
   username: string;
@@ -48,8 +48,8 @@ export function LoginPage({ backURL, isInDialog, toggleRegister, closeDialog }: 
 
   if (isAuthenticated) {
     return (
-      <div className={classNames('flex justify-center items-center w-full', isInDialog ? 'py-8' : 'h-screen')}>
-        <div className="flex flex-col w-[500px] max-w-full gap-y-4 p-4">
+      <div className={twMerge('flex justify-center items-center w-full', isInDialog ? 'py-8' : 'h-screen')}>
+        <div className="flex w-[500px] max-w-full flex-col gap-y-4 p-4">
           <Typography size="3xl" weight="bold" className="text-center">
             {t('alreadyLoggedIn', { name: user?.displayName })}
           </Typography>
@@ -69,11 +69,11 @@ export function LoginPage({ backURL, isInDialog, toggleRegister, closeDialog }: 
   return (
     <form
       onSubmit={handleSubmit(onHandleSubmit)}
-      className={classNames('flex justify-center items-center w-full', isInDialog ? 'py-8' : 'h-screen')}
+      className={twMerge('flex justify-center items-center w-full', isInDialog ? 'py-8' : 'h-screen')}
     >
-      <div className="flex flex-col w-[500px] max-w-full gap-y-3 p-4">
+      <div className="flex w-[500px] max-w-full flex-col gap-y-3 p-4">
         {config.appName && (
-          <Typography as="h1" size="3xl" weight="bold" className="text-center mb-3">
+          <Typography as="h1" size="3xl" weight="bold" className="mb-3 text-center">
             {config.appName}
           </Typography>
         )}
@@ -90,21 +90,21 @@ export function LoginPage({ backURL, isInDialog, toggleRegister, closeDialog }: 
             {error}
           </Typography>
         )}
-        <div className="btn-group justify-center">
-          <Button type="submit" className="w-1/2 sm:w-1/3" color="primary">
+        <div className="join justify-center">
+          <Button type="submit" className="join-item w-1/2 sm:w-1/3" color="primary">
             {t('login')}
           </Button>
           {isInDialog ? (
-            <Button onClick={toggleRegister} className="w-1/2 sm:w-1/3">
+            <Button onClick={toggleRegister} className="join-item w-1/2 sm:w-1/3">
               {t('register')}
             </Button>
           ) : (
-            <Button as={Link} to="/register" className="w-1/2 sm:w-1/3">
+            <Button as={Link} to="/register" className="join-item w-1/2 sm:w-1/3">
               {t('register')}
             </Button>
           )}
         </div>
-        <div className="flex justify-between mt-3">
+        <div className="mt-3 flex justify-between">
           <ThemeSelect />
           <LanguageSelect />
         </div>

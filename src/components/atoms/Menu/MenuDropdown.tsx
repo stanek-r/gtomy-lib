@@ -10,7 +10,7 @@ export function MenuDropdown({ title, children }: MenuDropdownProps) {
     <li>
       <details>
         <summary>{title}</summary>
-        <ul className="p-2 bg-neutral rounded-t-none">{children}</ul>
+        <ul className="rounded-t-none bg-neutral p-2">{children}</ul>
       </details>
     </li>
   );

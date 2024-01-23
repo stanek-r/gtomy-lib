@@ -1,6 +1,6 @@
 import React, { ElementType } from 'react';
 import { PropsAs } from '@/utils';
-import classNames from 'classnames';
+import { twMerge } from 'tailwind-merge';
 
 export const typographyColorClasses = {
   inherit: 'text-inherit',
@@ -62,7 +62,7 @@ export function Typography<T extends ElementType = 'span'>({
 }: PropsAs<TypographyProps<T>, T>) {
   const Component = as ?? 'span';
 
-  const combinedClasses = classNames(
+  const combinedClasses = twMerge(
     className,
     color && typographyColorClasses[color],
     size && typographySizeClasses[size],

@@ -32,14 +32,14 @@ export function Menu({ children, showAuth }: MenuProps) {
             <>
               {isAuthenticated ? (
                 <div className="dropdown dropdown-end">
-                  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                  <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
                     <div className="w-10 rounded-full">
                       <img alt={getUserFirstChar(user)} src={getUserProfileImageUrl(user)} />
                     </div>
                   </div>
                   <ul
                     tabIndex={0}
-                    className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-neutral rounded-box w-52"
+                    className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow"
                   >
                     <li>
                       <button type="button" onClick={logout}>
@@ -62,10 +62,10 @@ export function Menu({ children, showAuth }: MenuProps) {
     <div className="navbar bg-neutral lg:bg-amber-400">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+          <div tabIndex={0} role="button" className="btn btn-circle btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="size-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -73,7 +73,7 @@ export function Menu({ children, showAuth }: MenuProps) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" />
             </svg>
           </div>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral rounded-box w-52">
+          <ul tabIndex={0} className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow">
             {children}
           </ul>
         </div>
@@ -85,19 +85,19 @@ export function Menu({ children, showAuth }: MenuProps) {
           </Link>
         )}
       </div>
-      {showAuth && (
-        <>
-          {isAuthenticated ? (
-            <div className="navbar-end">
+      <div className="navbar-end">
+        {showAuth && (
+          <>
+            {isAuthenticated ? (
               <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
                   <div className="w-10 rounded-full">
                     <img alt={getUserFirstChar(user)} src={getUserProfileImageUrl(user)} />
                   </div>
                 </div>
                 <ul
                   tabIndex={0}
-                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-neutral rounded-box w-52"
+                  className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow"
                 >
                   <li>
                     <button type="button" onClick={logout}>
@@ -106,14 +106,12 @@ export function Menu({ children, showAuth }: MenuProps) {
                   </li>
                 </ul>
               </div>
-            </div>
-          ) : (
-            <div className="navbar-end">
+            ) : (
               <Button onClick={openLoginDialog}>{t('login')}</Button>
-            </div>
-          )}
-        </>
-      )}
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 }

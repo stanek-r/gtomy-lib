@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithRef, useId } from 'react';
-import classNames from 'classnames';
 import { Text } from '@/components/atoms/Typography/Text';
+import { twMerge } from 'tailwind-merge';
 
 export interface Option {
   value: string;
@@ -26,7 +26,7 @@ export const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>
             <span className="label-text">{label}</span>
           </label>
         )}
-        <select id={id} ref={ref} className={classNames('select select-bordered', className)} {...other}>
+        <select id={id} ref={ref} className={twMerge('select select-bordered', className)} {...other}>
           {allowEmpty && <option value="">Not selected</option>}
           {options.map((option) => (
             <option key={option.value} value={option.value}>
