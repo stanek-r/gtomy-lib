@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.6...v0.2.0) (2024-01-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* refactor typography to follow daisyui coloring scheme
+
+### Features
+
+* add dialog spacing ([c744216](https://gitlab.com/gtomy-services/gtomy-lib/commit/c744216ef2827189575ab64ffa2f50ea7a3eb9f3))
+* refactor loading and error state ([a2490f9](https://gitlab.com/gtomy-services/gtomy-lib/commit/a2490f99b8bbad22aff613268a7b10483d0216cb))
+* refactor login and register forms ([53b4471](https://gitlab.com/gtomy-services/gtomy-lib/commit/53b44715f7bd74188b2e3cf5c2de24d16abe524f))
+* refactor typography to follow daisyui coloring scheme ([49079a3](https://gitlab.com/gtomy-services/gtomy-lib/commit/49079a308afd8a5112755519803e53fcaf06b65d))
+
+
+### Bug Fixes
+
+* menu text color ([4168b2e](https://gitlab.com/gtomy-services/gtomy-lib/commit/4168b2e706e9152380620d78bc75b0dfb3ce8ebd))
+
 ### [0.1.6](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.5...v0.1.6) (2024-01-24)
 
 
