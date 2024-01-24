@@ -23,6 +23,7 @@ export interface ExtendedBaseDialogProps extends BaseDialogProps {
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   actions?: ReactNode;
   children?: ReactNode;
+  spacing?: boolean;
 }
 
 export function BaseDialog({
@@ -32,6 +33,7 @@ export function BaseDialog({
   maxWidth,
   actions,
   children,
+  spacing = true,
 }: ExtendedBaseDialogProps) {
   const maxWidthClasses = maxWidth ? maxWidthOptions[maxWidth] : maxWidthOptions.md;
 
@@ -51,11 +53,17 @@ export function BaseDialog({
             maxWidthClasses
           )}
         >
-          {children}
-          {actions && <div className="flex justify-end gap-x-2">{actions}</div>}
+          <div className={twMerge(spacing && 'space-y-4')}>{children}</div>
+          {actions && <div className="flex justify-end gap-x-2 pt-4">{actions}</div>}
           {closable && (
             <Dialog.Close asChild>
-              <ButtonIcon icon={XMarkIcon} size="sm" className="absolute right-[10px] top-[10px]" />
+              <ButtonIcon
+                icon={XMarkIcon}
+                variant="circle"
+                size="sm"
+                color="ghost"
+                className="absolute right-[10px] top-[10px]"
+              />
             </Dialog.Close>
           )}
         </Dialog.Content>

@@ -2,7 +2,7 @@ import React from 'react';
 import type { ComponentStory, Meta } from '@storybook/react';
 import { useDialog } from '@/utils/hooks/useDialog';
 import { Button } from '@/components/atoms/Button';
-import { Typography, Text } from '@/components/atoms/Typography';
+import { Typography } from '@/components/atoms/Typography';
 import { BaseDialog } from './BaseDialog';
 import { DialogProvider } from './DialogProvider';
 import * as Dialog from '@radix-ui/react-dialog';
@@ -31,7 +31,7 @@ export const Default: ComponentStory<typeof BaseDialog> = (args) => {
     element: (
       <BaseDialog actions={actions} {...args}>
         <Typography size="3xl">Lorem ipsum dolor sit amet</Typography>
-        <Text color="lightgray">
+        <Typography as="p">
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In laoreet, magna id viverra tincidunt, sem odio
           bibendum justo, vel imperdiet sapien wisi sed libero. Nullam sapien sem, ornare ac, nonummy non, lobortis a
           enim. Mauris suscipit, ligula sit amet pharetra semper, nibh ante cursus purus, vel sagittis velit mauris vel
@@ -39,7 +39,7 @@ export const Default: ComponentStory<typeof BaseDialog> = (args) => {
           sollicitudin. Donec ipsum massa, ullamcorper in, auctor et, scelerisque sed, est. Nulla non lectus sed nisl
           molestie malesuada. Sed convallis magna eu sem. Mauris dolor felis, sagittis at, luctus sed, aliquam non,
           tellus. Curabitur vitae diam non enim vestibulum interdum.{' '}
-        </Text>
+        </Typography>
       </BaseDialog>
     ),
   });

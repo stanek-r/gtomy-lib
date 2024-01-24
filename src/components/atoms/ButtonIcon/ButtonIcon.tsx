@@ -15,10 +15,11 @@ export interface ButtonIconProps<T extends ElementType> {
   color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info' | 'ghost';
   size?: 'sm' | 'lg';
   icon?: ReactNode | SvgIconType;
+  outline?: true;
 }
 
 function ButtonIconInner<T extends ElementType = 'button'>(
-  { as, color, size, className, icon, variant = 'square', ...other }: PropsAs<ButtonIconProps<T>, T>,
+  { as, color, size, className, icon, variant = 'square', outline, ...other }: PropsAs<ButtonIconProps<T>, T>,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   if (isSvgIcon(icon)) {
@@ -36,6 +37,7 @@ function ButtonIconInner<T extends ElementType = 'button'>(
         color && buttonColorClasses[color],
         size && buttonSizeClasses[size],
         variant && buttonVariantClasses[variant],
+        outline && 'btn-outline',
         className
       )}
       {...other}

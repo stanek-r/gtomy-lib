@@ -25,10 +25,11 @@ export interface ButtonProps<T extends ElementType> {
   wide?: boolean;
   startIcon?: ReactNode | SvgIconType;
   endIcon?: ReactNode | SvgIconType;
+  outline?: true;
 }
 
 export function ButtonInner<T extends ElementType = 'button'>(
-  { as, children, color, size, className, startIcon, endIcon, ...other }: PropsAs<ButtonProps<T>, T>,
+  { as, children, color, size, className, startIcon, endIcon, outline, ...other }: PropsAs<ButtonProps<T>, T>,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   if (isSvgIcon(startIcon)) {
@@ -44,7 +45,13 @@ export function ButtonInner<T extends ElementType = 'button'>(
     <Component
       ref={ref}
       type={type}
-      className={twMerge('btn', color && buttonColorClasses[color], size && buttonSizeClasses[size], className)}
+      className={twMerge(
+        'btn',
+        color && buttonColorClasses[color],
+        size && buttonSizeClasses[size],
+        outline && 'btn-outline',
+        className
+      )}
       {...other}
     >
       {startIcon}

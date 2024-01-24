@@ -19,6 +19,6 @@ export function ColumnPage({ children, width = 'xl', className }: ColumnPageProp
   const widthClass = columnPageWidthClasses[width];
 
   return (
-    <div className={twMerge('max-w-full mx-auto flex flex-col gap-4 p-4 pt-8', widthClass, className)}>{children}</div>
+    <div className={twMerge('max-w-full mx-auto flex flex-col gap-4 px-4 py-8', widthClass, className)}>{children}</div>
   );
 }

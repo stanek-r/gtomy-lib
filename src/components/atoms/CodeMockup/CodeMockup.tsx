@@ -2,6 +2,7 @@ import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export const codeMockupColorClasses = {
+  neutral: 'bg-neutral text-neutral-content',
   primary: 'bg-primary text-primary-content',
   secondary: 'bg-secondary text-secondary-content',
   success: 'bg-success text-success-content',
@@ -12,7 +13,7 @@ export const codeMockupColorClasses = {
 
 export interface CodeMockupProps {
   rows: string[];
-  color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info';
+  color?: 'neutral' | 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info';
   className?: string;
   numbered?: boolean;
 }

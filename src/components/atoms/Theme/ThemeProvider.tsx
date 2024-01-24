@@ -11,5 +11,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   if (theme == null || theme === 'system') {
     return <div>{children}</div>;
   }
-  return <div data-theme={theme}>{children}</div>;
+  return (
+    <div className="min-h-screen" data-theme={theme}>
+      {children}
+    </div>
+  );
 }

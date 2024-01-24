@@ -1,5 +1,5 @@
 import React, { ComponentPropsWithRef, useId } from 'react';
-import { Text } from '@/components/atoms/Typography';
+import { Typography } from '@/components/atoms/Typography';
 import { twMerge } from 'tailwind-merge';
 
 export interface TextareaInputProps extends ComponentPropsWithRef<'textarea'> {
@@ -34,9 +34,9 @@ export const TextareaInput = React.forwardRef<HTMLTextAreaElement, TextareaInput
         ></textarea>
         {error && (
           <div className="label">
-            <Text color="red" className="label-text-alt">
+            <Typography color="error" content={false} className="label-text-alt">
               {error}
-            </Text>
+            </Typography>
           </div>
         )}
         {hint && !error && (

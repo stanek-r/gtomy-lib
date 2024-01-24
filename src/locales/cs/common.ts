@@ -13,4 +13,6 @@ export const common = {
   'theme.corporate': 'Firemní',
   'theme.business': 'Podnikání',
   'theme.night': 'Noc',
+  'theme.cyberpunk': 'Cyberpunk',
+  'theme.lofi': 'Lo-fi',
 };
