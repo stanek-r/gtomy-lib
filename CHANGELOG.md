@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.5...v0.1.6) (2024-01-24)
+
+
+### Features
+
+* hide theme select when no themes are provided ([f47f555](https://gitlab.com/gtomy-services/gtomy-lib/commit/f47f55511e7c69b6a473e7636996116c48e7fb47))
+* reimplement theme change ([3aec255](https://gitlab.com/gtomy-services/gtomy-lib/commit/3aec2558a20a5c4a6a12c59ee270152c5e3bf736))
+
 ### [0.1.5](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.4...v0.1.5) (2024-01-23)
 
 
