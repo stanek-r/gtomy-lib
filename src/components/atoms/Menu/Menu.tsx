@@ -18,7 +18,7 @@ export function Menu({ children, showAuth }: MenuProps) {
 
   if (isOverBreakpoint) {
     return (
-      <div className="navbar bg-neutral">
+      <div className="navbar bg-neutral text-neutral-content">
         <div className="flex-1">
           {config.appName && (
             <Link className="btn btn-ghost text-xl" to="/">
@@ -27,7 +27,7 @@ export function Menu({ children, showAuth }: MenuProps) {
           )}
         </div>
         <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">{children}</ul>
+          <ul className="menu menu-horizontal gap-2 px-1">{children}</ul>
           {showAuth && (
             <>
               {isAuthenticated ? (
