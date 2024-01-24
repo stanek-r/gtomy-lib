@@ -12,7 +12,7 @@ interface GTomyLibInitConfig {
 export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
   Object.assign(config, {
     appName: initConfig.appName,
-    themes: initConfig.themes ? ['system', ...initConfig.themes] : ['system'],
+    themes: initConfig.themes && initConfig.themes.length > 1 ? ['system', ...initConfig.themes] : [],
     backendUrl: initConfig.backendUrl,
     authUrl: initConfig.authUrl,
   });

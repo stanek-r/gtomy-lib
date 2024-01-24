@@ -31,12 +31,15 @@ export function ThemeSelect({ className }: ThemeSelectProps) {
   }));
   const [theme, setTheme] = useThemeStore((state: any) => [state.theme, state.setTheme]);
 
-  return (
-    <SelectInput
-      className={className}
-      value={theme ?? options[0]}
-      onChange={(event) => setTheme(event.target.value)}
-      options={options}
-    />
-  );
+  if (options != null && options.length > 1) {
+    return (
+      <SelectInput
+        className={className}
+        value={theme ?? options[0]}
+        onChange={(event) => setTheme(event.target.value)}
+        options={options}
+      />
+    );
+  }
+  return null;
 }

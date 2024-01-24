@@ -105,8 +105,8 @@ export function LoginPage({ backURL, isInDialog, toggleRegister, closeDialog }: 
           )}
         </div>
         <div className="mt-3 flex justify-between">
-          <ThemeSelect />
           <LanguageSelect />
+          <ThemeSelect />
         </div>
       </div>
     </form>
