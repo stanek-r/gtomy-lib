@@ -1,6 +1,9 @@
 import React from 'react';
-import { Text, Typography } from '@/components/atoms/Typography';
+import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks/useTranslation';
+import { Button } from '@/components/atoms/Button';
+import { ArrowPathIcon } from '@heroicons/react/20/solid';
+import { XCircleIcon } from '@heroicons/react/24/outline';
 
 export interface ErrorStateProps {
   error?: any;
@@ -12,16 +15,19 @@ export function ErrorState({ error, retry, showRetry }: ErrorStateProps) {
   const { t } = useTranslation('common');
 
   return (
-    <div className="flex flex-col items-center gap-2">
-      <Typography weight="medium" size="2xl">
+    <div role="alert" className="alert alert-error">
+      <XCircleIcon className="w-8 h-8" />
+      <Typography size="xl" color="error">
         {t('state.error')}
       </Typography>
-      {error.message && <Text>{error.message}</Text>}
-      {!error.message && error.response?.status && <Text>Status code: {error.response?.status}</Text>}
+      {error.message && <Typography color="error">{error.message}</Typography>}
+      {!error.message && error.response?.status && (
+        <Typography color="error">Status code: {error.response?.status}</Typography>
+      )}
       {showRetry && (
-        <button className="btn btn-primary" onClick={retry}>
+        <Button startIcon={ArrowPathIcon} color="ghost" onClick={retry}>
           {t('state.retry')}
-        </button>
+        </Button>
       )}
     </div>
   );

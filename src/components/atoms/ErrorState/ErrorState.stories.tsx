@@ -16,5 +16,5 @@ export default {
 };
 
 export const Default: ComponentStory<typeof ErrorState> = () => {
-  return <ErrorState error={{ hello: 'bug' }} />;
+  return <ErrorState error={{ hello: 'bug' }} showRetry={true} retry={() => console.log('Test')} />;
 };
