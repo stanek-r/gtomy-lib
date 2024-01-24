@@ -23,7 +23,7 @@ interface Props {
   closeDialog?: () => void;
 }
 
-export function LoginPage({ backURL, isInDialog, toggleRegister, closeDialog }: Props) {
+export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog }: Props) {
   const { isAuthenticated, user, login, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ export function LoginPage({ backURL, isInDialog, toggleRegister, closeDialog }: 
 
   if (isAuthenticated) {
     return (
-      <div className={twMerge('flex justify-center items-center w-full', isInDialog ? 'py-8' : 'h-screen')}>
+      <div className={twMerge('flex justify-center items-center w-full', isInDialog ? 'py-8' : 'flex-1')}>
         <div className="flex w-[500px] max-w-full flex-col gap-y-4 p-4">
           <Typography size="3xl" weight="bold" className="text-center">
             {t('alreadyLoggedIn', { name: user?.displayName })}
@@ -69,7 +69,7 @@ export function LoginPage({ backURL, isInDialog, toggleRegister, closeDialog }: 
   return (
     <form
       onSubmit={handleSubmit(onHandleSubmit)}
-      className={twMerge('flex justify-center items-center w-full', isInDialog ? 'py-8' : 'h-screen')}
+      className={twMerge('flex justify-center items-center w-full', isInDialog ? 'py-8' : 'flex-1')}
     >
       <div className="flex w-[500px] max-w-full flex-col gap-y-3 p-4">
         {config.appName && (
@@ -86,7 +86,7 @@ export function LoginPage({ backURL, isInDialog, toggleRegister, closeDialog }: 
           placeholder={t('password')}
         />
         {error && (
-          <Typography color="red" className="text-center">
+          <Typography color="error" content={false} className="text-center">
             {error}
           </Typography>
         )}

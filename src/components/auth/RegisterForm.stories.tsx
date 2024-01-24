@@ -1,15 +1,15 @@
 import React from 'react';
-import { RegisterPage } from './RegisterPage';
+import { RegisterForm } from './RegisterForm';
 import { BrowserRouter } from 'react-router-dom';
 import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<typeof RegisterPage> = {
-  title: 'Auth/RegisterPage',
-  component: RegisterPage,
+const meta: Meta<typeof RegisterForm> = {
+  title: 'Auth/RegisterForm',
+  component: RegisterForm,
   decorators: [(Story) => <BrowserRouter>{Story()}</BrowserRouter>],
 };
 
 export default meta;
-type Story = StoryObj<typeof RegisterPage>;
+type Story = StoryObj<typeof RegisterForm>;
 
 export const Default: Story = {};

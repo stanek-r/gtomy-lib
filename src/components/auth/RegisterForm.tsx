@@ -23,7 +23,7 @@ interface Props {
   toggleRegister?: () => void;
 }
 
-export function RegisterPage({ isInDialog, toggleRegister }: Props) {
+export function RegisterForm({ isInDialog, toggleRegister }: Props) {
   const { isAuthenticated, user, register, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ export function RegisterPage({ isInDialog, toggleRegister }: Props) {
 
   if (isAuthenticated) {
     return (
-      <div className={twMerge('flex justify-center items-center w-full', !isInDialog ? 'py-4' : 'h-screen')}>
+      <div className={twMerge('flex justify-center items-center w-full', isInDialog ? 'py-4' : 'flex-1')}>
         <div className="flex w-[500px] max-w-full flex-col gap-y-4 p-4">
           <Typography size="3xl" weight="bold" className="text-center">
             {t('alreadyLoggedIn', { name: user?.displayName })}
@@ -69,7 +69,7 @@ export function RegisterPage({ isInDialog, toggleRegister }: Props) {
   return (
     <form
       onSubmit={handleSubmit(onHandleSubmit)}
-      className={twMerge('flex justify-center items-center w-full', isInDialog ? 'py-4' : 'h-screen')}
+      className={twMerge('flex justify-center items-center w-full', isInDialog ? 'py-4' : 'flex-1')}
     >
       <div className="flex w-[500px] max-w-full flex-col gap-y-3 p-4">
         {config.appName && (
@@ -100,7 +100,7 @@ export function RegisterPage({ isInDialog, toggleRegister }: Props) {
           placeholder={t('email')}
         />
         {error && (
-          <Typography color="red" className="text-center">
+          <Typography color="error" content={false} className="text-center">
             {error}
           </Typography>
         )}
