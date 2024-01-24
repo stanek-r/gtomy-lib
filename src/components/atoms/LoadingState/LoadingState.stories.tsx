@@ -39,6 +39,6 @@ export const Ring: ComponentStory<typeof LoadingState> = () => {
   return <LoadingState showLoading={true} variant="ring" />;
 };
 
-export const Infinity: ComponentStory<typeof LoadingState> = () => {
+export const Infinite: ComponentStory<typeof LoadingState> = () => {
   return <LoadingState showLoading={true} variant="infinity" />;
 };

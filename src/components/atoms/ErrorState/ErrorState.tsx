@@ -16,7 +16,7 @@ export function ErrorState({ error, retry, showRetry }: ErrorStateProps) {
 
   return (
     <div role="alert" className="alert alert-error">
-      <XCircleIcon className="w-8 h-8" />
+      <XCircleIcon className="size-8" />
       <Typography size="xl" color="error">
         {t('state.error')}
       </Typography>
