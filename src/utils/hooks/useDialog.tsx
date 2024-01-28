@@ -28,9 +28,6 @@ export function useDialog(dialog?: DialogObjectWithoutOpen): UseDialogReturn {
   const openDialog = (id?: string) => setOpened(id ?? dialog?.id, true);
   const closeDialog = (id?: string) => setOpened(id ?? dialog?.id, false);
   const createDialog = (newDialog: DialogObjectWithoutOpen) => {
-    if (dialogs.find((d: DialogObject) => d.id === newDialog.id)) {
-      return;
-    }
     addDialog({
       ...newDialog,
       open: false,

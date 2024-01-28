@@ -8,6 +8,7 @@ export interface User {
   emailVerified: boolean;
   role: 'user' | 'subscriber' | 'admin';
   displayName: string;
+  profileUrl?: string;
 
   // JWT
   iat: number;

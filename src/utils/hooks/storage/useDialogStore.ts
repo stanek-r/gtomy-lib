@@ -16,7 +16,10 @@ export interface DialogStore {
 export const useDialogStore = create((set) => ({
   dialogs: [],
   setDialogs: (dialogs: DialogObject[]) => set(() => ({ dialogs: dialogs })),
-  addDialog: (dialog: DialogObject) => set((store: DialogStore) => ({ dialogs: [...store.dialogs, dialog] })),
+  addDialog: (dialog: DialogObject) =>
+    set((store: DialogStore) => ({
+      dialogs: [...store.dialogs.filter((d) => d.id !== dialog.id), dialog],
+    })),
   setOpened: (id: string, open: boolean) =>
     set((store: DialogStore) => ({
       dialogs: store.dialogs.map((dialog) => (dialog.id === id ? { ...dialog, open: open } : dialog)),
