@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 
 export interface UseDialogReturn {
   dialogs: DialogObject[];
-  openDialog: (id?: string) => void;
-  closeDialog: (id?: string) => void;
+  openDialog: (id: string) => void;
+  closeDialog: (id: string) => void;
   createDialog: (dialog: DialogObjectWithoutOpen) => void;
   clearDialogs: () => void;
 }
@@ -23,10 +23,10 @@ export function useDialog(dialog?: DialogObjectWithoutOpen): UseDialogReturn {
     if (dialog) {
       createDialog(dialog);
     }
-  }, []);
+  }, [dialog]);
 
-  const openDialog = (id?: string) => setOpened(id ?? dialog?.id, true);
-  const closeDialog = (id?: string) => setOpened(id ?? dialog?.id, false);
+  const openDialog = (id: string) => setOpened(id, true);
+  const closeDialog = (id: string) => setOpened(id, false);
   const createDialog = (newDialog: DialogObjectWithoutOpen) => {
     addDialog({
       ...newDialog,

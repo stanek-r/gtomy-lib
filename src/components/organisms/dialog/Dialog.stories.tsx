@@ -46,7 +46,7 @@ export const Default: ComponentStory<typeof BaseDialog> = (args) => {
 
   return (
     <DialogProvider>
-      <Button onClick={() => openDialog()}>Open dialog</Button>
+      <Button onClick={() => openDialog('test-base')}>Open dialog</Button>
     </DialogProvider>
   );
 };
@@ -64,7 +64,7 @@ export const Alert: ComponentStory<typeof BaseDialog> = () => {
 
   return (
     <DialogProvider>
-      <Button onClick={() => openDialog()}>Open dialog</Button>
+      <Button onClick={() => openDialog('test-alert')}>Open dialog</Button>
     </DialogProvider>
   );
 };
@@ -82,7 +82,7 @@ export const Info: ComponentStory<typeof BaseDialog> = () => {
 
   return (
     <DialogProvider>
-      <Button onClick={() => openDialog()}>Open dialog</Button>
+      <Button onClick={() => openDialog('test-info')}>Open dialog</Button>
     </DialogProvider>
   );
 };

@@ -1,4 +1,4 @@
-import React, { ReactNode, useMemo } from 'react';
+import React, { ReactNode } from 'react';
 import { useDialog } from '@/utils/hooks/useDialog';
 import { DialogObject } from '@/utils';
 
@@ -9,18 +9,15 @@ export interface DialogProviderProps {
 export function DialogProvider({ children }: DialogProviderProps) {
   const { dialogs, openDialog, closeDialog } = useDialog();
 
-  const flattenedDialog = useMemo(() => {
-    const ret: DialogObject[] = [];
-    for (const dialog of dialogs) {
-      const dialogIndex = ret.findIndex((d) => d.id === dialog.id);
-      if (dialogIndex === -1) {
-        ret.push(dialog);
-      } else {
-        ret[dialogIndex] = dialog;
-      }
+  const flattenedDialog: DialogObject[] = [];
+  for (const dialog of dialogs) {
+    const dialogIndex = flattenedDialog.findIndex((d) => d.id === dialog.id);
+    if (dialogIndex === -1) {
+      flattenedDialog.push(dialog);
+    } else {
+      flattenedDialog[dialogIndex] = dialog;
     }
-    return ret;
-  }, [dialogs]);
+  }
 
   const onOpenChange = (id: string, open: boolean) => {
     if (open) {

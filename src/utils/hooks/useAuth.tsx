@@ -87,6 +87,6 @@ export function useAuth(): UseAuth {
     login,
     register,
     logout: logout,
-    openLoginDialog: () => openDialog(),
+    openLoginDialog: () => openDialog('auth-dialog'),
   };
 }
