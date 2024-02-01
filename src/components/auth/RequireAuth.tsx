@@ -23,7 +23,7 @@ export function RequireAuth({ minimalRole = 'user', children }: { minimalRole: P
   }
   const role = user!.roles.find((role) => role.application === config.appName)?.role ?? 'user';
   const roleId = PERM_ROLES[role as PermRoles];
-  if (roleId >= minimalRoleId) {
+  if (roleId < minimalRoleId) {
     return (
       <div className="flex h-screen w-full items-center justify-center">
         <div className="flex w-[500px] max-w-full flex-col gap-y-4 p-4">
