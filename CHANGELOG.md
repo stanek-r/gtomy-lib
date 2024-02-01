@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.0...v0.2.1) (2024-02-01)
+
+
+### Features
+
+* refactor role permissions and add appDisplayName ([91ee278](https://gitlab.com/gtomy-services/gtomy-lib/commit/91ee278d6ed89ec08f9ff668cc47b02236a8f76e))
+
+
+### Bug Fixes
+
+* useDialog duplicate keys ([828028d](https://gitlab.com/gtomy-services/gtomy-lib/commit/828028d714ad007f8e52e07e65ae73ad035a77e6))
+
 ## [0.2.0](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.1.6...v0.2.0) (2024-01-24)
 
 
