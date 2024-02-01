@@ -1,12 +1,27 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
+export const PERM_ROLES = {
+  user: 0,
+  subscriber: 1,
+  moderator: 2,
+  admin: 3,
+  owner: 4,
+};
+
+export type PermRoles = keyof typeof PERM_ROLES;
+
+export interface Roles {
+  application: string;
+  role: PermRoles;
+}
+
 export interface User {
   userId: string;
   username: string;
   email: string;
   emailVerified: boolean;
-  role: 'user' | 'subscriber' | 'admin';
+  roles: Roles[];
   displayName: string;
   profileUrl?: string;
 

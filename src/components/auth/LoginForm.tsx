@@ -72,9 +72,9 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog }: 
       className={twMerge('flex justify-center items-center w-full', isInDialog ? 'py-8' : 'flex-1')}
     >
       <div className="flex w-[500px] max-w-full flex-col gap-y-3 p-4">
-        {config.appName && (
+        {config.appDisplayName && (
           <Typography as="h1" size="3xl" weight="bold" className="mb-3 text-center">
-            {config.appName}
+            {config.appDisplayName}
           </Typography>
         )}
         <FormTextInput control={control} name="username" rules={{ required: true }} placeholder={t('username')} />

@@ -20,9 +20,9 @@ export function Menu({ children, showAuth }: MenuProps) {
     return (
       <div className="navbar bg-neutral text-neutral-content">
         <div className="flex-1">
-          {config.appName && (
+          {config.appDisplayName && (
             <Link className="btn btn-ghost text-xl" to="/">
-              {config.appName}
+              {config.appDisplayName}
             </Link>
           )}
         </div>
@@ -79,9 +79,9 @@ export function Menu({ children, showAuth }: MenuProps) {
         </div>
       </div>
       <div className="navbar-center">
-        {config.appName && (
+        {config.appDisplayName && (
           <Link className="btn btn-ghost text-xl" to="/">
-            {config.appName}
+            {config.appDisplayName}
           </Link>
         )}
       </div>

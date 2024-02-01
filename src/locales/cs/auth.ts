@@ -10,7 +10,10 @@ export const auth = {
   invalidCredentials: 'Neplatné přihlašovací údaje',
   cannotRegister: 'Nelze se registrovat s tímto uživatelským jménem nebo heslem',
   noAccess: 'Nemáte přístup k této službě, potřebujete minimálně {{minimalRole}}!',
+  // Roles
   'role.user': 'uživatel',
   'role.subscriber': 'předplatitel',
+  'role.moderator': 'moderátor',
   'role.admin': 'administrátor',
+  'role.owner': 'majitel',
 };
