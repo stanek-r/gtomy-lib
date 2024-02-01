@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.1...v0.2.2) (2024-02-01)
+
+
+### Bug Fixes
+
+* component RequireAuth ([4c3f7f3](https://gitlab.com/gtomy-services/gtomy-lib/commit/4c3f7f393b41a32f653711c947f36ebc660f3de7))
+* dialog not opening ([8048ce4](https://gitlab.com/gtomy-services/gtomy-lib/commit/8048ce4a4e8b91088d054ed4b3ab39cfaaff7865))
+
 ### [0.2.1](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.0...v0.2.1) (2024-02-01)
 
 
