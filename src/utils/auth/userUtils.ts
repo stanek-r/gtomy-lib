@@ -9,8 +9,8 @@ export function getUserFirstChar(user?: User): string {
 }
 
 export function getUserProfileImageUrl(user?: User): string {
-  if (user == null) {
-    return '';
+  if (user?.profileImageUuid == null) {
+    return config.authUrl + '/images/5b46b9fd-8d41-4fbc-987f-3e7fd0e99600/miniature';
   }
-  return config.authUrl + '/user-profile/' + user.userId;
+  return config.authUrl + '/images/' + user.profileImageUuid + '/miniature';
 }
