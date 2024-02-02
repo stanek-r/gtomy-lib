@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { config } from '@/config';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth, useBreakpoint } from '@/utils';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { getUserFirstChar, getUserProfileImageUrl } from '@/utils/auth/userUtils';
@@ -9,12 +9,22 @@ import { Button } from '@/components/atoms/Button';
 export interface MenuProps {
   children?: ReactNode;
   showAuth?: boolean;
+  authDialog?: boolean;
 }
 
-export function Menu({ children, showAuth }: MenuProps) {
+export function Menu({ children, showAuth, authDialog }: MenuProps) {
   const { isAuthenticated, user, logout, openLoginDialog } = useAuth();
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
+  const navigate = useNavigate();
+
+  const login = () => {
+    if (authDialog) {
+      openLoginDialog();
+    } else {
+      navigate('/login');
+    }
+  };
 
   if (isOverBreakpoint) {
     return (
@@ -49,7 +59,7 @@ export function Menu({ children, showAuth }: MenuProps) {
                   </ul>
                 </div>
               ) : (
-                <Button onClick={openLoginDialog}>{t('login')}</Button>
+                <Button onClick={login}>{t('login')}</Button>
               )}
             </>
           )}
@@ -107,7 +117,7 @@ export function Menu({ children, showAuth }: MenuProps) {
                 </ul>
               </div>
             ) : (
-              <Button onClick={openLoginDialog}>{t('login')}</Button>
+              <Button onClick={login}>{t('login')}</Button>
             )}
           </>
         )}

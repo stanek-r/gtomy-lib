@@ -1,12 +1,19 @@
 import React, { useEffect } from 'react';
 import { PERM_ROLES, PermRoles, useAuth } from '@/utils';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { config } from '@/config';
 
-export function RequireAuth({ minimalRole = 'user', children }: { minimalRole: PermRoles; children: JSX.Element }) {
+export interface RequireAuthProps {
+  minimalRole: PermRoles;
+  children: JSX.Element;
+  menu?: JSX.Element;
+  footer?: JSX.Element;
+}
+
+export function RequireAuth({ minimalRole = 'user', children, footer, menu }: RequireAuthProps) {
   const { isAuthenticated, user, logout } = useAuth();
   const { t } = useTranslation('auth');
   const navigate = useNavigate();
@@ -25,15 +32,22 @@ export function RequireAuth({ minimalRole = 'user', children }: { minimalRole: P
   const roleId = PERM_ROLES[role as PermRoles];
   if (roleId < minimalRoleId) {
     return (
-      <div className="flex h-screen w-full items-center justify-center">
+      <div className="flex h-screen flex-col">
+        {menu}
         <div className="flex w-[500px] max-w-full flex-col gap-y-4 p-4">
           <Typography size="3xl" weight="bold" className="text-center">
             {t('noAccess', { minimalRole: t('role.' + minimalRole) })}
           </Typography>
-          <div className="flex justify-center gap-x-2">
-            <Button onClick={logout}>{t('logout')}</Button>
+          <div className="join">
+            <Button as={Link} to="/" className="join-item" color="primary">
+              {t('back', { ns: 'common' })}
+            </Button>
+            <Button onClick={logout} className="join-item">
+              {t('logout')}
+            </Button>
           </div>
         </div>
+        {footer}
       </div>
     );
   }
