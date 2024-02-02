@@ -14,8 +14,7 @@ lint-check:
   script:
     - npm run lint:check
   only:
-    - development
-    - master
+    - main
     - merge_requests
 
 audit:
@@ -24,8 +23,7 @@ audit:
   script:
     - npm audit --audit-level=critical
   only:
-    - development
-    - master
+    - main
     - merge_requests
 
 build:
@@ -37,8 +35,7 @@ build:
   script:
     - npm run build
   only:
-    - development
-    - master
+    - main
     - merge_requests
 
 deploy:
@@ -49,7 +46,7 @@ deploy:
     - echo "//registry.npmjs.org/:_authToken=${CI_NPM_TOKEN}" > .npmrc
     - npm publish
   only:
-    - master
+    - web
 
 pages:
   stage: storybook
@@ -62,4 +59,4 @@ pages:
     paths:
       - public
   only:
-    - master
+    - web
