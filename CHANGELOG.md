@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.4...v0.2.5) (2024-02-02)
+
+
+### Features
+
+* add menu and footer support to require auth ([b3a5556](https://gitlab.com/gtomy-services/gtomy-lib/commit/b3a55569ebe129f9038d69de22c97b74fa84936a))
+
+
+### Bug Fixes
+
+* dialog not opening 3 ([04f4f8b](https://gitlab.com/gtomy-services/gtomy-lib/commit/04f4f8b4fee7b0acc3c6223c9854ba39367523a6))
+
 ### [0.2.4](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.3...v0.2.4) (2024-02-01)
 
 
