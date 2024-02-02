@@ -20,10 +20,10 @@ export function useDialog(dialog?: DialogObjectWithoutOpen): UseDialogReturn {
   ]);
 
   useEffect(() => {
-    if (dialog) {
+    if (dialog != null) {
       createDialog(dialog);
     }
-  }, [dialog]);
+  }, []);
 
   const openDialog = (id: string) => setOpened(id, true);
   const closeDialog = (id: string) => setOpened(id, false);
