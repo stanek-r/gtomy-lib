@@ -1,4 +1,4 @@
 export * from './Menu';
-export * from './MenuAnchor';
+export * from './MenuBottomItem';
 export * from './MenuDropdown';
-export * from './MenuLink';
+export * from './MenuItem';

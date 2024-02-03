@@ -1,9 +1,9 @@
 import React from 'react';
 import { ComponentStory } from '@storybook/react';
 import { Menu } from '@/components/atoms/Menu/Menu';
-import { MenuLink } from '@/components/atoms/Menu/MenuLink';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Link } from 'react-router-dom';
 import { DialogProvider } from '@/components/organisms/dialog';
+import { MenuItem } from '@/components/atoms/Menu/MenuItem';
 
 export default {
   title: 'Atoms/Menu',
@@ -20,21 +20,37 @@ export default {
 export const Default: ComponentStory<typeof Menu> = () => {
   return (
     <Menu>
-      <MenuLink to="/">Test link 1</MenuLink>
-      <MenuLink to="/">Test link 2</MenuLink>
-      <MenuLink to="/">Test link 3</MenuLink>
-      <MenuLink to="/">Test link 4</MenuLink>
+      <MenuItem as={Link} to="/">
+        Test link 1
+      </MenuItem>
+      <MenuItem as={Link} to="/">
+        Test link 2
+      </MenuItem>
+      <MenuItem as={Link} to="/">
+        Test link 3
+      </MenuItem>
+      <MenuItem as={Link} to="/">
+        Test link 4
+      </MenuItem>
     </Menu>
   );
 };
 
-export const WitAuth: ComponentStory<typeof Menu> = () => {
+export const WithAuth: ComponentStory<typeof Menu> = () => {
   return (
     <Menu showAuth>
-      <MenuLink to="/">Test link 1</MenuLink>
-      <MenuLink to="/">Test link 2</MenuLink>
-      <MenuLink to="/">Test link 3</MenuLink>
-      <MenuLink to="/">Test link 4</MenuLink>
+      <MenuItem as={Link} to="/">
+        Test link 1
+      </MenuItem>
+      <MenuItem as={Link} to="/">
+        Test link 2
+      </MenuItem>
+      <MenuItem as={Link} to="/">
+        Test link 3
+      </MenuItem>
+      <MenuItem as={Link} to="/">
+        Test link 4
+      </MenuItem>
     </Menu>
   );
 };
