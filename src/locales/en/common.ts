@@ -2,6 +2,8 @@ export const common = {
   forward: 'Forward',
   back: 'Back',
   close: 'Zavřít',
+  'footer.settings': 'Settings',
+  'footer.social': 'Social',
   'languages.english': 'English',
   'languages.czech': 'Czech',
   'state.loading': 'Loading...',

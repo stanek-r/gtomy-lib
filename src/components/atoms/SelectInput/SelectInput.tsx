@@ -2,22 +2,31 @@ import React, { ComponentPropsWithRef, useId } from 'react';
 import { Typography } from '@/components/atoms/Typography';
 import { twMerge } from 'tailwind-merge';
 
+const sizeClasses = {
+  lg: 'select-lg',
+  md: '',
+  sm: 'select-sm',
+  xs: 'select-xs',
+};
+
 export interface Option {
   value: string;
   label: string;
 }
 
-export interface SelectInputProps extends Omit<ComponentPropsWithRef<'select'>, 'children'> {
+export interface SelectInputProps extends Omit<Omit<ComponentPropsWithRef<'select'>, 'children'>, 'size'> {
   label?: string;
   hint?: string;
   options: Option[];
   allowEmpty?: boolean;
   error?: string;
+  size?: 'lg' | 'md' | 'sm' | 'xs';
 }
 
 export const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>(
-  ({ className, label, hint, options, allowEmpty, error, ...other }: SelectInputProps, ref) => {
+  ({ className, label, hint, options, allowEmpty, error, size = 'md', ...other }: SelectInputProps, ref) => {
     const id = useId();
+    const sizeClass = sizeClasses[size];
 
     return (
       <div className="form-control">
@@ -26,7 +35,7 @@ export const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>
             <span className="label-text">{label}</span>
           </label>
         )}
-        <select id={id} ref={ref} className={twMerge('select select-bordered', className)} {...other}>
+        <select id={id} ref={ref} className={twMerge('select select-bordered', sizeClass, className)} {...other}>
           {allowEmpty && <option value="">Not selected</option>}
           {options.map((option) => (
             <option key={option.value} value={option.value}>

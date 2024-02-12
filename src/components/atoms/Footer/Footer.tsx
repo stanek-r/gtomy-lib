@@ -1,4 +1,7 @@
 import React, { ReactNode } from 'react';
+import { LanguageSelect } from '@/components/atoms/LanguageSelect';
+import { ThemeSelect } from '@/components/atoms/Theme';
+import { useTranslation } from '@/utils';
 
 function FooterIcon() {
   return (
@@ -19,9 +22,25 @@ export interface FooterProps {
   height?: 'short' | 'tall';
   socialMedia?: ReactNode;
   links?: FooterLinks[];
+  showSettings?: boolean;
 }
 
-export function Footer({ title, subtitle, height = 'short', links = [], socialMedia }: FooterProps) {
+function FooterSettings() {
+  const { t } = useTranslation('common');
+  return (
+    <nav>
+      <header className="footer-title">{t('footer.settings')}</header>
+      <div className="flex gap-2 flex-wrap">
+        <LanguageSelect />
+        <ThemeSelect />
+      </div>
+    </nav>
+  );
+}
+
+export function Footer({ title, subtitle, height = 'short', links = [], socialMedia, showSettings }: FooterProps) {
+  const { t } = useTranslation('common');
+
   if (height === 'short') {
     if (socialMedia == null) {
       return (
@@ -60,9 +79,10 @@ export function Footer({ title, subtitle, height = 'short', links = [], socialMe
           </p>
         </aside>
         <nav>
-          <header className="footer-title">Social</header>
+          <header className="footer-title">{t('footer.social')}</header>
           <div className="grid grid-flow-col gap-4">{socialMedia}</div>
         </nav>
+        {showSettings && <FooterSettings />}
       </footer>
     );
   }
@@ -87,6 +107,7 @@ export function Footer({ title, subtitle, height = 'short', links = [], socialMe
             {link.links}
           </nav>
         ))}
+        {showSettings && <FooterSettings />}
       </footer>
     );
   }
@@ -100,6 +121,7 @@ export function Footer({ title, subtitle, height = 'short', links = [], socialMe
             {link.links}
           </nav>
         ))}
+        {showSettings && <FooterSettings />}
       </footer>
       <footer className="footer border-t border-base-300 bg-neutral px-10 py-4 text-neutral-content">
         <aside className="grid-flow-col items-center">

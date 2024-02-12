@@ -25,10 +25,11 @@ export interface ThemeSelectProps {
 export function ThemeSelect({ className }: ThemeSelectProps) {
   const { t } = useTranslation('common');
 
-  const options: Option[] = config.themes!.map((theme) => ({
-    label: t('theme.' + theme),
-    value: theme,
-  }));
+  const options: Option[] | null =
+    config.themes?.map((theme) => ({
+      label: t('theme.' + theme),
+      value: theme,
+    })) ?? null;
   const [theme, setTheme] = useThemeStore((state: any) => [state.theme, state.setTheme]);
 
   if (options != null && options.length > 1) {
@@ -37,6 +38,7 @@ export function ThemeSelect({ className }: ThemeSelectProps) {
         className={className}
         value={theme ?? options[0]}
         onChange={(event) => setTheme(event.target.value)}
+        size="sm"
         options={options}
       />
     );

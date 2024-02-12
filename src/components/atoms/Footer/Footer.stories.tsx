@@ -36,6 +36,7 @@ export const TallWithSocial: ComponentStory<typeof Footer> = () => {
       title="Best page ever"
       subtitle="Amazing subtitle"
       height="tall"
+      showSettings
       socialMedia={
         <>
           <FooterSocialItem href="/" type="threads" />
@@ -53,6 +54,7 @@ export const TallWithLinks: ComponentStory<typeof Footer> = () => {
       title="Best page ever"
       subtitle="Amazing subtitle"
       height="tall"
+      showSettings
       links={[
         {
           header: 'Test header',
@@ -97,6 +99,7 @@ export const TallWithSocialAndLinks: ComponentStory<typeof Footer> = () => {
       title="Best page ever"
       subtitle="Amazing subtitle"
       height="tall"
+      showSettings
       socialMedia={
         <>
           <FooterSocialItem href="/" type="threads" />
