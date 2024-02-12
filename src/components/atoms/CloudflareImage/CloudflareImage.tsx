@@ -3,25 +3,30 @@ import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-compone
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'react-lazy-load-image-component/src/effects/black-and-white.css';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
+import { config } from '@/config';
 
 export type CloudflareImageType = 'original' | 'fullhd' | 'miniature' | 'profile' | 'blur';
 
-export interface CloudflareImageProps extends LazyLoadImageProps {
+export interface CloudflareImageProps extends Omit<LazyLoadImageProps, 'src'> {
+  imageId: string;
   srcType?: CloudflareImageType;
   placeholderType?: CloudflareImageType;
 }
 
 export function CloudflareImage({
-  src,
+  imageId,
   srcType = 'original',
-  placeholderSrc,
   placeholderType = 'miniature',
   effect = 'blur',
   ...otherProps
 }: CloudflareImageProps) {
-  let placeholder = undefined;
-  if (placeholderSrc) {
-    placeholder = `${placeholderSrc}/${placeholderType}`;
-  }
-  return <LazyLoadImage src={`${src}/${srcType}`} placeholderSrc={placeholder} effect={effect} {...otherProps} />;
+  const src = `${config.cloudFlareImagesUrl}/${imageId}`;
+  return (
+    <LazyLoadImage
+      src={`${src}/${srcType}`}
+      placeholderSrc={`${src}/${placeholderType}`}
+      effect={effect}
+      {...otherProps}
+    />
+  );
 }

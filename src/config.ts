@@ -4,6 +4,7 @@ export interface GTomyLibConfig {
   themes?: string[];
   authUrl?: string;
   backendUrl?: string;
+  cloudFlareImagesUrl?: string;
 }
 
 export const config: GTomyLibConfig = {};
