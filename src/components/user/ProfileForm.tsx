@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from 'react';
 import { FormTextInput } from '@/components/form/FormTextInput';
 import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
-import { getUserProfileImageUrl, useAuth, useRequest, useTranslation } from '@/utils';
+import { getUserProfileImageId, useAuth, useRequest, useTranslation } from '@/utils';
 import { Button } from '@/components/atoms/Button';
 import { config } from '@/config';
 import { FormFile, FormFileInput } from '@/components/form/FormFileInput';
@@ -68,7 +68,7 @@ export function ProfileForm({ children, className }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={twMerge('grid grid-cols-2 gap-2', className)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={twMerge('grid grid-cols-1 lg:grid-cols-2 gap-2', className)}>
       <FormTextInput
         label={t('displayName')}
         placeholder={t('displayName')}
@@ -86,25 +86,25 @@ export function ProfileForm({ children, className }: Props) {
       />
       <FormFileInput label={t('profileImage')} name="profileImage" control={control} multiple={false} />
       {user?.profileImageId && (
-        <div className="flex gap-2">
+        <div className="ml-1 flex items-center gap-2">
           <CloudflareImage
-            src={getUserProfileImageUrl(user)}
+            imageId={getUserProfileImageId(user)}
             srcType="profile"
             alt="Profile image"
-            className="size-24 object-contain"
+            className="my-2 size-20 rounded-full object-contain"
           />
           <Button onClick={deleteFile} size="sm" color="error">
-            {t('delete')}
+            {t('deleteProfileImage')}
           </Button>
         </div>
       )}
-      {error && <ErrorState className="col-span-2" error={error} />}
-      <div className="col-span-2 flex justify-center">
+      {error && <ErrorState className="lg:col-span-2" error={error} />}
+      <div className="flex justify-center lg:col-span-2">
         <Button type="submit" disabled={saving}>
           {t('save')}
         </Button>
       </div>
-      <div className="divider col-span-2"></div>
+      <div className="divider lg:col-span-2"></div>
       {children}
     </form>
   );

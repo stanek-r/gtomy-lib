@@ -12,7 +12,7 @@ export const auth = {
   noAccess: "You don't have access to this service, need a least {{minimalRole}}!",
   displayName: 'Display name',
   profileImage: 'Profile image',
-  delete: 'Delete',
+  deleteProfileImage: 'Delete profile image',
   save: 'Save',
   // Roles
   'role.user': 'user',

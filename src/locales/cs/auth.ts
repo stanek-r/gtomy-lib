@@ -12,7 +12,7 @@ export const auth = {
   noAccess: 'Nemáte přístup k této službě, potřebujete minimálně {{minimalRole}}!',
   displayName: 'Uživatelské jméno',
   profileImage: 'Profilový obrázek',
-  delete: 'Smazat',
+  deleteProfileImage: 'Smazat profilový obrázek',
   save: 'Uložit',
   // Roles
   'role.user': 'uživatel',

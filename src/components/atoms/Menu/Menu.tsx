@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import { config } from '@/config';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth, useBreakpoint } from '@/utils';
+import { getUserProfileImageId, useAuth, useBreakpoint } from '@/utils';
 import { useTranslation } from '@/utils/hooks/useTranslation';
-import { getUserFirstChar, getUserProfileImageUrl } from '@/utils/auth/userUtils';
+import { getUserFirstChar } from '@/utils/auth/userUtils';
 import { Button } from '@/components/atoms/Button';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import { UserIcon } from '@heroicons/react/24/outline';
@@ -13,11 +13,12 @@ export interface MenuProps {
   children?: ReactNode;
   showAuth?: boolean;
   authDialog?: boolean;
-  bottomMenuLinks?: ReactNode;
+  bottomMenuActions?: ReactNode;
+  dropdownActions?: ReactNode;
   showIcon?: boolean;
 }
 
-export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuLinks }: MenuProps) {
+export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActions, dropdownActions }: MenuProps) {
   const { isAuthenticated, user, logout, openLoginDialog } = useAuth();
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
@@ -37,7 +38,7 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuLinks
         <div className="flex-1">
           {config.appDisplayName && (
             <Link className="btn btn-ghost text-xl" to="/">
-              {showIcon && <img src="/favicon.ico" className="h-8 w-8 mr-2 rounded" alt="Favicon" />}
+              {showIcon && <img src="/favicon.ico" className="mr-2 size-8 rounded" alt="Favicon" />}
               {config.appDisplayName}
             </Link>
           )}
@@ -51,7 +52,7 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuLinks
                   <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
                     <div className="w-10 rounded-full">
                       <CloudflareImage
-                        src={getUserProfileImageUrl(user)}
+                        imageId={getUserProfileImageId(user)}
                         alt={getUserFirstChar(user)}
                         srcType="profile"
                         className="size-10"
@@ -63,6 +64,7 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuLinks
                     className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow"
                   >
                     <li>
+                      {dropdownActions}
                       <button type="button" onClick={logout}>
                         {t('logout')}
                       </button>
@@ -106,12 +108,10 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuLinks
           </div>
         )}
         <div className={children ? 'navbar-center' : 'navbar-start'}>
-          {config.appDisplayName && (
-            <Link className="btn btn-ghost text-xl" to="/">
-              {showIcon && <img src="/favicon.ico" className="h-8 w-8 mr-2 rounded" alt="Favicon" />}
-              {config.appDisplayName}
-            </Link>
-          )}
+          <Link className="btn btn-ghost text-xl" to="/">
+            {showIcon && <img src="/favicon.ico" className="mr-2 size-8 rounded" alt="Favicon" />}
+            {config.appDisplayName}
+          </Link>
         </div>
         <div className="navbar-end">
           {showAuth && (
@@ -121,7 +121,7 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuLinks
                   <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
                     <div className="w-10 rounded-full">
                       <CloudflareImage
-                        src={getUserProfileImageUrl(user)}
+                        imageId={getUserProfileImageId(user)}
                         alt={getUserFirstChar(user)}
                         srcType="profile"
                         className="size-10"
@@ -133,6 +133,7 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuLinks
                     className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow"
                   >
                     <li>
+                      {dropdownActions}
                       <button type="button" onClick={logout}>
                         {t('logout')}
                       </button>
@@ -146,7 +147,7 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuLinks
           )}
         </div>
       </div>
-      {bottomMenuLinks && <div className="btm-nav bg-neutral text-neutral-content">{bottomMenuLinks}</div>}
+      {bottomMenuActions && <div className="btm-nav bg-neutral text-neutral-content">{bottomMenuActions}</div>}
     </>
   );
 }
