@@ -1,7 +1,9 @@
 export * from './config';
 export * from './init';
+export * from './assets/social';
 export * from './components/atoms/Button';
 export * from './components/atoms/ButtonIcon';
+export * from './components/atoms/CloudflareImage';
 export * from './components/atoms/CodeMockup';
 export * from './components/atoms/ErrorState';
 export * from './components/atoms/FileInput';
@@ -22,6 +24,7 @@ export * from './components/form/FormTextInput';
 export * from './components/form/FormTextareaInput';
 export * from './components/layout';
 export * from './components/organisms/dialog';
+export * from './components/user';
 export * from './locales';
 export * from './models';
 export * from './utils';

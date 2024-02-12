@@ -29,6 +29,7 @@ export default [
       '@heroicons/react',
       '@sentry/react',
       '@tanstack/react-query',
+      'react-lazy-load-image-component',
     ],
   },
   {

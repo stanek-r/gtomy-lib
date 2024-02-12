@@ -23,7 +23,7 @@ export interface User {
   emailVerified: boolean;
   roles: Roles[];
   displayName: string;
-  profileImageUuid?: string;
+  profileImageId?: string;
 
   // JWT
   iat: number;

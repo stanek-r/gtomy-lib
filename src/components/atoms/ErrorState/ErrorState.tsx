@@ -4,18 +4,20 @@ import { useTranslation } from '@/utils/hooks/useTranslation';
 import { Button } from '@/components/atoms/Button';
 import { ArrowPathIcon } from '@heroicons/react/20/solid';
 import { XCircleIcon } from '@heroicons/react/24/outline';
+import { twMerge } from 'tailwind-merge';
 
 export interface ErrorStateProps {
   error?: any;
   showRetry?: boolean;
   retry?: () => void;
+  className?: string;
 }
 
-export function ErrorState({ error, retry, showRetry }: ErrorStateProps) {
+export function ErrorState({ error, retry, showRetry, className }: ErrorStateProps) {
   const { t } = useTranslation('common');
 
   return (
-    <div role="alert" className="alert alert-error">
+    <div role="alert" className={twMerge('alert alert-error', className)}>
       <XCircleIcon className="size-8" />
       <Typography size="xl" color="error">
         {t('state.error')}

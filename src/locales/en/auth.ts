@@ -10,6 +10,10 @@ export const auth = {
   invalidCredentials: 'Invalid credentials',
   cannotRegister: 'Cannot register with this username or password',
   noAccess: "You don't have access to this service, need a least {{minimalRole}}!",
+  displayName: 'Display name',
+  profileImage: 'Profile image',
+  delete: 'Delete',
+  save: 'Save',
   // Roles
   'role.user': 'user',
   'role.subscriber': 'subscriber',

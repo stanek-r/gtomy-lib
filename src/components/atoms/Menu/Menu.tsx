@@ -7,6 +7,7 @@ import { getUserFirstChar, getUserProfileImageUrl } from '@/utils/auth/userUtils
 import { Button } from '@/components/atoms/Button';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import { UserIcon } from '@heroicons/react/24/outline';
+import { CloudflareImage } from '@/components/atoms/CloudflareImage/CloudflareImage';
 
 export interface MenuProps {
   children?: ReactNode;
@@ -49,7 +50,12 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuLinks
                 <div className="dropdown dropdown-end">
                   <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
                     <div className="w-10 rounded-full">
-                      <img alt={getUserFirstChar(user)} src={getUserProfileImageUrl(user)} />
+                      <CloudflareImage
+                        src={getUserProfileImageUrl(user)}
+                        alt={getUserFirstChar(user)}
+                        srcType="profile"
+                        className="size-10"
+                      />
                     </div>
                   </div>
                   <ul
@@ -114,7 +120,12 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuLinks
                 <div className="dropdown dropdown-end">
                   <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
                     <div className="w-10 rounded-full">
-                      <img alt={getUserFirstChar(user)} src={getUserProfileImageUrl(user)} />
+                      <CloudflareImage
+                        src={getUserProfileImageUrl(user)}
+                        alt={getUserFirstChar(user)}
+                        srcType="profile"
+                        className="size-10"
+                      />
                     </div>
                   </div>
                   <ul
