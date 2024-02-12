@@ -46,7 +46,7 @@ deploy:
     - echo "//registry.npmjs.org/:_authToken=${CI_NPM_TOKEN}" > .npmrc
     - npm publish
   only:
-    - web
+    - $CI_COMMIT_MESSAGE =~ /chore\(release\):/
 
 pages:
   stage: storybook
@@ -59,4 +59,6 @@ pages:
     paths:
       - public
   only:
-    - web
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /chore\(release\):/
+
