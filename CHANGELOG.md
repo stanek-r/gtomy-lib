@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.7](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.6...v0.2.7) (2024-02-12)
+
+
+### Features
+
+* add CloudflareImage component ([3d3366b](https://gitlab.com/gtomy-services/gtomy-lib/commit/3d3366bcc42a058f55a1625be6a175ad0a50588b))
+* add icons for social media ([dc51302](https://gitlab.com/gtomy-services/gtomy-lib/commit/dc5130255fc8dc211de4c2104f7942b1700c9c11))
+* add ProfileForm to allow user settings ([47435c6](https://gitlab.com/gtomy-services/gtomy-lib/commit/47435c6f05fdbe9db0bd7e5981d04c0dd2c51025))
+* add settings to footer ([69a4854](https://gitlab.com/gtomy-services/gtomy-lib/commit/69a4854a045637e11458569d6f3548619b05d7a2))
+* add x icon for social media ([bc744a3](https://gitlab.com/gtomy-services/gtomy-lib/commit/bc744a30b6d27fed215e063daf83c4026aab76b6))
+
 ### [0.2.6](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.5...v0.2.6) (2024-02-03)
 
 
