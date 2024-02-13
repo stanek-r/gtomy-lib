@@ -18,7 +18,7 @@ export const Default: Story = {
 export const Text: Story = {
   args: {
     as: 'p',
-    color: 'white',
+    color: 'base',
     size: 'base',
     children: 'Hello World!',
   },
@@ -27,7 +27,7 @@ export const Text: Story = {
 export const Error: Story = {
   args: {
     as: 'p',
-    color: 'red',
+    color: 'error',
     children: 'Hello World!',
   },
 };
@@ -35,7 +35,7 @@ export const Error: Story = {
 export const Heading1: Story = {
   args: {
     as: 'h1',
-    color: 'white',
+    color: 'base',
     size: '4xl',
     children: 'Hello World!',
   },
@@ -44,7 +44,7 @@ export const Heading1: Story = {
 export const Heading2: Story = {
   args: {
     as: 'h2',
-    color: 'white',
+    color: 'base',
     size: '3xl',
     children: 'Hello World!',
   },
