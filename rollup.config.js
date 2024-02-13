@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import json from '@rollup/plugin-json';
 import dts from 'rollup-plugin-dts';
+import css from 'rollup-plugin-import-css';
 
 const packageJson = require('./package.json');
 
@@ -17,7 +18,7 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: [peerDepsExternal(), resolve(), commonjs(), json(), typescript({ tsconfig: './tsconfig.json' })],
+    plugins: [css(), peerDepsExternal(), resolve(), commonjs(), json(), typescript({ tsconfig: './tsconfig.json' })],
     external: [
       'react',
       'react-dom',
