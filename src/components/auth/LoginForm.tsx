@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import { FormTextInput } from '@/components/form/FormTextInput';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { twMerge } from 'tailwind-merge';
+import { GoogleLoginButton } from '@/components/auth/GoogleLoginButton';
 
 interface LoginForm {
   username: string;
@@ -104,6 +105,15 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog }: 
             </Button>
           )}
         </div>
+        {config.googleAuthClientId && (
+          <GoogleLoginButton
+            className="w-full self-center sm:w-2/3"
+            setError={setError}
+            isInDialog={isInDialog}
+            closeDialog={closeDialog}
+            backURL={backURL}
+          />
+        )}
         <div className="mt-3 flex justify-between">
           <LanguageSelect />
           <ThemeSelect />

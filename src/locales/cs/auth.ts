@@ -10,6 +10,7 @@ export const auth = {
   invalidCredentials: 'Neplatné přihlašovací údaje',
   cannotRegister: 'Nelze se registrovat s tímto uživatelským jménem nebo heslem',
   noAccess: 'Nemáte přístup k této službě, potřebujete minimálně {{minimalRole}}!',
+  cannotLoginWiaGoogle: 'Přihlášení se nezdařilo',
   displayName: 'Uživatelské jméno',
   profileImage: 'Profilový obrázek',
   deleteProfileImage: 'Smazat profilový obrázek',

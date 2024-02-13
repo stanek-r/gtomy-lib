@@ -30,6 +30,7 @@ interface UseAuth {
   token: string | undefined;
   user: User | undefined;
   login: (username: string, password: string) => Promise<boolean>;
+  loginWithGoogle: (token: string) => Promise<boolean>;
   register: (username: string, password: string, email: string) => Promise<boolean>;
   logout: () => void;
   openLoginDialog: () => void;
@@ -46,6 +47,27 @@ export function useAuth(): UseAuth {
   const login = async (username: string, password: string): Promise<boolean> => {
     return axios
       .post(`${config.authUrl}/login`, { username, password })
+      .then(async (response) => {
+        if (!response.data?.access_token) {
+          console.error('No access token');
+          return false;
+        }
+        const user = mapTokenToUser(response.data.access_token);
+        if (!user) {
+          return false;
+        }
+        setToken(response.data.access_token);
+        return true;
+      })
+      .catch((e) => {
+        logError(e);
+        return false;
+      });
+  };
+
+  const loginWithGoogle = async (token: string): Promise<boolean> => {
+    return axios
+      .post(`${config.authUrl}/google-login`, { token })
       .then(async (response) => {
         if (!response.data?.access_token) {
           console.error('No access token');
@@ -85,6 +107,7 @@ export function useAuth(): UseAuth {
     token: token,
     user: user,
     login,
+    loginWithGoogle,
     register,
     logout: logout,
     openLoginDialog: () => openDialog('auth-dialog'),

@@ -5,6 +5,7 @@ export interface GTomyLibConfig {
   authUrl?: string;
   backendUrl?: string;
   cloudFlareImagesUrl?: string;
+  googleAuthClientId?: string;
 }
 
 export const config: GTomyLibConfig = {};

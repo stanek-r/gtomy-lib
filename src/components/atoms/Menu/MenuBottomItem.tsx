@@ -18,7 +18,7 @@ function MenuBottomItemInner<T extends ElementType = 'button'>(
   const type = Component === 'button' ? 'button' : undefined;
 
   if (isSvgIcon(icon)) {
-    icon = React.createElement(icon, { className: 'w-5 h-5 mr-1.5' });
+    icon = React.createElement(icon, { className: 'size-5' });
   }
   if (active && typeof active === 'function') {
     active = active(name);

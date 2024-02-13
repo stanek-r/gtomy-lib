@@ -21,12 +21,6 @@ export function CloudflareImage({
   ...otherProps
 }: CloudflareImageProps) {
   const src = `${config.cloudFlareImagesUrl}/${imageId}`;
-  return (
-    <LazyLoadImage
-      src={`${src}/${srcType}`}
-      placeholderSrc={`${src}/${placeholderType}`}
-      effect={effect}
-      {...otherProps}
-    />
-  );
+  const placeholderSrc = srcType === placeholderType ? undefined : `${src}/${placeholderType}`;
+  return <LazyLoadImage src={`${src}/${srcType}`} placeholderSrc={placeholderSrc} effect={effect} {...otherProps} />;
 }

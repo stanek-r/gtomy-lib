@@ -5,6 +5,10 @@ interface CloudflareConfig {
   imagesUrl?: string;
 }
 
+interface GoogleAuthConfig {
+  clientId: string;
+}
+
 interface GTomyLibInitConfig {
   appName: string;
   appDisplayName: string;
@@ -13,6 +17,7 @@ interface GTomyLibInitConfig {
   backendUrl?: string;
   cloudflareConfig?: CloudflareConfig;
   sentryConfig?: SentryConfig;
+  googleAuthConfig?: GoogleAuthConfig;
 }
 
 export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
@@ -23,6 +28,7 @@ export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
     backendUrl: initConfig.backendUrl,
     authUrl: initConfig.authUrl,
     cloudFlareImagesUrl: initConfig.cloudflareConfig?.imagesUrl ?? '/images',
+    googleAuthClientId: initConfig.googleAuthConfig?.clientId,
   });
 
   if (initConfig.sentryConfig?.enabled === true) {

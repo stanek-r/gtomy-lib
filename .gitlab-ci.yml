@@ -1,14 +1,13 @@
 image: node:18.17-bullseye
 
 stages:
-  - lint-check
-  - audit
+  - checks
   - build
   - deploy
   - storybook
 
 lint-check:
-  stage: lint-check
+  stage: checks
   before_script:
     - npm i --silent
   script:
@@ -18,7 +17,7 @@ lint-check:
     - merge_requests
 
 audit:
-  stage: audit
+  stage: checks
   allow_failure: true
   script:
     - npm audit --audit-level=critical

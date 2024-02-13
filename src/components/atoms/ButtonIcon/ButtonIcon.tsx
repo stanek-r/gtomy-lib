@@ -23,7 +23,7 @@ function ButtonIconInner<T extends ElementType = 'button'>(
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   if (isSvgIcon(icon)) {
-    icon = React.createElement(icon, { className: 'w-6 h-6' });
+    icon = React.createElement(icon, { className: 'size-6' });
   }
 
   const Component = as ?? 'button';
