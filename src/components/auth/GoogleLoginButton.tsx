@@ -41,7 +41,7 @@ export function GoogleLoginButton({ className, setError, isInDialog, closeDialog
   return (
     <div className={className}>
       <GoogleOAuthProvider clientId={config.googleAuthClientId!}>
-        <GoogleLogin onSuccess={onSuccess} onError={onError} />
+        <GoogleLogin onSuccess={onSuccess} onError={onError} theme="filled_black" />
       </GoogleOAuthProvider>
     </div>
   );

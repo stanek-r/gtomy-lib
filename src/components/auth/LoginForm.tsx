@@ -107,7 +107,7 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog }: 
         </div>
         {config.googleAuthClientId && (
           <GoogleLoginButton
-            className="w-full self-center sm:w-2/3"
+            className="self-center"
             setError={setError}
             isInDialog={isInDialog}
             closeDialog={closeDialog}

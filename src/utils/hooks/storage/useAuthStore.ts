@@ -18,6 +18,7 @@ export interface Roles {
 
 export interface User {
   userId: string;
+  googleId?: string;
   username: string;
   email: string;
   emailVerified: boolean;
