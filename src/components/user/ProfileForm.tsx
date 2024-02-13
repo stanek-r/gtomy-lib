@@ -89,7 +89,6 @@ export function ProfileForm({ children, className }: Props) {
         <div className="ml-1 flex items-center gap-2">
           <CloudflareImage
             imageId={getUserProfileImageId(user)}
-            srcType="profile"
             alt="Profile image"
             className="my-2 size-20 rounded-full object-contain"
           />

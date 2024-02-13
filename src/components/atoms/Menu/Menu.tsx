@@ -56,6 +56,7 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActio
                         alt={getUserFirstChar(user)}
                         srcType="profile"
                         className="size-10"
+                        visibleByDefault
                       />
                     </div>
                   </div>
@@ -125,6 +126,7 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActio
                         alt={getUserFirstChar(user)}
                         srcType="profile"
                         className="size-10"
+                        visibleByDefault
                       />
                     </div>
                   </div>
