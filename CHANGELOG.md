@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.8](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.7...v0.2.8) (2024-02-13)
+
+
+### Features
+
+* add google login ([d107596](https://gitlab.com/gtomy-services/gtomy-lib/commit/d107596bf9f3921a92c28e4b1a55f2f2f1ecb787))
+
 ### [0.2.7](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.6...v0.2.7) (2024-02-12)
 
 
