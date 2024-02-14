@@ -8,6 +8,7 @@ import { config } from '@/config';
 import { FormFile, FormFileInput } from '@/components/form/FormFileInput';
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { CloudflareImage } from '@/components/atoms/CloudflareImage/CloudflareImage';
+import { TextInput } from '@/components/atoms/TextInput';
 
 interface Props {
   className?: string;
@@ -76,14 +77,18 @@ export function ProfileForm({ children, className }: Props) {
         control={control}
         rules={{ required: true }}
       />
-      <FormTextInput
-        label={t('email')}
-        placeholder={t('email')}
-        name="email"
-        type="email"
-        control={control}
-        rules={{ required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g }}
-      />
+      {user?.googleId != null ? (
+        <TextInput label={t('email')} placeholder={t('email')} name="email" type="email" value={user?.email} disabled />
+      ) : (
+        <FormTextInput
+          label={t('email')}
+          placeholder={t('email')}
+          name="email"
+          type="email"
+          control={control}
+          rules={{ required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g }}
+        />
+      )}
       <FormFileInput label={t('profileImage')} name="profileImage" control={control} multiple={false} />
       {user?.profileImageId && (
         <div className="ml-1 flex items-center gap-2">
