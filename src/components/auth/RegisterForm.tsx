@@ -21,9 +21,11 @@ interface RegisterForm {
 interface Props {
   isInDialog?: boolean;
   toggleRegister?: () => void;
+  showLanguage?: boolean;
+  showTheme?: boolean;
 }
 
-export function RegisterForm({ isInDialog, toggleRegister }: Props) {
+export function RegisterForm({ isInDialog, toggleRegister, showTheme, showLanguage }: Props) {
   const { isAuthenticated, user, register, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -118,10 +120,13 @@ export function RegisterForm({ isInDialog, toggleRegister }: Props) {
             {t('register')}
           </Button>
         </div>
-        <div className="mt-3 flex justify-between">
-          <LanguageSelect />
-          <ThemeSelect />
-        </div>
+        {showLanguage ||
+          (showTheme && (
+            <div className="mt-3 flex justify-between">
+              {showLanguage && <LanguageSelect />}
+              {showTheme && <ThemeSelect />}
+            </div>
+          ))}
       </div>
     </form>
   );

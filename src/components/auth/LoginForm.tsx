@@ -22,9 +22,11 @@ interface Props {
   isInDialog?: boolean;
   toggleRegister?: () => void;
   closeDialog?: () => void;
+  showLanguage?: boolean;
+  showTheme?: boolean;
 }
 
-export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog }: Props) {
+export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog, showTheme, showLanguage }: Props) {
   const { isAuthenticated, user, login, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -114,10 +116,13 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog }: 
             backURL={backURL}
           />
         )}
-        <div className="mt-3 flex justify-between">
-          <LanguageSelect />
-          <ThemeSelect />
-        </div>
+        {showLanguage ||
+          (showTheme && (
+            <div className="mt-3 flex justify-between">
+              {showLanguage && <LanguageSelect />}
+              {showTheme && <ThemeSelect />}
+            </div>
+          ))}
       </div>
     </form>
   );

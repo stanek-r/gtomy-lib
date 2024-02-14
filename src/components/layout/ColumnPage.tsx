@@ -10,15 +10,23 @@ export const columnPageWidthClasses = {
 };
 
 export interface ColumnPageProps {
+  menu?: ReactNode;
+  footer?: ReactNode;
   children?: ReactNode;
   width?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   className?: string;
 }
 
-export function ColumnPage({ children, width = 'xl', className }: ColumnPageProps) {
+export function ColumnPage({ menu, footer, children, width = 'xl', className }: ColumnPageProps) {
   const widthClass = columnPageWidthClasses[width];
 
   return (
-    <div className={twMerge('max-w-full mx-auto flex flex-col gap-4 px-4 py-8', widthClass, className)}>{children}</div>
+    <>
+      {menu}
+      <div className={twMerge('max-w-full mx-auto flex flex-col gap-4 px-4 py-8', widthClass, className)}>
+        {children}
+      </div>
+      {footer}
+    </>
   );
 }
