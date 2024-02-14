@@ -25,6 +25,7 @@ export interface User {
   roles: Roles[];
   displayName: string;
   profileImageId?: string;
+  profileImageUrl?: string;
 
   // JWT
   iat: number;

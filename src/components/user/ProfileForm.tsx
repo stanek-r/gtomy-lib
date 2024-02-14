@@ -2,14 +2,14 @@ import React, { ReactNode, useState } from 'react';
 import { FormTextInput } from '@/components/form/FormTextInput';
 import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
-import { getUserProfileImageId, useAuth, useRequest, useTranslation } from '@/utils';
+import { isUserAccountFromGoogle, useAuth, useRequest, useTranslation } from '@/utils';
 import { Button } from '@/components/atoms/Button';
 import { config } from '@/config';
 import { FormFile, FormFileInput } from '@/components/form/FormFileInput';
 import { ErrorState } from '@/components/atoms/ErrorState';
-import { CloudflareImage } from '@/components/atoms/CloudflareImage/CloudflareImage';
 import { TextInput } from '@/components/atoms/TextInput';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
+import { CloudflareImage } from '@/components/atoms/CloudflareImage';
 
 interface Props {
   className?: string;
@@ -102,18 +102,22 @@ export function ProfileForm({ children, className }: Props) {
             rules={{ required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g }}
           />
         )}
-        <FormFileInput label={t('profileImage')} name="profileImage" control={control} multiple={false} />
-        {user?.profileImageId && (
-          <div className="ml-1 flex items-center gap-2">
-            <CloudflareImage
-              imageId={getUserProfileImageId(user)}
-              alt="Profile image"
-              className="my-2 size-20 rounded-full object-contain"
-            />
-            <Button onClick={deleteFile} size="sm" color="error">
-              {t('deleteProfileImage')}
-            </Button>
-          </div>
+        {!isUserAccountFromGoogle(user) && (
+          <>
+            <FormFileInput label={t('profileImage')} name="profileImage" control={control} multiple={false} />
+            {user?.profileImageId && (
+              <div className="ml-1 flex items-center gap-2">
+                <CloudflareImage
+                  imageId={user.profileImageId}
+                  alt="Profile image"
+                  className="my-2 size-20 rounded-full object-contain"
+                />
+                <Button onClick={deleteFile} size="sm" color="error">
+                  {t('deleteProfileImage')}
+                </Button>
+              </div>
+            )}
+          </>
         )}
         {error && <ErrorState className="lg:col-span-2" error={error} />}
         <div className="flex justify-center lg:col-span-2">

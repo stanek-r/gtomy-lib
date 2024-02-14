@@ -1,13 +1,12 @@
 import React, { ReactNode } from 'react';
 import { config } from '@/config';
 import { Link, useNavigate } from 'react-router-dom';
-import { getUserProfileImageId, useAuth, useBreakpoint } from '@/utils';
+import { useAuth, useBreakpoint } from '@/utils';
 import { useTranslation } from '@/utils/hooks/useTranslation';
-import { getUserFirstChar } from '@/utils/auth/userUtils';
 import { Button } from '@/components/atoms/Button';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import { UserIcon } from '@heroicons/react/24/outline';
-import { CloudflareImage } from '@/components/atoms/CloudflareImage/CloudflareImage';
+import { ProfileImage } from '@/components/atoms/ProfileImage';
 
 export interface MenuProps {
   children?: ReactNode;
@@ -51,13 +50,7 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActio
                 <div className="dropdown dropdown-end">
                   <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
                     <div className="w-10 rounded-full">
-                      <CloudflareImage
-                        imageId={getUserProfileImageId(user)}
-                        alt={getUserFirstChar(user)}
-                        srcType="profile"
-                        className="size-10"
-                        visibleByDefault
-                      />
+                      <ProfileImage className="size-10" />
                     </div>
                   </div>
                   <ul
@@ -121,13 +114,7 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActio
                 <div className="dropdown dropdown-end">
                   <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
                     <div className="w-10 rounded-full">
-                      <CloudflareImage
-                        imageId={getUserProfileImageId(user)}
-                        alt={getUserFirstChar(user)}
-                        srcType="profile"
-                        className="size-10"
-                        visibleByDefault
-                      />
+                      <ProfileImage className="size-10" />
                     </div>
                   </div>
                   <ul
