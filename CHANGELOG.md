@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.9](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.8...v0.2.9) (2024-02-14)
+
+
+### Features
+
+* add FormPage, refactor RequireAuth ([aa98fbf](https://gitlab.com/gtomy-services/gtomy-lib/commit/aa98fbfdfbe9d2c58732dac2f6e303ae8e736709))
+* disable editing of google email address ([707dace](https://gitlab.com/gtomy-services/gtomy-lib/commit/707dacef176939624072ac11830a1a1bb18916c5))
+* change google login button design ([372a46a](https://gitlab.com/gtomy-services/gtomy-lib/commit/372a46a5977445bd4a6800ce38aba5e28a6d9314))
+
+
+### Bug Fixes
+
+* profile image loading ([0bbd2b9](https://gitlab.com/gtomy-services/gtomy-lib/commit/0bbd2b94e5810bf610fae445f8d0d49a9ab9447a))
+
 ### [0.2.8](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.7...v0.2.8) (2024-02-13)
 
 
