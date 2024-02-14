@@ -1,8 +1,8 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 export interface FormPageProps {
-  menu?: FunctionComponent;
-  footer?: FunctionComponent;
+  menu?: ReactNode;
+  footer?: ReactNode;
   children?: ReactNode;
 }
 
