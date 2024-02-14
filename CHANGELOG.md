@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.10](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.9...v0.2.10) (2024-02-14)
+
+
+### Features
+
+* add alert to ProfileForm ([2748e0a](https://gitlab.com/gtomy-services/gtomy-lib/commit/2748e0a91d1017386dd0e2130582b5936c53f548))
+* enable fetching of google profile picture ([2797234](https://gitlab.com/gtomy-services/gtomy-lib/commit/279723430c83a5d019954437f3529de6b0b4ae09))
+
+
+### Bug Fixes
+
+* formPage props types ([64acc36](https://gitlab.com/gtomy-services/gtomy-lib/commit/64acc36ba3fbb08b510c49e206db4370f4e25e2e))
+* requireAuth styles ([b5ba4f2](https://gitlab.com/gtomy-services/gtomy-lib/commit/b5ba4f2461f30a759a8b6a8f118e3b3e8b331236))
+* requireAuth styles ([e892e8b](https://gitlab.com/gtomy-services/gtomy-lib/commit/e892e8b1b9f2af3353986a224fdb4af4832bb670))
+
 ### [0.2.9](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.8...v0.2.9) (2024-02-14)
 
 
