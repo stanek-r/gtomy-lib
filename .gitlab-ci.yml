@@ -37,7 +37,7 @@ build:
     - main
     - merge_requests
 
-deploy-manual:
+deploy:
   stage: deploy
   dependencies:
     - build
@@ -47,7 +47,7 @@ deploy-manual:
   only:
     - web
 
-pages-manual:
+pages:
   stage: storybook
   allow_failure: true
   before_script:
@@ -59,29 +59,3 @@ pages-manual:
       - public
   only:
     - web
-
-deploy-auto:
-  stage: deploy
-  before_script:
-    - npm i --silent
-  script:
-    - echo "//registry.npmjs.org/:_authToken=${CI_NPM_TOKEN}" > .npmrc
-    - npm run build
-    - npm publish
-  only:
-    variables:
-      - $CI_COMMIT_MESSAGE =~ /chore\(release\):/
-
-pages-auto:
-  stage: storybook
-  allow_failure: true
-  before_script:
-    - npm i --silent
-  script:
-    - npm run build-storybook
-  artifacts:
-    paths:
-      - public
-  only:
-    variables:
-      - $CI_COMMIT_MESSAGE =~ /chore\(release\):/
