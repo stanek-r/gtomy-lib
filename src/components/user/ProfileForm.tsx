@@ -9,6 +9,7 @@ import { FormFile, FormFileInput } from '@/components/form/FormFileInput';
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { CloudflareImage } from '@/components/atoms/CloudflareImage/CloudflareImage';
 import { TextInput } from '@/components/atoms/TextInput';
+import { InformationCircleIcon } from '@heroicons/react/24/outline';
 
 interface Props {
   className?: string;
@@ -69,47 +70,60 @@ export function ProfileForm({ children, className }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={twMerge('grid grid-cols-1 lg:grid-cols-2 gap-2', className)}>
-      <FormTextInput
-        label={t('displayName')}
-        placeholder={t('displayName')}
-        name="displayName"
-        control={control}
-        rules={{ required: true }}
-      />
-      {user?.googleId != null ? (
-        <TextInput label={t('email')} placeholder={t('email')} name="email" type="email" value={user?.email} disabled />
-      ) : (
+    <>
+      <div role="alert" className="alert">
+        <InformationCircleIcon className="size-6 shrink-0 stroke-current" />
+        <span>{t('profileAlert')}</span>
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className={twMerge('grid grid-cols-1 lg:grid-cols-2 gap-2', className)}>
         <FormTextInput
-          label={t('email')}
-          placeholder={t('email')}
-          name="email"
-          type="email"
+          label={t('displayName')}
+          placeholder={t('displayName')}
+          name="displayName"
           control={control}
-          rules={{ required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g }}
+          rules={{ required: true }}
         />
-      )}
-      <FormFileInput label={t('profileImage')} name="profileImage" control={control} multiple={false} />
-      {user?.profileImageId && (
-        <div className="ml-1 flex items-center gap-2">
-          <CloudflareImage
-            imageId={getUserProfileImageId(user)}
-            alt="Profile image"
-            className="my-2 size-20 rounded-full object-contain"
+        {user?.googleId != null ? (
+          <TextInput
+            label={t('email')}
+            placeholder={t('email')}
+            name="email"
+            type="email"
+            value={user?.email}
+            disabled
           />
-          <Button onClick={deleteFile} size="sm" color="error">
-            {t('deleteProfileImage')}
+        ) : (
+          <FormTextInput
+            label={t('email')}
+            placeholder={t('email')}
+            name="email"
+            type="email"
+            control={control}
+            rules={{ required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g }}
+          />
+        )}
+        <FormFileInput label={t('profileImage')} name="profileImage" control={control} multiple={false} />
+        {user?.profileImageId && (
+          <div className="ml-1 flex items-center gap-2">
+            <CloudflareImage
+              imageId={getUserProfileImageId(user)}
+              alt="Profile image"
+              className="my-2 size-20 rounded-full object-contain"
+            />
+            <Button onClick={deleteFile} size="sm" color="error">
+              {t('deleteProfileImage')}
+            </Button>
+          </div>
+        )}
+        {error && <ErrorState className="lg:col-span-2" error={error} />}
+        <div className="flex justify-center lg:col-span-2">
+          <Button type="submit" disabled={saving}>
+            {t('save')}
           </Button>
         </div>
-      )}
-      {error && <ErrorState className="lg:col-span-2" error={error} />}
-      <div className="flex justify-center lg:col-span-2">
-        <Button type="submit" disabled={saving}>
-          {t('save')}
-        </Button>
-      </div>
-      <div className="divider lg:col-span-2"></div>
-      {children}
-    </form>
+        <div className="divider lg:col-span-2"></div>
+        {children}
+      </form>
+    </>
   );
 }

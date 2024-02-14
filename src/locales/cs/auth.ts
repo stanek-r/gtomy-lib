@@ -13,6 +13,7 @@ export const auth = {
   cannotLoginWiaGoogle: 'Přihlášení se nezdařilo',
   displayName: 'Uživatelské jméno',
   profileImage: 'Profilový obrázek',
+  profileAlert: 'Změny se projeví až po znovu-přihlášení',
   deleteProfileImage: 'Smazat profilový obrázek',
   save: 'Uložit',
   // Roles

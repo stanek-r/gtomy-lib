@@ -13,6 +13,7 @@ export const auth = {
   cannotLoginWiaGoogle: 'Could not login with Google',
   displayName: 'Display name',
   profileImage: 'Profile image',
+  profileAlert: 'Changes will take effect only after re-login',
   deleteProfileImage: 'Delete profile image',
   save: 'Save',
   // Roles
