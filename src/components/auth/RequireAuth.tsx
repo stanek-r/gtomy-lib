@@ -6,7 +6,6 @@ import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { config } from '@/config';
 import { FormPage } from '@/components/layout';
-import { twMerge } from 'tailwind-merge';
 
 export function withRequireAuth(
   Component: FunctionComponent,
