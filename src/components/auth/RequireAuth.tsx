@@ -5,6 +5,8 @@ import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { config } from '@/config';
+import { FormPage } from '@/components/layout';
+import { twMerge } from 'tailwind-merge';
 
 export function withRequireAuth(
   Component: FunctionComponent,
@@ -49,23 +51,23 @@ export function RequireAuth({ minimalRole = 'user', children, footer, menu }: Re
   const roleId = PERM_ROLES[role as PermRoles];
   if (roleId < minimalRoleId) {
     return (
-      <div className="flex h-screen flex-col">
-        {menu}
-        <div className="flex w-[500px] max-w-full flex-col gap-y-4 p-4">
-          <Typography size="3xl" weight="bold" className="text-center">
-            {t('noAccess', { minimalRole: t('role.' + minimalRole) })}
-          </Typography>
-          <div className="join">
-            <Button as={Link} to="/" className="join-item" color="primary">
-              {t('back', { ns: 'common' })}
-            </Button>
-            <Button onClick={logout} className="join-item">
-              {t('logout')}
-            </Button>
+      <FormPage menu={menu} footer={footer}>
+        <div className="flex w-full flex-1 items-center justify-center">
+          <div className="flex w-[500px] max-w-full flex-col gap-y-3 p-4">
+            <Typography size="3xl" weight="bold" className="text-center">
+              {t('noAccess', { minimalRole: t('role.' + minimalRole) })}
+            </Typography>
+            <div className="join justify-center">
+              <Button as={Link} to="/" className="join-item w-1/2 sm:w-1/3" color="primary">
+                {t('back', { ns: 'common' })}
+              </Button>
+              <Button onClick={logout} className="join-item w-1/2 sm:w-1/3">
+                {t('logout')}
+              </Button>
+            </div>
           </div>
         </div>
-        {footer}
-      </div>
+      </FormPage>
     );
   }
   return children;
