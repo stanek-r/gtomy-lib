@@ -3,6 +3,7 @@ import { CredentialResponse, GoogleLogin, GoogleOAuthProvider } from '@react-oau
 import { config } from '@/config';
 import { useAuth, useTranslation } from '@/utils';
 import { useNavigate } from 'react-router-dom';
+import { twMerge } from 'tailwind-merge';
 
 export interface GoogleAuthProps {
   setError: Dispatch<SetStateAction<string | null>>;
@@ -39,7 +40,7 @@ export function GoogleLoginButton({ className, setError, isInDialog, closeDialog
   const onError = () => setError(t('cannotLoginWiaGoogle'));
 
   return (
-    <div className={className}>
+    <div className={twMerge('[color-scheme:light]', className)}>
       <GoogleOAuthProvider clientId={config.googleAuthClientId!}>
         <GoogleLogin onSuccess={onSuccess} onError={onError} theme="filled_blue" />
       </GoogleOAuthProvider>
