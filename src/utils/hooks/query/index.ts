@@ -1,3 +1,3 @@
 export * from './defaultQueryClient';
 export * from './useQuery';
-export * from './Wrapper';
+export * from './QueryWrapper';

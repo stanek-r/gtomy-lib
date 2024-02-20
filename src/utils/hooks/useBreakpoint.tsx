@@ -8,8 +8,9 @@ function getWindowDimensions() {
   };
 }
 
-type Breakpoint = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-const breakpointPoints = {
+export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export const breakpointPoints = {
+  xs: 320,
   sm: 640,
   md: 768,
   lg: 1024,
@@ -20,6 +21,7 @@ const breakpointPoints = {
 export interface UseBreakpoint {
   breakpoint: Breakpoint;
   isOverBreakpoint?: boolean;
+  windowDimensions: { width: number; height: number };
 }
 
 export function useBreakpoint(breakpoint?: Breakpoint): UseBreakpoint {
@@ -39,7 +41,10 @@ export function useBreakpoint(breakpoint?: Breakpoint): UseBreakpoint {
     if (windowDimensions.width >= breakpointPoints.md) {
       return 'md';
     }
-    return 'sm';
+    if (windowDimensions.width >= breakpointPoints.sm) {
+      return 'sm';
+    }
+    return 'xs';
   }, [windowDimensions]);
   const isOverBreakpoint =
     selectedBreakpoint != null ? selectedBreakpoint <= breakpointPoints[currentBreakpoint] : undefined;
@@ -56,5 +61,6 @@ export function useBreakpoint(breakpoint?: Breakpoint): UseBreakpoint {
   return {
     breakpoint: currentBreakpoint,
     isOverBreakpoint: isOverBreakpoint,
+    windowDimensions,
   };
 }

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   DefaultError,
   QueryClient,
   QueryKey,
+  useQuery as useTanStackQuery,
   UseQueryOptions,
   UseQueryResult,
-  useQuery as useTanStackQuery,
 } from '@tanstack/react-query';
-import { Wrapper } from './Wrapper';
+import { QueryWrapperProps } from './QueryWrapper';
 
 export interface QueryOptions<
   TQueryFnData = unknown,
@@ -21,7 +21,7 @@ export interface QueryOptions<
 }
 
 export type QueryResult<TData = unknown, TError = DefaultError> = {
-  Wrapper: ({ children }: { children?: JSX.Element }) => JSX.Element;
+  wrapperProps: Omit<QueryWrapperProps, 'children'>;
 } & UseQueryResult<TData, TError>;
 
 export function useQuery<
@@ -45,22 +45,16 @@ export function useQuery<
     return () => clearTimeout(timer);
   }, [delay]);
 
-  const QWrapper = ({ children }: { children?: JSX.Element }) => (
-    <Wrapper
-      isLoading={query.isLoading}
-      showLoading={showLoading}
-      isError={query.isError}
-      error={query.error}
-      loadingMessage={loadingMessage}
-      showRetry={options.showRetry}
-      retry={query.refetch}
-    >
-      {children}
-    </Wrapper>
-  );
-
   return {
     ...query,
-    Wrapper: QWrapper,
+    wrapperProps: {
+      isLoading: query.isLoading,
+      showLoading: showLoading,
+      isError: query.isError,
+      error: query.error,
+      loadingMessage: loadingMessage,
+      showRetry: options.showRetry,
+      retry: query.refetch,
+    },
   };
 }

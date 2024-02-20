@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { LoadingState } from '@/components/atoms/LoadingState';
 
-export interface WrapperProps {
-  children?: JSX.Element;
+export interface QueryWrapperProps {
+  children?: ReactNode;
   isError: boolean;
   isLoading: boolean;
   showLoading: boolean;
@@ -13,8 +13,8 @@ export interface WrapperProps {
   loadingMessage?: string;
 }
 
-export function Wrapper({
-  children = <></>,
+export function QueryWrapper({
+  children,
   isError,
   isLoading,
   showLoading,
@@ -22,7 +22,7 @@ export function Wrapper({
   showRetry,
   retry,
   loadingMessage,
-}: WrapperProps): JSX.Element {
+}: QueryWrapperProps): ReactNode {
   if (isError) {
     return <ErrorState error={error} retry={retry} showRetry={showRetry} />;
   }
