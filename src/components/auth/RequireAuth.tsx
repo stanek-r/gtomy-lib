@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { PERM_ROLES, PermRoles, useAuth } from '@/utils';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/atoms/Button';
@@ -6,23 +6,6 @@ import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { config } from '@/config';
 import { FormPage } from '@/components/layout';
-
-export function withRequireAuth(
-  Component: FunctionComponent,
-  minimalRole: PermRoles,
-  MenuComponent?: FunctionComponent,
-  FooterComponent?: FunctionComponent
-): JSX.Element {
-  return (
-    <RequireAuth
-      minimalRole={minimalRole}
-      menu={MenuComponent != null ? <MenuComponent /> : undefined}
-      footer={FooterComponent != null ? <FooterComponent /> : undefined}
-    >
-      <Component />
-    </RequireAuth>
-  );
-}
 
 export interface RequireAuthProps {
   minimalRole: PermRoles;

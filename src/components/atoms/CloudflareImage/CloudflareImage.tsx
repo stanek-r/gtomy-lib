@@ -1,9 +1,6 @@
 import React from 'react';
 import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component';
 import { config } from '@/config';
-import 'react-lazy-load-image-component/src/effects/blur.css';
-import 'react-lazy-load-image-component/src/effects/black-and-white.css';
-import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 export type CloudflareImageType = 'original' | 'fullhd' | 'miniature' | 'profile' | 'blur';
 
@@ -17,7 +14,7 @@ export function CloudflareImage({
   imageId,
   srcType = 'original',
   placeholderType = 'miniature',
-  effect = 'blur',
+  effect,
   ...otherProps
 }: CloudflareImageProps) {
   const src = `${config.cloudFlareImagesUrl}/${imageId}`;

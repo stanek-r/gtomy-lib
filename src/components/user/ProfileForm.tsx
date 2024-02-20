@@ -104,7 +104,13 @@ export function ProfileForm({ children, className }: Props) {
         )}
         {!isUserAccountFromGoogle(user) && (
           <>
-            <FormFileInput label={t('profileImage')} name="profileImage" control={control} multiple={false} />
+            <FormFileInput
+              label={t('profileImage')}
+              name="profileImage"
+              accept="image/*"
+              control={control}
+              multiple={false}
+            />
             {user?.profileImageId && (
               <div className="ml-1 flex items-center gap-2">
                 <CloudflareImage
