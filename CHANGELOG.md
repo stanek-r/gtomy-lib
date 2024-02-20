@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.11](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.10...v0.2.11) (2024-02-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* rework useQuery implementation
+
+### Features
+
+* add CLoudflareStream component ([32c4524](https://gitlab.com/gtomy-services/gtomy-lib/commit/32c4524e14bbc1cdf7d3859e53b59c8e87721ebb))
+* add Checkbox component ([0cc07d2](https://gitlab.com/gtomy-services/gtomy-lib/commit/0cc07d2cd7d2492c728e74c0df7677858019b48b))
+* add Checkbox image support ([ba9b521](https://gitlab.com/gtomy-services/gtomy-lib/commit/ba9b521d8b6f0ba4500884160374a972f8363788))
+* add useTitle, rework DialogProvider ([7e13b05](https://gitlab.com/gtomy-services/gtomy-lib/commit/7e13b0563e62ce4f37a148803249771c5918eb6f))
+* rework useQuery implementation ([49e6a50](https://gitlab.com/gtomy-services/gtomy-lib/commit/49e6a50ba35f4a669ebd5b6802edef1e9724478e))
+
+
+### Bug Fixes
+
+* **components:** google button background ([25646ad](https://gitlab.com/gtomy-services/gtomy-lib/commit/25646adff4101ee9fe7cadb125fe7b5b7524bb3f))
+* footer select color ([7cd72de](https://gitlab.com/gtomy-services/gtomy-lib/commit/7cd72de7ac8c3a40fa34d231c71be0637e0d125e))
+
 ### [0.2.10](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.9...v0.2.10) (2024-02-14)
 
 

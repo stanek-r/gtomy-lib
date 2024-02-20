@@ -1,6 +1,6 @@
 {
   "name": "gtomy-lib",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "Shared lib for react projects",
   "main": "dist/index.js",
   "files": [
