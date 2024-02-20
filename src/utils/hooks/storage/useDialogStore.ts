@@ -1,9 +1,11 @@
 import { create } from 'zustand';
+import { FunctionComponent } from 'react';
+import { BaseDialogProps } from '@/components/organisms/dialog';
 
 export interface DialogObject {
   id: string;
   open: boolean;
-  element: JSX.Element;
+  element: FunctionComponent<BaseDialogProps> | JSX.Element;
 }
 
 export interface DialogStore {

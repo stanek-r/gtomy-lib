@@ -12,7 +12,7 @@ export interface CheckboxProps extends ComponentPropsWithRef<'input'> {
 }
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ label, error, hint, className, children, type, imageId, checked, outlined, ...other }: CheckboxProps, ref) => {
+  ({ label, error, hint, className, type, imageId, checked, outlined, ...other }: CheckboxProps, ref) => {
     const id = useId();
     const displayOutline = useMemo(() => outlined && checked, [outlined, checked]);
 
@@ -24,13 +24,13 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           imageId && 'w-52'
         )}
       >
-        <label className="label flex-col cursor-pointer">
+        <label className="label cursor-pointer flex-col">
           {imageId && (
             <div className="mb-3 px-1">
               <CloudflareImage imageId={imageId} className="size-[12.5rem] object-cover shadow-lg" />
             </div>
           )}
-          <div className="flex justify-between w-full">
+          <div className="flex w-full justify-between">
             <span className="label-text">{label}</span>
             <input
               id={id}

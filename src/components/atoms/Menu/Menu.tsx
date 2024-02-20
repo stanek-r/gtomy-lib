@@ -6,7 +6,7 @@ import { useTranslation } from '@/utils/hooks/useTranslation';
 import { Button } from '@/components/atoms/Button';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import { UserIcon } from '@heroicons/react/24/outline';
-import { ProfileImage } from '@/components/atoms/ProfileImage';
+import { ProfileImage } from '@/components/auth/ProfileImage';
 
 export interface MenuProps {
   children?: ReactNode;
@@ -18,7 +18,7 @@ export interface MenuProps {
 }
 
 export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActions, dropdownActions }: MenuProps) {
-  const { isAuthenticated, user, logout, openLoginDialog } = useAuth();
+  const { isAuthenticated, logout, openLoginDialog } = useAuth();
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
   const navigate = useNavigate();

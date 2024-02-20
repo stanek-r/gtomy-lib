@@ -15,7 +15,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 * formPage props types ([64acc36](https://gitlab.com/gtomy-services/gtomy-lib/commit/64acc36ba3fbb08b510c49e206db4370f4e25e2e))
 * requireAuth styles ([b5ba4f2](https://gitlab.com/gtomy-services/gtomy-lib/commit/b5ba4f2461f30a759a8b6a8f118e3b3e8b331236))
-* requireAuth styles ([e892e8b](https://gitlab.com/gtomy-services/gtomy-lib/commit/e892e8b1b9f2af3353986a224fdb4af4832bb670))
 
 ### [0.2.9](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.8...v0.2.9) (2024-02-14)
 

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import { useDialog } from '@/utils/hooks/useDialog';
 import { DialogObject } from '@/utils';
 
@@ -9,15 +9,18 @@ export interface DialogProviderProps {
 export function DialogProvider({ children }: DialogProviderProps) {
   const { dialogs, openDialog, closeDialog } = useDialog();
 
-  const flattenedDialog: DialogObject[] = [];
-  for (const dialog of dialogs) {
-    const dialogIndex = flattenedDialog.findIndex((d) => d.id === dialog.id);
-    if (dialogIndex === -1) {
-      flattenedDialog.push(dialog);
-    } else {
-      flattenedDialog[dialogIndex] = dialog;
+  const flattenedDialogs = useMemo(() => {
+    const ret: DialogObject[] = [];
+    for (const dialog of dialogs) {
+      const dialogIndex = ret.findIndex((d) => d.id === dialog.id);
+      if (dialogIndex === -1) {
+        ret.push(dialog);
+      } else {
+        ret[dialogIndex] = dialog;
+      }
     }
-  }
+    return ret;
+  }, [dialogs]);
 
   const onOpenChange = (id: string, open: boolean) => {
     if (open) {
@@ -29,13 +32,20 @@ export function DialogProvider({ children }: DialogProviderProps) {
 
   return (
     <>
-      {flattenedDialog.map((dialog) =>
-        React.cloneElement(dialog.element, {
-          key: dialog.id,
-          id: dialog.id,
-          open: dialog.open,
-          onOpenChange: (open: boolean) => onOpenChange(dialog.id, open),
-        })
+      {flattenedDialogs.map((dialog) =>
+        typeof dialog.element === 'function'
+          ? React.createElement(dialog.element, {
+              key: dialog.id,
+              id: dialog.id,
+              open: dialog.open,
+              onOpenChange: (open: boolean) => onOpenChange(dialog.id, open),
+            })
+          : React.cloneElement(dialog.element, {
+              key: dialog.id,
+              id: dialog.id,
+              open: dialog.open,
+              onOpenChange: (open: boolean) => onOpenChange(dialog.id, open),
+            })
       )}
       {children}
     </>

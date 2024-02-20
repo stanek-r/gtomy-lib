@@ -9,7 +9,7 @@ import { FormFile, FormFileInput } from '@/components/form/FormFileInput';
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { TextInput } from '@/components/atoms/TextInput';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
-import { CloudflareImage } from '@/components/atoms/CloudflareImage';
+import { ProfileImage } from '@/components/auth/ProfileImage';
 
 interface Props {
   className?: string;
@@ -113,11 +113,7 @@ export function ProfileForm({ children, className }: Props) {
             />
             {user?.profileImageId && (
               <div className="ml-1 flex items-center gap-2">
-                <CloudflareImage
-                  imageId={user.profileImageId}
-                  alt="Profile image"
-                  className="my-2 size-20 rounded-full object-contain"
-                />
+                <ProfileImage className="my-2 size-20" />
                 <Button onClick={deleteFile} size="sm" color="error">
                   {t('deleteProfileImage')}
                 </Button>

@@ -32,19 +32,19 @@ export class HttpClient {
     );
   }
 
-  get<T>(url: string, config?: AxiosRequestConfig<T>): Promise<T> {
+  async get<T>(url: string, config?: AxiosRequestConfig<T>): Promise<T> {
     return this.httpClient.get(url, config).then((response) => response.data);
   }
 
-  post<T>(url: string, data?: any, config?: AxiosRequestConfig<T>): Promise<T> {
+  async post<T>(url: string, data?: any, config?: AxiosRequestConfig<T>): Promise<T> {
     return this.httpClient.post(url, data, config).then((response) => response.data);
   }
 
-  put<T>(url: string, data?: any, config?: AxiosRequestConfig<T>): Promise<T> {
+  async put<T>(url: string, data?: any, config?: AxiosRequestConfig<T>): Promise<T> {
     return this.httpClient.put(url, data, config).then((response) => response.data);
   }
 
-  delete<T>(url: string, config?: AxiosRequestConfig<T>): Promise<T> {
+  async delete<T>(url: string, config?: AxiosRequestConfig<T>): Promise<T> {
     return this.httpClient.delete(url, config).then((response) => response.data);
   }
 }

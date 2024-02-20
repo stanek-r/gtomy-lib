@@ -14,6 +14,7 @@ A shared REACT JS component and utils library for my projects.
 * PostCSS
 * Theme change
 * Zustand
+* Tanstack query
 
 [npm-version]: https://badgen.net/npm/v/gtomy-lib?label=version&color=green
 [npm-downloads]: https://badgen.net/npm/dt/gtomy-lib

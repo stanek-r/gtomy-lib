@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import axios from 'axios';
 import { useAuthStore, User } from '@/utils/hooks/storage/useAuthStore';
 import { config } from '@/config';
@@ -41,7 +41,7 @@ export function useAuth(): UseAuth {
   const user = useMemo(() => mapTokenToUser(token), [token]);
   const { openDialog } = useDialog({
     id: 'auth-dialog',
-    element: <AuthDialog />,
+    element: AuthDialog,
   });
 
   const login = async (username: string, password: string): Promise<boolean> => {
