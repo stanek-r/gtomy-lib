@@ -30,7 +30,7 @@ function FooterSettings() {
   return (
     <nav>
       <header className="footer-title">{t('footer.settings')}</header>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 text-base-content">
         <LanguageSelect />
         <ThemeSelect />
       </div>
