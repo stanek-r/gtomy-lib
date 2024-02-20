@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from './useQuery';
 import { QueryClient } from '@tanstack/react-query';
+import { QueryWrapper } from '@/utils';
 
 export default {
   title: 'Hooks/useQuery',
@@ -22,14 +23,14 @@ const testCallFunction = async () => {
 const queryClient = new QueryClient();
 
 export const Default = () => {
-  const { Wrapper, data } = useQuery(
+  const { wrapperProps, data } = useQuery(
     { queryKey: ['test'], queryFn: () => testCallFunction(), showRetry: true },
     queryClient
   );
 
   return (
-    <Wrapper>
+    <QueryWrapper {...wrapperProps}>
       <>{data}</>
-    </Wrapper>
+    </QueryWrapper>
   );
 };
