@@ -1,28 +1,46 @@
-import React, { ComponentPropsWithRef, useId } from 'react';
+import React, { ComponentPropsWithRef, useId, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Typography } from '@/components/atoms/Typography';
+import { CloudflareImage } from '@/components/atoms/CloudflareImage';
 
 export interface CheckboxProps extends ComponentPropsWithRef<'input'> {
   label?: string;
   hint?: string;
   error?: string;
+  imageId?: string;
+  outlined?: boolean;
 }
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ label, error, hint, className, children, type, ...other }: CheckboxProps, ref) => {
+  ({ label, error, hint, className, children, type, imageId, checked, outlined, ...other }: CheckboxProps, ref) => {
     const id = useId();
+    const displayOutline = useMemo(() => outlined && checked, [outlined, checked]);
 
     return (
-      <div className="form-control">
-        <label className="label cursor-pointer">
-          <span className="label-text">{label}</span>
-          <input
-            id={id}
-            ref={ref}
-            type={type ?? 'checkbox'}
-            className={twMerge('checkbox', error && 'checkbox-error', className)}
-            {...other}
-          />
+      <div
+        className={twMerge(
+          'form-control',
+          displayOutline && 'outline outline-1 outline-offset-4 outline-base-content rounded',
+          imageId && 'w-52'
+        )}
+      >
+        <label className="label flex-col cursor-pointer">
+          {imageId && (
+            <div className="mb-3 px-1">
+              <CloudflareImage imageId={imageId} className="size-[12.5rem] object-cover shadow-lg" />
+            </div>
+          )}
+          <div className="flex justify-between w-full">
+            <span className="label-text">{label}</span>
+            <input
+              id={id}
+              ref={ref}
+              type={type ?? 'checkbox'}
+              className={twMerge('checkbox', error && 'checkbox-error', className)}
+              checked={checked}
+              {...other}
+            />
+          </div>
         </label>
         {error && (
           <div className="label">
