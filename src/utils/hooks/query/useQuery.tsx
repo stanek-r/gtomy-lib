@@ -21,7 +21,7 @@ export interface QueryOptions<
 }
 
 export type QueryResult<TData = unknown, TError = DefaultError> = {
-  wrapperProps: Omit<QueryWrapperProps, 'children'>;
+  wrapperProps: Omit<QueryWrapperProps<TData>, 'children'>;
 } & UseQueryResult<TData, TError>;
 
 export function useQuery<
@@ -55,6 +55,7 @@ export function useQuery<
       loadingMessage: loadingMessage,
       showRetry: options.showRetry,
       retry: query.refetch,
+      data: query.data,
     },
   };
 }
