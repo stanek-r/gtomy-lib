@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.12](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.11...v0.2.12) (2024-02-20)
+
+
+### Features
+
+* add Radio component ([be30ea4](https://gitlab.com/gtomy-services/gtomy-lib/commit/be30ea49a09ef21f246e092ad6a3010a48649ac4))
+* make FileInput not multiple by default ([6b254b3](https://gitlab.com/gtomy-services/gtomy-lib/commit/6b254b3b3aaf6298fae474de9badbc4f61ea1ed3))
+
+
+### Bug Fixes
+
+* change QueryWrapper return type ([ce298c4](https://gitlab.com/gtomy-services/gtomy-lib/commit/ce298c4611e03bc818b9c6e78953c6fd577c2c44))
+* storybook useQuery ([c66bf00](https://gitlab.com/gtomy-services/gtomy-lib/commit/c66bf00de5a05238e19d1b7418606f928430e9be))
+
 ### [0.2.11](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.10...v0.2.11) (2024-02-20)
 
 
