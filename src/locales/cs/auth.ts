@@ -17,6 +17,7 @@ export const auth = {
   deleteProfileImage: 'Smazat profilový obrázek',
   save: 'Uložit',
   requestRole: 'Zažádat o přístup',
+  requestRoleSent: 'Žádost o přístup zaslána',
   // Roles
   'role.user': 'uživatel',
   'role.subscriber': 'předplatitel',

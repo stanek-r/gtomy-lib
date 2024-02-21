@@ -17,6 +17,7 @@ export const auth = {
   deleteProfileImage: 'Delete profile image',
   save: 'Save',
   requestRole: 'Request access',
+  requestRoleSent: 'Access request sent',
   // Roles
   'role.user': 'user',
   'role.subscriber': 'subscriber',
