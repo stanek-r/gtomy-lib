@@ -35,11 +35,17 @@ export function withLazyPage(
 ): JSX.Element {
   return (
     <>
-      {MenuComponent != null ? typeof MenuComponent === 'function' ? <MenuComponent /> : MenuComponent : false}
+      {MenuComponent != null ? typeof MenuComponent === 'function' ? <MenuComponent /> : MenuComponent : undefined}
       <Suspense fallback={<LoadingState showLoading />}>
         <Component />
       </Suspense>
-      {FooterComponent != null ? typeof FooterComponent === 'function' ? <FooterComponent /> : FooterComponent : false}
+      {FooterComponent != null ? (
+        typeof FooterComponent === 'function' ? (
+          <FooterComponent />
+        ) : (
+          FooterComponent
+        )
+      ) : undefined}
     </>
   );
 }

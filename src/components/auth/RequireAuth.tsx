@@ -20,6 +20,7 @@ export function RequireAuth({ minimalRole = 'user', children, footer, menu }: Re
   const { isAuthenticated, user, logout } = useAuth();
   const { put } = useRequest(config.authUrl);
   const [error, setError] = useState<any | null>(null);
+  const [sent, setSent] = useState<boolean>(false);
   const navigate = useNavigate();
   const minimalRoleId = PERM_ROLES[minimalRole];
 
@@ -37,7 +38,10 @@ export function RequireAuth({ minimalRole = 'user', children, footer, menu }: Re
       application: config.appName,
       role: minimalRole,
     } as Roles)
-      .then(() => setError(null))
+      .then(() => {
+        setError(null);
+        setSent(true);
+      })
       .catch((e) => setError(e));
   };
 
@@ -66,6 +70,7 @@ export function RequireAuth({ minimalRole = 'user', children, footer, menu }: Re
               <Button onClick={handleRequestAccess}>{t('requestRole')}</Button>
             </div>
             {error && <ErrorState error={error} />}
+            {sent && <Typography>{t('requestRoleSent')}</Typography>}
           </div>
         </div>
       </FormPage>

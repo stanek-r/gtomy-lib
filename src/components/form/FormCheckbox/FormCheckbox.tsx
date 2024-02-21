@@ -16,6 +16,8 @@ export interface FormCheckboxProps<
   placeholder?: string;
   type?: string;
   className?: string;
+  imageId?: string;
+  outlined?: boolean;
 }
 
 /**
@@ -25,7 +27,16 @@ export interface FormCheckboxProps<
 export function FormCheckbox<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
->({ label, hint, placeholder, className, type, ...useControllerProps }: FormCheckboxProps<TFieldValues, TName>) {
+>({
+  label,
+  hint,
+  placeholder,
+  className,
+  type,
+  outlined,
+  imageId,
+  ...useControllerProps
+}: FormCheckboxProps<TFieldValues, TName>) {
   const {
     field: { onChange, value, ...other },
     errorMessage,
@@ -45,6 +56,8 @@ export function FormCheckbox<
       type={type}
       checked={value}
       hint={hint}
+      imageId={imageId}
+      outlined={outlined}
       {...other}
     />
   );
