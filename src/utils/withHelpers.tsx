@@ -20,10 +20,10 @@ export function withRequireAuth(
   );
 }
 
-export function withLazyPage(Component: LazyExoticComponent<ComponentType> | JSX.Element) {
+export function withLazyPage(Component: LazyExoticComponent<ComponentType>) {
   return (
     <Suspense fallback={<LoadingState showLoading />}>
-      {typeof Component === 'function' ? <Component /> : Component}
+      <Component />
     </Suspense>
   );
 }
