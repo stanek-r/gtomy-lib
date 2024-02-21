@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.13](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.12...v0.2.13) (2024-02-21)
+
+
+### Features
+
+* add menu and footer to lazypage ([c6390ef](https://gitlab.com/gtomy-services/gtomy-lib/commit/c6390ef63909e0a810010b8a69b83ab7a16a8ddc))
+* add option to request access ([7489dbf](https://gitlab.com/gtomy-services/gtomy-lib/commit/7489dbf20c9d985eb41a417c729a1ada9935b28c))
+* add outlined and imageId to FormCheckbox ([4404738](https://gitlab.com/gtomy-services/gtomy-lib/commit/44047384cc30ebed8fcfa90b7dbd02b399493837))
+
+
+### Bug Fixes
+
+* apply styles to google profile image ([c0e110e](https://gitlab.com/gtomy-services/gtomy-lib/commit/c0e110e824f87afc23f7271a84a9fee623a91579))
+* withLazyPage only accepts LazyComponents ([e66bfea](https://gitlab.com/gtomy-services/gtomy-lib/commit/e66bfeaabe2cf29def3b3114c1704d9d7edb5a02))
+
 ### [0.2.12](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.11...v0.2.12) (2024-02-20)
 
 
