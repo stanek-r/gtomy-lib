@@ -16,6 +16,7 @@ export const auth = {
   profileAlert: 'Changes will take effect only after re-login',
   deleteProfileImage: 'Delete profile image',
   save: 'Save',
+  requestRole: 'Request access',
   // Roles
   'role.user': 'user',
   'role.subscriber': 'subscriber',

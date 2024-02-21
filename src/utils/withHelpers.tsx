@@ -6,24 +6,40 @@ import { LoadingState } from '@/components/atoms/LoadingState';
 export function withRequireAuth(
   Component: FunctionComponent | JSX.Element,
   minimalRole: PermRoles,
-  MenuComponent?: FunctionComponent,
-  FooterComponent?: FunctionComponent
+  MenuComponent?: FunctionComponent | JSX.Element,
+  FooterComponent?: FunctionComponent | JSX.Element
 ): JSX.Element {
   return (
     <RequireAuth
       minimalRole={minimalRole}
-      menu={MenuComponent != null ? <MenuComponent /> : undefined}
-      footer={FooterComponent != null ? <FooterComponent /> : undefined}
+      menu={MenuComponent != null ? typeof MenuComponent === 'function' ? <MenuComponent /> : MenuComponent : undefined}
+      footer={
+        FooterComponent != null ? (
+          typeof FooterComponent === 'function' ? (
+            <FooterComponent />
+          ) : (
+            FooterComponent
+          )
+        ) : undefined
+      }
     >
       {typeof Component === 'function' ? <Component /> : Component}
     </RequireAuth>
   );
 }
 
-export function withLazyPage(Component: LazyExoticComponent<ComponentType>) {
+export function withLazyPage(
+  Component: LazyExoticComponent<ComponentType>,
+  MenuComponent?: FunctionComponent | JSX.Element,
+  FooterComponent?: FunctionComponent | JSX.Element
+): JSX.Element {
   return (
-    <Suspense fallback={<LoadingState showLoading />}>
-      <Component />
-    </Suspense>
+    <>
+      {MenuComponent != null ? typeof MenuComponent === 'function' ? <MenuComponent /> : MenuComponent : false}
+      <Suspense fallback={<LoadingState showLoading />}>
+        <Component />
+      </Suspense>
+      {FooterComponent != null ? typeof FooterComponent === 'function' ? <FooterComponent /> : FooterComponent : false}
+    </>
   );
 }

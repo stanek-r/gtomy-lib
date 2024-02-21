@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
-import { PERM_ROLES, PermRoles, useAuth } from '@/utils';
+import React, { useEffect, useState } from 'react';
+import { PERM_ROLES, PermRoles, Roles, useAuth, useRequest } from '@/utils';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { config } from '@/config';
 import { FormPage } from '@/components/layout';
+import { ErrorState } from '@/components/atoms/ErrorState';
 
 export interface RequireAuthProps {
   minimalRole: PermRoles;
@@ -15,8 +16,10 @@ export interface RequireAuthProps {
 }
 
 export function RequireAuth({ minimalRole = 'user', children, footer, menu }: RequireAuthProps) {
-  const { isAuthenticated, user, logout } = useAuth();
   const { t } = useTranslation('auth');
+  const { isAuthenticated, user, logout } = useAuth();
+  const { put } = useRequest(config.authUrl);
+  const [error, setError] = useState<any | null>(null);
   const navigate = useNavigate();
   const minimalRoleId = PERM_ROLES[minimalRole];
 
@@ -25,6 +28,18 @@ export function RequireAuth({ minimalRole = 'user', children, footer, menu }: Re
       navigate('/login');
     }
   }, [isAuthenticated, navigate]);
+
+  const handleRequestAccess = () => {
+    if (!isAuthenticated) {
+      return;
+    }
+    put('/request-access', {
+      application: config.appName,
+      role: minimalRole,
+    } as Roles)
+      .then(() => setError(null))
+      .catch((e) => setError(e));
+  };
 
   if (!isAuthenticated) {
     return null;
@@ -47,6 +62,10 @@ export function RequireAuth({ minimalRole = 'user', children, footer, menu }: Re
                 {t('logout')}
               </Button>
             </div>
+            <div className="flex justify-center">
+              <Button onClick={handleRequestAccess}>{t('requestRole')}</Button>
+            </div>
+            {error && <ErrorState error={error} />}
           </div>
         </div>
       </FormPage>

@@ -16,6 +16,7 @@ export const auth = {
   profileAlert: 'Změny se projeví až po znovu-přihlášení',
   deleteProfileImage: 'Smazat profilový obrázek',
   save: 'Uložit',
+  requestRole: 'Zažádat o přístup',
   // Roles
   'role.user': 'uživatel',
   'role.subscriber': 'předplatitel',
