@@ -13,7 +13,14 @@ export function ProfileImage({ user: forcedUser, className, ...props }: ProfileI
   const innerUser = forcedUser ?? user;
 
   if (isUserAccountFromGoogle(innerUser) && innerUser?.profileImageUrl) {
-    return <LazyLoadImage src={innerUser.profileImageUrl} {...props} />;
+    return (
+      <LazyLoadImage
+        src={innerUser.profileImageUrl}
+        alt={getUserFirstChar(innerUser)}
+        className={twMerge('mask mask-squircle object-cover', className)}
+        {...props}
+      />
+    );
   }
   return (
     <CloudflareImage
