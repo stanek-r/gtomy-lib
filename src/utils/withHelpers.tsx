@@ -2,6 +2,32 @@ import React, { ComponentType, FunctionComponent, LazyExoticComponent, Suspense 
 import { PermRoles } from '@/utils/hooks';
 import { RequireAuth } from '@/components/auth';
 import { LoadingState } from '@/components/atoms/LoadingState';
+import { ColumnPage, FormPage } from '@/components/layout';
+
+export function withColumnPage(
+  Component: FunctionComponent | JSX.Element,
+  MenuComponent?: FunctionComponent | JSX.Element,
+  FooterComponent?: FunctionComponent | JSX.Element,
+  width?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+): JSX.Element {
+  return (
+    <ColumnPage menu={withComponent(MenuComponent)} footer={withComponent(FooterComponent)} width={width}>
+      {withComponent(Component)}
+    </ColumnPage>
+  );
+}
+
+export function withFormPage(
+  Component: FunctionComponent | JSX.Element,
+  MenuComponent?: FunctionComponent | JSX.Element,
+  FooterComponent?: FunctionComponent | JSX.Element
+): JSX.Element {
+  return (
+    <FormPage menu={withComponent(MenuComponent)} footer={withComponent(FooterComponent)}>
+      {withComponent(Component)}
+    </FormPage>
+  );
+}
 
 export function withRequireAuth(
   Component: FunctionComponent | JSX.Element,
@@ -10,20 +36,8 @@ export function withRequireAuth(
   FooterComponent?: FunctionComponent | JSX.Element
 ): JSX.Element {
   return (
-    <RequireAuth
-      minimalRole={minimalRole}
-      menu={MenuComponent != null ? typeof MenuComponent === 'function' ? <MenuComponent /> : MenuComponent : undefined}
-      footer={
-        FooterComponent != null ? (
-          typeof FooterComponent === 'function' ? (
-            <FooterComponent />
-          ) : (
-            FooterComponent
-          )
-        ) : undefined
-      }
-    >
-      {typeof Component === 'function' ? <Component /> : Component}
+    <RequireAuth minimalRole={minimalRole} menu={withComponent(MenuComponent)} footer={withComponent(FooterComponent)}>
+      {withComponent(Component)!}
     </RequireAuth>
   );
 }
@@ -35,17 +49,15 @@ export function withLazyPage(
 ): JSX.Element {
   return (
     <>
-      {MenuComponent != null ? typeof MenuComponent === 'function' ? <MenuComponent /> : MenuComponent : undefined}
+      {withComponent(MenuComponent)}
       <Suspense fallback={<LoadingState showLoading />}>
         <Component />
       </Suspense>
-      {FooterComponent != null ? (
-        typeof FooterComponent === 'function' ? (
-          <FooterComponent />
-        ) : (
-          FooterComponent
-        )
-      ) : undefined}
+      {withComponent(FooterComponent)}
     </>
   );
+}
+
+export function withComponent(Component?: FunctionComponent | JSX.Element): JSX.Element | undefined {
+  return Component != null ? typeof Component === 'function' ? <Component /> : Component : undefined;
 }
