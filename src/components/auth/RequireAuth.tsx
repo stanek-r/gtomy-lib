@@ -54,9 +54,12 @@ export function RequireAuth({ minimalRole = 'user', children, footer, menu }: Re
     return (
       <FormPage menu={menu} footer={footer}>
         <div className="flex w-full flex-1 items-center justify-center">
-          <div className="flex w-[500px] max-w-full flex-col gap-y-3 p-4">
+          <div className="flex w-[768px] max-w-full flex-col gap-y-3 p-4">
             <Typography size="3xl" weight="bold" className="text-center">
-              {t('noAccess', { minimalRole: t('role.' + minimalRole) })}
+              {t('noAccess.title')}
+            </Typography>
+            <Typography size="3xl" className="text-center">
+              {t('noAccess.subtitle', { minimalRole: t('role.' + minimalRole) })}
             </Typography>
             <div className="join justify-center">
               <Button as={Link} to="/" className="join-item w-1/2 sm:w-1/3" color="primary">
@@ -67,7 +70,9 @@ export function RequireAuth({ minimalRole = 'user', children, footer, menu }: Re
               </Button>
             </div>
             <div className="flex justify-center">
-              <Button onClick={handleRequestAccess}>{t('requestRole')}</Button>
+              <Button onClick={handleRequestAccess} outline>
+                {t('requestRole')}
+              </Button>
             </div>
             {error && <ErrorState error={error} />}
             {sent && <Typography>{t('requestRoleSent')}</Typography>}
