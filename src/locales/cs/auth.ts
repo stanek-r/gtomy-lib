@@ -9,7 +9,7 @@ export const auth = {
   alreadyLoggedIn: 'Již jste přihlášen jako {{name}}!',
   invalidCredentials: 'Neplatné přihlašovací údaje',
   cannotRegister: 'Nelze se registrovat s tímto uživatelským jménem nebo heslem',
-  'noAccess.title': 'Nemáte přístup k této službě',
+  'noAccess.title': 'Nemáte přístup k této stránce',
   'noAccess.subtitle': 'potřebujete alespoň roli {{minimalRole}}',
   cannotLoginWiaGoogle: 'Přihlášení se nezdařilo',
   displayName: 'Uživatelské jméno',

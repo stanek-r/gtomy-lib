@@ -9,7 +9,7 @@ export const auth = {
   alreadyLoggedIn: 'You are already logged in as {{name}}!',
   invalidCredentials: 'Invalid credentials',
   cannotRegister: 'Cannot register with this username or password',
-  'noAccess.title': "You don't have access to this service",
+  'noAccess.title': "You don't have access to this page",
   'noAccess.subtitle': 'You need a least {{minimalRole}} role',
   cannotLoginWiaGoogle: 'Could not login with Google',
   displayName: 'Display name',

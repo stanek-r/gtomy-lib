@@ -10,12 +10,12 @@ import { ErrorState } from '@/components/atoms/ErrorState';
 
 export interface RequireAuthProps {
   minimalRole: PermRoles;
-  children: JSX.Element;
+  children?: JSX.Element;
   menu?: JSX.Element;
   footer?: JSX.Element;
 }
 
-export function RequireAuth({ minimalRole = 'user', children, footer, menu }: RequireAuthProps) {
+export function RequireAuth({ minimalRole = 'user', children, footer, menu }: RequireAuthProps): JSX.Element | null {
   const { t } = useTranslation('auth');
   const { isAuthenticated, user, logout } = useAuth();
   const { put } = useRequest(config.authUrl);
@@ -81,5 +81,5 @@ export function RequireAuth({ minimalRole = 'user', children, footer, menu }: Re
       </FormPage>
     );
   }
-  return children;
+  return children ?? null;
 }
