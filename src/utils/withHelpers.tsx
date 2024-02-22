@@ -1,4 +1,4 @@
-import React, { Component, ComponentType, FunctionComponent, LazyExoticComponent, Suspense } from 'react';
+import React, { ComponentType, FunctionComponent, LazyExoticComponent, Suspense } from 'react';
 import { PERM_ROLES, PermRoles, User } from '@/utils/hooks';
 import { RequireAuth } from '@/components/auth';
 import { LoadingState } from '@/components/atoms/LoadingState';

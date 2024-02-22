@@ -7,6 +7,7 @@ import { Button } from '@/components/atoms/Button';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import { UserIcon } from '@heroicons/react/24/outline';
 import { ProfileImage } from '@/components/auth/ProfileImage';
+import { Typography } from '@/components/atoms/Typography';
 
 export interface MenuProps {
   children?: ReactNode;
@@ -18,7 +19,7 @@ export interface MenuProps {
 }
 
 export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActions, dropdownActions }: MenuProps) {
-  const { isAuthenticated, logout, openLoginDialog } = useAuth();
+  const { user, isAuthenticated, logout, openLoginDialog } = useAuth();
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
   const navigate = useNavigate();
@@ -46,25 +47,29 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActio
           <ul className="menu menu-horizontal gap-2 px-1">{children}</ul>
           {showAuth && (
             <>
+              <div className="divider divider-horizontal ml-1 mr-3 py-2"></div>
               {isAuthenticated ? (
-                <div className="dropdown dropdown-end">
-                  <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
-                    <div className="w-10 rounded-full">
-                      <ProfileImage className="size-10" />
+                <>
+                  <div className=" mr-3">{user?.displayName}</div>
+                  <div className="dropdown dropdown-end">
+                    <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
+                      <div className="w-10 rounded-full">
+                        <ProfileImage className="size-10" />
+                      </div>
                     </div>
+                    <ul
+                      tabIndex={0}
+                      className="menu dropdown-content z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow"
+                    >
+                      <li>
+                        {dropdownActions}
+                        <button type="button" onClick={logout}>
+                          {t('logout')}
+                        </button>
+                      </li>
+                    </ul>
                   </div>
-                  <ul
-                    tabIndex={0}
-                    className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow"
-                  >
-                    <li>
-                      {dropdownActions}
-                      <button type="button" onClick={logout}>
-                        {t('logout')}
-                      </button>
-                    </li>
-                  </ul>
-                </div>
+                </>
               ) : (
                 <Button onClick={login}>{t('login')}</Button>
               )}
@@ -94,7 +99,7 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActio
               </div>
               <ul
                 tabIndex={0}
-                className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow"
+                className="menu dropdown-content menu-md z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow"
               >
                 {children}
               </ul>
@@ -119,8 +124,12 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActio
                   </div>
                   <ul
                     tabIndex={0}
-                    className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow"
+                    className="menu dropdown-content menu-md z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow"
                   >
+                    <Typography className="pt-2 text-center" weight="medium">
+                      {user?.displayName}
+                    </Typography>
+                    <div className="divider my-1"></div>
                     <li>
                       {dropdownActions}
                       <button type="button" onClick={logout}>
