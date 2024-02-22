@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.14](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.13...v0.2.14) (2024-02-22)
+
+
+### Features
+
+* add getUsersRoleId and withPermission ([afff0e4](https://gitlab.com/gtomy-services/gtomy-lib/commit/afff0e422af74d52e4563ccdacbabd377f21380e))
+* add withFormPage and withColumnPage ([46a1945](https://gitlab.com/gtomy-services/gtomy-lib/commit/46a19452ea521af502affdad51c86ce71ab83ffb))
+* redesign and add displayname to menu ([c3ed08d](https://gitlab.com/gtomy-services/gtomy-lib/commit/c3ed08d91dedf5c84821195f498b4c2568e40d4d))
+* update RequireAuth page ([4d191aa](https://gitlab.com/gtomy-services/gtomy-lib/commit/4d191aaf81337eb6830b6be03a703e89ed8214b3))
+
 ### [0.2.13](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.12...v0.2.13) (2024-02-21)
 
 
