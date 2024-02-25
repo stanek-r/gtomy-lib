@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.15](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.14...v0.2.15) (2024-02-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename ThemeProvider to LayoutProvider to move footer to the bottom of page
+
+### Features
+
+* mark FullPage deprecated ([95282b2](https://gitlab.com/gtomy-services/gtomy-lib/commit/95282b2ee044610cd8d53297d9efccd7883bab63))
+* rename ThemeProvider to LayoutProvider to move footer to the bottom of page ([fde4063](https://gitlab.com/gtomy-services/gtomy-lib/commit/fde40636445f4dad789aba3b0f8f668cb9221131))
+
+
+### Bug Fixes
+
+* lazypage not showing menu and footer ([d65b8a1](https://gitlab.com/gtomy-services/gtomy-lib/commit/d65b8a1fcefbe4b5250131e9ce90551e021113e8))
+
 ### [0.2.14](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.13...v0.2.14) (2024-02-22)
 
 
