@@ -7,6 +7,9 @@ export interface FullPageProps {
   className?: string;
 }
 
+/**
+ * @deprecated Use FormPage instead
+ */
 export function FullPage({ children, scrollable, className }: FullPageProps) {
   return (
     <div
