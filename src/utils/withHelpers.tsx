@@ -49,13 +49,9 @@ export function withLazyPage(
   FooterComponent?: FunctionComponent | JSX.Element
 ): JSX.Element {
   return (
-    <>
-      {withComponent(MenuComponent)}
-      <Suspense fallback={<LoadingState showLoading />}>
-        <Component />
-      </Suspense>
-      {withComponent(FooterComponent)}
-    </>
+    <Suspense fallback={withFormPage(<LoadingState showLoading />, MenuComponent, FooterComponent)}>
+      <Component />
+    </Suspense>
   );
 }
 
