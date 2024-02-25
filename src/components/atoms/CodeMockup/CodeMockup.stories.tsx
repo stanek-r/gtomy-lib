@@ -11,12 +11,12 @@ type Story = StoryObj<typeof CodeMockup>;
 
 const rows = [
   "import { BrowserRouter, Route, Routes } from 'react-router-dom';",
-  "import { LoginPage, RequireAuth, ThemeProvider } from 'gtomy-lib';",
+  "import { LoginPage, RequireAuth, LayoutProvider } from 'gtomy-lib';",
   "import { TestChat } from './components/TestChat';",
   '',
   'export default function App() {',
   '  return (',
-  '    <ThemeProvider>',
+  '    <LayoutProvider>',
   '      <BrowserRouter>',
   '        <Routes>',
   '          <Route',
@@ -30,7 +30,7 @@ const rows = [
   '          <Route path="/login" element={<LoginPage />} />',
   '        </Routes>',
   '      </BrowserRouter>',
-  '    </ThemeProvider>',
+  '    </LayoutProvider>',
   '  );',
   '}',
 ];

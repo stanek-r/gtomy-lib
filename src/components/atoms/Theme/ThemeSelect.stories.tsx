@@ -2,7 +2,7 @@ import React from 'react';
 import type { ComponentStory, Meta } from '@storybook/react';
 import { Button } from '@/components/atoms/Button';
 import { ThemeSelect } from '@/components/atoms/Theme/ThemeSelect';
-import { ThemeProvider } from '@/components/atoms/Theme/ThemeProvider';
+import { LayoutProvider } from '@/components/layout/LayoutProvider';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import { config } from '@/config';
@@ -17,7 +17,7 @@ export const Default: ComponentStory<typeof ThemeSelect> = () => {
   config.themes = ['system', 'light', 'dark'];
 
   return (
-    <ThemeProvider>
+    <LayoutProvider>
       <div className="flex flex-col gap-6">
         <div className="flex gap-6">
           <Button>Test button</Button>
@@ -25,6 +25,6 @@ export const Default: ComponentStory<typeof ThemeSelect> = () => {
         </div>
         <ThemeSelect />
       </div>
-    </ThemeProvider>
+    </LayoutProvider>
   );
 };

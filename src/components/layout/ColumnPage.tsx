@@ -23,7 +23,7 @@ export function ColumnPage({ menu, footer, children, width = 'xl', className }: 
   return (
     <>
       {menu}
-      <div className={twMerge('max-w-full mx-auto flex flex-col gap-4 px-4 py-8', widthClass, className)}>
+      <div className={twMerge('max-w-full mx-auto flex flex-col gap-4 px-4 py-8 flex-1', widthClass, className)}>
         {children}
       </div>
       {footer}
