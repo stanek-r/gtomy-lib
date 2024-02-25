@@ -29,7 +29,7 @@ export * from './components/form/FormTextInput';
 export * from './components/form/FormTextareaInput';
 export * from './components/layout';
 export * from './components/organisms/dialog';
-export * from './components/user';
+export * from './components/pages';
 export * from './locales';
 export * from './models';
 export * from './utils';
