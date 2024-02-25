@@ -32,6 +32,7 @@ export interface LoadingStateProps {
   variant?: 'spinner' | 'dots' | 'ring' | 'ball' | 'bars' | 'infinity';
   layout?: 'column' | 'row';
   size?: 'xs' | 'sm' | 'md' | 'lg';
+  className?: string;
 }
 
 export function LoadingState({
@@ -40,6 +41,7 @@ export function LoadingState({
   variant = 'ring',
   size = 'lg',
   layout = 'column',
+  className,
 }: LoadingStateProps) {
   const { t } = useTranslation('common');
 
@@ -48,7 +50,7 @@ export function LoadingState({
   }
 
   return (
-    <div className={twMerge('flex items-center gap-2', layout === 'column' ? 'flex-col' : 'flex-row')}>
+    <div className={twMerge('flex items-center gap-2', layout === 'column' ? 'flex-col' : 'flex-row', className)}>
       <span className={twMerge('loading', loadingSizes[size], loadingVariants[variant])}></span>
       <Typography size={loadingTextSizes[size] as any}>{message ?? t('state.loading')}</Typography>
     </div>
