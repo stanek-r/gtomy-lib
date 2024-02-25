@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.16](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.15...v0.2.16) (2024-02-25)
+
+
+### Features
+
+* add className to LoadingState ([5673d71](https://gitlab.com/gtomy-services/gtomy-lib/commit/5673d719de82c1dfa63f80b0ed2962be034054bc))
+* add Menu and Footer to LayoutProvider ([c74243a](https://gitlab.com/gtomy-services/gtomy-lib/commit/c74243a69268142bc5c3ae4578ff01c6f6814903))
+
 ### [0.2.15](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.14...v0.2.15) (2024-02-25)
 
 
