@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { PERM_ROLES, PermRoles, Roles, useAuth, useRequest } from '@/utils';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/atoms/Button';
@@ -9,13 +9,18 @@ import { FormPage } from '@/components/layout';
 import { ErrorState } from '@/components/atoms/ErrorState';
 
 export interface RequireAuthProps {
+  MenuComponent?: FunctionComponent | JSX.Element;
+  FooterComponent?: FunctionComponent | JSX.Element;
   minimalRole: PermRoles;
   children?: JSX.Element;
-  menu?: JSX.Element;
-  footer?: JSX.Element;
 }
 
-export function RequireAuth({ minimalRole = 'user', children, footer, menu }: RequireAuthProps): JSX.Element | null {
+export function RequireAuth({
+  MenuComponent,
+  FooterComponent,
+  minimalRole = 'user',
+  children,
+}: RequireAuthProps): JSX.Element | null {
   const { t } = useTranslation('auth');
   const { isAuthenticated, user, logout } = useAuth();
   const { put } = useRequest(config.authUrl);
@@ -52,7 +57,7 @@ export function RequireAuth({ minimalRole = 'user', children, footer, menu }: Re
   const roleId = PERM_ROLES[role as PermRoles];
   if (roleId < minimalRoleId) {
     return (
-      <FormPage menu={menu} footer={footer}>
+      <FormPage MenuComponent={MenuComponent} FooterComponent={FooterComponent}>
         <div className="flex w-full flex-1 items-center justify-center">
           <div className="flex w-[768px] max-w-full flex-col gap-y-3 p-4">
             <Typography size="3xl" weight="bold" className="text-center">
