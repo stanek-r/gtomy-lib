@@ -1,12 +1,13 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { PERM_ROLES, PermRoles, Roles, useAuth, useRequest } from '@/utils';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { config } from '@/config';
 import { FormPage } from '@/components/layout';
 import { ErrorState } from '@/components/atoms/ErrorState';
+import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
 
 export interface RequireAuthProps {
   MenuComponent?: FunctionComponent | JSX.Element;
@@ -28,9 +29,12 @@ export function RequireAuth({
   const [sent, setSent] = useState<boolean>(false);
   const navigate = useNavigate();
   const minimalRoleId = PERM_ROLES[minimalRole];
+  const { pathname } = useLocation();
+  const [setRedirectUrl] = useLoginRedirectStore((state: any) => [state.setRedirectUrl]);
 
   useEffect(() => {
     if (!isAuthenticated) {
+      setRedirectUrl(pathname);
       navigate('/login');
     }
   }, [isAuthenticated, navigate]);

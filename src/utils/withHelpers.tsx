@@ -60,7 +60,7 @@ export function withFormPage(
  */
 export function withRequireAuth(
   Component: FunctionComponent | JSX.Element,
-  minimalRole: PermRoles,
+  minimalRole: PermRoles = 'user',
   MenuComponent?: FunctionComponent | JSX.Element,
   FooterComponent?: FunctionComponent | JSX.Element
 ): JSX.Element {

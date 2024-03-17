@@ -11,6 +11,7 @@ import { FormTextInput } from '@/components/form/FormTextInput';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { twMerge } from 'tailwind-merge';
 import { GoogleLoginButton } from '@/components/auth/GoogleLoginButton';
+import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
 
 interface LoginForm {
   username: string;
@@ -34,6 +35,10 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog, sh
   const { control, handleSubmit } = useForm<LoginForm>({
     defaultValues: { username: undefined, password: undefined },
   });
+  const [redirectUrl, setRedirectUrl] = useLoginRedirectStore((state: any) => [
+    state.redirectUrl,
+    state.setRedirectUrl,
+  ]);
 
   const onHandleSubmit = (value: LoginForm) => {
     login(value.username, value.password).then((value) => {
@@ -41,7 +46,8 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog, sh
         if (isInDialog) {
           closeDialog?.();
         } else {
-          navigate(backURL || '/');
+          navigate(backURL ?? redirectUrl ?? '/');
+          setRedirectUrl(undefined);
         }
       } else {
         setError(t('invalidCredentials'));
