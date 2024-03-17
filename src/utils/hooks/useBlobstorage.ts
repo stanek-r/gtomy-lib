@@ -27,8 +27,8 @@ export function useBlobstorage(path: string, baseURL?: string) {
       });
   };
 
-  const deleteImage = async (imageId: string): Promise<void> => {
-    return deleteRequest(`${path}/${imageId}`)
+  const deleteImage = async (imageId?: string): Promise<void> => {
+    return deleteRequest(path + (imageId == null ? '' : `/${imageId}`))
       .then(() => {
         setError(null);
       })

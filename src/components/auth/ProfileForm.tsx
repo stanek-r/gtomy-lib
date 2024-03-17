@@ -9,7 +9,7 @@ import { ErrorState } from '@/components/atoms/ErrorState';
 import { TextInput } from '@/components/atoms/TextInput';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { ProfileImage } from '@/components/auth/ProfileImage';
-import { useAuth, useRequest, useTranslation } from '@/utils/hooks';
+import { useAuth, useBlobstorage, useRequest, useTranslation } from '@/utils/hooks';
 import { isUserAccountFromGoogle } from '@/utils/auth';
 
 interface Props {
@@ -33,14 +33,15 @@ export function ProfileForm({ children, className }: Props) {
       profileImage: null,
     },
   });
-  const { post, delete: deleteRequest } = useRequest(config.authUrl);
+  const { post } = useRequest(config.authUrl);
   const [error, setError] = useState<any | null>(null);
   const [saving, setSaving] = useState<boolean>(false);
+  const { uploadImage, deleteImage, error: blobstorageError } = useBlobstorage('/user-profile/profile-image');
 
   const onSubmit = async (form: ProfileForm) => {
     setSaving(true);
     if (form.profileImage) {
-      await uploadFile(form.profileImage);
+      await uploadImage(form.profileImage);
     }
     await post('/user-profile', {
       displayName: form.displayName,
@@ -54,20 +55,6 @@ export function ProfileForm({ children, className }: Props) {
       profileImage: null,
     });
     setSaving(false);
-  };
-
-  const uploadFile = async (file: FormFile) => {
-    const formData = new FormData();
-    formData.append('image', file.file as File);
-    await post('/user-profile/profile-image', formData)
-      .then(() => setError(null))
-      .catch((e) => setError(e));
-  };
-
-  const deleteFile = () => {
-    deleteRequest('/user-profile/profile-image')
-      .then(() => setError(null))
-      .catch((e) => setError(e));
   };
 
   return (
@@ -115,7 +102,7 @@ export function ProfileForm({ children, className }: Props) {
             {user?.profileImageId && (
               <div className="ml-1 flex items-center gap-2">
                 <ProfileImage className="my-2 size-20" />
-                <Button onClick={deleteFile} size="sm" color="error">
+                <Button onClick={() => deleteImage()} size="sm" color="error">
                   {t('deleteProfileImage')}
                 </Button>
               </div>
@@ -123,6 +110,7 @@ export function ProfileForm({ children, className }: Props) {
           </>
         )}
         {error && <ErrorState className="lg:col-span-2" error={error} />}
+        {blobstorageError && <ErrorState className="lg:col-span-2" error={blobstorageError} />}
         <div className="flex justify-center lg:col-span-2">
           <Button type="submit" disabled={saving}>
             {t('save')}
