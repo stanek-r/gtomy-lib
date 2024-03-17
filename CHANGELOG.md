@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.17](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.16...v0.2.17) (2024-03-17)
+
+
+### Features
+
+* add LoginPage and RegisterPage, update ctix ([d019235](https://gitlab.com/gtomy-services/gtomy-lib/commit/d019235e8457cc5c3aca8fa6a5d9544f97480d1a))
+* add useBlobstorage, add redirect storage ([ce1f225](https://gitlab.com/gtomy-services/gtomy-lib/commit/ce1f225702e4bd9e6a10eeafb156d9ded91ddb31))
+* rearrange user components and add new pages ([11ee0b1](https://gitlab.com/gtomy-services/gtomy-lib/commit/11ee0b1d0343ad9dca9e709702379fb1c88f15c3))
+
+
+### Bug Fixes
+
+* withColumnPage width ([b8d4c23](https://gitlab.com/gtomy-services/gtomy-lib/commit/b8d4c23099f3246f73783a754e97612bbc101f00))
+
 ### [0.2.16](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.15...v0.2.16) (2024-02-25)
 
 
