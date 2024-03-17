@@ -4,8 +4,8 @@ import { useAuthStore, User } from '@/utils/hooks/storage/useAuthStore';
 import { config } from '@/config';
 import { logError } from '@/utils/sentry';
 import { jwtDecode } from 'jwt-decode';
-import { useDialog } from '@/utils';
 import { AuthDialog } from '@/components/auth/AuthDialog';
+import { useDialog } from '@/utils/hooks/useDialog';
 
 const mapTokenToUser = (token?: string): User | undefined => {
   if (!token) {

@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
-import { useFormController } from '@/utils';
 import { FileInput } from '@/components/atoms/FileInput';
+import { useFormController } from '@/utils/hooks';
 
 export interface FormFile {
   multiple: boolean;

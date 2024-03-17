@@ -1,5 +1,5 @@
 import { config } from './config';
-import { initSentry, SentryConfig } from './utils';
+import { initSentry, SentryConfig } from '@/utils/sentry';
 
 interface CloudflareConfig {
   imagesUrl?: string;

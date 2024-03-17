@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { CredentialResponse, GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { config } from '@/config';
-import { useAuth, useTranslation } from '@/utils';
 import { useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
+import { useAuth, useTranslation } from '@/utils/hooks';
 
 export interface GoogleAuthProps {
   setError: Dispatch<SetStateAction<string | null>>;

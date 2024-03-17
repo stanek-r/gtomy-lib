@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { PERM_ROLES, PermRoles, Roles, useAuth, useRequest } from '@/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
@@ -8,6 +7,8 @@ import { config } from '@/config';
 import { FormPage } from '@/components/layout';
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
+import { PERM_ROLES, PermRoles, Roles } from '@/utils/hooks/storage';
+import { useAuth, useRequest } from '@/utils/hooks';
 
 export interface RequireAuthProps {
   MenuComponent?: FunctionComponent | JSX.Element;

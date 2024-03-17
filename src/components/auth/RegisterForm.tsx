@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
-import { useAuth } from '@/utils';
 import { Link, useNavigate } from 'react-router-dom';
 import { config } from '@/config';
 import { ThemeSelect } from '@/components/atoms/Theme/ThemeSelect';
@@ -10,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { FormTextInput } from '@/components/form/FormTextInput';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { twMerge } from 'tailwind-merge';
+import { useAuth } from '@/utils/hooks';
 
 interface RegisterForm {
   username: string;

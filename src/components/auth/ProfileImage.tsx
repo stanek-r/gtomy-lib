@@ -1,8 +1,10 @@
 import React from 'react';
-import { getUserFirstChar, getUserProfileImageId, isUserAccountFromGoogle, useAuth, User } from '@/utils';
 import { CloudflareImage } from '@/components/atoms/CloudflareImage';
 import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component';
 import { twMerge } from 'tailwind-merge';
+import { User } from '@/utils/hooks/storage';
+import { useAuth } from '@/utils/hooks';
+import { getUserFirstChar, getUserProfileImageId, isUserAccountFromGoogle } from '@/utils/auth';
 
 export interface ProfileImageProps extends Omit<LazyLoadImageProps, 'src'> {
   user?: User;

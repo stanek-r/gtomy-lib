@@ -2,7 +2,6 @@ import React, { ReactNode, useState } from 'react';
 import { FormTextInput } from '@/components/form/FormTextInput';
 import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
-import { isUserAccountFromGoogle, useAuth, useRequest, useTranslation } from '@/utils';
 import { Button } from '@/components/atoms/Button';
 import { config } from '@/config';
 import { FormFile, FormFileInput } from '@/components/form/FormFileInput';
@@ -10,6 +9,8 @@ import { ErrorState } from '@/components/atoms/ErrorState';
 import { TextInput } from '@/components/atoms/TextInput';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { ProfileImage } from '@/components/auth/ProfileImage';
+import { useAuth, useRequest, useTranslation } from '@/utils/hooks';
+import { isUserAccountFromGoogle } from '@/utils/auth';
 
 interface Props {
   className?: string;

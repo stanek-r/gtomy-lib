@@ -1,13 +1,13 @@
 import React, { ReactNode } from 'react';
 import { config } from '@/config';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth, useBreakpoint } from '@/utils';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { Button } from '@/components/atoms/Button';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import { UserIcon } from '@heroicons/react/24/outline';
 import { ProfileImage } from '@/components/auth/ProfileImage';
 import { Typography } from '@/components/atoms/Typography';
+import { useAuth, useBreakpoint } from '@/utils/hooks';
 
 export interface MenuProps {
   children?: ReactNode;

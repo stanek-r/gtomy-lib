@@ -1,5 +1,5 @@
-import { Breakpoint, breakpointPoints, useBreakpoint } from '@/utils';
 import { useMemo } from 'react';
+import { Breakpoint, breakpointPoints, useBreakpoint } from '@/utils/hooks/useBreakpoint';
 
 export interface UseObjectSizeReturn {
   width: number;

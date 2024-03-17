@@ -1,7 +1,7 @@
 import React from 'react';
-import { useTranslation } from '@/utils';
 import { ColumnPage } from '@/components/layout';
 import { Typography } from '@/components/atoms/Typography';
+import { useTranslation } from '@/utils/hooks';
 import dayjs from 'dayjs';
 
 export const PRIVACY_EFFECTIVE_DATE = dayjs('2024-02-25', 'YYYY-MM-DD');

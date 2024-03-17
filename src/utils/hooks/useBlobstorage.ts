@@ -1,6 +1,6 @@
 import { FormFile } from '@/components/form/FormFileInput';
 import { Image } from '@/models/blobstorage.model';
-import { useRequest } from '@/utils';
+import { useRequest } from '@/utils/hooks/useRequest';
 import { useState } from 'react';
 
 export interface UseBlobstorageReturn {

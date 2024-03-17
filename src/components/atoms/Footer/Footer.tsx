@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { LanguageSelect } from '@/components/atoms/LanguageSelect';
 import { ThemeSelect } from '@/components/atoms/Theme';
-import { useTranslation } from '@/utils';
+import { useTranslation } from '@/utils/hooks';
 
 function FooterIcon() {
   return (

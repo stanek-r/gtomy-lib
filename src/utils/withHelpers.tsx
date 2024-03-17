@@ -1,9 +1,9 @@
 import React, { ComponentType, FunctionComponent, LazyExoticComponent, Suspense } from 'react';
-import { PERM_ROLES, PermRoles, User } from '@/utils/hooks';
 import { RequireAuth } from '@/components/auth';
 import { LoadingState } from '@/components/atoms/LoadingState';
 import { ColumnPage, FormPage } from '@/components/layout';
 import { getUsersRoleId } from '@/utils/auth';
+import { PERM_ROLES, PermRoles, User } from '@/utils/hooks/storage';
 
 /**
  * Renders a page with a column layout, consisting of a main component and optional menu and footer components.

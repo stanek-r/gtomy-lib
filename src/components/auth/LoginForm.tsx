@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
-import { useAuth } from '@/utils';
 import { Link, useNavigate } from 'react-router-dom';
 import { config } from '@/config';
 import { ThemeSelect } from '@/components/atoms/Theme/ThemeSelect';
@@ -12,6 +11,7 @@ import { useTranslation } from '@/utils/hooks/useTranslation';
 import { twMerge } from 'tailwind-merge';
 import { GoogleLoginButton } from '@/components/auth/GoogleLoginButton';
 import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
+import { useAuth } from '@/utils/hooks';
 
 interface LoginForm {
   username: string;
