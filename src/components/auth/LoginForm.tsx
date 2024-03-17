@@ -122,13 +122,12 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog, sh
             backURL={backURL}
           />
         )}
-        {showLanguage ||
-          (showTheme && (
-            <div className="mt-3 flex justify-between">
-              {showLanguage && <LanguageSelect />}
-              {showTheme && <ThemeSelect />}
-            </div>
-          ))}
+        {(showLanguage || showTheme) && (
+          <div className="mt-3 flex justify-between">
+            {showLanguage && <LanguageSelect />}
+            {showTheme && <ThemeSelect />}
+          </div>
+        )}
       </div>
     </form>
   );
