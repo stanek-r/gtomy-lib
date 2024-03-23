@@ -114,6 +114,7 @@ export function withLazyPage(
  *
  * @param {FunctionComponent | JSX.Element} Component - The component to execute.
  * @param {PermRoles} minimalRole - The minimal role required for the user.
+ * @param {boolean} [displayWarning] - Whether whole alert should be displayed if user doesn't have access.
  * @param {boolean} [displayRequestAccess] - Whether access request button should be displayed if user doesn't have access.
  * @param {string} [application] - The application name if the user's role depends on the application context.
  *
@@ -122,11 +123,17 @@ export function withLazyPage(
 export function withPermission(
   Component: FunctionComponent | JSX.Element,
   minimalRole: PermRoles,
+  displayWarning?: boolean,
   displayRequestAccess?: boolean,
   application?: string
-): JSX.Element | undefined {
+): JSX.Element {
   return (
-    <RequirePermission minimalRole={minimalRole} application={application} displayRequestAccess={displayRequestAccess}>
+    <RequirePermission
+      minimalRole={minimalRole}
+      application={application}
+      displayWarning={displayWarning}
+      displayRequestAccess={displayRequestAccess}
+    >
       {withComponent(Component)}
     </RequirePermission>
   );

@@ -13,6 +13,7 @@ export interface RequirePermissionProps {
   minimalRole: PermRoles;
   children?: JSX.Element;
   application?: string;
+  displayWarning?: boolean;
   displayRequestAccess?: boolean;
 }
 
@@ -21,8 +22,9 @@ export function RequirePermission({
   children,
   minimalRole,
   application,
+  displayWarning,
   displayRequestAccess,
-}: RequirePermissionProps) {
+}: RequirePermissionProps): JSX.Element | null {
   const { t } = useTranslation('auth');
   const { isAuthenticated, user } = useAuth();
   const { put } = useRequest(config.authUrl);
@@ -48,10 +50,16 @@ export function RequirePermission({
       .catch((e) => setError(e));
   };
 
+  if (!isAuthenticated) {
+    return null;
+  }
   if (error) {
     return <ErrorState error={error} className={className} />;
   }
   if (roleId < minimalRoleId) {
+    if (!displayWarning) {
+      return null;
+    }
     return (
       <div role="alert" className={twMerge('alert alert-warning', className)}>
         <LockClosedIcon className="size-8" />
@@ -62,9 +70,7 @@ export function RequirePermission({
           (sent ? (
             <Typography color="warning">{t('requestRoleSent')}</Typography>
           ) : (
-            <Button onClick={handleRequestAccess} outline>
-              {t('requestRole')}
-            </Button>
+            <Button onClick={handleRequestAccess}>{t('requestRole')}</Button>
           ))}
       </div>
     );

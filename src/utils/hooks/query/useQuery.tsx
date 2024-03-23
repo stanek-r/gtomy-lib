@@ -18,11 +18,13 @@ export interface QueryOptions<
   loadingMessage?: string;
   delay?: number;
   showRetry?: boolean;
+  fallbackValue: TData;
 }
 
 export type QueryResult<TData = unknown, TError = DefaultError> = {
   wrapperProps: Omit<QueryWrapperProps<TData>, 'children'>;
-} & UseQueryResult<TData, TError>;
+  data: TData;
+} & Omit<UseQueryResult<TData, TError>, 'data'>;
 
 export function useQuery<
   TQueryFnData = unknown,
@@ -33,7 +35,7 @@ export function useQuery<
   options: QueryOptions<TQueryFnData, TError, TData, TQueryKey>,
   queryClient?: QueryClient
 ): QueryResult<TData, TError> {
-  const { loadingMessage, delay, ...queryOptions } = options;
+  const { loadingMessage, delay, fallbackValue, ...queryOptions } = options;
   const query = useTanStackQuery(queryOptions, queryClient);
 
   const [showLoading, setShowLoading] = useState<boolean>(false);
@@ -47,6 +49,7 @@ export function useQuery<
 
   return {
     ...query,
+    data: query.data == null ? fallbackValue : query.data,
     wrapperProps: {
       isLoading: query.isLoading,
       showLoading: showLoading,
