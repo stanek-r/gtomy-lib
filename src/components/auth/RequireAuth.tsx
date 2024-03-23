@@ -15,6 +15,8 @@ export interface RequireAuthProps {
   FooterComponent?: FunctionComponent | JSX.Element;
   minimalRole: PermRoles;
   children?: JSX.Element;
+  application?: string;
+  displayRequestAccess?: boolean;
 }
 
 export function RequireAuth({
@@ -22,6 +24,8 @@ export function RequireAuth({
   FooterComponent,
   minimalRole = 'user',
   children,
+  application,
+  displayRequestAccess,
 }: RequireAuthProps): JSX.Element | null {
   const { t } = useTranslation('auth');
   const { isAuthenticated, user, logout } = useAuth();
@@ -58,7 +62,7 @@ export function RequireAuth({
   if (!isAuthenticated) {
     return null;
   }
-  const role = user!.roles.find((role) => role.application === config.appName)?.role ?? 'user';
+  const role = user?.roles.find((role) => role.application === (application ?? config.appName))?.role ?? 'user';
   const roleId = PERM_ROLES[role as PermRoles];
   if (roleId < minimalRoleId) {
     return (
@@ -79,13 +83,15 @@ export function RequireAuth({
                 {t('logout')}
               </Button>
             </div>
-            <div className="flex justify-center">
-              <Button onClick={handleRequestAccess} outline>
-                {t('requestRole')}
-              </Button>
-            </div>
+            {displayRequestAccess && (
+              <div className="flex justify-center">
+                <Button onClick={handleRequestAccess} outline>
+                  {t('requestRole')}
+                </Button>
+              </div>
+            )}
             {error && <ErrorState error={error} />}
-            {sent && <Typography>{t('requestRoleSent')}</Typography>}
+            {sent && <Typography className="text-center">{t('requestRoleSent')}</Typography>}
           </div>
         </div>
       </FormPage>
