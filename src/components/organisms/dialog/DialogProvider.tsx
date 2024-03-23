@@ -1,12 +1,12 @@
 import React, { ReactNode, useMemo } from 'react';
 import { useDialog } from '@/utils/hooks/useDialog';
-import { DialogObject } from '@/utils';
+import { DialogObject } from '@/utils/hooks/storage';
 
 export interface DialogProviderProps {
   children: ReactNode;
 }
 
-export function DialogProvider({ children }: DialogProviderProps) {
+export function DialogProvider({ children }: DialogProviderProps): JSX.Element {
   const { dialogs, openDialog, closeDialog } = useDialog();
 
   const flattenedDialogs = useMemo(() => {
