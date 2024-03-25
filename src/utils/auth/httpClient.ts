@@ -84,12 +84,14 @@ export class HttpClient {
     return axios
       .post(`${config.authUrl}/refresh-token`, { refreshToken: refreshToken })
       .then((response) => {
-        if (!response.data?.access_token || !response.data?.refresh_token) {
+        if (!response.data?.access_token) {
           console.error('No token');
           return null;
         }
         setAccessToken(response.data.access_token);
-        setRefreshToken(response.data.refresh_token);
+        if (response.data.refresh_token) {
+          setRefreshToken(response.data.refresh_token);
+        }
         return response.data.access_token;
       })
       .catch(() => {

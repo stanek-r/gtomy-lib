@@ -23,7 +23,7 @@ interface UseAuth {
   isAuthenticated: boolean;
   token: string | undefined;
   user: User | undefined;
-  login: (username: string, password: string) => Promise<boolean>;
+  login: (username: string, password: string, rememberLogin?: boolean) => Promise<boolean>;
   loginWithGoogle: (token: string) => Promise<boolean>;
   register: (username: string, password: string, email: string) => Promise<boolean>;
   logout: () => void;
@@ -39,7 +39,7 @@ export function useAuth(): UseAuth {
     element: AuthDialog,
   });
 
-  const login = async (username: string, password: string): Promise<boolean> => {
+  const login = async (username: string, password: string, rememberLogin?: boolean): Promise<boolean> => {
     return axios
       .post(`${config.authUrl}/login`, { username, password, appName: config.appName })
       .then(async (response) => {
@@ -52,7 +52,7 @@ export function useAuth(): UseAuth {
           return false;
         }
         setAccessToken(response.data.access_token);
-        if (response.data.refresh_token) {
+        if (response.data.refresh_token && rememberLogin) {
           setRefreshToken(response.data.refresh_token);
         }
         return true;
@@ -67,7 +67,7 @@ export function useAuth(): UseAuth {
     return axios
       .post(`${config.authUrl}/google-login`, { token })
       .then(async (response) => {
-        if (!response.data?.access_token || !response.data?.refresh_token) {
+        if (!response.data?.access_token) {
           console.error('No token');
           return false;
         }
@@ -76,7 +76,6 @@ export function useAuth(): UseAuth {
           return false;
         }
         setAccessToken(response.data.access_token);
-        setRefreshToken(response.data.refresh_token);
         return true;
       })
       .catch((e) => {

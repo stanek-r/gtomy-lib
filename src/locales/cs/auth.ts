@@ -2,6 +2,7 @@ export const auth = {
   login: 'Přihlásit se',
   logout: 'Odhlásit se',
   register: 'Registrovat se',
+  rememberLogin: 'Zapamatovat přihlášení',
   email: 'E-mail',
   username: 'Uživatelské jméno',
   password: 'Heslo',

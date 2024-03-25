@@ -12,10 +12,12 @@ import { twMerge } from 'tailwind-merge';
 import { GoogleLoginButton } from '@/components/auth/GoogleLoginButton';
 import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
 import { useAuth } from '@/utils/hooks';
+import { FormCheckbox } from '@/components/form/FormCheckbox';
 
 interface LoginForm {
   username: string;
   password: string;
+  rememberLogin: boolean;
 }
 
 interface Props {
@@ -32,8 +34,8 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog, sh
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const { t } = useTranslation('auth');
-  const { control, handleSubmit } = useForm<LoginForm>({
-    defaultValues: { username: undefined, password: undefined },
+  const { control, handleSubmit, watch } = useForm<LoginForm>({
+    defaultValues: { username: undefined, password: undefined, rememberLogin: false },
   });
   const [redirectUrl, setRedirectUrl] = useLoginRedirectStore((state: any) => [
     state.redirectUrl,
@@ -41,7 +43,7 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog, sh
   ]);
 
   const onHandleSubmit = (value: LoginForm) => {
-    login(value.username, value.password).then((value) => {
+    login(value.username, value.password, value.rememberLogin).then((value) => {
       if (value) {
         if (isInDialog) {
           closeDialog?.();
@@ -94,6 +96,7 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog, sh
           rules={{ required: true }}
           placeholder={t('password')}
         />
+        <FormCheckbox control={control} name="rememberLogin" label={t('rememberLogin')} />
         {error && (
           <Typography color="error" content={false} className="text-center">
             {error}

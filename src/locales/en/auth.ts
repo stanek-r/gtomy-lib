@@ -2,6 +2,7 @@ export const auth = {
   login: 'Login',
   logout: 'Logout',
   register: 'Register',
+  rememberLogin: 'Remember login',
   email: 'E-mail',
   username: 'Username',
   password: 'Password',
