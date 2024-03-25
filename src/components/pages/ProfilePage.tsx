@@ -1,11 +1,11 @@
 import React from 'react';
-import { FormPage } from '@/components/layout';
+import { ColumnPage } from '@/components/layout';
 import { ProfileForm } from '@/components/auth/ProfileForm';
 
 export function ProfilePage() {
   return (
-    <FormPage>
+    <ColumnPage>
       <ProfileForm />
-    </FormPage>
+    </ColumnPage>
   );
 }
