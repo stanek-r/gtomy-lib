@@ -42,7 +42,7 @@ export function RequireAuth({
       setRedirectUrl(pathname);
       navigate('/login');
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, navigate, refreshToken]);
 
   const handleRequestAccess = () => {
     if (!isAuthenticated) {
