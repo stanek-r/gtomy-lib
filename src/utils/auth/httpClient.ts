@@ -76,9 +76,10 @@ export class HttpClient {
     );
   }
 
-  private async refresh(): Promise<string | null> {
+  async refresh(): Promise<string | null> {
     const refreshToken = getRefreshToken();
     if (!isTokenValid(refreshToken)) {
+      setRefreshToken(undefined);
       return null;
     }
     return axios
@@ -95,6 +96,7 @@ export class HttpClient {
         return response.data.access_token;
       })
       .catch(() => {
+        setRefreshToken(undefined);
         return null;
       });
   }

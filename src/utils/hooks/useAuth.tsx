@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { useAccessTokenStore, User, useRefreshTokenStore } from '@/utils/hooks/storage/useAuthStore';
 import { config } from '@/config';
@@ -6,6 +6,7 @@ import { logError } from '@/utils/sentry';
 import { jwtDecode } from 'jwt-decode';
 import { AuthDialog } from '@/components/auth/AuthDialog';
 import { useDialog } from '@/utils/hooks/useDialog';
+import { useRequest } from '@/utils/hooks/useRequest';
 
 const mapAccessTokenToUser = (token?: string): User | undefined => {
   if (!token) {
@@ -22,6 +23,7 @@ const mapAccessTokenToUser = (token?: string): User | undefined => {
 interface UseAuth {
   isAuthenticated: boolean;
   token: string | undefined;
+  refreshToken: string | undefined;
   user: User | undefined;
   login: (username: string, password: string, rememberLogin?: boolean) => Promise<boolean>;
   loginWithGoogle: (token: string) => Promise<boolean>;
@@ -32,12 +34,22 @@ interface UseAuth {
 
 export function useAuth(): UseAuth {
   const [accessToken, setAccessToken] = useAccessTokenStore((state: any) => [state.accessToken, state.setAccessToken]);
-  const [setRefreshToken] = useRefreshTokenStore((state: any) => [state.setRefreshToken]);
+  const [refreshToken, setRefreshToken] = useRefreshTokenStore((state: any) => [
+    state.refreshToken,
+    state.setRefreshToken,
+  ]);
   const user = useMemo(() => mapAccessTokenToUser(accessToken), [accessToken]);
   const { openDialog } = useDialog({
     id: 'auth-dialog',
     element: AuthDialog,
   });
+  const { refresh } = useRequest(config.authUrl);
+
+  useEffect(() => {
+    if (!user && refreshToken) {
+      refresh();
+    }
+  }, [user, refreshToken, refresh]);
 
   const login = async (username: string, password: string, rememberLogin?: boolean): Promise<boolean> => {
     return axios
@@ -104,6 +116,7 @@ export function useAuth(): UseAuth {
   return {
     isAuthenticated: !!user,
     token: accessToken,
+    refreshToken: refreshToken,
     user: user,
     login,
     loginWithGoogle,

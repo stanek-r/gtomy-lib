@@ -8,6 +8,7 @@ interface UseRequest {
   post: <T>(url: string, data?: any, config?: AxiosRequestConfig<T>) => Promise<T>;
   put: <T>(url: string, data?: any, config?: AxiosRequestConfig<T>) => Promise<T>;
   delete: <T>(url: string, config?: AxiosRequestConfig<T>) => Promise<T>;
+  refresh: () => Promise<string | null>;
 }
 
 export function useRequest(baseURL = config.backendUrl): UseRequest {
@@ -18,5 +19,6 @@ export function useRequest(baseURL = config.backendUrl): UseRequest {
     post: (url, data, config) => client.post(url, data, config),
     put: (url, data, config) => client.put(url, data, config),
     delete: (url, config) => client.delete(url, config),
+    refresh: () => client.refresh(),
   };
 }

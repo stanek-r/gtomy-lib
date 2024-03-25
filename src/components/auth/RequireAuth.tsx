@@ -28,7 +28,7 @@ export function RequireAuth({
   displayRequestAccess,
 }: RequireAuthProps): JSX.Element | null {
   const { t } = useTranslation('auth');
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, user, logout, refreshToken } = useAuth();
   const { put } = useRequest(config.authUrl);
   const [error, setError] = useState<any | null>(null);
   const [sent, setSent] = useState<boolean>(false);
@@ -38,7 +38,7 @@ export function RequireAuth({
   const [setRedirectUrl] = useLoginRedirectStore((state: any) => [state.setRedirectUrl]);
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated && !refreshToken) {
       setRedirectUrl(pathname);
       navigate('/login');
     }
