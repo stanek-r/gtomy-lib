@@ -1,35 +1,100 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { logError } from '@/utils/sentry';
+import { config } from '@/config';
+import { getAccessToken, getRefreshToken, setAccessToken, setRefreshToken, User } from '@/utils/hooks/storage';
+import { RefreshToken } from '@/models/refreshToken.dto';
+import { jwtDecode } from 'jwt-decode';
+import { showToast } from '@/components/organisms/toast/ToastProvider';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import i18n from '@/utils/i18n';
+
+const isTokenValid = (token?: string): boolean => {
+  if (!token) {
+    return false;
+  }
+  try {
+    const decodedToken: RefreshToken | User = jwtDecode(token);
+    const expirationDate = new Date(decodedToken.exp * 1000);
+    const currentDate = new Date();
+    return expirationDate >= currentDate;
+  } catch (e: any) {
+    logError(e);
+    return false;
+  }
+};
 
 export interface HttpClientConfig {
   baseURL?: string;
-  token?: string;
 }
 
 export class HttpClient {
-  httpClient: AxiosInstance;
+  private httpClient: AxiosInstance;
 
-  constructor({ token, baseURL }: HttpClientConfig) {
+  constructor({ baseURL }: HttpClientConfig) {
     this.httpClient = axios.create({
       baseURL: baseURL,
-      headers: {
-        authorization: token ? `Bearer ${token}` : undefined,
-      },
     });
 
+    this.httpClient.interceptors.request.use((request) => {
+      const token = getAccessToken();
+      if (token != null) {
+        if (isTokenValid(token)) {
+          request.headers.set('authorization', `Bearer ${token}`);
+          return request;
+        }
+        return this.refresh().then((renewedToken) => {
+          if (renewedToken) {
+            request.headers.set('authorization', `Bearer ${renewedToken}`);
+          }
+          return request;
+        });
+      }
+      return request;
+    });
     this.httpClient.interceptors.response.use(
       (response) => {
         return response;
       },
       (error) => {
         if (error.response && error.response.status === 401) {
-          window.location.replace('/login');
-          return;
+          return this.refresh().then((result) => {
+            if (result && error.config) {
+              return this.httpClient.request(error.config);
+            }
+            window.location.replace('/login');
+            return Promise.reject(error);
+          });
         }
+        showToast({
+          message: i18n.t('state.error'),
+          icon: XMarkIcon,
+          iconColor: 'error',
+        });
         logError(error);
         return Promise.reject(error);
       }
     );
+  }
+
+  private async refresh(): Promise<string | null> {
+    const refreshToken = getRefreshToken();
+    if (!isTokenValid(refreshToken)) {
+      return null;
+    }
+    return axios
+      .post(`${config.authUrl}/refresh-token`, { refreshToken: refreshToken })
+      .then((response) => {
+        if (!response.data?.access_token || !response.data?.refresh_token) {
+          console.error('No token');
+          return null;
+        }
+        setAccessToken(response.data.access_token);
+        setRefreshToken(response.data.refresh_token);
+        return response.data.access_token;
+      })
+      .catch(() => {
+        return null;
+      });
   }
 
   async get<T>(url: string, config?: AxiosRequestConfig<T>): Promise<T> {

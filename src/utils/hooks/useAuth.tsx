@@ -1,24 +1,18 @@
 import { useMemo } from 'react';
 import axios from 'axios';
-import { useAuthStore, User } from '@/utils/hooks/storage/useAuthStore';
+import { useAccessTokenStore, User, useRefreshTokenStore } from '@/utils/hooks/storage/useAuthStore';
 import { config } from '@/config';
 import { logError } from '@/utils/sentry';
 import { jwtDecode } from 'jwt-decode';
 import { AuthDialog } from '@/components/auth/AuthDialog';
 import { useDialog } from '@/utils/hooks/useDialog';
 
-const mapTokenToUser = (token?: string): User | undefined => {
+const mapAccessTokenToUser = (token?: string): User | undefined => {
   if (!token) {
     return;
   }
   try {
-    const decodedToken: User = jwtDecode(token);
-    const expirationDate = new Date(decodedToken.exp * 1000);
-    const currentDate = new Date();
-    if (expirationDate < currentDate) {
-      return;
-    }
-    return decodedToken;
+    return jwtDecode(token);
   } catch (e: any) {
     logError(e);
     return;
@@ -37,8 +31,9 @@ interface UseAuth {
 }
 
 export function useAuth(): UseAuth {
-  const [token, setToken] = useAuthStore((state: any) => [state.token, state.setToken]);
-  const user = useMemo(() => mapTokenToUser(token), [token]);
+  const [accessToken, setAccessToken] = useAccessTokenStore((state: any) => [state.accessToken, state.setAccessToken]);
+  const [setRefreshToken] = useRefreshTokenStore((state: any) => [state.setRefreshToken]);
+  const user = useMemo(() => mapAccessTokenToUser(accessToken), [accessToken]);
   const { openDialog } = useDialog({
     id: 'auth-dialog',
     element: AuthDialog,
@@ -46,17 +41,20 @@ export function useAuth(): UseAuth {
 
   const login = async (username: string, password: string): Promise<boolean> => {
     return axios
-      .post(`${config.authUrl}/login`, { username, password })
+      .post(`${config.authUrl}/login`, { username, password, appName: config.appName })
       .then(async (response) => {
         if (!response.data?.access_token) {
           console.error('No access token');
           return false;
         }
-        const user = mapTokenToUser(response.data.access_token);
+        const user = mapAccessTokenToUser(response.data.access_token);
         if (!user) {
           return false;
         }
-        setToken(response.data.access_token);
+        setAccessToken(response.data.access_token);
+        if (response.data.refresh_token) {
+          setRefreshToken(response.data.refresh_token);
+        }
         return true;
       })
       .catch((e) => {
@@ -69,15 +67,16 @@ export function useAuth(): UseAuth {
     return axios
       .post(`${config.authUrl}/google-login`, { token })
       .then(async (response) => {
-        if (!response.data?.access_token) {
-          console.error('No access token');
+        if (!response.data?.access_token || !response.data?.refresh_token) {
+          console.error('No token');
           return false;
         }
-        const user = mapTokenToUser(response.data.access_token);
+        const user = mapAccessTokenToUser(response.data.access_token);
         if (!user) {
           return false;
         }
-        setToken(response.data.access_token);
+        setAccessToken(response.data.access_token);
+        setRefreshToken(response.data.refresh_token);
         return true;
       })
       .catch((e) => {
@@ -99,12 +98,13 @@ export function useAuth(): UseAuth {
   };
 
   const logout = (): void => {
-    setToken(undefined);
+    setRefreshToken(undefined);
+    setAccessToken(undefined);
   };
 
   return {
     isAuthenticated: !!user,
-    token: token,
+    token: accessToken,
     user: user,
     login,
     loginWithGoogle,
