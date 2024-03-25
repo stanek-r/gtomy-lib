@@ -3,13 +3,13 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 
 export const PERM_ROLES = {
   user: 0,
-  subscriber: 1,
+  vip: 1,
   moderator: 2,
   admin: 3,
   owner: 4,
 };
 
-export type PermRoles = keyof typeof PERM_ROLES;
+export type PermRoles = 'user' | 'vip' | 'moderator' | 'admin' | 'owner';
 
 export interface Roles {
   application: string;

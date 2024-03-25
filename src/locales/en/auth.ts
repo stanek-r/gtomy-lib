@@ -21,7 +21,7 @@ export const auth = {
   requestRoleSent: 'Access request sent',
   // Roles
   'role.user': 'user',
-  'role.subscriber': 'subscriber',
+  'role.vip': 'vip',
   'role.moderator': 'moderator',
   'role.admin': 'admin',
   'role.owner': 'owner',

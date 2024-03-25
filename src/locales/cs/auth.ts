@@ -21,7 +21,7 @@ export const auth = {
   requestRoleSent: 'Žádost o přístup zaslána',
   // Roles
   'role.user': 'uživatel',
-  'role.subscriber': 'předplatitel',
+  'role.vip': 'vip',
   'role.moderator': 'moderátor',
   'role.admin': 'administrátor',
   'role.owner': 'majitel',
