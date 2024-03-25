@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import axios from 'axios';
 import { useAccessTokenStore, User, useRefreshTokenStore } from '@/utils/hooks/storage/useAuthStore';
 import { config } from '@/config';
@@ -44,9 +44,11 @@ export function useAuth(): UseAuth {
     element: AuthDialog,
   });
   const { refresh } = useRequest(config.authUrl);
+  const refetchRef = useRef<boolean>(false);
 
   useEffect(() => {
-    if (!user && refreshToken) {
+    if (!user && refreshToken && refetchRef.current === false) {
+      refetchRef.current = true;
       refresh();
     }
   }, [user, refreshToken, refresh]);
