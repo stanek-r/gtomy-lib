@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.3.0...v0.3.1) (2024-03-25)
+
+
+### Bug Fixes
+
+* call refresh of access token on load ([a6404a8](https://gitlab.com/gtomy-services/gtomy-lib/commit/a6404a8dcc7bde1d8ee9d16b2a64f0a15ca9b08b))
+
 ## [0.3.0](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.17...v0.3.0) (2024-03-25)
 
 
