@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.17...v0.3.0) (2024-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename subscriber role to vip
+* add Toggle and FormToggle
+* add Switch and FormSwitch
+* add fallbackValue to useQuery
+
+### Features
+
+* add fallbackValue to useQuery ([b83e880](https://gitlab.com/gtomy-services/gtomy-lib/commit/b83e88081e556e1acbaefcfd8c6ea866144f8ba4))
+* add refresh token support ([fde13b4](https://gitlab.com/gtomy-services/gtomy-lib/commit/fde13b4c9a4af045477a9a715586ed3f7b768157))
+* add remember login button to login ([2dedb80](https://gitlab.com/gtomy-services/gtomy-lib/commit/2dedb80694fdace7848774c9c10dee0e185af419))
+* add RequirePermission ([7cc9886](https://gitlab.com/gtomy-services/gtomy-lib/commit/7cc98866c9e965ec6a5351df6cd0090eafb1dac7))
+* add Switch and FormSwitch ([67c7868](https://gitlab.com/gtomy-services/gtomy-lib/commit/67c7868c7deb8fbe767b2c54399dc748d6611a23))
+* add toast ([7dfc658](https://gitlab.com/gtomy-services/gtomy-lib/commit/7dfc658cbc2ca073478d754002d1b37020b1d2c1))
+* add Toggle and FormToggle ([d127a62](https://gitlab.com/gtomy-services/gtomy-lib/commit/d127a624fb2d12cc8c5ceabc560ec190111b22e4))
+* optimize profile form ([c0d95ca](https://gitlab.com/gtomy-services/gtomy-lib/commit/c0d95cafe35582c766956254d95e99add6d019a7))
+* rename subscriber role to vip ([54c028c](https://gitlab.com/gtomy-services/gtomy-lib/commit/54c028c36e0c0399a8334b3831895a4240d90489))
+
+
+### Bug Fixes
+
+* language and theme select on login and register page ([2f2d950](https://gitlab.com/gtomy-services/gtomy-lib/commit/2f2d9502c1a78ea4ad723c949be9e94e468e2d04))
+
 ### [0.2.17](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.2.16...v0.2.17) (2024-03-17)
 
 
