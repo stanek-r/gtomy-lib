@@ -25,7 +25,7 @@ interface ProfileForm {
 
 export function ProfileForm({ children, className }: Props) {
   const { t } = useTranslation('auth');
-  const { user } = useAuth();
+  const { user, refreshToken } = useAuth();
   const { control, handleSubmit, reset } = useForm<ProfileForm>({
     defaultValues: {
       displayName: user?.displayName ?? null,
@@ -33,7 +33,7 @@ export function ProfileForm({ children, className }: Props) {
       profileImage: null,
     },
   });
-  const { post } = useRequest(config.authUrl);
+  const { post, refresh } = useRequest(config.authUrl);
   const [error, setError] = useState<any | null>(null);
   const [saving, setSaving] = useState<boolean>(false);
   const { uploadImage, deleteImage, error: blobstorageError } = useBlobstorage('/user-profile/profile-image');
@@ -48,7 +48,10 @@ export function ProfileForm({ children, className }: Props) {
       email: form.email,
     })
       .then(() => setError(null))
-      .catch((e) => setError(e));
+      .catch((e) => {
+        setError(e);
+        refresh();
+      });
     reset({
       email: form.email,
       displayName: form.displayName,
@@ -59,10 +62,12 @@ export function ProfileForm({ children, className }: Props) {
 
   return (
     <>
-      <div role="alert" className="alert">
-        <InformationCircleIcon className="size-6 shrink-0 stroke-current" />
-        <span>{t('profileAlert')}</span>
-      </div>
+      {refreshToken == null && (
+        <div role="alert" className="alert">
+          <InformationCircleIcon className="size-6 shrink-0 stroke-current" />
+          <span>{t('profileAlert')}</span>
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} className={twMerge('grid grid-cols-1 lg:grid-cols-2 gap-2', className)}>
         <FormTextInput
           label={t('displayName')}
