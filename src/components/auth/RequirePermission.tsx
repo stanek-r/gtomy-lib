@@ -9,6 +9,7 @@ import { ErrorState } from '@/components/atoms/ErrorState';
 import { Button } from '@/components/atoms/Button';
 
 export interface RequirePermissionProps {
+  title?: string;
   className?: string;
   minimalRole: PermRoles;
   children?: JSX.Element;
@@ -18,6 +19,7 @@ export interface RequirePermissionProps {
 }
 
 export function RequirePermission({
+  title,
   className,
   children,
   minimalRole,
@@ -64,7 +66,7 @@ export function RequirePermission({
       <div role="alert" className={twMerge('alert alert-warning', className)}>
         <LockClosedIcon className="size-8" />
         <Typography size="xl" color="warning">
-          {t('noAccess.title')}
+          {title ?? t('noPermission.title')}
         </Typography>
         {displayRequestAccess &&
           (sent ? (

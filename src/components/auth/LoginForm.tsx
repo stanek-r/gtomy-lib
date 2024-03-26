@@ -44,15 +44,17 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog, sh
 
   const onHandleSubmit = (value: LoginForm) => {
     login(value.username, value.password, value.rememberLogin).then((value) => {
-      if (value) {
+      if (value === true) {
         if (isInDialog) {
           closeDialog?.();
         } else {
           navigate(backURL ?? redirectUrl ?? '/');
           setRedirectUrl(undefined);
         }
-      } else {
+      } else if (value === false) {
         setError(t('invalidCredentials'));
+      } else {
+        setError(t('loginError'));
       }
     });
   };

@@ -32,7 +32,7 @@ export function GoogleLoginButton({ className, setError, isInDialog, closeDialog
           navigate(backURL || '/');
         }
       } else {
-        setError(t('invalidCredentials'));
+        setError(t('loginErrorGoogle'));
       }
     });
   };

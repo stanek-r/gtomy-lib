@@ -25,7 +25,7 @@ interface UseAuth {
   token: string | undefined;
   refreshToken: string | undefined;
   user: User | undefined;
-  login: (username: string, password: string, rememberLogin?: boolean) => Promise<boolean>;
+  login: (username: string, password: string, rememberLogin?: boolean) => Promise<boolean | null>;
   loginWithGoogle: (token: string) => Promise<boolean>;
   register: (username: string, password: string, email: string) => Promise<boolean>;
   logout: () => void;
@@ -53,17 +53,13 @@ export function useAuth(): UseAuth {
     }
   }, [user, refreshToken, refresh]);
 
-  const login = async (username: string, password: string, rememberLogin?: boolean): Promise<boolean> => {
+  const login = async (username: string, password: string, rememberLogin?: boolean): Promise<boolean | null> => {
     return axios
       .post(`${config.authUrl}/login`, { username, password, appName: config.appName })
       .then(async (response) => {
         if (!response.data?.access_token) {
           console.error('No access token');
-          return false;
-        }
-        const user = mapAccessTokenToUser(response.data.access_token);
-        if (!user) {
-          return false;
+          return null;
         }
         setAccessToken(response.data.access_token);
         if (response.data.refresh_token && rememberLogin) {
@@ -72,8 +68,11 @@ export function useAuth(): UseAuth {
         return true;
       })
       .catch((e) => {
+        if (axios.isAxiosError(e) && e.response?.status === 401) {
+          return false;
+        }
         logError(e);
-        return false;
+        return null;
       });
   };
 
@@ -82,11 +81,7 @@ export function useAuth(): UseAuth {
       .post(`${config.authUrl}/google-login`, { token })
       .then(async (response) => {
         if (!response.data?.access_token) {
-          console.error('No token');
-          return false;
-        }
-        const user = mapAccessTokenToUser(response.data.access_token);
-        if (!user) {
+          console.error('No access token');
           return false;
         }
         setAccessToken(response.data.access_token);

@@ -86,7 +86,7 @@ export class HttpClient {
       .post(`${config.authUrl}/refresh-token`, { refreshToken: refreshToken })
       .then((response) => {
         if (!response.data?.access_token) {
-          console.error('No token');
+          console.error('No access token');
           return null;
         }
         setAccessToken(response.data.access_token);
