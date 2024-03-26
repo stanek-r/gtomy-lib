@@ -3,6 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import { twMerge } from 'tailwind-merge';
+import { isSvgIcon, SvgIconType } from '@/models';
 
 export const maxWidthOptions = {
   sm: 'max-w-screen-sm ',
@@ -13,7 +14,6 @@ export const maxWidthOptions = {
 };
 
 export interface BaseDialogProps {
-  id?: string;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
 }
@@ -24,6 +24,7 @@ export interface ExtendedBaseDialogProps extends BaseDialogProps {
   actions?: ReactNode;
   children?: ReactNode;
   spacing?: boolean;
+  icon?: ReactNode | SvgIconType;
 }
 
 export function BaseDialog({
@@ -34,6 +35,7 @@ export function BaseDialog({
   actions,
   children,
   spacing = true,
+  icon,
 }: ExtendedBaseDialogProps) {
   const maxWidthClasses = maxWidth ? maxWidthOptions[maxWidth] : maxWidthOptions.md;
 
@@ -42,6 +44,10 @@ export function BaseDialog({
       onOpenChange?.(open);
     }
   };
+
+  if (isSvgIcon(icon)) {
+    icon = React.createElement(icon, { className: 'size-8 shrink-0 mt-0.5' });
+  }
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChangeHandler}>
@@ -53,7 +59,14 @@ export function BaseDialog({
             maxWidthClasses
           )}
         >
-          <div className={twMerge(spacing && 'space-y-4')}>{children}</div>
+          {icon ? (
+            <div className="flex gap-4">
+              {icon}
+              <div className={twMerge(spacing && 'space-y-4')}>{children}</div>
+            </div>
+          ) : (
+            <div className={twMerge(spacing && 'space-y-4')}>{children}</div>
+          )}
           {actions && <div className="flex justify-end gap-x-2 pt-4">{actions}</div>}
           {closable && (
             <Dialog.Close asChild>

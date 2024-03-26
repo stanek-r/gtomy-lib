@@ -5,7 +5,7 @@ import { config } from '@/config';
 import { logError } from '@/utils/sentry';
 import { jwtDecode } from 'jwt-decode';
 import { AuthDialog } from '@/components/auth/AuthDialog';
-import { useDialog } from '@/utils/hooks/useDialog';
+import { DialogElementType, useDialog } from '@/utils/hooks/useDialog';
 import { useRequest } from '@/utils/hooks/useRequest';
 
 const mapAccessTokenToUser = (token?: string): User | undefined => {
@@ -30,6 +30,7 @@ interface UseAuth {
   register: (username: string, password: string, email: string) => Promise<boolean>;
   logout: () => void;
   openLoginDialog: () => void;
+  AuthDialogElement: DialogElementType;
 }
 
 export function useAuth(): UseAuth {
@@ -39,10 +40,7 @@ export function useAuth(): UseAuth {
     state.setRefreshToken,
   ]);
   const user = useMemo(() => mapAccessTokenToUser(accessToken), [accessToken]);
-  const { openDialog } = useDialog({
-    id: 'auth-dialog',
-    element: AuthDialog,
-  });
+  const { openDialog, DialogElement } = useDialog(AuthDialog);
   const { refresh } = useRequest(config.authUrl);
   const refetchRef = useRef<boolean>(false);
 
@@ -119,6 +117,7 @@ export function useAuth(): UseAuth {
     loginWithGoogle,
     register,
     logout: logout,
-    openLoginDialog: () => openDialog('auth-dialog'),
+    openLoginDialog: () => openDialog(),
+    AuthDialogElement: DialogElement,
   };
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { ComponentStory } from '@storybook/react';
 import { Menu } from '@/components/atoms/Menu/Menu';
 import { BrowserRouter, Link } from 'react-router-dom';
-import { DialogProvider } from '@/components/organisms/dialog';
+import { DialogWrapper } from '@/components/organisms/dialog';
 import { MenuItem } from '@/components/atoms/Menu/MenuItem';
 
 export default {
@@ -11,7 +11,7 @@ export default {
   decorators: [
     (Story: any) => (
       <BrowserRouter>
-        <DialogProvider>{Story()}</DialogProvider>
+        <DialogWrapper>{Story()}</DialogWrapper>
       </BrowserRouter>
     ),
   ],

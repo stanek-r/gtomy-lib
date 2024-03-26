@@ -19,7 +19,7 @@ export interface MenuProps {
 }
 
 export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActions, dropdownActions }: MenuProps) {
-  const { user, isAuthenticated, logout, openLoginDialog } = useAuth();
+  const { user, isAuthenticated, logout, openLoginDialog, AuthDialogElement } = useAuth();
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
   const navigate = useNavigate();
@@ -34,54 +34,58 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActio
 
   if (isOverBreakpoint) {
     return (
-      <div className="navbar bg-neutral text-neutral-content">
-        <div className="flex-1">
-          {config.appDisplayName && (
-            <Link className="btn btn-ghost text-xl" to="/">
-              {showIcon && <img src="/favicon.ico" className="mr-2 size-8 rounded" alt="Favicon" />}
-              {config.appDisplayName}
-            </Link>
-          )}
-        </div>
-        <div className="flex-none">
-          <ul className="menu menu-horizontal gap-2 px-1">{children}</ul>
-          {showAuth && (
-            <>
-              <div className="divider divider-horizontal ml-1 mr-3 py-2"></div>
-              {isAuthenticated ? (
-                <>
-                  <div className=" mr-3">{user?.displayName}</div>
-                  <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
-                      <div className="w-10 rounded-full">
-                        <ProfileImage className="size-10" />
+      <>
+        <AuthDialogElement />
+        <div className="navbar bg-neutral text-neutral-content">
+          <div className="flex-1">
+            {config.appDisplayName && (
+              <Link className="btn btn-ghost text-xl" to="/">
+                {showIcon && <img src="/favicon.ico" className="mr-2 size-8 rounded" alt="Favicon" />}
+                {config.appDisplayName}
+              </Link>
+            )}
+          </div>
+          <div className="flex-none">
+            <ul className="menu menu-horizontal gap-2 px-1">{children}</ul>
+            {showAuth && (
+              <>
+                <div className="divider divider-horizontal ml-1 mr-3 py-2"></div>
+                {isAuthenticated ? (
+                  <>
+                    <div className=" mr-3">{user?.displayName}</div>
+                    <div className="dropdown dropdown-end">
+                      <div tabIndex={0} role="button" className="avatar btn btn-circle btn-ghost">
+                        <div className="w-10 rounded-full">
+                          <ProfileImage className="size-10" />
+                        </div>
                       </div>
+                      <ul
+                        tabIndex={0}
+                        className="menu dropdown-content z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow"
+                      >
+                        <li>
+                          {dropdownActions}
+                          <button type="button" onClick={logout}>
+                            {t('logout')}
+                          </button>
+                        </li>
+                      </ul>
                     </div>
-                    <ul
-                      tabIndex={0}
-                      className="menu dropdown-content z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow"
-                    >
-                      <li>
-                        {dropdownActions}
-                        <button type="button" onClick={logout}>
-                          {t('logout')}
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                </>
-              ) : (
-                <Button onClick={login}>{t('login')}</Button>
-              )}
-            </>
-          )}
+                  </>
+                ) : (
+                  <Button onClick={login}>{t('login')}</Button>
+                )}
+              </>
+            )}
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
   return (
     <>
+      <AuthDialogElement />
       <div className="navbar bg-neutral text-neutral-content">
         {children && (
           <div className="navbar-start">

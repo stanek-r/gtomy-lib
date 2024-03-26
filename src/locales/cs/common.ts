@@ -2,6 +2,8 @@ export const common = {
   forward: 'Dopředu',
   back: 'Zpět',
   close: 'Zavřít',
+  confirm: 'Potvrdit',
+  cancel: 'Zrušit',
   'footer.settings': 'Nastavení',
   'footer.social': 'Sociální sítě',
   'languages.english': 'Angličtina',

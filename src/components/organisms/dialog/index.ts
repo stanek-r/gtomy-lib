@@ -1,2 +1,2 @@
 export * from './BaseDialog';
-export * from './DialogProvider';
+export * from './DialogElement';

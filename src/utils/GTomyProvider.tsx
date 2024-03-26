@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import { DialogProvider } from '@/components/organisms/dialog';
 import { ToastProvider } from '@/components/organisms/toast/ToastProvider';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -25,10 +24,8 @@ export function GTomyProvider({
     <BrowserRouter basename={routerBasename}>
       <QueryClientProvider client={queryClient}>
         <LayoutProvider MenuComponent={MenuComponent} FooterComponent={FooterComponent}>
-          <DialogProvider>
-            <ToastProvider />
-            {children}
-          </DialogProvider>
+          <ToastProvider />
+          {children}
         </LayoutProvider>
       </QueryClientProvider>
     </BrowserRouter>

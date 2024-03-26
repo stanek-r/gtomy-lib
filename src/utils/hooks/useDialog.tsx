@@ -1,39 +1,41 @@
-import { DialogObject, useDialogStore } from '@/utils/hooks/storage';
-import { useEffect } from 'react';
+import React, { FunctionComponent, useState } from 'react';
+import { BaseDialogProps } from '@/components/organisms/dialog';
+import { DialogElement } from '@/components/organisms/dialog/DialogElement';
+import { InfoDialog, InfoDialogProps } from '@/components/organisms/dialog/info';
+import { AlertDialog, AlertDialogProps } from '@/components/organisms/dialog/alert';
+import {
+  ConfirmationDialog,
+  ConfirmationDialogProps,
+} from '@/components/organisms/dialog/confirmation/ConfirmationDialog';
+
+export type DialogElementType = FunctionComponent;
 
 export interface UseDialogReturn {
-  dialogs: DialogObject[];
-  openDialog: (id: string) => void;
-  closeDialog: (id: string) => void;
-  createDialog: (dialog: DialogObjectWithoutOpen) => void;
-  clearDialogs: () => void;
+  openDialog: () => void;
+  closeDialog: () => void;
+  DialogElement: DialogElementType;
 }
 
-type DialogObjectWithoutOpen = Omit<DialogObject, 'open'>;
+export function useDialog(dialog: FunctionComponent<BaseDialogProps> | JSX.Element): UseDialogReturn {
+  const [open, setOpen] = useState<boolean>(false);
 
-export function useDialog(dialog?: DialogObjectWithoutOpen): UseDialogReturn {
-  const [dialogs, setDialogs, addDialog, setOpened] = useDialogStore((state: any) => [
-    state.dialogs,
-    state.setDialogs,
-    state.addDialog,
-    state.setOpened,
-  ]);
-
-  useEffect(() => {
-    if (dialog != null) {
-      createDialog(dialog);
-    }
-  }, []);
-
-  const openDialog = (id: string) => setOpened(id, true);
-  const closeDialog = (id: string) => setOpened(id, false);
-  const createDialog = (newDialog: DialogObjectWithoutOpen) => {
-    addDialog({
-      ...newDialog,
-      open: false,
-    });
+  return {
+    openDialog: () => setOpen(true),
+    closeDialog: () => setOpen(false),
+    DialogElement: () => (
+      <DialogElement dialog={dialog} open={open} onOpenChange={(_open: boolean) => setOpen(_open)} />
+    ),
   };
-  const clearDialogs = () => setDialogs([]);
+}
 
-  return { dialogs, openDialog, closeDialog, createDialog, clearDialogs };
+export function useInfoDialog(props: Omit<InfoDialogProps, 'open' | 'onOpenChange'>): UseDialogReturn {
+  return useDialog(<InfoDialog {...props} />);
+}
+
+export function useAlertDialog(props: Omit<AlertDialogProps, 'open' | 'onOpenChange'>): UseDialogReturn {
+  return useDialog(<AlertDialog {...props} />);
+}
+
+export function useConfirmationDialog(props: Omit<ConfirmationDialogProps, 'open' | 'onOpenChange'>): UseDialogReturn {
+  return useDialog(<ConfirmationDialog {...props} />);
 }
