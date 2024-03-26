@@ -47,7 +47,9 @@ export function useAuth(): UseAuth {
   useEffect(() => {
     if (!user && refreshToken && refetchRef.current === false) {
       refetchRef.current = true;
-      refresh();
+      refresh().then(() => {
+        refetchRef.current = false;
+      });
     }
   }, [user, refreshToken, refresh]);
 

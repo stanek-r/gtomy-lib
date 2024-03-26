@@ -16,11 +16,9 @@ export function FormPage({
   const { MenuComponent, FooterComponent } = useContext(LayoutContext);
   return (
     <div className="flex h-screen flex-col">
-      <>
-        {withComponent(ForceMenuComponent ?? MenuComponent)}
-        {children}
-        {withComponent(ForceFooterComponent ?? FooterComponent)}
-      </>
+      {withComponent(ForceMenuComponent ?? MenuComponent)}
+      {children}
+      {withComponent(ForceFooterComponent ?? FooterComponent)}
     </div>
   );
 }

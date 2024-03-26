@@ -7,13 +7,14 @@ export const iconSizeClasses = {
   md: 'size-5',
   lg: 'size-6',
   xl: 'size-8',
+  '2xl': 'size-8',
 };
 
 export type IconType = JSX.Element | SvgIconType;
 
 export interface IconProps {
   icon?: IconType;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   className?: string;
 }
 

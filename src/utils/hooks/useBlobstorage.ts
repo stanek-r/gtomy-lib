@@ -9,7 +9,7 @@ export interface UseBlobstorageReturn {
   deleteImage: (imageId: string) => Promise<void>;
 }
 
-export function useBlobstorage(path: string, baseURL?: string) {
+export function useBlobstorage(path: string, baseURL?: string): UseBlobstorageReturn {
   const { post, delete: deleteRequest } = useRequest(baseURL);
   const [error, setError] = useState<any | null>();
 

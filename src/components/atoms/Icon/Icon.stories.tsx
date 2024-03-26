@@ -10,12 +10,6 @@ const meta: Meta<typeof Icon> = {
 export default meta;
 type Story = StoryObj<typeof Icon>;
 
-export const Default: Story = {
-  args: {
-    icon: XMarkIcon,
-  },
-};
-
 export const Small: Story = {
   args: {
     icon: XMarkIcon,
