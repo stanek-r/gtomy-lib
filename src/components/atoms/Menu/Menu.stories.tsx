@@ -2,8 +2,10 @@ import React from 'react';
 import { ComponentStory } from '@storybook/react';
 import { Menu } from '@/components/atoms/Menu/Menu';
 import { BrowserRouter, Link } from 'react-router-dom';
-import { DialogWrapper } from '@/components/organisms/dialog';
 import { MenuItem } from '@/components/atoms/Menu/MenuItem';
+import { config } from '@/config';
+
+config.appDisplayName = 'App display name';
 
 export default {
   title: 'Atoms/Menu',
@@ -11,7 +13,7 @@ export default {
   decorators: [
     (Story: any) => (
       <BrowserRouter>
-        <DialogWrapper>{Story()}</DialogWrapper>
+        <Story />
       </BrowserRouter>
     ),
   ],

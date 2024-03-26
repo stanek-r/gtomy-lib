@@ -4,6 +4,7 @@ import { BrowserRouter, Link } from 'react-router-dom';
 import { Footer } from '@/components/atoms/Footer/Footer';
 import { FooterSocialItem } from '@/components/atoms/Footer/FooterSocialItem';
 import { FooterItem } from '@/components/atoms/Footer/FooterItem';
+import { CpuChipIcon } from '@heroicons/react/24/outline';
 
 export default {
   title: 'Atoms/Footer',
@@ -13,6 +14,10 @@ export default {
 
 export const Short: ComponentStory<typeof Footer> = () => {
   return <Footer title="Best page ever" />;
+};
+
+export const ShortWithIcon: ComponentStory<typeof Footer> = () => {
+  return <Footer title="Best page ever" icon={CpuChipIcon} />;
 };
 
 export const ShortWithSocial: ComponentStory<typeof Footer> = () => {
