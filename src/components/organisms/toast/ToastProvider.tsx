@@ -28,7 +28,9 @@ export interface ShowToastSettings {
 export function showToast({ message, duration, icon, iconColor = 'base' }: ShowToastSettings) {
   let svgIcon: FunctionComponentElement<any> | undefined = undefined;
   if (isSvgIcon(icon)) {
-    svgIcon = React.createElement(icon, { className: twMerge('size-5 mr-1.5', typographyColorClasses[iconColor]) });
+    svgIcon = React.createElement(icon, {
+      className: twMerge('shrink-0 size-5 mr-1.5', typographyColorClasses[iconColor]),
+    });
   }
   return toast(message, { icon: svgIcon, duration });
 }

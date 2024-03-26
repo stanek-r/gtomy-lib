@@ -3,7 +3,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import { twMerge } from 'tailwind-merge';
-import { isSvgIcon, SvgIconType } from '@/models';
+import { Icon, IconType } from '@/components/atoms/Icon';
 
 export const maxWidthOptions = {
   sm: 'max-w-screen-sm ',
@@ -24,7 +24,7 @@ export interface ExtendedBaseDialogProps extends BaseDialogProps {
   actions?: ReactNode;
   children?: ReactNode;
   spacing?: boolean;
-  icon?: ReactNode | SvgIconType;
+  icon?: IconType;
 }
 
 export function BaseDialog({
@@ -45,10 +45,6 @@ export function BaseDialog({
     }
   };
 
-  if (isSvgIcon(icon)) {
-    icon = React.createElement(icon, { className: 'size-8 shrink-0 mt-0.5' });
-  }
-
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChangeHandler}>
       <Dialog.Portal>
@@ -61,7 +57,7 @@ export function BaseDialog({
         >
           {icon ? (
             <div className="flex gap-4">
-              {icon}
+              <Icon icon={icon} size="xl" />
               <div className={twMerge(spacing && 'space-y-4')}>{children}</div>
             </div>
           ) : (

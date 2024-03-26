@@ -1,8 +1,8 @@
-import React, { ElementType, ForwardedRef, ReactNode } from 'react';
-import { isSvgIcon, SvgIconType } from '@/models/svg.model';
+import React, { ElementType, ForwardedRef } from 'react';
 import { buttonColorClasses, buttonSizeClasses } from '@/components/atoms/Button';
 import { forwardRefWithTypes, PropsAs } from '@/utils/typeHelpers';
 import { twMerge } from 'tailwind-merge';
+import { Icon, IconType } from '@/components/atoms/Icon';
 
 export const buttonVariantClasses = {
   square: 'btn-square',
@@ -14,7 +14,7 @@ export interface ButtonIconProps<T extends ElementType> {
   variant?: 'square' | 'circle';
   color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info' | 'ghost';
   size?: 'sm' | 'lg';
-  icon?: ReactNode | SvgIconType;
+  icon: IconType;
   outline?: true;
 }
 
@@ -22,10 +22,6 @@ function ButtonIconInner<T extends ElementType = 'button'>(
   { as, color, size, className, icon, variant = 'square', outline, ...other }: PropsAs<ButtonIconProps<T>, T>,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
-  if (isSvgIcon(icon)) {
-    icon = React.createElement(icon, { className: 'size-6 shrink-0' });
-  }
-
   const Component = as ?? 'button';
   const type = Component === 'button' ? 'button' : undefined;
   return (
@@ -42,7 +38,7 @@ function ButtonIconInner<T extends ElementType = 'button'>(
       )}
       {...other}
     >
-      {icon}
+      <Icon icon={icon} size="lg" />
     </Component>
   );
 }

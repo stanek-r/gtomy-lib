@@ -1,7 +1,7 @@
-import React, { ElementType, ForwardedRef, ReactNode } from 'react';
-import { isSvgIcon, SvgIconType } from '@/models/svg.model';
+import React, { ElementType, ForwardedRef } from 'react';
 import { forwardRefWithTypes, PropsAs } from '@/utils/typeHelpers';
 import { twMerge } from 'tailwind-merge';
+import { Icon, IconType } from '@/components/atoms/Icon';
 
 export const buttonColorClasses = {
   primary: 'btn-primary',
@@ -23,8 +23,8 @@ export interface ButtonProps<T extends ElementType> {
   color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info' | 'ghost';
   size?: 'sm' | 'lg';
   wide?: boolean;
-  startIcon?: ReactNode | SvgIconType;
-  endIcon?: ReactNode | SvgIconType;
+  startIcon?: IconType;
+  endIcon?: IconType;
   outline?: true;
 }
 
@@ -32,13 +32,6 @@ export function ButtonInner<T extends ElementType = 'button'>(
   { as, children, color, size, className, startIcon, endIcon, outline, ...other }: PropsAs<ButtonProps<T>, T>,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
-  if (isSvgIcon(startIcon)) {
-    startIcon = React.createElement(startIcon, { className: 'size-5 mr-1.5' });
-  }
-  if (isSvgIcon(endIcon)) {
-    endIcon = React.createElement(endIcon, { className: 'size-5 ml-1.5' });
-  }
-
   const Component = as ?? 'button';
   const type = Component === 'button' ? 'button' : undefined;
   return (
@@ -54,9 +47,9 @@ export function ButtonInner<T extends ElementType = 'button'>(
       )}
       {...other}
     >
-      {startIcon}
+      <Icon icon={startIcon} className="mr-1.5" />
       {children}
-      {endIcon}
+      <Icon icon={endIcon} className="ml-1.5" />
     </Component>
   );
 }
