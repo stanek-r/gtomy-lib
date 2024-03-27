@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { Button } from '@/components/atoms/Button';
@@ -16,7 +16,15 @@ export interface ErrorStateProps {
 export function ErrorState({ error, retry, showRetry, className }: ErrorStateProps) {
   const { t } = useTranslation('common');
 
+  const isBadRequest = useMemo(() => isAxiosError(error) && error.response?.status === 400, [error]);
   const isForbiddenError = useMemo(() => isAxiosError(error) && error.response?.status === 403, [error]);
+  const isBadGateway = useMemo(() => isAxiosError(error) && error.response?.status === 502, [error]);
+
+  useEffect(() => {
+    if (isAxiosError(error)) {
+      console.warn(error.response?.statusText, error.response?.data);
+    }
+  }, [error]);
 
   if (isForbiddenError) {
     return (
@@ -25,6 +33,38 @@ export function ErrorState({ error, retry, showRetry, className }: ErrorStatePro
         <Typography size="xl" color="warning">
           {t('noAccess.title', { ns: 'auth' })}
         </Typography>
+      </div>
+    );
+  }
+
+  if (isBadGateway) {
+    return (
+      <div role="alert" className={twMerge('alert alert-error', className)}>
+        <XCircleIcon className="size-8" />
+        <Typography size="xl" color="error">
+          {t('state.badGateway')}
+        </Typography>
+        {showRetry && (
+          <Button startIcon={ArrowPathIcon} color="ghost" onClick={retry}>
+            {t('state.retry')}
+          </Button>
+        )}
+      </div>
+    );
+  }
+
+  if (isBadRequest) {
+    return (
+      <div role="alert" className={twMerge('alert alert-error', className)}>
+        <XCircleIcon className="size-8" />
+        <Typography size="xl" color="error">
+          {t('state.badRequest')}
+        </Typography>
+        {showRetry && (
+          <Button startIcon={ArrowPathIcon} color="ghost" onClick={retry}>
+            {t('state.retry')}
+          </Button>
+        )}
       </div>
     );
   }
