@@ -6,7 +6,7 @@ import { useState } from 'react';
 export interface UseBlobstorageReturn {
   error: any | null;
   uploadImage: (file: FormFile) => Promise<Image | null>;
-  deleteImage: (imageId: string) => Promise<void>;
+  deleteImage: (imageId?: string) => Promise<void>;
 }
 
 export function useBlobstorage(path: string, baseURL?: string): UseBlobstorageReturn {

@@ -12,6 +12,8 @@ export const common = {
   'languages.czech': 'Čeština',
   'state.loading': 'Načítání...',
   'state.error': 'Při načítání došlo k chybě.',
+  'state.badGateway': 'Backendové služby nejsou dostupné.',
+  'state.badRequest': 'Zadané údaje nemohly být backendovou službou zpracovány.',
   'state.retry': 'Zkusit znovu',
   'theme.system': 'Systém',
   'theme.light': 'Světlý',

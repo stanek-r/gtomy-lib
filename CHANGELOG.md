@@ -15,8 +15,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### ⚠ BREAKING CHANGES
 
 * rename subscriber role to vip
-* add Toggle and FormToggle
-* add Switch and FormSwitch
 * add fallbackValue to useQuery
 
 ### Features
