@@ -10,7 +10,7 @@ import { Typography } from '@/components/atoms/Typography';
 import { useAuth, useBreakpoint } from '@/utils/hooks';
 import { Icon, IconType } from '@/components/atoms/Icon';
 
-const AppIcon = <img src="/favicon.ico" className="mr-2 size-8 rounded shrink-0" alt="Application icon" />;
+const AppIcon = <img src="/favicon.ico" className="mr-2 size-8 shrink-0 rounded" alt="Application icon" />;
 
 export interface MenuProps {
   children?: ReactNode;

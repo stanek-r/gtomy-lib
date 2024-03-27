@@ -34,7 +34,7 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog, sh
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const { t } = useTranslation('auth');
-  const { control, handleSubmit, watch } = useForm<LoginForm>({
+  const { control, handleSubmit } = useForm<LoginForm>({
     defaultValues: { username: undefined, password: undefined, rememberLogin: false },
   });
   const [redirectUrl, setRedirectUrl] = useLoginRedirectStore((state: any) => [

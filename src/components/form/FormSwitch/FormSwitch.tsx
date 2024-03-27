@@ -26,7 +26,6 @@ export function FormSwitch<
 >({ placeholder, className, type, ...useControllerProps }: FormSwitchProps<TFieldValues, TName>) {
   const {
     field: { onChange, value, ...other },
-    errorMessage,
   } = useFormController(useControllerProps);
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {

@@ -5,7 +5,7 @@ import { useTranslation } from '@/utils/hooks';
 import { Icon, IconType } from '@/components/atoms/Icon';
 import { Typography } from '@/components/atoms/Typography';
 
-const AppIcon = <img src="/favicon.ico" className="size-8 rounded shrink-0" alt="Application icon" />;
+const AppIcon = <img src="/favicon.ico" className="size-8 shrink-0 rounded" alt="Application icon" />;
 
 export interface FooterLinks {
   header: string;
@@ -51,7 +51,7 @@ export function Footer({
   if (height === 'short') {
     if (socialMedia == null) {
       return (
-        <footer className="footer footer-center bg-neutral p-4 text-neutral-content min-h-16">
+        <footer className="footer footer-center min-h-16 bg-neutral p-4 text-neutral-content">
           <aside className="grid-flow-col items-center">
             {showIcon && <Icon icon={icon} size="xl" />}
             <Typography weight="semibold">{title}</Typography>
@@ -60,7 +60,7 @@ export function Footer({
       );
     }
     return (
-      <footer className="footer items-center bg-neutral p-4 text-neutral-content min-h-16">
+      <footer className="footer min-h-16 items-center bg-neutral p-4 text-neutral-content">
         <aside className="grid-flow-col items-center">
           {showIcon && <Icon icon={icon} size="xl" />}
           <Typography weight="semibold">{title}</Typography>
@@ -72,7 +72,7 @@ export function Footer({
 
   if (links.length === 0) {
     return (
-      <footer className="footer bg-neutral p-10 text-neutral-content min-h-16">
+      <footer className="footer min-h-16 bg-neutral p-10 text-neutral-content">
         <aside>
           {showIcon && <Icon icon={icon} size="xl" />}
           <p>
@@ -95,7 +95,7 @@ export function Footer({
   }
   if (socialMedia == null) {
     return (
-      <footer className="footer bg-neutral p-10 text-neutral-content min-h-16">
+      <footer className="footer min-h-16 bg-neutral p-10 text-neutral-content">
         <aside>
           {showIcon && <Icon icon={icon} size="xl" />}
           <p>
@@ -121,7 +121,7 @@ export function Footer({
 
   return (
     <>
-      <footer className="footer bg-neutral p-10 text-neutral-content min-h-16">
+      <footer className="footer min-h-16 bg-neutral p-10 text-neutral-content">
         {links.map((link, index) => (
           <nav key={index}>
             <header className="footer-title">{link.header}</header>
@@ -130,7 +130,7 @@ export function Footer({
         ))}
         {showSettings && <FooterSettings />}
       </footer>
-      <footer className="footer border-t border-base-300 bg-neutral px-10 py-4 text-neutral-content min-h-16">
+      <footer className="footer min-h-16 border-t border-base-300 bg-neutral px-10 py-4 text-neutral-content">
         <aside className="grid-flow-col items-center">
           {showIcon && <Icon icon={icon} size="xl" />}
           <p>
