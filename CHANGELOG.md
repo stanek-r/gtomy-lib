@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.3.1...v0.4.0) (2024-03-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove deprecated components
+* rework useDialog hook
+
+### Features
+
+* add ErrorState error messages ([cf56c98](https://gitlab.com/gtomy-services/gtomy-lib/commit/cf56c986c6b43e8bb703decc8d1cef37d02ac1b3))
+* add GTomyRoute to unify basic routes ([5ef1693](https://gitlab.com/gtomy-services/gtomy-lib/commit/5ef1693700bd390265e040f3a32ae81664118cf1))
+* add Icon component ([9f4f6b4](https://gitlab.com/gtomy-services/gtomy-lib/commit/9f4f6b4f44a29e085fddd75f521ce6280a9c65de))
+* add icon option to Footer ([09d2322](https://gitlab.com/gtomy-services/gtomy-lib/commit/09d2322f6027770ad9f275256d9a7c577cef38b4))
+* add login error messages ([3117638](https://gitlab.com/gtomy-services/gtomy-lib/commit/3117638834bd1c6ecc1e4da6b25b6f8fadf0c24b))
+* add NotFoundPage ([ce46965](https://gitlab.com/gtomy-services/gtomy-lib/commit/ce46965ba6585faed5dcbae3e22f698e24d8b90e))
+* add title to RequirePermission ([419e6ff](https://gitlab.com/gtomy-services/gtomy-lib/commit/419e6ff62c002a690cb6bb9544e82bd3bdf1ae75))
+* add width option to ProfilePage ([dba0d84](https://gitlab.com/gtomy-services/gtomy-lib/commit/dba0d84890d54a8e82e3c0b0801ac38b4550359f))
+* npm audit vulnerabilities ([6011bf8](https://gitlab.com/gtomy-services/gtomy-lib/commit/6011bf88164b81fe044504db1a1e516ebb37058d))
+* refresh access token after changing profile if refresh token is available ([76ad268](https://gitlab.com/gtomy-services/gtomy-lib/commit/76ad268801ab0831ee9153dcc6afb8664822e336))
+* remove deprecated components ([9e5da32](https://gitlab.com/gtomy-services/gtomy-lib/commit/9e5da32d0a9b863ad5ddbea1e81fd76a70839de2))
+* rework useDialog hook ([2d0d114](https://gitlab.com/gtomy-services/gtomy-lib/commit/2d0d11458cded7c3fb5950827300eb885fc494bb))
+* show menu and loading if user is being redirected from RequireAuth ([b1fb0d4](https://gitlab.com/gtomy-services/gtomy-lib/commit/b1fb0d4d04ff03aa51a230c9192ce595e999ce0a))
+* unify icon option in Footer and Menu ([b7edceb](https://gitlab.com/gtomy-services/gtomy-lib/commit/b7edceb8cee65825ee33d1ca9dce3e7db0f809fc))
+
+
+### Bug Fixes
+
+* double refresh token generation ([8238efd](https://gitlab.com/gtomy-services/gtomy-lib/commit/8238efd328730c476703cc61cc63b1eb3f84bfca))
+* redirect to login if refresh token is set to null ([bfe8502](https://gitlab.com/gtomy-services/gtomy-lib/commit/bfe8502b1f70f97792121649748fe35d53e62b39))
+* use column page on profile page ([49e1ce0](https://gitlab.com/gtomy-services/gtomy-lib/commit/49e1ce016fea73697f38fa823917ed9586bee7b6))
+
 ### [0.3.1](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.3.0...v0.3.1) (2024-03-25)
 
 
