@@ -1,8 +1,7 @@
-import React, { FunctionComponentElement } from 'react';
+import React from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { isSvgIcon, SvgIconType } from '@/models';
-import { twMerge } from 'tailwind-merge';
-import { typographyColorClasses } from '@/components/atoms/Typography';
+import { SvgIconType } from '@/models';
+import { Icon } from '@/components/atoms/Icon';
 
 export function ToastProvider() {
   return <Toaster position="bottom-right" reverseOrder={false} />;
@@ -26,11 +25,8 @@ export interface ShowToastSettings {
 }
 
 export function showToast({ message, duration, icon, iconColor = 'base' }: ShowToastSettings) {
-  let svgIcon: FunctionComponentElement<any> | undefined = undefined;
-  if (isSvgIcon(icon)) {
-    svgIcon = React.createElement(icon, {
-      className: twMerge('shrink-0 size-5 mr-1.5', typographyColorClasses[iconColor]),
-    });
-  }
-  return toast(message, { icon: svgIcon, duration });
+  return toast(message, {
+    icon: <Icon icon={icon} color={iconColor} content={false} className="mr-1.5" />,
+    duration,
+  });
 }

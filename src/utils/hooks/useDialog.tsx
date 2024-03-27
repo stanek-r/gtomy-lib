@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useCallback, useState } from 'react';
 import { BaseDialogProps } from '@/components/organisms/dialog';
 import { DialogElement } from '@/components/organisms/dialog/DialogElement';
 import { InfoDialog, InfoDialogProps } from '@/components/organisms/dialog/info';
@@ -19,12 +19,15 @@ export interface UseDialogReturn {
 export function useDialog(dialog: FunctionComponent<BaseDialogProps> | JSX.Element): UseDialogReturn {
   const [open, setOpen] = useState<boolean>(false);
 
+  const DialogElementInner = useCallback(
+    () => <DialogElement dialog={dialog} open={open} onOpenChange={(_open: boolean) => setOpen(_open)} />,
+    [dialog, open, setOpen]
+  );
+
   return {
     openDialog: () => setOpen(true),
     closeDialog: () => setOpen(false),
-    DialogElement: () => (
-      <DialogElement dialog={dialog} open={open} onOpenChange={(_open: boolean) => setOpen(_open)} />
-    ),
+    DialogElement: DialogElementInner,
   };
 }
 

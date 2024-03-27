@@ -3,22 +3,10 @@ import axios from 'axios';
 import { useAccessTokenStore, User, useRefreshTokenStore } from '@/utils/hooks/storage/useAuthStore';
 import { config } from '@/config';
 import { logError } from '@/utils/sentry';
-import { jwtDecode } from 'jwt-decode';
 import { AuthDialog } from '@/components/auth/AuthDialog';
 import { DialogElementType, useDialog } from '@/utils/hooks/useDialog';
 import { useRequest } from '@/utils/hooks/useRequest';
-
-const mapAccessTokenToUser = (token?: string): User | undefined => {
-  if (!token) {
-    return;
-  }
-  try {
-    return jwtDecode(token);
-  } catch (e: any) {
-    logError(e);
-    return;
-  }
-};
+import { mapAccessTokenToUser } from '@/utils/auth';
 
 interface UseAuth {
   isAuthenticated: boolean;

@@ -9,6 +9,7 @@ import { ErrorState } from '@/components/atoms/ErrorState';
 import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
 import { PERM_ROLES, PermRoles, Roles } from '@/utils/hooks/storage';
 import { useAuth, useRequest } from '@/utils/hooks';
+import { LoadingState } from '@/components/atoms/LoadingState';
 
 export interface RequireAuthProps {
   MenuComponent?: FunctionComponent | JSX.Element;
@@ -42,7 +43,7 @@ export function RequireAuth({
       setRedirectUrl(pathname);
       navigate('/login');
     }
-  }, [isAuthenticated, navigate, refreshToken]);
+  }, [pathname, isAuthenticated, navigate, refreshToken, setRedirectUrl]);
 
   const handleRequestAccess = () => {
     if (!isAuthenticated) {
@@ -60,7 +61,11 @@ export function RequireAuth({
   };
 
   if (!isAuthenticated) {
-    return null;
+    return (
+      <FormPage MenuComponent={MenuComponent} FooterComponent={FooterComponent}>
+        <LoadingState showLoading className="flex-1 justify-center" />
+      </FormPage>
+    );
   }
   const role = user?.roles.find((role) => role.application === (application ?? config.appName))?.role ?? 'user';
   const roleId = PERM_ROLES[role as PermRoles];

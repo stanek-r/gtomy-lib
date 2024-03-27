@@ -37,3 +37,19 @@ export const ExtraLarge: Story = {
     size: 'xl',
   },
 };
+
+export const ExtraExtraLarge: Story = {
+  args: {
+    icon: XMarkIcon,
+    size: '2xl',
+  },
+};
+
+export const Color: Story = {
+  args: {
+    icon: XMarkIcon,
+    size: 'xl',
+    color: 'accent',
+    content: false,
+  },
+};

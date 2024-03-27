@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { cloneElement, createElement, FunctionComponent } from 'react';
 import { BaseDialogProps } from '@/components/organisms/dialog/BaseDialog';
 
 export interface DialogElementProps {
@@ -13,7 +13,7 @@ export function DialogElement({ dialog, open, onOpenChange }: DialogElementProps
     onOpenChange,
   };
   if (typeof dialog === 'function') {
-    return React.createElement(dialog, props);
+    return createElement(dialog, props);
   }
-  return React.cloneElement(dialog, props);
+  return cloneElement(dialog, props);
 }

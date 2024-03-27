@@ -4,6 +4,8 @@ export const common = {
   close: 'Zavřít',
   confirm: 'Potvrdit',
   cancel: 'Zrušit',
+  'notFound.title': 'Nenalezeno',
+  'notFound.subtitle': 'Tato stránka neexistuje.',
   'footer.settings': 'Nastavení',
   'footer.social': 'Sociální sítě',
   'languages.english': 'Angličtina',

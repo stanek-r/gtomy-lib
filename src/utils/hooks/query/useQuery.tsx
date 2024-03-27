@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { FunctionComponent, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   DefaultError,
   QueryClient,
@@ -7,7 +7,7 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query';
-import { QueryWrapperProps } from './QueryWrapper';
+import { QueryWrapper, QueryWrapperProps } from './QueryWrapper';
 
 export interface QueryOptions<
   TQueryFnData = unknown,
@@ -22,8 +22,9 @@ export interface QueryOptions<
 }
 
 export type QueryResult<TData = unknown, TError = DefaultError> = {
-  wrapperProps: Omit<QueryWrapperProps<TData>, 'children'>;
   data: TData;
+  QueryWrapper: FunctionComponent<{ children: JSX.Element }>;
+  wrapperProps: Omit<QueryWrapperProps<TData>, 'children'>;
 } & Omit<UseQueryResult<TData, TError>, 'data'>;
 
 export function useQuery<
@@ -39,6 +40,32 @@ export function useQuery<
   const query = useTanStackQuery(queryOptions, queryClient);
 
   const [showLoading, setShowLoading] = useState<boolean>(false);
+  const queryWrapperProps = useMemo(
+    () => ({
+      isLoading: query.isLoading,
+      showLoading: showLoading,
+      isError: query.isError,
+      error: query.error,
+      loadingMessage: loadingMessage,
+      showRetry: options.showRetry,
+      retry: query.refetch,
+      data: query.data,
+    }),
+    [
+      query.data,
+      query.isLoading,
+      query.isError,
+      query.error,
+      query.refetch,
+      options.showRetry,
+      showLoading,
+      loadingMessage,
+    ]
+  );
+  const QueryWrapperInner = useCallback(
+    ({ children }: { children: JSX.Element }) => <QueryWrapper {...queryWrapperProps}>{children}</QueryWrapper>,
+    [queryWrapperProps]
+  );
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -50,15 +77,7 @@ export function useQuery<
   return {
     ...query,
     data: query.data == null ? fallbackValue : query.data,
-    wrapperProps: {
-      isLoading: query.isLoading,
-      showLoading: showLoading,
-      isError: query.isError,
-      error: query.error,
-      loadingMessage: loadingMessage,
-      showRetry: options.showRetry,
-      retry: query.refetch,
-      data: query.data,
-    },
+    QueryWrapper: QueryWrapperInner,
+    wrapperProps: queryWrapperProps,
   };
 }
