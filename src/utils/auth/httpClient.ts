@@ -1,27 +1,11 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { logError } from '@/utils/sentry';
 import { config } from '@/config';
-import { getAccessToken, getRefreshToken, setAccessToken, setRefreshToken, User } from '@/utils/hooks/storage';
-import { RefreshToken } from '@/models/refreshToken.dto';
-import { jwtDecode } from 'jwt-decode';
+import { getAccessToken, getRefreshToken, setAccessToken, setRefreshToken } from '@/utils/hooks/storage';
 import { showToast } from '@/components/organisms/toast/ToastProvider';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import i18n from '@/utils/i18n';
-
-const isTokenValid = (token?: string): boolean => {
-  if (!token) {
-    return false;
-  }
-  try {
-    const decodedToken: RefreshToken | User = jwtDecode(token);
-    const expirationDate = new Date(decodedToken.exp * 1000);
-    const currentDate = new Date();
-    return expirationDate >= currentDate;
-  } catch (e: any) {
-    logError(e);
-    return false;
-  }
-};
+import { isTokenValid } from '@/utils/auth/userUtils';
 
 export interface HttpClientConfig {
   baseURL?: string;
@@ -57,13 +41,10 @@ export class HttpClient {
       },
       (error) => {
         if (error.response && error.response.status === 401) {
-          return this.refresh().then((result) => {
-            if (result && error.config) {
-              return this.httpClient.request(error.config);
-            }
-            window.location.replace('/login');
-            return Promise.reject(error);
-          });
+          setAccessToken(undefined);
+          setRefreshToken(undefined);
+          window.location.replace('/login');
+          return Promise.reject(error);
         }
         showToast({
           message: i18n.t('state.error'),

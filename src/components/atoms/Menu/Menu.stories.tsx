@@ -4,6 +4,7 @@ import { Menu } from '@/components/atoms/Menu/Menu';
 import { BrowserRouter, Link } from 'react-router-dom';
 import { MenuItem } from '@/components/atoms/Menu/MenuItem';
 import { config } from '@/config';
+import { CpuChipIcon } from '@heroicons/react/24/outline';
 
 config.appDisplayName = 'App display name';
 
@@ -21,7 +22,7 @@ export default {
 
 export const Default: ComponentStory<typeof Menu> = () => {
   return (
-    <Menu>
+    <Menu showIcon icon={CpuChipIcon}>
       <MenuItem as={Link} to="/">
         Test link 1
       </MenuItem>

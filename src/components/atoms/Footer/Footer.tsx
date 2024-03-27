@@ -5,6 +5,8 @@ import { useTranslation } from '@/utils/hooks';
 import { Icon, IconType } from '@/components/atoms/Icon';
 import { Typography } from '@/components/atoms/Typography';
 
+const AppIcon = <img src="/favicon.ico" className="size-8 rounded shrink-0" alt="Application icon" />;
+
 export interface FooterLinks {
   header: string;
   links: ReactNode;
@@ -17,6 +19,7 @@ export interface FooterProps {
   socialMedia?: ReactNode;
   links?: FooterLinks[];
   showSettings?: boolean;
+  showIcon?: boolean;
   icon?: IconType;
 }
 
@@ -40,7 +43,8 @@ export function Footer({
   links = [],
   socialMedia,
   showSettings,
-  icon,
+  icon = AppIcon,
+  showIcon,
 }: FooterProps) {
   const { t } = useTranslation('common');
 
@@ -49,7 +53,7 @@ export function Footer({
       return (
         <footer className="footer footer-center bg-neutral p-4 text-neutral-content min-h-16">
           <aside className="grid-flow-col items-center">
-            <Icon icon={icon} size="2xl" />
+            {showIcon && <Icon icon={icon} size="xl" />}
             <Typography weight="semibold">{title}</Typography>
           </aside>
         </footer>
@@ -58,7 +62,7 @@ export function Footer({
     return (
       <footer className="footer items-center bg-neutral p-4 text-neutral-content min-h-16">
         <aside className="grid-flow-col items-center">
-          <Icon icon={icon} size="2xl" />
+          {showIcon && <Icon icon={icon} size="xl" />}
           <Typography weight="semibold">{title}</Typography>
         </aside>
         <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">{socialMedia}</nav>
@@ -70,7 +74,7 @@ export function Footer({
     return (
       <footer className="footer bg-neutral p-10 text-neutral-content min-h-16">
         <aside>
-          <Icon icon={icon} size="2xl" />
+          {showIcon && <Icon icon={icon} size="xl" />}
           <p>
             <Typography weight="semibold">{title}</Typography>
             {subtitle && (
@@ -93,7 +97,7 @@ export function Footer({
     return (
       <footer className="footer bg-neutral p-10 text-neutral-content min-h-16">
         <aside>
-          <Icon icon={icon} size="2xl" />
+          {showIcon && <Icon icon={icon} size="xl" />}
           <p>
             <Typography weight="semibold">{title}</Typography>
             {subtitle && (
@@ -128,7 +132,7 @@ export function Footer({
       </footer>
       <footer className="footer border-t border-base-300 bg-neutral px-10 py-4 text-neutral-content min-h-16">
         <aside className="grid-flow-col items-center">
-          <Icon icon={icon} size="2xl" />
+          {showIcon && <Icon icon={icon} size="xl" />}
           <p>
             <Typography weight="semibold">{title}</Typography>
             {subtitle && (

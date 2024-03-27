@@ -17,7 +17,7 @@ export const Short: ComponentStory<typeof Footer> = () => {
 };
 
 export const ShortWithIcon: ComponentStory<typeof Footer> = () => {
-  return <Footer title="Best page ever" icon={CpuChipIcon} />;
+  return <Footer title="Best page ever" icon={CpuChipIcon} showIcon />;
 };
 
 export const ShortWithSocial: ComponentStory<typeof Footer> = () => {

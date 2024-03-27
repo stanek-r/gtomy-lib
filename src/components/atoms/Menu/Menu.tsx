@@ -8,6 +8,9 @@ import { UserIcon } from '@heroicons/react/24/outline';
 import { ProfileImage } from '@/components/auth/ProfileImage';
 import { Typography } from '@/components/atoms/Typography';
 import { useAuth, useBreakpoint } from '@/utils/hooks';
+import { Icon, IconType } from '@/components/atoms/Icon';
+
+const AppIcon = <img src="/favicon.ico" className="mr-2 size-8 rounded shrink-0" alt="Application icon" />;
 
 export interface MenuProps {
   children?: ReactNode;
@@ -16,9 +19,18 @@ export interface MenuProps {
   bottomMenuActions?: ReactNode;
   dropdownActions?: ReactNode;
   showIcon?: boolean;
+  icon?: IconType;
 }
 
-export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActions, dropdownActions }: MenuProps) {
+export function Menu({
+  children,
+  showAuth,
+  authDialog,
+  showIcon,
+  bottomMenuActions,
+  dropdownActions,
+  icon = AppIcon,
+}: MenuProps) {
   const { user, isAuthenticated, logout, openLoginDialog, AuthDialogElement } = useAuth();
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
@@ -40,7 +52,7 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActio
           <div className="flex-1">
             {config.appDisplayName && (
               <Link className="btn btn-ghost text-xl" to="/">
-                {showIcon && <img src="/favicon.ico" className="mr-2 size-8 rounded" alt="Favicon" />}
+                {showIcon && <Icon icon={icon} size="xl" className="mr-2" />}
                 {config.appDisplayName}
               </Link>
             )}
@@ -112,7 +124,7 @@ export function Menu({ children, showAuth, authDialog, showIcon, bottomMenuActio
         )}
         <div className={children ? 'navbar-center' : 'navbar-start'}>
           <Link className="btn btn-ghost text-xl" to="/">
-            {showIcon && <img src="/favicon.ico" className="mr-2 size-8 rounded" alt="Favicon" />}
+            {showIcon && <Icon icon={icon} size="xl" className="mr-2" />}
             {config.appDisplayName}
           </Link>
         </div>
