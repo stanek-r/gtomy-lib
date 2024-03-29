@@ -47,7 +47,7 @@ export function PrivacyPolicyPage({ width }: PrivacyPolicyPageProps) {
         {t('privacy.sharingOfYourInformation.title')}
       </Typography>
       <p>{t('privacy.sharingOfYourInformation.paragraph1')}</p>
-      <p>{t('privacy.sharingOfYourInformation.paragraph1')}</p>
+      <p>{t('privacy.sharingOfYourInformation.paragraph2')}</p>
       <Typography size="xl" weight="medium">
         {t('privacy.dataSecurity.title')}
       </Typography>
