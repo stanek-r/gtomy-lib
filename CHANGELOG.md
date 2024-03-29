@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.4.0...v0.4.1) (2024-03-29)
+
+
+### Features
+
+* add glass button ([5d89686](https://gitlab.com/gtomy-services/gtomy-lib/commit/5d896860dad871a43aff5871b237f2573da55931))
+* add LoginButton component ([48459e8](https://gitlab.com/gtomy-services/gtomy-lib/commit/48459e84a5ad34de8a2513aacca0159fb8223e7e))
+* add request access storage ([f130e44](https://gitlab.com/gtomy-services/gtomy-lib/commit/f130e444f9a1043e855b73d326a319915406931f))
+* do not generate refresh token if user doesn't remembers login ([443960d](https://gitlab.com/gtomy-services/gtomy-lib/commit/443960da3a3f1e9a43939300c8ac3741440fb88e))
+* fetch access requests from backend ([11a25b8](https://gitlab.com/gtomy-services/gtomy-lib/commit/11a25b823a0b4fcf07c284ea48eeb14c61d6cfb9))
+
+
+### Bug Fixes
+
+* gtomy route ([f72d723](https://gitlab.com/gtomy-services/gtomy-lib/commit/f72d72382edcde862cac0e1d9e8f7a9be6161a2f))
+* multiple refresh token requests ([40050bc](https://gitlab.com/gtomy-services/gtomy-lib/commit/40050bc0e1867e0c16f3afd74dd37746641763a6))
+* privacy policy texts ([e26ed95](https://gitlab.com/gtomy-services/gtomy-lib/commit/e26ed955deaa7162c3ad8629410de4fd6b03deba))
+
 ## [0.4.0](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.3.1...v0.4.0) (2024-03-27)
 
 
