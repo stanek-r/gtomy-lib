@@ -8,6 +8,7 @@ import { LockClosedIcon } from '@heroicons/react/24/outline';
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { Button } from '@/components/atoms/Button';
 import { useRequestAccessStore } from '@/utils/hooks/storage/useRequestAccessStore';
+import { LoginButton } from '@/components/auth/LoginButton';
 
 export interface RequirePermissionProps {
   title?: string;
@@ -62,7 +63,11 @@ export function RequirePermission({
   };
 
   if (!isAuthenticated) {
-    return null;
+    return (
+      <div className={twMerge('flex justify-center items-center', className)}>
+        <LoginButton />
+      </div>
+    );
   }
   if (error) {
     return <ErrorState error={error} className={className} />;

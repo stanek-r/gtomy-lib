@@ -85,7 +85,9 @@ export function Menu({
                     </div>
                   </>
                 ) : (
-                  <Button onClick={login}>{t('login')}</Button>
+                  <Button onClick={login} color="primary">
+                    {t('login')}
+                  </Button>
                 )}
               </>
             )}

@@ -1,5 +1,6 @@
 export * from './AuthDialog';
 export * from './GoogleLoginButton';
+export * from './LoginButton';
 export * from './LoginForm';
 export * from './ProfileForm';
 export * from './ProfileImage';

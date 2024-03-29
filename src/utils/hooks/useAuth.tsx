@@ -39,7 +39,12 @@ export function useAuth(): UseAuth {
 
   const login = async (username: string, password: string, rememberLogin?: boolean): Promise<boolean | null> => {
     return axios
-      .post(`${config.authUrl}/login`, { username, password, appName: config.appName })
+      .post(`${config.authUrl}/login`, {
+        username,
+        password,
+        sendRefreshToken: !!rememberLogin,
+        appName: config.appName,
+      })
       .then(async (response) => {
         if (!response.data?.access_token) {
           console.error('No access token');
