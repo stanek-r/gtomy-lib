@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Typography } from '@/components/atoms/Typography';
 import { twMerge } from 'tailwind-merge';
 import { PERM_ROLES, PermRoles, Roles } from '@/utils/hooks/storage';
@@ -7,6 +7,7 @@ import { useAuth, useRequest, useTranslation } from '@/utils/hooks';
 import { LockClosedIcon } from '@heroicons/react/24/outline';
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { Button } from '@/components/atoms/Button';
+import { useRequestAccessStore } from '@/utils/hooks/storage/useRequestAccessStore';
 
 export interface RequirePermissionProps {
   title?: string;
@@ -31,7 +32,14 @@ export function RequirePermission({
   const { isAuthenticated, user } = useAuth();
   const { put } = useRequest(config.authUrl);
   const [error, setError] = useState<any | null>(null);
-  const [sent, setSent] = useState<boolean>(false);
+  const [requests, addRequest] = useRequestAccessStore((state: any) => [state.requests, state.addRequest]);
+  const sent = useMemo(
+    () =>
+      requests.find(
+        (request: Roles) => request.role === minimalRole && request.application === (application ?? config.appName)
+      ) != null,
+    [requests, minimalRole, application]
+  );
 
   const minimalRoleId = PERM_ROLES[minimalRole];
   const role = user?.roles.find((role) => role.application === (application ?? config.appName))?.role ?? 'user';
@@ -41,13 +49,14 @@ export function RequirePermission({
     if (!isAuthenticated) {
       return;
     }
-    put('/request-access', {
-      application: config.appName,
+    const request = {
+      application: application ?? config.appName,
       role: minimalRole,
-    } as Roles)
+    } as Roles;
+    put('/request-access', request)
       .then(() => {
         setError(null);
-        setSent(true);
+        addRequest(request);
       })
       .catch((e) => setError(e));
   };

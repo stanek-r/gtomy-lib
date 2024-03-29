@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
@@ -10,6 +10,7 @@ import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectSto
 import { PERM_ROLES, PermRoles, Roles } from '@/utils/hooks/storage';
 import { useAuth, useRequest } from '@/utils/hooks';
 import { LoadingState } from '@/components/atoms/LoadingState';
+import { useRequestAccessStore } from '@/utils/hooks/storage/useRequestAccessStore';
 
 export interface RequireAuthProps {
   MenuComponent?: FunctionComponent | JSX.Element;
@@ -32,11 +33,19 @@ export function RequireAuth({
   const { isAuthenticated, user, logout, refreshToken } = useAuth();
   const { put } = useRequest(config.authUrl);
   const [error, setError] = useState<any | null>(null);
-  const [sent, setSent] = useState<boolean>(false);
   const navigate = useNavigate();
   const minimalRoleId = PERM_ROLES[minimalRole];
   const { pathname } = useLocation();
   const [setRedirectUrl] = useLoginRedirectStore((state: any) => [state.setRedirectUrl]);
+
+  const [requests, addRequest] = useRequestAccessStore((state: any) => [state.requests, state.addRequest]);
+  const sent = useMemo(
+    () =>
+      requests.find(
+        (request: Roles) => request.role === minimalRole && request.application === (application ?? config.appName)
+      ) != null,
+    [requests, minimalRole, application]
+  );
 
   useEffect(() => {
     if (!isAuthenticated && !refreshToken) {
@@ -49,13 +58,14 @@ export function RequireAuth({
     if (!isAuthenticated) {
       return;
     }
-    put('/request-access', {
-      application: config.appName,
+    const request = {
+      application: application ?? config.appName,
       role: minimalRole,
-    } as Roles)
+    } as Roles;
+    put('/request-access', request)
       .then(() => {
         setError(null);
-        setSent(true);
+        addRequest(request);
       })
       .catch((e) => setError(e));
   };

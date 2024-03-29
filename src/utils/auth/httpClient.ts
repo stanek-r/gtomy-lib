@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { logError } from '@/utils/sentry';
-import { getAccessToken, getRefreshToken, setAccessToken, setRefreshToken } from '@/utils/hooks/storage';
+import { clearRequests, getAccessToken, getRefreshToken, setAccessToken, setRefreshToken } from '@/utils/hooks/storage';
 import { isTokenValid } from '@/utils/auth/userUtils';
 import { config } from '@/config';
 import { getRefetch, setRefetch } from '@/utils/hooks/storage/useRefetchStore';
@@ -36,6 +36,7 @@ export class HttpClient {
           } else {
             setRefreshToken(undefined);
             setAccessToken(undefined);
+            clearRequests();
           }
           return request;
         });
@@ -88,24 +89,24 @@ export class HttpClient {
     return this.httpClient
       .post(url, data, config)
       .then((response) => response.data)
-      .catch(this.handlerErrorWithToast);
+      .catch(this.showErrorToast);
   }
 
   async put<T>(url: string, data?: any, config?: AxiosRequestConfig<T>): Promise<T> {
     return this.httpClient
       .put(url, data, config)
       .then((response) => response.data)
-      .catch(this.handlerErrorWithToast);
+      .catch(this.showErrorToast);
   }
 
   async delete<T>(url: string, config?: AxiosRequestConfig<T>): Promise<T> {
     return this.httpClient
       .delete(url, config)
       .then((response) => response.data)
-      .catch(this.handlerErrorWithToast);
+      .catch(this.showErrorToast);
   }
 
-  private handlerErrorWithToast(error: any): void {
+  private showErrorToast(error: any): void {
     showToast({
       message: i18n.t('state.error2'),
       icon: XMarkIcon,
