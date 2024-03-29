@@ -18,6 +18,7 @@ export interface RequirePermissionProps {
   application?: string;
   displayWarning?: boolean;
   displayRequestAccess?: boolean;
+  displayLoginInDialog?: boolean;
 }
 
 export function RequirePermission({
@@ -28,6 +29,7 @@ export function RequirePermission({
   application,
   displayWarning,
   displayRequestAccess,
+  displayLoginInDialog,
 }: RequirePermissionProps): JSX.Element | null {
   const { t } = useTranslation('auth');
   const { isAuthenticated, user } = useAuth();
@@ -38,9 +40,12 @@ export function RequirePermission({
   const roleId = PERM_ROLES[role as PermRoles];
 
   if (!isAuthenticated) {
+    if (!displayWarning) {
+      return null;
+    }
     return (
       <div className={twMerge('flex justify-center items-center', className)}>
-        <LoginButton />
+        <LoginButton authDialog={displayLoginInDialog} />
       </div>
     );
   }
