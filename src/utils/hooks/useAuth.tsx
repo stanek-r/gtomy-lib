@@ -8,7 +8,7 @@ import { DialogElementType, useDialog } from '@/utils/hooks/useDialog';
 import { isTokenValid, mapAccessTokenToUser } from '@/utils/auth';
 import { getRefetch } from '@/utils/hooks/storage/useRefetchStore';
 import { useRequest } from '@/utils/hooks/useRequest';
-import { useRequestAccessStore } from '@/utils/hooks/storage';
+import { clearRequests } from '@/utils/hooks/storage';
 
 interface UseAuth {
   isAuthenticated: boolean;
@@ -29,7 +29,6 @@ export function useAuth(): UseAuth {
     state.refreshToken,
     state.setRefreshToken,
   ]);
-  const [clearRequests] = useRequestAccessStore((state: any) => [state.clearRequests]);
 
   const user = useMemo(() => mapAccessTokenToUser(accessToken), [accessToken]);
   const { openDialog, DialogElement } = useDialog(AuthDialog);

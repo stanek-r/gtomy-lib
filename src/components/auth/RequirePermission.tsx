@@ -1,14 +1,14 @@
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import { Typography } from '@/components/atoms/Typography';
 import { twMerge } from 'tailwind-merge';
-import { PERM_ROLES, PermRoles, Roles } from '@/utils/hooks/storage';
+import { PERM_ROLES, PermRoles } from '@/utils/hooks/storage';
 import { config } from '@/config';
-import { useAuth, useRequest, useTranslation } from '@/utils/hooks';
+import { useAuth, useTranslation } from '@/utils/hooks';
 import { LockClosedIcon } from '@heroicons/react/24/outline';
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { Button } from '@/components/atoms/Button';
-import { useRequestAccessStore } from '@/utils/hooks/storage/useRequestAccessStore';
 import { LoginButton } from '@/components/auth/LoginButton';
+import { useRequestAccess } from '@/utils/hooks/useRequestAccess';
 
 export interface RequirePermissionProps {
   title?: string;
@@ -31,36 +31,11 @@ export function RequirePermission({
 }: RequirePermissionProps): JSX.Element | null {
   const { t } = useTranslation('auth');
   const { isAuthenticated, user } = useAuth();
-  const { put } = useRequest(config.authUrl);
-  const [error, setError] = useState<any | null>(null);
-  const [requests, addRequest] = useRequestAccessStore((state: any) => [state.requests, state.addRequest]);
-  const sent = useMemo(
-    () =>
-      requests.find(
-        (request: Roles) => request.role === minimalRole && request.application === (application ?? config.appName)
-      ) != null,
-    [requests, minimalRole, application]
-  );
+  const { sent, requestAccess, error, sending } = useRequestAccess(minimalRole, application);
 
   const minimalRoleId = PERM_ROLES[minimalRole];
   const role = user?.roles.find((role) => role.application === (application ?? config.appName))?.role ?? 'user';
   const roleId = PERM_ROLES[role as PermRoles];
-
-  const handleRequestAccess = () => {
-    if (!isAuthenticated) {
-      return;
-    }
-    const request = {
-      application: application ?? config.appName,
-      role: minimalRole,
-    } as Roles;
-    put('/request-access', request)
-      .then(() => {
-        setError(null);
-        addRequest(request);
-      })
-      .catch((e) => setError(e));
-  };
 
   if (!isAuthenticated) {
     return (
@@ -86,7 +61,9 @@ export function RequirePermission({
           (sent ? (
             <Typography color="warning">{t('requestRoleSent')}</Typography>
           ) : (
-            <Button onClick={handleRequestAccess}>{t('requestRole')}</Button>
+            <Button onClick={requestAccess} disabled={sending}>
+              {t('requestRole')}
+            </Button>
           ))}
       </div>
     );

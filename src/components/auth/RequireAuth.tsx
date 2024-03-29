@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
@@ -7,10 +7,10 @@ import { config } from '@/config';
 import { FormPage } from '@/components/layout';
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
-import { PERM_ROLES, PermRoles, Roles } from '@/utils/hooks/storage';
-import { useAuth, useRequest } from '@/utils/hooks';
+import { PERM_ROLES, PermRoles } from '@/utils/hooks/storage';
+import { useAuth } from '@/utils/hooks';
 import { LoadingState } from '@/components/atoms/LoadingState';
-import { useRequestAccessStore } from '@/utils/hooks/storage/useRequestAccessStore';
+import { useRequestAccess } from '@/utils/hooks/useRequestAccess';
 
 export interface RequireAuthProps {
   MenuComponent?: FunctionComponent | JSX.Element;
@@ -31,21 +31,11 @@ export function RequireAuth({
 }: RequireAuthProps): JSX.Element | null {
   const { t } = useTranslation('auth');
   const { isAuthenticated, user, logout, refreshToken } = useAuth();
-  const { put } = useRequest(config.authUrl);
-  const [error, setError] = useState<any | null>(null);
   const navigate = useNavigate();
   const minimalRoleId = PERM_ROLES[minimalRole];
   const { pathname } = useLocation();
   const [setRedirectUrl] = useLoginRedirectStore((state: any) => [state.setRedirectUrl]);
-
-  const [requests, addRequest] = useRequestAccessStore((state: any) => [state.requests, state.addRequest]);
-  const sent = useMemo(
-    () =>
-      requests.find(
-        (request: Roles) => request.role === minimalRole && request.application === (application ?? config.appName)
-      ) != null,
-    [requests, minimalRole, application]
-  );
+  const { sent, requestAccess, error, sending } = useRequestAccess(minimalRole, application);
 
   useEffect(() => {
     if (!isAuthenticated && !refreshToken) {
@@ -53,22 +43,6 @@ export function RequireAuth({
       navigate('/login');
     }
   }, [pathname, isAuthenticated, navigate, refreshToken, setRedirectUrl]);
-
-  const handleRequestAccess = () => {
-    if (!isAuthenticated) {
-      return;
-    }
-    const request = {
-      application: application ?? config.appName,
-      role: minimalRole,
-    } as Roles;
-    put('/request-access', request)
-      .then(() => {
-        setError(null);
-        addRequest(request);
-      })
-      .catch((e) => setError(e));
-  };
 
   if (!isAuthenticated) {
     return (
@@ -100,7 +74,7 @@ export function RequireAuth({
             </div>
             {displayRequestAccess && (
               <div className="flex justify-center">
-                <Button onClick={handleRequestAccess} outline>
+                <Button onClick={requestAccess} outline disabled={sending}>
                   {t('requestRole')}
                 </Button>
               </div>
