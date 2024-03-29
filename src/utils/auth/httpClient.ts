@@ -1,11 +1,12 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { logError } from '@/utils/sentry';
-import { config } from '@/config';
 import { getAccessToken, getRefreshToken, setAccessToken, setRefreshToken } from '@/utils/hooks/storage';
-import { showToast } from '@/components/organisms/toast/ToastProvider';
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import i18n from '@/utils/i18n';
 import { isTokenValid } from '@/utils/auth/userUtils';
+import { config } from '@/config';
+import { getRefetch, setRefetch } from '@/utils/hooks/storage/useRefetchStore';
+import { showToast } from '@/components/organisms/toast';
+import i18n from '@/utils/i18n';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 export interface HttpClientConfig {
   baseURL?: string;
@@ -26,9 +27,15 @@ export class HttpClient {
           request.headers.set('authorization', `Bearer ${token}`);
           return request;
         }
+        if (getRefetch()) {
+          return request;
+        }
         return this.refresh().then((renewedToken) => {
           if (renewedToken) {
             request.headers.set('authorization', `Bearer ${renewedToken}`);
+          } else {
+            setRefreshToken(undefined);
+            setAccessToken(undefined);
           }
           return request;
         });
@@ -40,17 +47,6 @@ export class HttpClient {
         return response;
       },
       (error) => {
-        if (error.response && error.response.status === 401) {
-          setAccessToken(undefined);
-          setRefreshToken(undefined);
-          window.location.replace('/login');
-          return Promise.reject(error);
-        }
-        showToast({
-          message: i18n.t('state.error'),
-          icon: XMarkIcon,
-          iconColor: 'error',
-        });
         logError(error);
         return Promise.reject(error);
       }
@@ -60,9 +56,9 @@ export class HttpClient {
   async refresh(): Promise<string | null> {
     const refreshToken = getRefreshToken();
     if (!isTokenValid(refreshToken)) {
-      setRefreshToken(undefined);
       return null;
     }
+    setRefetch(true);
     return axios
       .post(`${config.authUrl}/refresh-token`, { refreshToken: refreshToken })
       .then((response) => {
@@ -77,8 +73,10 @@ export class HttpClient {
         return response.data.access_token;
       })
       .catch(() => {
-        setRefreshToken(undefined);
         return null;
+      })
+      .finally(() => {
+        setRefetch(false);
       });
   }
 
@@ -87,14 +85,32 @@ export class HttpClient {
   }
 
   async post<T>(url: string, data?: any, config?: AxiosRequestConfig<T>): Promise<T> {
-    return this.httpClient.post(url, data, config).then((response) => response.data);
+    return this.httpClient
+      .post(url, data, config)
+      .then((response) => response.data)
+      .catch(this.handlerErrorWithToast);
   }
 
   async put<T>(url: string, data?: any, config?: AxiosRequestConfig<T>): Promise<T> {
-    return this.httpClient.put(url, data, config).then((response) => response.data);
+    return this.httpClient
+      .put(url, data, config)
+      .then((response) => response.data)
+      .catch(this.handlerErrorWithToast);
   }
 
   async delete<T>(url: string, config?: AxiosRequestConfig<T>): Promise<T> {
-    return this.httpClient.delete(url, config).then((response) => response.data);
+    return this.httpClient
+      .delete(url, config)
+      .then((response) => response.data)
+      .catch(this.handlerErrorWithToast);
+  }
+
+  private handlerErrorWithToast(error: any): void {
+    showToast({
+      message: i18n.t('state.error2'),
+      icon: XMarkIcon,
+      iconColor: 'error',
+    });
+    throw error;
   }
 }

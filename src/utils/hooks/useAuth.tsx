@@ -1,12 +1,13 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { useAccessTokenStore, User, useRefreshTokenStore } from '@/utils/hooks/storage/useAuthStore';
 import { config } from '@/config';
 import { logError } from '@/utils/sentry';
 import { AuthDialog } from '@/components/auth/AuthDialog';
 import { DialogElementType, useDialog } from '@/utils/hooks/useDialog';
+import { isTokenValid, mapAccessTokenToUser } from '@/utils/auth';
+import { getRefetch } from '@/utils/hooks/storage/useRefetchStore';
 import { useRequest } from '@/utils/hooks/useRequest';
-import { mapAccessTokenToUser } from '@/utils/auth';
 
 interface UseAuth {
   isAuthenticated: boolean;
@@ -30,16 +31,8 @@ export function useAuth(): UseAuth {
   const user = useMemo(() => mapAccessTokenToUser(accessToken), [accessToken]);
   const { openDialog, DialogElement } = useDialog(AuthDialog);
   const { refresh } = useRequest(config.authUrl);
-  const refetchRef = useRef<boolean>(false);
 
-  useEffect(() => {
-    if (!user && refreshToken && refetchRef.current === false) {
-      refetchRef.current = true;
-      refresh().then(() => {
-        refetchRef.current = false;
-      });
-    }
-  }, [user, refreshToken, refresh]);
+  useEffect(() => checkTokenValidity(), [user, accessToken, refreshToken]);
 
   const login = async (username: string, password: string, rememberLogin?: boolean): Promise<boolean | null> => {
     return axios
@@ -96,6 +89,23 @@ export function useAuth(): UseAuth {
   const logout = (): void => {
     setRefreshToken(undefined);
     setAccessToken(undefined);
+  };
+
+  const checkTokenValidity = () => {
+    if (getRefetch()) {
+      return;
+    }
+    if (user == null || !isTokenValid(accessToken)) {
+      if (!isTokenValid(refreshToken)) {
+        logout();
+        return;
+      }
+      refresh().then((result) => {
+        if (result == null) {
+          logout();
+        }
+      });
+    }
   };
 
   return {

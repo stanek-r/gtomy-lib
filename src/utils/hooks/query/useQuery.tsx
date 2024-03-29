@@ -8,6 +8,10 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query';
 import { QueryWrapper, QueryWrapperProps } from './QueryWrapper';
+import { showToast } from '@/components/organisms/toast';
+import i18n from '@/utils/i18n';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { isAxiosError } from 'axios';
 
 export interface QueryOptions<
   TQueryFnData = unknown,
@@ -73,6 +77,20 @@ export function useQuery<
     }, delay);
     return () => clearTimeout(timer);
   }, [delay]);
+
+  useEffect(() => {
+    if (!query.isError || query.isLoading) {
+      return;
+    }
+    if (isAxiosError(query.error) && (query.error.response?.status === 401 || query.error.response?.status === 403)) {
+      return;
+    }
+    showToast({
+      message: i18n.t('state.error'),
+      icon: XMarkIcon,
+      iconColor: 'error',
+    });
+  }, [query.isError, query.isLoading, query.error]);
 
   return {
     ...query,

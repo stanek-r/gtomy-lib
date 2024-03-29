@@ -12,6 +12,7 @@ export const common = {
   'languages.czech': 'Czech',
   'state.loading': 'Loading...',
   'state.error': 'An error occurred while loading.',
+  'state.error2': 'An error occurred while sending the request.',
   'state.badGateway': 'Backend services are not available.',
   'state.badRequest': 'The entered data could not be processed by the backend service.',
   'state.retry': 'Retry',

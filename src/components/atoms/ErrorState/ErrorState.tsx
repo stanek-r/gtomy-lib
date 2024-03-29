@@ -17,21 +17,22 @@ export function ErrorState({ error, retry, showRetry, className }: ErrorStatePro
   const { t } = useTranslation('common');
 
   const isBadRequest = useMemo(() => isAxiosError(error) && error.response?.status === 400, [error]);
+  const isUnauthorizedError = useMemo(() => isAxiosError(error) && error.response?.status === 401, [error]);
   const isForbiddenError = useMemo(() => isAxiosError(error) && error.response?.status === 403, [error]);
   const isBadGateway = useMemo(() => isAxiosError(error) && error.response?.status === 502, [error]);
 
   useEffect(() => {
     if (isAxiosError(error)) {
-      console.warn(error.response?.statusText, error.response?.data);
+      console.error(error.response?.statusText, error.response?.data);
     }
   }, [error]);
 
-  if (isForbiddenError) {
+  if (isUnauthorizedError || isForbiddenError) {
     return (
       <div role="alert" className={twMerge('alert alert-warning', className)}>
         <LockClosedIcon className="size-8" />
         <Typography size="xl" color="warning">
-          {t('noAccess.title', { ns: 'auth' })}
+          {t('noPermission.title', { ns: 'auth' })}
         </Typography>
       </div>
     );
