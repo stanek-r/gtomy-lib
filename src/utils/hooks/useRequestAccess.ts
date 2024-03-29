@@ -23,7 +23,7 @@ export function useRequestAccess(role: string, application = config.appName): Us
     fallbackValue: [],
   });
 
-  const [requests, addRequest] = useRequestAccessStore((state: any) => [state.theme, state.setTheme]);
+  const [requests, addRequest] = useRequestAccessStore((state: any) => [state.requests, state.addRequest]);
   const [sending, setSending] = useState<boolean>(false);
   const [error, setError] = useState<any | null>(null);
 
