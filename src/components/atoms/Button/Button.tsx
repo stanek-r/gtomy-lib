@@ -23,13 +23,26 @@ export interface ButtonProps<T extends ElementType> {
   color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info' | 'ghost';
   size?: 'sm' | 'lg';
   wide?: boolean;
+  glass?: boolean;
   startIcon?: IconType;
   endIcon?: IconType;
   outline?: true;
 }
 
 export function ButtonInner<T extends ElementType = 'button'>(
-  { as, children, color, size, className, startIcon, endIcon, outline, ...other }: PropsAs<ButtonProps<T>, T>,
+  {
+    as,
+    children,
+    color,
+    size,
+    className,
+    startIcon,
+    endIcon,
+    outline,
+    wide,
+    glass,
+    ...other
+  }: PropsAs<ButtonProps<T>, T>,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   const Component = as ?? 'button';
@@ -43,6 +56,8 @@ export function ButtonInner<T extends ElementType = 'button'>(
         color && buttonColorClasses[color],
         size && buttonSizeClasses[size],
         outline && 'btn-outline',
+        wide && 'btn-wide',
+        glass && 'glass',
         className
       )}
       {...other}
