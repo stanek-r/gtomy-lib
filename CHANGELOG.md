@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.2](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.4.1...v0.4.2) (2024-03-29)
+
+
+### Bug Fixes
+
+* requests undefined state ([6646cd0](https://gitlab.com/gtomy-services/gtomy-lib/commit/6646cd076251b5aae619f81af1010994b94f53c6))
+* requirePermission always displaying login button ([00815e5](https://gitlab.com/gtomy-services/gtomy-lib/commit/00815e547a8c3a816763a58ba42cebb056585480))
+
 ### [0.4.1](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.4.0...v0.4.1) (2024-03-29)
 
 
