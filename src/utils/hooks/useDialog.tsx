@@ -7,6 +7,7 @@ import {
   ConfirmationDialog,
   ConfirmationDialogProps,
 } from '@/components/organisms/dialog/confirmation/ConfirmationDialog';
+import { ImageDialog, ImageDialogProps } from '@/components/organisms/dialog/fullscreen/ImageDialog';
 
 export type DialogElementType = FunctionComponent;
 
@@ -41,4 +42,8 @@ export function useAlertDialog(props: Omit<AlertDialogProps, 'open' | 'onOpenCha
 
 export function useConfirmationDialog(props: Omit<ConfirmationDialogProps, 'open' | 'onOpenChange'>): UseDialogReturn {
   return useDialog(<ConfirmationDialog {...props} />);
+}
+
+export function useImageDialog(props: Omit<ImageDialogProps, 'open' | 'onOpenChange'>): UseDialogReturn {
+  return useDialog(<ImageDialog {...props} />);
 }

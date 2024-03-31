@@ -1,6 +1,12 @@
 import React from 'react';
 import type { ComponentStory, Meta } from '@storybook/react';
-import { useAlertDialog, useConfirmationDialog, useDialog, useInfoDialog } from '@/utils/hooks/useDialog';
+import {
+  useAlertDialog,
+  useConfirmationDialog,
+  useDialog,
+  useImageDialog,
+  useInfoDialog,
+} from '@/utils/hooks/useDialog';
 import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
 import { BaseDialog } from './BaseDialog';
@@ -84,6 +90,21 @@ export const Confirmation: ComponentStory<typeof BaseDialog> = () => {
     title: 'Lorem ipsum dolor sit amet',
     text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero.',
     onAction,
+  });
+
+  return (
+    <>
+      <DialogElement />
+      <Button onClick={openDialog}>Open dialog</Button>
+    </>
+  );
+};
+
+export const ImageDialog: ComponentStory<typeof BaseDialog> = () => {
+  const { openDialog, DialogElement } = useImageDialog({
+    title: 'Lorem ipsum dolor sit amet',
+    subtitle: 'Lorem ipsum dolor sit amet',
+    imageId: 'IMAGE_ID',
   });
 
   return (
