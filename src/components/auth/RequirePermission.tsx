@@ -44,7 +44,10 @@ export function RequirePermission({
       return null;
     }
     return (
-      <div className={twMerge('flex justify-center items-center', className)}>
+      <div className={twMerge('flex flex-col gap-4 justify-center items-center', className)}>
+        <Typography size="2xl" weight="semibold">
+          {title ?? t('noLogin.title')}
+        </Typography>
         <LoginButton authDialog={displayLoginInDialog} />
       </div>
     );

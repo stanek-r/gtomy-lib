@@ -13,6 +13,7 @@ export const auth = {
   loginErrorGoogle: 'Při přihlašování do služby Google došlo k chybě. Zkuste to prosím znovu.',
   cannotRegister: 'Nelze se registrovat s tímto uživatelským jménem, emailem nebo heslem',
   'noPermission.title': 'Nemáte přístup k této části',
+  'noLogin.title': 'Tato část vyžaduje přihlášení',
   'noAccess.title': 'Nemáte přístup k této stránce',
   'noAccess.subtitle': 'potřebujete alespoň roli {{minimalRole}}',
   cannotLoginWiaGoogle: 'Přihlášení se nezdařilo',

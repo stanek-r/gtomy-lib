@@ -13,6 +13,7 @@ export const auth = {
   loginErrorGoogle: 'An error occurred during Google sign-in. Please try again.',
   cannotRegister: 'Cannot register with this username, email or password',
   'noPermission.title': "You don't have access to this part of page",
+  'noLogin.title': 'This part of the page requires login',
   'noAccess.title': "You don't have access to this page",
   'noAccess.subtitle': 'You need a least {{minimalRole}} role',
   cannotLoginWiaGoogle: 'Could not login with Google',
