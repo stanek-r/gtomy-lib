@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.3](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.4.2...v0.4.3) (2024-04-04)
+
+
+### Features
+
+* add ImageDialog ([f4a6825](https://gitlab.com/gtomy-services/gtomy-lib/commit/f4a6825fdb603a02c706608f107a77e175de1866))
+* add indicator if user is loading ([be6a83a](https://gitlab.com/gtomy-services/gtomy-lib/commit/be6a83a531c5ae1bdbf383fb8ef23066d4ae1c62))
+* add title to login button in RequirePermission ([18e3a66](https://gitlab.com/gtomy-services/gtomy-lib/commit/18e3a66f80aac54af016cc50d866fa5b4dc1b42f))
+* add usePageQuery ([c057f4f](https://gitlab.com/gtomy-services/gtomy-lib/commit/c057f4f70c914d6284ea5f608eddfc96d55ded4f))
+
 ### [0.4.2](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.4.1...v0.4.2) (2024-03-29)
 
 
