@@ -9,6 +9,7 @@ import { ProfileImage } from '@/components/auth/ProfileImage';
 import { Typography } from '@/components/atoms/Typography';
 import { useAuth, useBreakpoint } from '@/utils/hooks';
 import { Icon, IconType } from '@/components/atoms/Icon';
+import { LoadingState } from '@/components/atoms/LoadingState';
 
 const AppIcon = <img src="/favicon.ico" className="mr-2 size-8 shrink-0 rounded" alt="Application icon" />;
 
@@ -31,7 +32,7 @@ export function Menu({
   dropdownActions,
   icon = AppIcon,
 }: MenuProps) {
-  const { user, isAuthenticated, logout, openLoginDialog, AuthDialogElement } = useAuth();
+  const { user, isAuthenticated, logout, openLoginDialog, AuthDialogElement, isLoadingUser } = useAuth();
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
   const navigate = useNavigate();
@@ -84,6 +85,8 @@ export function Menu({
                       </ul>
                     </div>
                   </>
+                ) : isLoadingUser ? (
+                  <LoadingState showLoading size="md" layout="row" className="mr-4" />
                 ) : (
                   <Button onClick={login} color="primary">
                     {t('login')}
@@ -156,6 +159,8 @@ export function Menu({
                     </li>
                   </ul>
                 </div>
+              ) : isLoadingUser ? (
+                <LoadingState size="md" showLoading hideMessage className="mr-3" />
               ) : (
                 <ButtonIcon icon={UserIcon} color="ghost" onClick={login} title={t('login')} />
               )}

@@ -12,6 +12,7 @@ import { clearRequests } from '@/utils/hooks/storage';
 
 interface UseAuth {
   isAuthenticated: boolean;
+  isLoadingUser: boolean;
   token: string | undefined;
   refreshToken: string | undefined;
   user: User | undefined;
@@ -33,6 +34,8 @@ export function useAuth(): UseAuth {
   const user = useMemo(() => mapAccessTokenToUser(accessToken), [accessToken]);
   const { openDialog, DialogElement } = useDialog(AuthDialog);
   const { refresh } = useRequest(config.authUrl);
+
+  const isLoadingUser = useMemo(() => user == null && refreshToken != null, [user, refreshToken]);
 
   useEffect(() => checkTokenValidity(), [user, accessToken, refreshToken]);
 
@@ -118,6 +121,7 @@ export function useAuth(): UseAuth {
 
   return {
     isAuthenticated: !!user,
+    isLoadingUser,
     token: accessToken,
     refreshToken: refreshToken,
     user: user,

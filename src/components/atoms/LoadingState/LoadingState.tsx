@@ -33,6 +33,7 @@ export interface LoadingStateProps {
   layout?: 'column' | 'row';
   size?: 'xs' | 'sm' | 'md' | 'lg';
   className?: string;
+  hideMessage?: boolean;
 }
 
 export function LoadingState({
@@ -42,6 +43,7 @@ export function LoadingState({
   size = 'lg',
   layout = 'column',
   className,
+  hideMessage,
 }: LoadingStateProps) {
   const { t } = useTranslation('common');
 
@@ -52,7 +54,7 @@ export function LoadingState({
   return (
     <div className={twMerge('flex items-center gap-2', layout === 'column' ? 'flex-col' : 'flex-row', className)}>
       <span className={twMerge('loading', loadingSizes[size], loadingVariants[variant])}></span>
-      <Typography size={loadingTextSizes[size] as any}>{message ?? t('state.loading')}</Typography>
+      {!hideMessage && <Typography size={loadingTextSizes[size] as any}>{message ?? t('state.loading')}</Typography>}
     </div>
   );
 }
