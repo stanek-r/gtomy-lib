@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.4](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.4.3...v0.4.4) (2024-04-05)
+
+
+### Features
+
+* add ScrollToTop ([49c43d7](https://gitlab.com/gtomy-services/gtomy-lib/commit/49c43d7a980acd1906ec2e0ff46caa0a33e23672))
+
+
+### Bug Fixes
+
+* layout of ImageDialog ([643b127](https://gitlab.com/gtomy-services/gtomy-lib/commit/643b127814cb37371af2aa6c8fb035db87b37394))
+
 ### [0.4.3](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.4.2...v0.4.3) (2024-04-04)
 
 
