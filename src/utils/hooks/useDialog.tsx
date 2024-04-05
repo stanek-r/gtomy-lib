@@ -7,7 +7,7 @@ import {
   ConfirmationDialog,
   ConfirmationDialogProps,
 } from '@/components/organisms/dialog/confirmation/ConfirmationDialog';
-import { ImageDialog, ImageDialogProps } from '@/components/organisms/dialog/fullscreen/ImageDialog';
+import { ImageDialog, ImageDialogProps } from '@/components/organisms/dialog/image/ImageDialog';
 
 export type DialogElementType = FunctionComponent;
 

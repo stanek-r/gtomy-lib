@@ -18,10 +18,11 @@ export function CloudflareImage({
   ...otherProps
 }: CloudflareImageProps) {
   const src = `${config.cloudFlareImagesUrl}/${imageId}`;
+  const isSame = srcType === placeholderType;
   return (
     <LazyLoadImage
       src={`${src}/${srcType}`}
-      placeholderSrc={`${src}/${placeholderType}`}
+      placeholderSrc={isSame ? undefined : `${src}/${placeholderType}`}
       effect={effect}
       {...otherProps}
     />
