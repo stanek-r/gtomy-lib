@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { defaultQueryClient } from '@/utils/hooks/query';
 import { LayoutProvider } from '@/components/layout';
+import { ScrollToTop } from '@/components/organisms/ScrollToTop';
 
 export interface GTomyProvider {
   children: JSX.Element;
@@ -22,6 +23,7 @@ export function GTomyProvider({
 }: GTomyProvider) {
   return (
     <BrowserRouter basename={routerBasename}>
+      <ScrollToTop />
       <QueryClientProvider client={queryClient}>
         <LayoutProvider MenuComponent={MenuComponent} FooterComponent={FooterComponent}>
           <ToastProvider />
