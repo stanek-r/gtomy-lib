@@ -39,7 +39,7 @@ export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenCha
           <div className="flex flex-col items-center gap-4">
             <div
               className={twMerge(
-                'flex w-full max-w-screen-lg justify-between p-4',
+                'relative flex w-full max-w-screen-lg justify-between p-4',
                 !loaded && 'justify-center items-center',
                 subtitle ? 'min-h-[96px]' : 'min-h-[68px]'
               )}
