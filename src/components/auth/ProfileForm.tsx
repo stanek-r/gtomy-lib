@@ -25,7 +25,7 @@ interface ProfileForm {
 
 export function ProfileForm({ children, className }: Props) {
   const { t } = useTranslation('auth');
-  const { user, refreshToken } = useAuth();
+  const { user, refreshToken, updateAccessToken } = useAuth();
   const { control, handleSubmit, reset } = useForm<ProfileForm>({
     defaultValues: {
       displayName: user?.displayName ?? null,
@@ -33,7 +33,7 @@ export function ProfileForm({ children, className }: Props) {
       profileImage: null,
     },
   });
-  const { post, refresh } = useRequest(config.authUrl);
+  const { post } = useRequest(config.authUrl);
   const [error, setError] = useState<any | null>(null);
   const [saving, setSaving] = useState<boolean>(false);
   const { uploadImage, deleteImage, error: blobstorageError } = useBlobstorage('/user-profile/profile-image');
@@ -47,16 +47,31 @@ export function ProfileForm({ children, className }: Props) {
       displayName: form.displayName,
       email: form.email,
     })
-      .then(() => setError(null))
+      .then(() => {
+        setError(null);
+        return updateAccessToken();
+      })
       .catch((e) => {
         setError(e);
-        refresh();
       });
     reset({
       email: form.email,
       displayName: form.displayName,
       profileImage: null,
     });
+    setSaving(false);
+  };
+
+  const onUpdate = async () => {
+    setSaving(true);
+    const refreshedUser = await updateAccessToken();
+    if (refreshedUser != null) {
+      reset({
+        displayName: refreshedUser.displayName,
+        email: refreshedUser.email,
+        profileImage: null,
+      });
+    }
     setSaving(false);
   };
 
@@ -116,9 +131,12 @@ export function ProfileForm({ children, className }: Props) {
         )}
         {error && <ErrorState className="lg:col-span-2" error={error} />}
         {blobstorageError && <ErrorState className="lg:col-span-2" error={blobstorageError} />}
-        <div className="flex justify-center lg:col-span-2">
-          <Button type="submit" disabled={saving}>
+        <div className="flex gap-4 justify-center lg:col-span-2">
+          <Button type="submit" disabled={saving} color="primary">
             {t('save')}
+          </Button>
+          <Button onClick={onUpdate} disabled={saving}>
+            {t('reloadAccessToken')}
           </Button>
         </div>
         <div className="divider lg:col-span-2"></div>

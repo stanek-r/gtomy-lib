@@ -5,10 +5,13 @@ import { config } from '@/config';
 import { logError } from '@/utils/sentry';
 import { AuthDialog } from '@/components/auth/AuthDialog';
 import { DialogElementType, useDialog } from '@/utils/hooks/useDialog';
-import { isTokenValid, mapAccessTokenToUser } from '@/utils/auth';
+import { isTokenValid, JwtResponse, mapAccessTokenToUser } from '@/utils/auth';
 import { getRefetch } from '@/utils/hooks/storage/useRefetchStore';
 import { useRequest } from '@/utils/hooks/useRequest';
 import { clearRequests } from '@/utils/hooks/storage';
+import { showToast } from '@/components/organisms/toast';
+import i18n from '@/utils/i18n';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 interface UseAuth {
   isAuthenticated: boolean;
@@ -21,6 +24,7 @@ interface UseAuth {
   register: (username: string, password: string, email: string) => Promise<boolean>;
   logout: () => void;
   openLoginDialog: () => void;
+  updateAccessToken: () => Promise<User | null>;
   AuthDialogElement: DialogElementType;
 }
 
@@ -33,7 +37,7 @@ export function useAuth(): UseAuth {
 
   const user = useMemo(() => mapAccessTokenToUser(accessToken), [accessToken]);
   const { openDialog, DialogElement } = useDialog(AuthDialog);
-  const { refresh } = useRequest(config.authUrl);
+  const { get, refresh } = useRequest(config.authUrl);
 
   const isLoadingUser = useMemo(() => user == null && refreshToken != null, [user, refreshToken]);
 
@@ -119,6 +123,22 @@ export function useAuth(): UseAuth {
     }
   };
 
+  const updateAccessToken = async (): Promise<User | null> => {
+    return get<JwtResponse>('/access-token')
+      .then((response) => {
+        setAccessToken(response.access_token);
+        return mapAccessTokenToUser(response.access_token) ?? null;
+      })
+      .catch(() => {
+        showToast({
+          message: i18n.t('state.error2'),
+          icon: XMarkIcon,
+          iconColor: 'error',
+        });
+        return null;
+      });
+  };
+
   return {
     isAuthenticated: !!user,
     isLoadingUser,
@@ -131,5 +151,6 @@ export function useAuth(): UseAuth {
     logout: logout,
     openLoginDialog: () => openDialog(),
     AuthDialogElement: DialogElement,
+    updateAccessToken,
   };
 }

@@ -22,6 +22,7 @@ export const auth = {
   profileAlert: 'Changes will take effect only after re-login',
   deleteProfileImage: 'Delete profile image',
   save: 'Save',
+  reloadAccessToken: 'Reload user profile',
   requestRole: 'Request access',
   requestRoleSent: 'Access request sent',
   // Roles

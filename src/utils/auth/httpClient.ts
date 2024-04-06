@@ -12,6 +12,11 @@ export interface HttpClientConfig {
   baseURL?: string;
 }
 
+export interface JwtResponse {
+  access_token: string;
+  refresh_token: string;
+}
+
 export class HttpClient {
   private httpClient: AxiosInstance;
 
