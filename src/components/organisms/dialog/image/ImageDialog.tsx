@@ -5,7 +5,6 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { Typography } from '@/components/atoms/Typography';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { twMerge } from 'tailwind-merge';
-import { getWindowDimensions } from '@/utils/hooks';
 import { CloudflareStream } from '@/components/atoms/CloudflareStream';
 import { CloudflareImage } from '@/components/atoms/CloudflareImage';
 import { LoadingState } from '@/components/atoms/LoadingState';
@@ -19,12 +18,12 @@ export interface ImageDialogProps extends BaseDialogProps, Pick<LazyLoadImagePro
 }
 
 export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenChange, effect }: ImageDialogProps) {
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+  const [height, setHeight] = useState<number>(window.innerHeight);
   const [loaded, setLoaded] = useState<boolean>(videoId != null);
 
   useEffect(() => {
     function handleResize() {
-      setWindowDimensions(getWindowDimensions());
+      setHeight(window.innerHeight);
     }
 
     window.addEventListener('resize', handleResize);
@@ -73,7 +72,7 @@ export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenCha
                 className={twMerge(
                   'max-w-[90vw] object-contain',
                   !loaded && 'w-[90vw]',
-                  windowDimensions.height >= 1000 ? 'h-[80vh]' : 'h-[75vh]'
+                  height >= 1000 ? 'h-[80vh]' : 'h-[75vh]'
                 )}
                 wrapperClassName="!bg-contain bg-no-repeat bg-center"
                 onLoad={() => setLoaded(true)}

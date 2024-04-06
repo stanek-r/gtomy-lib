@@ -23,7 +23,7 @@ export function ErrorState({ error, retry, showRetry, className }: ErrorStatePro
 
   useEffect(() => {
     if (isAxiosError(error)) {
-      console.error(error.response?.statusText, error.response?.data);
+      console.error(error.status, error.response?.status, error.response?.statusText, error.response?.data);
     }
   }, [error]);
 
