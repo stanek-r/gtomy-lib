@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.5](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.4.4...v0.4.5) (2024-04-06)
+
+
+### Features
+
+* add option to update access token ([5a2b688](https://gitlab.com/gtomy-services/gtomy-lib/commit/5a2b68872187a681f56c4e5addd337bd196a9c4c))
+
+
+### Bug Fixes
+
+* close button of ImageDialog ([6de1ed4](https://gitlab.com/gtomy-services/gtomy-lib/commit/6de1ed4703d1b0ea9e01ec9f34f50ac90fec20e8))
+* rerender of ImageDialog ([f22f48d](https://gitlab.com/gtomy-services/gtomy-lib/commit/f22f48dee888e593556c2dd195b3c0b74e5ad7aa))
+
 ### [0.4.4](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.4.3...v0.4.4) (2024-04-05)
 
 
