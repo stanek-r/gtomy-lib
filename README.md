@@ -1,6 +1,7 @@
 # GTomy's shared library
 
 A shared REACT JS component and utils library for my projects.
+Contains some other libraries bundled and some are required to be added to the project.
 
 [![][npm-version]][npm-url] [![][gitlab-last-release]][npm-url] [![][npm-downloads]][npm-url]
 
@@ -13,6 +14,22 @@ A shared REACT JS component and utils library for my projects.
 * react-router-dom
 * react-lazy-load-image-component
 * zustand
+* tailwind-merge
+
+## Bundled libraries
+* @cloudflare/stream-react
+* @radix-ui/react-dialog
+* @react-oauth/google
+* @sentry/react
+* @tanstack/query-sync-storage-persister
+* @tanstack/react-query
+* @tanstack/react-query-persist-client
+* i18next
+* i18next-browser-languagedetector
+* jwt-decode
+* react-ga4
+* react-hot-toast
+* react-i18next
 
 [npm-version]: https://badgen.net/npm/v/gtomy-lib?label=version&color=green
 [npm-downloads]: https://badgen.net/npm/dt/gtomy-lib
