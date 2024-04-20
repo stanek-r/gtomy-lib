@@ -34,6 +34,7 @@
   },
   "homepage": "https://gitlab.com/gtomy-services/gtomy-lib#readme",
   "dependencies": {
+    "@cloudflare/stream-react": "^1.9.1",
     "@radix-ui/react-dialog": "^1.0.5",
     "@react-oauth/google": "^0.12.1",
     "@sentry/react": "^7.111.0",
@@ -45,11 +46,9 @@
     "jwt-decode": "^4.0.0",
     "react-ga4": "^2.1.0",
     "react-hot-toast": "^2.4.1",
-    "react-i18next": "^14.1.0",
-    "tailwind-merge": "^2.3.0"
+    "react-i18next": "^14.1.0"
   },
   "peerDependencies": {
-    "@cloudflare/stream-react": "^1.9.1",
     "@heroicons/react": "^2.0.14",
     "axios": "^1.6.5",
     "react": "^18.2.0",
@@ -57,7 +56,8 @@
     "react-hook-form": "^7.39.4",
     "react-router-dom": "^6.4.2",
     "react-lazy-load-image-component": "^1.6.0",
-    "zustand": "^4.5.2"
+    "zustand": "^4.5.2",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.21.5",

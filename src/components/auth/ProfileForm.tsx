@@ -35,7 +35,11 @@ export function ProfileForm({ children, className }: Props) {
   const { post } = useRequest(config.authUrl);
   const [error, setError] = useState<any | null>(null);
   const [saving, setSaving] = useState<boolean>(false);
-  const { uploadImage, deleteImage, error: blobstorageError } = useBlobstorage('/user-profile/profile-image');
+  const {
+    uploadImage,
+    deleteImage,
+    error: blobstorageError,
+  } = useBlobstorage('/user-profile/profile-image', config.authUrl);
 
   const onSubmit = async (form: ProfileForm) => {
     setSaving(true);
