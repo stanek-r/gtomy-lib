@@ -3,6 +3,7 @@ export * from './useBlobstorage';
 export * from './useBreakpoint';
 export * from './useDialog';
 export * from './useFormController';
+export * from './useGoogleAnalytics';
 export * from './useObjectSize';
 export * from './useRequest';
 export * from './useRequestAccess';

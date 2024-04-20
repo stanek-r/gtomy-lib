@@ -1,5 +1,6 @@
 import { config } from './config';
-import { initSentry, logError, SentryConfig } from '@/utils/sentry';
+import { initSentry, SentryConfig } from '@/utils/sentry';
+import ReactGA from 'react-ga4';
 
 interface CloudflareConfig {
   imagesUrl?: string;
@@ -30,8 +31,12 @@ export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
     authUrl: initConfig.authUrl,
     cloudFlareImagesUrl: initConfig.cloudflareConfig?.imagesUrl ?? '/images',
     googleAuthClientId: initConfig.googleAuthConfig?.clientId,
-    googleAnalyticsPlugin: null,
+    googleAnalyticsPlugin: initConfig.googleAuthConfig?.googleMeasurementId != null,
   });
+
+  if (initConfig.googleAuthConfig?.googleMeasurementId != null) {
+    ReactGA.initialize(initConfig.googleAuthConfig.googleMeasurementId);
+  }
 
   if (initConfig.sentryConfig?.enabled === true) {
     const tracePropagationTargets: string[] = [];
@@ -42,14 +47,5 @@ export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
       tracePropagationTargets.push(initConfig.backendUrl);
     }
     initSentry(initConfig.sentryConfig, tracePropagationTargets);
-  }
-
-  if (initConfig.googleAuthConfig?.googleMeasurementId != null) {
-    import('react-ga4')
-      .then((plugin) => {
-        config.googleAnalyticsPlugin = plugin;
-        config.googleAnalyticsPlugin.default.initialize(initConfig.googleAuthConfig!.googleMeasurementId!);
-      })
-      .catch((e) => logError(e));
   }
 }

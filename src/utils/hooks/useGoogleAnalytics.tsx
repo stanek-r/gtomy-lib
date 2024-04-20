@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { config } from '@/config';
+import ReactGA from 'react-ga4';
 
 export interface UseGoogleAnalyticsReturn {
   logEvent: (category: string, action: string, label?: string) => void;
@@ -7,10 +8,10 @@ export interface UseGoogleAnalyticsReturn {
 
 export function useGoogleAnalytics(): UseGoogleAnalyticsReturn {
   const logEvent = (category: string, action: string, label?: string) => {
-    if (config.googleAnalyticsPlugin == null) {
+    if (!config.googleAnalyticsEnabled) {
       return;
     }
-    config.googleAnalyticsPlugin.default.event({
+    ReactGA.event({
       category: category,
       action: action,
       label: label,
@@ -24,10 +25,10 @@ export function useGoogleAnalytics(): UseGoogleAnalyticsReturn {
 
 export function useGoogleAnalyticsPageLoad() {
   useEffect(() => {
-    if (config.googleAnalyticsPlugin == null) {
+    if (!config.googleAnalyticsEnabled) {
       return;
     }
-    config.googleAnalyticsPlugin.default.send({
+    ReactGA.send({
       hitType: 'pageview',
       page: window.location.pathname + window.location.search,
       title: window.location.pathname,

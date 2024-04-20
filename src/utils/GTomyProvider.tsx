@@ -2,10 +2,19 @@ import React, { FunctionComponent } from 'react';
 import { ToastProvider } from '@/components/organisms/toast/ToastProvider';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { defaultQueryClient } from '@/utils/hooks/query';
 import { LayoutProvider } from '@/components/layout';
 import { ScrollToTop } from '@/components/organisms/ScrollToTop';
 import { useGoogleAnalyticsPageLoad } from '@/utils/hooks/useGoogleAnalytics';
+
+const defaultQueryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 2,
+      refetchOnWindowFocus: false,
+      staleTime: 30 * 1000,
+    },
+  },
+});
 
 export interface GTomyProvider {
   children: JSX.Element | JSX.Element[];
