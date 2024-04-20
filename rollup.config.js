@@ -31,6 +31,7 @@ export default [
       '@sentry/react',
       '@tanstack/react-query',
       'react-lazy-load-image-component',
+      'react-ga4',
     ],
   },
   {

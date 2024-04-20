@@ -5,9 +5,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { defaultQueryClient } from '@/utils/hooks/query';
 import { LayoutProvider } from '@/components/layout';
 import { ScrollToTop } from '@/components/organisms/ScrollToTop';
+import { useGoogleAnalyticsPageLoad } from '@/utils/hooks/useGoogleAnalytics';
 
 export interface GTomyProvider {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
   routerBasename?: string;
   MenuComponent?: FunctionComponent | JSX.Element;
   FooterComponent?: FunctionComponent | JSX.Element;
@@ -32,4 +33,9 @@ export function GTomyProvider({
       </QueryClientProvider>
     </BrowserRouter>
   );
+}
+
+export function GoogleAnalyticsProvider() {
+  useGoogleAnalyticsPageLoad();
+  return null;
 }
