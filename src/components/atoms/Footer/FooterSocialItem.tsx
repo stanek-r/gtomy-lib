@@ -16,5 +16,9 @@ export interface FooterSocialItemProps extends Omit<ComponentProps<'a'>, 'childr
 }
 
 export function FooterSocialItem({ type, ...other }: FooterSocialItemProps) {
-  return <a {...other}>{types[type]}</a>;
+  return (
+    <a {...other} title={type}>
+      {types[type]}
+    </a>
+  );
 }
