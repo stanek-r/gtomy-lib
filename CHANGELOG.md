@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.1](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.0...v0.5.1) (2024-04-20)
+
+
+### Features
+
+* optimize dependencies ([dcea40a](https://gitlab.com/gtomy-services/gtomy-lib/commit/dcea40a5679aa10fa85d7e438c1944132d1271e6))
+
+
+### Bug Fixes
+
+* profile picture upload ([25a05fe](https://gitlab.com/gtomy-services/gtomy-lib/commit/25a05fec150872c2213e4b647b2a6aa723c1f8fe))
+
 ## [0.5.0](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.4.5...v0.5.0) (2024-04-20)
 
 
