@@ -19,7 +19,7 @@ interface GTomyLibInitConfig {
   backendUrl?: string;
   cloudflareConfig?: CloudflareConfig;
   sentryConfig?: SentryConfig;
-  googleAuthConfig?: GoogleConfig;
+  googleConfig?: GoogleConfig;
 }
 
 export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
@@ -30,12 +30,12 @@ export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
     backendUrl: initConfig.backendUrl,
     authUrl: initConfig.authUrl,
     cloudFlareImagesUrl: initConfig.cloudflareConfig?.imagesUrl ?? '/images',
-    googleAuthClientId: initConfig.googleAuthConfig?.clientId,
-    googleAnalyticsPlugin: initConfig.googleAuthConfig?.googleMeasurementId != null,
+    googleAuthClientId: initConfig.googleConfig?.clientId,
+    googleAnalyticsPlugin: initConfig.googleConfig?.googleMeasurementId != null,
   });
 
-  if (initConfig.googleAuthConfig?.googleMeasurementId != null) {
-    ReactGA.initialize(initConfig.googleAuthConfig.googleMeasurementId);
+  if (initConfig.googleConfig?.googleMeasurementId != null) {
+    ReactGA.initialize(initConfig.googleConfig.googleMeasurementId);
   }
 
   if (initConfig.sentryConfig?.enabled === true) {
