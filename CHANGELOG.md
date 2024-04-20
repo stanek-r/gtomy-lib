@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.4.5...v0.5.0) (2024-04-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* optimize dependency track
+* rename googleAuthConfig to googleConfig
+
+### Features
+
+* add displayLogin to RequirePermission ([002ef72](https://gitlab.com/gtomy-services/gtomy-lib/commit/002ef72d83d5fcfbd6b2236cb6511a3cbff639a4))
+* add Google Analytics ([c43fd08](https://gitlab.com/gtomy-services/gtomy-lib/commit/c43fd08f3ff85804c94835fa0a5f1e864c07f084))
+* add persisted queries ([491a859](https://gitlab.com/gtomy-services/gtomy-lib/commit/491a85978297281fe08247fde81a8f39e3a28efc))
+* only fetch request-access if user is logged in ([2d57725](https://gitlab.com/gtomy-services/gtomy-lib/commit/2d57725f48be2a2781b121bbb9d1bc4f47c4a9be))
+* optimize dependency track ([9b8e490](https://gitlab.com/gtomy-services/gtomy-lib/commit/9b8e490d215e0ccf9400f432a72c90c5fa09bd69))
+* rename googleAuthConfig to googleConfig ([4510448](https://gitlab.com/gtomy-services/gtomy-lib/commit/451044825f3cc6568d8c111d869ef599cd0807b7))
+
+
+### Bug Fixes
+
+* add title to FooterSocialItem ([c2c470c](https://gitlab.com/gtomy-services/gtomy-lib/commit/c2c470c1435de1ce15b280800e29a3cef3b852c7))
+
 ### [0.4.5](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.4.4...v0.4.5) (2024-04-06)
 
 
