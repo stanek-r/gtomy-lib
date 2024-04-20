@@ -1,4 +1,3 @@
-import React from 'react';
 import { LoginForm } from './LoginForm';
 import { BrowserRouter } from 'react-router-dom';
 import type { Meta, StoryObj } from '@storybook/react';

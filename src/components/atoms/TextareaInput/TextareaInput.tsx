@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, useId } from 'react';
+import { ComponentPropsWithRef, forwardRef, useId } from 'react';
 import { Typography } from '@/components/atoms/Typography';
 import { twMerge } from 'tailwind-merge';
 
@@ -9,7 +9,7 @@ export interface TextareaInputProps extends ComponentPropsWithRef<'textarea'> {
   resizable?: boolean;
 }
 
-export const TextareaInput = React.forwardRef<HTMLTextAreaElement, TextareaInputProps>(
+export const TextareaInput = forwardRef<HTMLTextAreaElement, TextareaInputProps>(
   ({ className, label, hint, error, resizable, rows, ...other }: TextareaInputProps, ref) => {
     const id = useId();
 

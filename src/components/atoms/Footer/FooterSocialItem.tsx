@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react';
+import { ComponentProps } from 'react';
 import { Threads } from '@/assets/social/Threads';
 import { Youtube } from '@/assets/social/Youtube';
 import { Instagram } from '@/assets/social/Instagram';

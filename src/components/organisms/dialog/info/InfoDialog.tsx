@@ -1,4 +1,3 @@
-import React from 'react';
 import { BaseDialog, BaseDialogProps } from '@/components/organisms/dialog/BaseDialog';
 import { Typography } from '@/components/atoms/Typography';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';

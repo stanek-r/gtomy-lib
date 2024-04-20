@@ -1,6 +1,5 @@
 import i18n from '@/utils/i18n';
-import { KeyPrefix, Namespace } from 'i18next';
-import { DefaultNamespace } from 'react-i18next/TransWithoutContext';
+import { DefaultNamespace, KeyPrefix, Namespace } from 'i18next';
 import { useTranslation, UseTranslationOptions, UseTranslationResponse } from 'react-i18next';
 
 function useCustomTranslation<N extends Namespace = DefaultNamespace, TKPrefix extends KeyPrefix<N> = undefined>(

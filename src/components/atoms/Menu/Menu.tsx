@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { config } from '@/config';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from '@/utils/hooks/useTranslation';

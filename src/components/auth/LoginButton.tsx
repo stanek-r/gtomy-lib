@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAuth, useTranslation } from '@/utils/hooks';
 import { Button } from '@/components/atoms/Button';
 import { useNavigate } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, useId } from 'react';
+import { ComponentPropsWithRef, forwardRef, useId } from 'react';
 import { Typography } from '@/components/atoms/Typography';
 import { twMerge } from 'tailwind-merge';
 
@@ -8,7 +8,7 @@ export interface TextInputProps extends ComponentPropsWithRef<'input'> {
   error?: string;
 }
 
-export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
+export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   ({ children, className, label, hint, error, type, ...other }: TextInputProps, ref) => {
     const id = useId();
 

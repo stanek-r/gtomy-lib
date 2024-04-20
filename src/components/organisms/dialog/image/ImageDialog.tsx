@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BaseDialogProps } from '@/components/organisms/dialog';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import * as Dialog from '@radix-ui/react-dialog';
@@ -34,7 +34,7 @@ export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenCha
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black opacity-80" />
-        <Dialog.Content className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] focus:outline-none">
+        <Dialog.Content className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 focus:outline-none">
           <div className="flex flex-col items-center gap-4">
             <div
               className={twMerge(

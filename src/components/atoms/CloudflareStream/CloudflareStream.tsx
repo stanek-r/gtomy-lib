@@ -1,4 +1,3 @@
-import React from 'react';
 import { Stream } from '@cloudflare/stream-react';
 import { useObjectSize, UseObjectSizeSettings } from '@/utils/hooks/useObjectSize';
 

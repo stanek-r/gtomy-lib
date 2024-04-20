@@ -1,4 +1,3 @@
-import React from 'react';
 import type { ComponentStory, Meta } from '@storybook/react';
 import {
   useAlertDialog,

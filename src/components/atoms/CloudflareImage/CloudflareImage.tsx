@@ -1,4 +1,3 @@
-import React from 'react';
 import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component';
 import { config } from '@/config';
 

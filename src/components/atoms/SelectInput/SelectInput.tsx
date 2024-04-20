@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, useId } from 'react';
+import { ComponentPropsWithRef, forwardRef, useId } from 'react';
 import { Typography } from '@/components/atoms/Typography';
 import { twMerge } from 'tailwind-merge';
 
@@ -23,7 +23,7 @@ export interface SelectInputProps extends Omit<Omit<ComponentPropsWithRef<'selec
   size?: 'lg' | 'md' | 'sm' | 'xs';
 }
 
-export const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>(
+export const SelectInput = forwardRef<HTMLSelectElement, SelectInputProps>(
   ({ className, label, hint, options, allowEmpty, error, size = 'md', ...other }: SelectInputProps, ref) => {
     const id = useId();
     const sizeClass = sizeClasses[size];

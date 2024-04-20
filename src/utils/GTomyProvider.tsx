@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { ToastProvider } from '@/components/organisms/toast/ToastProvider';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { LayoutProvider } from '@/components/layout';
 import { ScrollToTop } from '@/components/organisms/ScrollToTop';
 import { useGoogleAnalyticsPageLoad } from '@/utils/hooks/useGoogleAnalytics';
+import { LayoutProvider } from '@/components/layout';
 
 const defaultQueryClient = new QueryClient({
   defaultOptions: {

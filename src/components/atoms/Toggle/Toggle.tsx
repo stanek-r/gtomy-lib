@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, useId } from 'react';
+import { ComponentPropsWithRef, forwardRef, useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Typography } from '@/components/atoms/Typography';
 
@@ -16,7 +16,7 @@ export interface ToggleProps extends Omit<ComponentPropsWithRef<'input'>, 'size'
   size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
-export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
+export const Toggle = forwardRef<HTMLInputElement, ToggleProps>(
   ({ label, error, hint, className, type, checked, size, ...other }: ToggleProps, ref) => {
     const id = useId();
 

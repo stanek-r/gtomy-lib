@@ -1,4 +1,3 @@
-import React from 'react';
 import { LoginButton } from './LoginButton';
 import { BrowserRouter } from 'react-router-dom';
 import type { Meta, StoryObj } from '@storybook/react';

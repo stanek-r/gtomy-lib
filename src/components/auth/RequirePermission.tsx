@@ -1,4 +1,3 @@
-import React from 'react';
 import { Typography } from '@/components/atoms/Typography';
 import { twMerge } from 'tailwind-merge';
 import { PERM_ROLES, PermRoles } from '@/utils/hooks/storage';

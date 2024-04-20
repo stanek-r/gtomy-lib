@@ -1,4 +1,3 @@
-import React from 'react';
 import { ComponentStory } from '@storybook/react';
 import { Menu } from '@/components/atoms/Menu/Menu';
 import { BrowserRouter, Link } from 'react-router-dom';

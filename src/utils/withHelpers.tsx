@@ -1,4 +1,4 @@
-import React, { ComponentType, FunctionComponent, LazyExoticComponent, Suspense } from 'react';
+import { ComponentType, FunctionComponent, LazyExoticComponent, Suspense } from 'react';
 import { RequireAuth } from '@/components/auth';
 import { LoadingState } from '@/components/atoms/LoadingState';
 import { ColumnPage, FormPage } from '@/components/layout';

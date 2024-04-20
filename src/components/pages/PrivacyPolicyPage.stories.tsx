@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import type { Meta, StoryObj } from '@storybook/react';
 import { PrivacyPolicyPage } from '@/components/pages/PrivacyPolicyPage';

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { LanguageSelect } from '@/components/atoms/LanguageSelect';
 import { ThemeSelect } from '@/components/atoms/Theme';
 import { useTranslation } from '@/utils/hooks';

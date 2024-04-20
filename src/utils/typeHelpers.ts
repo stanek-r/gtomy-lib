@@ -1,10 +1,18 @@
-import React, { ComponentPropsWithoutRef, ElementType, forwardRef, MutableRefObject, Ref } from 'react';
+import {
+  ComponentPropsWithoutRef,
+  ElementType,
+  forwardRef,
+  MutableRefObject,
+  ReactElement,
+  Ref,
+  RefAttributes,
+} from 'react';
 
 export type PropsAs<Props, T extends ElementType> = Props & Omit<ComponentPropsWithoutRef<T>, keyof Props>;
 
 export function forwardRefWithTypes<T, P = Record<string, unknown>>(
-  render: (props: P, ref: React.Ref<T>) => React.ReactElement | null
-): (props: P & React.RefAttributes<T>) => React.ReactElement | null {
+  render: (props: P, ref: Ref<T>) => ReactElement | null
+): (props: P & RefAttributes<T>) => ReactElement | null {
   return forwardRef(render) as any;
 }
 

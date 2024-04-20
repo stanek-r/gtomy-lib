@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback, useState } from 'react';
+import { FunctionComponent, useCallback, useState } from 'react';
 import { BaseDialogProps } from '@/components/organisms/dialog';
 import { DialogElement } from '@/components/organisms/dialog/DialogElement';
 import { InfoDialog, InfoDialogProps } from '@/components/organisms/dialog/info';

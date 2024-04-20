@@ -1,4 +1,3 @@
-import React from 'react';
 import { useQuery } from './useQuery';
 import { QueryClient } from '@tanstack/react-query';
 import { QueryWrapper } from '@/utils/hooks/query/QueryWrapper';

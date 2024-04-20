@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
 import { useFormController } from '@/utils/hooks';
 import { Switch } from '@/components/atoms/Switch/Switch';

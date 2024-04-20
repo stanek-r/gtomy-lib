@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
 import { TextareaInput } from '@/components/atoms/TextareaInput';
 import { useFormController } from '@/utils/hooks';

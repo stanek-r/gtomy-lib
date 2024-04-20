@@ -4,17 +4,15 @@ A shared REACT JS component and utils library for my projects.
 
 [![][npm-version]][npm-url] [![][gitlab-last-release]][npm-url] [![][npm-downloads]][npm-url]
 
-## Used libraries
-
-* React JS
-* Heroicons
-* TailwindCSS
-* Daisy UI
-* tailwind-merge
-* PostCSS
-* Theme change
-* Zustand
-* Tanstack query
+## Required libraries
+* @heroicons/react
+* axios
+* react
+* react-dom
+* react-hook-form
+* react-router-dom
+* react-lazy-load-image-component
+* zustand
 
 [npm-version]: https://badgen.net/npm/v/gtomy-lib?label=version&color=green
 [npm-downloads]: https://badgen.net/npm/dt/gtomy-lib

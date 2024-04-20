@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { FormTextInput } from '@/components/form/FormTextInput';
 import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
@@ -116,7 +116,7 @@ export function ProfileForm({ children, className }: Props) {
       )}
       {error && <ErrorState className="lg:col-span-2" error={error} />}
       {blobstorageError && <ErrorState className="lg:col-span-2" error={blobstorageError} />}
-      <div className="flex gap-4 justify-center lg:col-span-2">
+      <div className="flex justify-center gap-4 lg:col-span-2">
         <Button type="submit" disabled={saving} color="primary">
           {t('save')}
         </Button>

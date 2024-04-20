@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { ColumnPage } from '@/components/layout';
 import { ProfileForm } from '@/components/auth/ProfileForm';
 

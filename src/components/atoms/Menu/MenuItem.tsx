@@ -1,4 +1,4 @@
-import React, { ElementType, ForwardedRef } from 'react';
+import { ElementType, ForwardedRef } from 'react';
 import { forwardRefWithTypes, PropsAs } from '@/utils';
 
 export interface MenuItemProps<T extends ElementType> {

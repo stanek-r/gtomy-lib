@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, ReactNode, useId } from 'react';
+import { ComponentPropsWithRef, forwardRef, ReactNode, useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { toggleSizeClasses } from '@/components/atoms/Toggle/Toggle';
 
@@ -8,7 +8,7 @@ export interface SwitchProps extends Omit<ComponentPropsWithRef<'input'>, 'size'
   size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
-export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
+export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   ({ startElement, endElement, className, type, checked, size, ...other }: SwitchProps, ref) => {
     const id = useId();
 

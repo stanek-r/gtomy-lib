@@ -1,4 +1,3 @@
-import React from 'react';
 import { ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 import { FormSwitch } from './FormSwitch';

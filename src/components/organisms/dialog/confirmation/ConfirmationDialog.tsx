@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BaseDialog, BaseDialogProps } from '@/components/organisms/dialog';
 import { Typography } from '@/components/atoms/Typography';
 import { Button } from '@/components/atoms/Button';

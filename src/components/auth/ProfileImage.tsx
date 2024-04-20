@@ -1,4 +1,3 @@
-import React from 'react';
 import { CloudflareImage } from '@/components/atoms/CloudflareImage';
 import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component';
 import { twMerge } from 'tailwind-merge';
