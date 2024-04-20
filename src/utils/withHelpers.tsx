@@ -62,7 +62,7 @@ export function withFormPage(
  */
 export function withRequireAuth(
   Component: FunctionComponent | JSX.Element,
-  minimalRole: PermRoles = 'user',
+  minimalRole?: PermRoles,
   MenuComponent?: FunctionComponent | JSX.Element,
   FooterComponent?: FunctionComponent | JSX.Element,
   displayRequestAccess?: boolean,
@@ -114,29 +114,17 @@ export function withLazyPage(
  *
  * @param {FunctionComponent | JSX.Element} Component - The component to execute.
  * @param {PermRoles} minimalRole - The minimal role required for the user.
- * @param {boolean} [displayWarning] - Whether whole alert should be displayed if user doesn't have access.
- * @param {boolean} [displayRequestAccess] - Whether access request button should be displayed if user doesn't have access.
- * @param {string} [title] - What text should be displayed inside warning.
  * @param {string} [application] - The application name if the user's role depends on the application context.
  *
  * @returns {JSX.Element | undefined} - The executed component if the user has the required permission, otherwise undefined.
  */
 export function withPermission(
   Component: FunctionComponent | JSX.Element,
-  minimalRole: PermRoles,
-  displayWarning?: boolean,
-  displayRequestAccess?: boolean,
-  title?: string,
+  minimalRole?: PermRoles,
   application?: string
 ): JSX.Element {
   return (
-    <RequirePermission
-      minimalRole={minimalRole}
-      application={application}
-      displayWarning={displayWarning}
-      displayRequestAccess={displayRequestAccess}
-      title={title}
-    >
+    <RequirePermission minimalRole={minimalRole} application={application}>
       {withComponent(Component)}
     </RequirePermission>
   );

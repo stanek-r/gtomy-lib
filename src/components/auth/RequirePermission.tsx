@@ -13,10 +13,11 @@ import { useRequestAccess } from '@/utils/hooks/useRequestAccess';
 export interface RequirePermissionProps {
   title?: string;
   className?: string;
-  minimalRole: PermRoles;
+  minimalRole?: PermRoles;
   children?: JSX.Element;
   application?: string;
   displayWarning?: boolean;
+  displayLogin?: boolean;
   displayRequestAccess?: boolean;
   displayLoginInDialog?: boolean;
 }
@@ -25,9 +26,10 @@ export function RequirePermission({
   title,
   className,
   children,
-  minimalRole,
+  minimalRole = 'user',
   application,
   displayWarning,
+  displayLogin,
   displayRequestAccess,
   displayLoginInDialog,
 }: RequirePermissionProps): JSX.Element | null {
@@ -40,7 +42,7 @@ export function RequirePermission({
   const roleId = PERM_ROLES[role as PermRoles];
 
   if (!isAuthenticated) {
-    if (!displayWarning) {
+    if (!displayLogin) {
       return null;
     }
     return (

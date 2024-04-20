@@ -15,7 +15,7 @@ import { useRequestAccess } from '@/utils/hooks/useRequestAccess';
 export interface RequireAuthProps {
   MenuComponent?: FunctionComponent | JSX.Element;
   FooterComponent?: FunctionComponent | JSX.Element;
-  minimalRole: PermRoles;
+  minimalRole?: PermRoles;
   children?: JSX.Element;
   application?: string;
   displayRequestAccess?: boolean;
