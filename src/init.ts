@@ -31,7 +31,7 @@ export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
     authUrl: initConfig.authUrl,
     cloudFlareImagesUrl: initConfig.cloudflareConfig?.imagesUrl ?? '/images',
     googleAuthClientId: initConfig.googleConfig?.clientId,
-    googleAnalyticsPlugin: initConfig.googleConfig?.googleMeasurementId != null,
+    googleAnalyticsEnabled: initConfig.googleConfig?.googleMeasurementId != null,
   });
 
   if (initConfig.googleConfig?.googleMeasurementId != null) {

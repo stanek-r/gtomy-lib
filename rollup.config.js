@@ -2,9 +2,11 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
+import alias from '@rollup/plugin-alias';
 import json from '@rollup/plugin-json';
-import dts from 'rollup-plugin-dts';
 import css from 'rollup-plugin-import-css';
+import { dts } from 'rollup-plugin-dts';
+import path from 'path';
 
 const packageJson = require('./package.json');
 
@@ -16,6 +18,7 @@ export default [
         file: packageJson.main,
         format: 'esm',
         sourcemap: true,
+        inlineDynamicImports: true,
       },
     ],
     plugins: [peerDepsExternal(), css(), resolve(), commonjs(), json(), typescript({ tsconfig: './tsconfig.json' })],
@@ -23,6 +26,16 @@ export default [
   {
     input: 'dist/types/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
-    plugins: [dts.default()],
+    plugins: [
+      alias({
+        entries: [
+          {
+            find: '@',
+            replacement: path.resolve('./dist/types'),
+          },
+        ],
+      }),
+      dts(),
+    ],
   },
 ];

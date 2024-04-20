@@ -54,10 +54,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.4",
-    "react-router-dom": "^6.4.2",
     "react-lazy-load-image-component": "^1.6.0",
-    "zustand": "^4.5.2",
-    "tailwind-merge": "^2.3.0"
+    "react-router-dom": "^6.4.2",
+    "tailwind-merge": "^2.3.0",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.21.5",
@@ -65,6 +65,7 @@
     "@babel/preset-typescript": "^7.21.5",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
+    "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",

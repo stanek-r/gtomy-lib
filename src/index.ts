@@ -41,6 +41,7 @@ export * from './components/organisms/dialog/info';
 export * from './components/organisms/ScrollToTop';
 export * from './components/organisms/toast';
 export * from './components/pages';
+export * from './locales';
 export * from './models';
 export * from './utils';
 export * from './utils/auth';
