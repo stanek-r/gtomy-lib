@@ -79,57 +79,66 @@ export function ProfileForm({ children, className }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={twMerge('grid grid-cols-1 lg:grid-cols-2 gap-2', className)}>
-      <FormTextInput
-        label={t('displayName')}
-        placeholder={t('displayName')}
-        name="displayName"
-        control={control}
-        rules={{ required: true }}
-      />
-      {user?.googleId != null ? (
-        <TextInput label={t('email')} placeholder={t('email')} name="email" type="email" value={user?.email} disabled />
-      ) : (
+    <>
+      <form onSubmit={handleSubmit(onSubmit)} className={twMerge('grid grid-cols-1 lg:grid-cols-2 gap-2', className)}>
         <FormTextInput
-          label={t('email')}
-          placeholder={t('email')}
-          name="email"
-          type="email"
+          label={t('displayName')}
+          placeholder={t('displayName')}
+          name="displayName"
           control={control}
-          rules={{ required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g }}
+          rules={{ required: true }}
         />
-      )}
-      {!isUserAccountFromGoogle(user) && (
-        <>
-          <FormFileInput
-            label={t('profileImage')}
-            name="profileImage"
-            accept="image/*"
-            control={control}
-            multiple={false}
+        {user?.googleId != null ? (
+          <TextInput
+            label={t('email')}
+            placeholder={t('email')}
+            name="email"
+            type="email"
+            value={user?.email}
+            disabled
           />
-          {user?.profileImageId && (
-            <div className="ml-1 flex items-center gap-2">
-              <ProfileImage className="my-2 size-20" />
-              <Button onClick={() => deleteImage()} size="sm" color="error">
-                {t('deleteProfileImage')}
-              </Button>
-            </div>
-          )}
-        </>
-      )}
-      {error && <ErrorState className="lg:col-span-2" error={error} />}
-      {blobstorageError && <ErrorState className="lg:col-span-2" error={blobstorageError} />}
-      <div className="flex justify-center gap-4 lg:col-span-2">
-        <Button type="submit" disabled={saving} color="primary">
-          {t('save')}
-        </Button>
-        <Button onClick={onUpdate} disabled={saving}>
-          {t('reloadAccessToken')}
-        </Button>
-      </div>
-      <div className="divider lg:col-span-2"></div>
+        ) : (
+          <FormTextInput
+            label={t('email')}
+            placeholder={t('email')}
+            name="email"
+            type="email"
+            control={control}
+            rules={{ required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g }}
+          />
+        )}
+        {!isUserAccountFromGoogle(user) && (
+          <>
+            <FormFileInput
+              label={t('profileImage')}
+              name="profileImage"
+              accept="image/*"
+              control={control}
+              multiple={false}
+            />
+            {user?.profileImageId && (
+              <div className="ml-1 flex items-center gap-2">
+                <ProfileImage className="my-2 size-20" />
+                <Button onClick={() => deleteImage()} size="sm" color="error">
+                  {t('deleteProfileImage')}
+                </Button>
+              </div>
+            )}
+          </>
+        )}
+        {error && <ErrorState className="lg:col-span-2" error={error} />}
+        {blobstorageError && <ErrorState className="lg:col-span-2" error={blobstorageError} />}
+        <div className="flex justify-center gap-4 lg:col-span-2">
+          <Button type="submit" disabled={saving} color="primary">
+            {t('save')}
+          </Button>
+          <Button onClick={onUpdate} disabled={saving}>
+            {t('reloadAccessToken')}
+          </Button>
+        </div>
+        <div className="divider lg:col-span-2"></div>
+      </form>
       {children}
-    </form>
+    </>
   );
 }
