@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
 import { config } from '@/config';
 import ReactGA from 'react-ga4';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export interface UseGoogleAnalyticsReturn {
   logEvent: (category: string, action: string, label?: string) => void;
@@ -24,14 +25,16 @@ export function useGoogleAnalytics(): UseGoogleAnalyticsReturn {
 }
 
 export function useGoogleAnalyticsPageLoad() {
+  const { pathname, search } = useLocation();
+
   useEffect(() => {
     if (!config.googleAnalyticsEnabled) {
       return;
     }
     ReactGA.send({
       hitType: 'pageview',
-      page: window.location.pathname + window.location.search,
-      title: window.location.pathname,
+      page: pathname + search,
+      title: pathname,
     });
-  }, [window.location.pathname, window.location.search]);
+  }, [pathname, search]);
 }
