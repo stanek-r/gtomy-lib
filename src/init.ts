@@ -1,4 +1,4 @@
-import { config } from './config';
+import { config, GTomyLibConfig } from './config';
 import { initSentry, SentryConfig } from '@/utils/sentry';
 import ReactGA from 'react-ga4';
 
@@ -32,7 +32,7 @@ export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
     cloudFlareImagesUrl: initConfig.cloudflareConfig?.imagesUrl ?? '/images',
     googleAuthClientId: initConfig.googleConfig?.clientId,
     googleAnalyticsEnabled: initConfig.googleConfig?.googleMeasurementId != null,
-  });
+  } as GTomyLibConfig);
 
   if (initConfig.googleConfig?.googleMeasurementId != null) {
     ReactGA.initialize(initConfig.googleConfig.googleMeasurementId);
