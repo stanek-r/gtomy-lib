@@ -15,7 +15,7 @@ export interface UseRequestAccessReturn {
 }
 
 export function useRequestAccess(role: string, application = config.appName): UseRequestAccessReturn {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const { get, put } = useRequest(config.authUrl);
   const getRequestAccess: () => Promise<UserAccessRequestDto[]> = useCallback(() => {
     if (isAuthenticated) {
@@ -25,10 +25,9 @@ export function useRequestAccess(role: string, application = config.appName): Us
   }, [isAuthenticated, get]);
 
   const { data, isError, isLoading, refetch } = useQuery<UserAccessRequestDto[]>({
-    queryKey: ['request-access', isAuthenticated],
+    queryKey: ['request-access', isAuthenticated, user?.userId],
     queryFn: getRequestAccess,
     fallbackValue: [],
-    refetchOnMount: false,
   });
 
   const [requests, addRequest] = useRequestAccessStore((state: any) => [state.requests, state.addRequest]);
