@@ -1,6 +1,5 @@
 import { config, GTomyLibConfig } from './config';
 import { initSentry, SentryConfig } from '@/utils/sentry';
-import ReactGA from 'react-ga4';
 
 interface CloudflareConfig {
   imagesUrl?: string;
@@ -31,11 +30,16 @@ export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
     authUrl: initConfig.authUrl,
     cloudFlareImagesUrl: initConfig.cloudflareConfig?.imagesUrl ?? '/images',
     googleAuthClientId: initConfig.googleConfig?.clientId,
-    googleAnalyticsEnabled: initConfig.googleConfig?.googleMeasurementId != null,
+    googleAnalyticsPlugin: null,
   } as GTomyLibConfig);
 
   if (initConfig.googleConfig?.googleMeasurementId != null) {
-    ReactGA.initialize(initConfig.googleConfig.googleMeasurementId);
+    import('react-ga4')
+      .then((plugin) => {
+        plugin.default.initialize(initConfig.googleConfig!.googleMeasurementId!);
+        config.googleAnalyticsPlugin = plugin;
+      })
+      .catch((e) => console.error(e));
   }
 
   if (initConfig.sentryConfig?.enabled === true) {

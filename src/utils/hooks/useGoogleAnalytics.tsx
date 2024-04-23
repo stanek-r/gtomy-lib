@@ -1,5 +1,4 @@
 import { config } from '@/config';
-import ReactGA from 'react-ga4';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -9,10 +8,10 @@ export interface UseGoogleAnalyticsReturn {
 
 export function useGoogleAnalytics(): UseGoogleAnalyticsReturn {
   const logEvent = (category: string, action: string, label?: string) => {
-    if (!config.googleAnalyticsEnabled) {
+    if (config.googleAnalyticsPlugin == null) {
       return;
     }
-    ReactGA.event({
+    config.googleAnalyticsPlugin.default.event({
       category: category,
       action: action,
       label: label,
@@ -28,10 +27,10 @@ export function useGoogleAnalyticsPageLoad() {
   const { pathname, search } = useLocation();
 
   useEffect(() => {
-    if (!config.googleAnalyticsEnabled) {
+    if (config.googleAnalyticsPlugin == null) {
       return;
     }
-    ReactGA.send({
+    config.googleAnalyticsPlugin.default.send({
       hitType: 'pageview',
       page: pathname + search,
       title: pathname,
