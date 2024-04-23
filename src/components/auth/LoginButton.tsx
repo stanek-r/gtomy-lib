@@ -1,6 +1,7 @@
-import { useAuth, useTranslation } from '@/utils/hooks';
+import { useDialog, useTranslation } from '@/utils/hooks';
 import { Button } from '@/components/atoms/Button';
 import { useNavigate } from 'react-router-dom';
+import { AuthDialog } from '@/components/auth/AuthDialog';
 
 export interface LoginButtonProps {
   authDialog?: boolean;
@@ -10,12 +11,12 @@ export interface LoginButtonProps {
 
 export function LoginButton({ authDialog, className, size }: LoginButtonProps) {
   const { t } = useTranslation('auth');
-  const { openLoginDialog, AuthDialogElement } = useAuth();
+  const { openDialog, DialogElement } = useDialog(AuthDialog);
   const navigate = useNavigate();
 
   const login = () => {
     if (authDialog) {
-      openLoginDialog();
+      openDialog();
     } else {
       navigate('/login');
     }
@@ -23,7 +24,7 @@ export function LoginButton({ authDialog, className, size }: LoginButtonProps) {
 
   return (
     <>
-      <AuthDialogElement />
+      <DialogElement />
       <Button onClick={login} size={size} color="primary" className={className} wide>
         {t('login')}
       </Button>

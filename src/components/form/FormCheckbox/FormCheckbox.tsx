@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
 import { Checkbox } from '@/components/atoms/Checkbox/Checkbox';
-import { useFormController } from '@/utils/hooks';
+import { useFormController } from '@/utils/hooks/useFormController';
 
 /**
  * @group Components

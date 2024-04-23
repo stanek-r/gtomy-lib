@@ -3,8 +3,6 @@ import axios from 'axios';
 import { useAccessTokenStore, User, useRefreshTokenStore } from '@/utils/hooks/storage/useAuthStore';
 import { config } from '@/config';
 import { logError } from '@/utils/sentry';
-import { AuthDialog } from '@/components/auth/AuthDialog';
-import { DialogElementType, useDialog } from '@/utils/hooks/useDialog';
 import { isTokenValid, JwtResponse, mapAccessTokenToUser } from '@/utils/auth';
 import { getRefetch } from '@/utils/hooks/storage/useRefetchStore';
 import { useRequest } from '@/utils/hooks/useRequest';
@@ -23,9 +21,7 @@ interface UseAuth {
   loginWithGoogle: (token: string) => Promise<boolean>;
   register: (username: string, password: string, email: string) => Promise<boolean>;
   logout: () => void;
-  openLoginDialog: () => void;
   updateAccessToken: () => Promise<User | null>;
-  AuthDialogElement: DialogElementType;
 }
 
 export function useAuth(): UseAuth {
@@ -36,7 +32,6 @@ export function useAuth(): UseAuth {
   ]);
 
   const user = useMemo(() => mapAccessTokenToUser(accessToken), [accessToken]);
-  const { openDialog, DialogElement } = useDialog(AuthDialog);
   const { get, refresh } = useRequest(config.authUrl);
 
   const isLoadingUser = useMemo(() => user == null && refreshToken != null, [user, refreshToken]);
@@ -149,8 +144,6 @@ export function useAuth(): UseAuth {
     loginWithGoogle,
     register,
     logout: logout,
-    openLoginDialog: () => openDialog(),
-    AuthDialogElement: DialogElement,
     updateAccessToken,
   };
 }
