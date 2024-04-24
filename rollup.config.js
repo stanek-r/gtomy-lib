@@ -22,6 +22,18 @@ export default [
       },
     ],
     plugins: [peerDepsExternal(), css(), resolve(), commonjs(), json(), typescript({ tsconfig: './tsconfig.json' })],
+    external: [
+      '@cloudflare/stream-react',
+      '@radix-ui/react-dialog',
+      '@tanstack/react-query',
+      '@tanstack/query-sync-storage-persister',
+      '@tanstack/react-query-persist-client',
+      'i18next',
+      'i18next-browser-languagedetector',
+      'jwt-decode',
+      'react-hot-toast',
+      'react-i18next',
+    ],
   },
   {
     input: 'dist/types/index.d.ts',
