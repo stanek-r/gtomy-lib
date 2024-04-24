@@ -22,7 +22,6 @@ export default [
       },
     ],
     plugins: [peerDepsExternal(), css(), resolve(), commonjs(), json(), typescript({ tsconfig: './tsconfig.json' })],
-    external: ['react-ga4', '@sentry/react', '@react-oauth/google'],
   },
   {
     input: 'dist/types/index.d.ts',
