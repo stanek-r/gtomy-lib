@@ -10,20 +10,20 @@ import { LoadingState } from '@/components/atoms/LoadingState';
  *
  * @param {FunctionComponent | JSX.Element} Component - The component to be wrapped with authentication validation.
  * @param {PermRoles} minimalRole - The minimal role required for the user to access the wrapped component.
- * @param {FunctionComponent | JSX.Element} [MenuComponent] - The optional menu that will replace provided Menu component.
- * @param {FunctionComponent | JSX.Element} [FooterComponent] - The optional footer that will replace provided Footer component.
  * @param {boolean} [displayRequestAccess] - Whether access request button should be displayed if user doesn't have access.
  * @param {string} [application] - The application name if the user's role depends on the application context.
+ * @param {FunctionComponent | JSX.Element} [MenuComponent] - The optional menu that will replace provided Menu component.
+ * @param {FunctionComponent | JSX.Element} [FooterComponent] - The optional footer that will replace provided Footer component.
  *
  * @returns {JSX.Element} - The wrapped component with authentication validation.
  */
 export function withRequireAuth(
   Component: FunctionComponent | JSX.Element,
   minimalRole?: PermRoles,
-  MenuComponent?: FunctionComponent | JSX.Element,
-  FooterComponent?: FunctionComponent | JSX.Element,
   displayRequestAccess?: boolean,
-  application?: string
+  application?: string,
+  MenuComponent?: FunctionComponent | JSX.Element,
+  FooterComponent?: FunctionComponent | JSX.Element
 ): JSX.Element {
   return (
     <RequireAuth

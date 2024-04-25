@@ -21,7 +21,7 @@ Contains some other libraries bundled and some are required to be added to the p
 * @sentry/react
 * @react-oauth/google
 
-## Bundled libraries
+## Other used libraries
 * @cloudflare/stream-react
 * @radix-ui/react-dialog
 * @tanstack/query-sync-storage-persister
