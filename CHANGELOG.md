@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.2](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.1...v0.5.2) (2024-04-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* update blobstorage hook
+* change arguments of withRequireAuth
+
+### Features
+
+* add file storage ([d8630e0](https://gitlab.com/gtomy-services/gtomy-lib/commit/d8630e0751c27007761d4a4dae775c1c501976f3))
+* add startElement and endElement to RequirePermission ([fbc9c76](https://gitlab.com/gtomy-services/gtomy-lib/commit/fbc9c7668cf355a85dab907be4db983fd7be40b8))
+* change arguments of withRequireAuth ([d0af2d0](https://gitlab.com/gtomy-services/gtomy-lib/commit/d0af2d01a1f6e66ef1f05095664869e2156d724e))
+* change default stale time to 10 seconds ([e262b87](https://gitlab.com/gtomy-services/gtomy-lib/commit/e262b87413e0f4eba0ff88028bb78d1e0271d8ca))
+* image dialog optimization ([cc058a3](https://gitlab.com/gtomy-services/gtomy-lib/commit/cc058a3841c1307a4596a9c205fb08c30ab7169d))
+* make react-ga4, sentry and google oauth optional dependencies ([b544e08](https://gitlab.com/gtomy-services/gtomy-lib/commit/b544e088a5017555856a099b2082335401e20278))
+* update blobstorage hook ([e8ed48a](https://gitlab.com/gtomy-services/gtomy-lib/commit/e8ed48a605d3d0dc4dd458ab71741b2f7ecee2d1))
+
+
+### Bug Fixes
+
+* add title to menu button ([7d3816e](https://gitlab.com/gtomy-services/gtomy-lib/commit/7d3816ebc5871d8a9a6018bf8ee5d0fc845b2198))
+* google analytics page load ([5664212](https://gitlab.com/gtomy-services/gtomy-lib/commit/5664212817de41c9bccb1cf83639e6d96f3fed34))
+* profile form layout ([180c404](https://gitlab.com/gtomy-services/gtomy-lib/commit/180c404329fde2201dcaa0a7b42a628e591fe379))
+
 ### [0.5.1](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.0...v0.5.1) (2024-04-20)
 
 
