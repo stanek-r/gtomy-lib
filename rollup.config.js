@@ -33,6 +33,7 @@ export default [
       'jwt-decode',
       'react-hot-toast',
       'react-i18next',
+      'js-file-download',
     ],
   },
   {

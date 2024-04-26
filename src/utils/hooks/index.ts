@@ -2,6 +2,7 @@ export * from './useAuth';
 export * from './useBlobstorage';
 export * from './useBreakpoint';
 export * from './useDialog';
+export * from './useFilestorage';
 export * from './useFormController';
 export * from './useGoogleAnalytics';
 export * from './useObjectSize';

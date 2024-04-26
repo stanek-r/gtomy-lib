@@ -1,9 +1,9 @@
-export interface FileStorageObject {
-  id: string;
-  fileName: string;
+export interface FileStorageDto extends NewFileStorageDto {
+  signedUrl: string;
 }
 
-export interface FileStorageObjectUrl {
-  url: string;
+export interface NewFileStorageDto {
+  fileId: string;
   fileName: string;
+  createdAt: string;
 }
