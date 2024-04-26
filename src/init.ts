@@ -16,6 +16,7 @@ interface GTomyLibInitConfig {
   themes?: string[];
   authUrl?: string;
   backendUrl?: string;
+  storageUrl?: string;
   cloudflareConfig?: CloudflareConfig;
   sentryConfig?: SentryConfig;
   googleConfig?: GoogleConfig;
@@ -28,6 +29,7 @@ export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
     themes: initConfig.themes && initConfig.themes.length > 1 ? ['system', ...initConfig.themes] : [],
     backendUrl: initConfig.backendUrl,
     authUrl: initConfig.authUrl,
+    storageUrl: initConfig.storageUrl,
     cloudFlareImagesUrl: initConfig.cloudflareConfig?.imagesUrl ?? '/images',
     googleAuthClientId: initConfig.googleConfig?.clientId,
     googleAnalyticsPlugin: null,

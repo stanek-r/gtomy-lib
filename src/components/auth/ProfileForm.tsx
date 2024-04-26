@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/atoms/Button';
 import { config } from '@/config';
-import { FormFile, FormFileInput } from '@/components/form/FormFileInput';
+import { FormFileInput, SingleFormFile } from '@/components/form/FormFileInput';
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { TextInput } from '@/components/atoms/TextInput';
 import { ProfileImage } from '@/components/auth/ProfileImage';
@@ -19,7 +19,7 @@ interface Props {
 interface ProfileForm {
   displayName: string | null;
   email: string | null;
-  profileImage: FormFile | null;
+  profileImage: SingleFormFile | null;
 }
 
 export function ProfileForm({ children, className }: Props) {
@@ -44,7 +44,7 @@ export function ProfileForm({ children, className }: Props) {
   const onSubmit = async (form: ProfileForm) => {
     setSaving(true);
     if (form.profileImage) {
-      await uploadImage(form.profileImage);
+      await uploadImage(form.profileImage.file);
     }
     await post('/user-profile', {
       displayName: form.displayName,

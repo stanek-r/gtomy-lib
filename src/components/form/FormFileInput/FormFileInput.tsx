@@ -3,11 +3,19 @@ import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
 import { FileInput } from '@/components/atoms/FileInput';
 import { useFormController } from '@/utils/hooks/useFormController';
 
-export interface FormFile {
-  multiple: boolean;
+export interface SingleFormFile {
+  multiple: false;
   value: string;
-  file: File | FileList;
+  file: File;
 }
+
+export interface MultipleFormFile {
+  multiple: true;
+  value: string;
+  file: FileList;
+}
+
+export type FormFile = SingleFormFile | MultipleFormFile;
 
 /**
  * @group Components
@@ -56,14 +64,14 @@ export function FormFileInput<
         file: event.target.files,
         value: event.target.value,
         multiple: true,
-      } as FormFile);
+      } as MultipleFormFile);
       return;
     }
     onChange({
       file: event.target.files?.[0],
       value: event.target.value,
       multiple: false,
-    } as FormFile);
+    } as SingleFormFile);
   };
 
   return (
