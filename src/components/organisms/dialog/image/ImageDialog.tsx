@@ -26,9 +26,9 @@ export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenCha
     () =>
       twMerge(
         'max-w-[90vw] object-contain',
-        loaded && (height >= 1000 ? 'max-h-[80vh]' : 'max-h-[75vh]'),
+        loaded && (height >= 1000 ? 'max-h-[80dvh]' : 'max-h-[75dvh]'),
         !loaded && 'w-[90vw]',
-        !loaded && (height >= 1000 ? 'h-[80vh]' : 'h-[75vh]')
+        !loaded && (height >= 1000 ? 'h-[80dvh]' : 'h-[75dvh]')
       ),
     [loaded, height]
   );

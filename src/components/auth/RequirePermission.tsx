@@ -19,7 +19,6 @@ export interface RequirePermissionProps {
   displayWarning?: boolean;
   displayLogin?: boolean;
   displayRequestAccess?: boolean;
-  displayLoginInDialog?: boolean;
   startElement?: ReactNode;
   endElement?: ReactNode;
 }
@@ -33,7 +32,6 @@ export function RequirePermission({
   displayWarning,
   displayLogin,
   displayRequestAccess,
-  displayLoginInDialog,
   startElement,
   endElement,
 }: RequirePermissionProps): JSX.Element | null {
@@ -56,7 +54,7 @@ export function RequirePermission({
           <Typography size="2xl" weight="semibold">
             {title ?? t('noLogin.title')}
           </Typography>
-          <LoginButton authDialog={displayLoginInDialog} />
+          <LoginButton />
         </div>
         {endElement}
       </>

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { config } from '@/config';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { Button } from '@/components/atoms/Button';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
@@ -11,38 +11,33 @@ import { useAuth, useBreakpoint, useDialog } from '@/utils/hooks';
 import { Icon, IconType } from '@/components/atoms/Icon';
 import { LoadingState } from '@/components/atoms/LoadingState';
 import { AuthDialog } from '@/components/auth';
+import { useLoginRedirectStore } from '@/utils/hooks/storage';
 
 const AppIcon = <img src="/favicon.ico" className="mr-2 size-8 shrink-0 rounded" alt="Application icon" />;
 
 export interface MenuProps {
   children?: ReactNode;
   showAuth?: boolean;
-  authDialog?: boolean;
   bottomMenuActions?: ReactNode;
   dropdownActions?: ReactNode;
   showIcon?: boolean;
   icon?: IconType;
 }
 
-export function Menu({
-  children,
-  showAuth,
-  authDialog,
-  showIcon,
-  bottomMenuActions,
-  dropdownActions,
-  icon = AppIcon,
-}: MenuProps) {
+export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdownActions, icon = AppIcon }: MenuProps) {
   const { user, isAuthenticated, logout, isLoadingUser } = useAuth();
   const { openDialog, DialogElement } = useDialog(AuthDialog);
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const [setRedirectUrl] = useLoginRedirectStore((state: any) => [state.setRedirectUrl]);
 
   const login = () => {
-    if (authDialog) {
+    if (isOverBreakpoint) {
       openDialog();
     } else {
+      setRedirectUrl(pathname);
       navigate('/login');
     }
   };

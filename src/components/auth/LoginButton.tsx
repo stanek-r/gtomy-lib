@@ -1,23 +1,27 @@
-import { useDialog, useTranslation } from '@/utils/hooks';
+import { useBreakpoint, useDialog, useTranslation } from '@/utils/hooks';
 import { Button } from '@/components/atoms/Button';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthDialog } from '@/components/auth/AuthDialog';
+import { useLoginRedirectStore } from '@/utils/hooks/storage';
 
 export interface LoginButtonProps {
-  authDialog?: boolean;
   className?: string;
   size?: 'sm' | 'lg';
 }
 
-export function LoginButton({ authDialog, className, size }: LoginButtonProps) {
+export function LoginButton({ className, size }: LoginButtonProps) {
   const { t } = useTranslation('auth');
   const { openDialog, DialogElement } = useDialog(AuthDialog);
+  const { isOverBreakpoint } = useBreakpoint('lg');
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const [setRedirectUrl] = useLoginRedirectStore((state: any) => [state.setRedirectUrl]);
 
   const login = () => {
-    if (authDialog) {
+    if (isOverBreakpoint) {
       openDialog();
     } else {
+      setRedirectUrl(pathname);
       navigate('/login');
     }
   };
