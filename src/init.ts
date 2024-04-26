@@ -1,12 +1,13 @@
-import { config } from './config';
+import { config, GTomyLibConfig } from './config';
 import { initSentry, SentryConfig } from '@/utils/sentry';
 
 interface CloudflareConfig {
   imagesUrl?: string;
 }
 
-interface GoogleAuthConfig {
-  clientId: string;
+interface GoogleConfig {
+  clientId?: string;
+  googleMeasurementId?: string;
 }
 
 interface GTomyLibInitConfig {
@@ -18,7 +19,7 @@ interface GTomyLibInitConfig {
   storageUrl?: string;
   cloudflareConfig?: CloudflareConfig;
   sentryConfig?: SentryConfig;
-  googleAuthConfig?: GoogleAuthConfig;
+  googleConfig?: GoogleConfig;
 }
 
 export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
@@ -30,8 +31,18 @@ export function initGTomyLib(initConfig: GTomyLibInitConfig): void {
     authUrl: initConfig.authUrl,
     storageUrl: initConfig.storageUrl,
     cloudFlareImagesUrl: initConfig.cloudflareConfig?.imagesUrl ?? '/images',
-    googleAuthClientId: initConfig.googleAuthConfig?.clientId,
-  });
+    googleAuthClientId: initConfig.googleConfig?.clientId,
+    googleAnalyticsPlugin: null,
+  } as GTomyLibConfig);
+
+  if (initConfig.googleConfig?.googleMeasurementId != null) {
+    import('react-ga4')
+      .then((plugin) => {
+        plugin.default.initialize(initConfig.googleConfig!.googleMeasurementId!);
+        config.googleAnalyticsPlugin = plugin;
+      })
+      .catch((e) => console.error(e));
+  }
 
   if (initConfig.sentryConfig?.enabled === true) {
     const tracePropagationTargets: string[] = [];

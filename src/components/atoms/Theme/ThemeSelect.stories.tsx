@@ -1,10 +1,9 @@
-import React from 'react';
 import type { ComponentStory, Meta } from '@storybook/react';
 import { Button } from '@/components/atoms/Button';
 import { ThemeSelect } from '@/components/atoms/Theme/ThemeSelect';
 import { LayoutProvider } from '@/components/layout/LayoutProvider';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
-import { XMarkIcon } from '@heroicons/react/20/solid';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import { config } from '@/config';
 
 const meta: Meta<typeof ThemeSelect> = {

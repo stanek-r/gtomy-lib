@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { Button } from '@/components/atoms/Button';

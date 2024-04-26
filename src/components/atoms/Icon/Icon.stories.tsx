@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Icon } from './Icon';
-import { XMarkIcon } from '@heroicons/react/20/solid';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
 const meta: Meta<typeof Icon> = {
   title: 'Atoms/Icon',

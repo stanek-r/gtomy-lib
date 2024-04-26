@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { config } from '@/config';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from '@/utils/hooks/useTranslation';
@@ -7,9 +7,10 @@ import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import { UserIcon } from '@heroicons/react/24/outline';
 import { ProfileImage } from '@/components/auth/ProfileImage';
 import { Typography } from '@/components/atoms/Typography';
-import { useAuth, useBreakpoint } from '@/utils/hooks';
+import { useAuth, useBreakpoint, useDialog } from '@/utils/hooks';
 import { Icon, IconType } from '@/components/atoms/Icon';
 import { LoadingState } from '@/components/atoms/LoadingState';
+import { AuthDialog } from '@/components/auth';
 
 const AppIcon = <img src="/favicon.ico" className="mr-2 size-8 shrink-0 rounded" alt="Application icon" />;
 
@@ -32,14 +33,15 @@ export function Menu({
   dropdownActions,
   icon = AppIcon,
 }: MenuProps) {
-  const { user, isAuthenticated, logout, openLoginDialog, AuthDialogElement, isLoadingUser } = useAuth();
+  const { user, isAuthenticated, logout, isLoadingUser } = useAuth();
+  const { openDialog, DialogElement } = useDialog(AuthDialog);
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
   const navigate = useNavigate();
 
   const login = () => {
     if (authDialog) {
-      openLoginDialog();
+      openDialog();
     } else {
       navigate('/login');
     }
@@ -48,7 +50,7 @@ export function Menu({
   if (isOverBreakpoint) {
     return (
       <>
-        <AuthDialogElement />
+        <DialogElement />
         <div className="navbar bg-neutral text-neutral-content">
           <div className="flex-1">
             {config.appDisplayName && (
@@ -102,12 +104,12 @@ export function Menu({
 
   return (
     <>
-      <AuthDialogElement />
+      <DialogElement />
       <div className="navbar bg-neutral text-neutral-content">
         {children && (
           <div className="navbar-start">
             <div className="dropdown">
-              <div tabIndex={0} role="button" className="btn btn-circle btn-ghost">
+              <div tabIndex={0} role="button" className="btn btn-circle btn-ghost" title="Menu">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="size-5"

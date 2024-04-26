@@ -1,4 +1,3 @@
-import React from 'react';
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { LoadingState } from '@/components/atoms/LoadingState';
 
@@ -17,6 +16,7 @@ export function combineQueryWrapperProps<T1, T2>(
     showRetry: wrapperProps1.showRetry || wrapperProps2.showRetry,
     retry: wrapperProps1.showRetry ? wrapperProps1.retry : wrapperProps2.retry,
     loadingMessage: wrapperProps1.isLoading ? wrapperProps1.loadingMessage : wrapperProps2.loadingMessage,
+    fallbackValue: wrapperProps1.fallbackValue,
   };
 }
 
@@ -30,6 +30,7 @@ export interface QueryWrapperProps<T> {
   retry: () => void;
   loadingMessage?: string;
   data?: T;
+  fallbackValue: T;
 }
 
 export function QueryWrapper<T>({
@@ -42,11 +43,12 @@ export function QueryWrapper<T>({
   retry,
   loadingMessage,
   data,
+  fallbackValue,
 }: QueryWrapperProps<T>): JSX.Element {
   if (isError) {
     return <ErrorState error={error} retry={retry} showRetry={showRetry} />;
   }
-  if (isLoading || data == null) {
+  if (data == null || (isLoading && fallbackValue != data)) {
     return <LoadingState message={loadingMessage} showLoading={showLoading} />;
   }
   return children;

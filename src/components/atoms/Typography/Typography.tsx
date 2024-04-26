@@ -1,4 +1,4 @@
-import React, { ElementType } from 'react';
+import { ElementType } from 'react';
 import { PropsAs } from '@/utils';
 import { twMerge } from 'tailwind-merge';
 

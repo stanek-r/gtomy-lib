@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
@@ -15,7 +15,7 @@ import { useRequestAccess } from '@/utils/hooks/useRequestAccess';
 export interface RequireAuthProps {
   MenuComponent?: FunctionComponent | JSX.Element;
   FooterComponent?: FunctionComponent | JSX.Element;
-  minimalRole: PermRoles;
+  minimalRole?: PermRoles;
   children?: JSX.Element;
   application?: string;
   displayRequestAccess?: boolean;

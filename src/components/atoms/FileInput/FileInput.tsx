@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, useId } from 'react';
+import { ComponentPropsWithRef, forwardRef, useId } from 'react';
 import { Typography } from '@/components/atoms/Typography';
 import { twMerge } from 'tailwind-merge';
 
@@ -14,7 +14,7 @@ export interface FileInputProps extends Omit<ComponentPropsWithRef<'input'>, 'si
   size?: 'sm' | 'lg';
 }
 
-export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
+export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
   ({ children, className, label, size, hint, error, ...other }: FileInputProps, ref) => {
     const id = useId();
 

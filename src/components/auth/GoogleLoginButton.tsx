@@ -1,5 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { CredentialResponse, GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { config } from '@/config';
 import { useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
@@ -17,8 +16,17 @@ export function GoogleLoginButton({ className, setError, isInDialog, closeDialog
   const { loginWithGoogle } = useAuth();
   const { t } = useTranslation('auth');
   const navigate = useNavigate();
+  const [googlePlugin, setGooglePlugin] = useState<any>(null);
 
-  const onSuccess = (credentialResponse: CredentialResponse) => {
+  useEffect(() => {
+    import('@react-oauth/google')
+      .then((plugin) => {
+        setGooglePlugin(plugin);
+      })
+      .catch((e) => console.error(e));
+  }, []);
+
+  const onSuccess = (credentialResponse: any) => {
     if (credentialResponse.credential == null) {
       setError(t('cannotLoginWiaGoogle'));
       return;
@@ -39,11 +47,15 @@ export function GoogleLoginButton({ className, setError, isInDialog, closeDialog
 
   const onError = () => setError(t('cannotLoginWiaGoogle'));
 
+  if (googlePlugin == null) {
+    return null;
+  }
+
   return (
     <div className={twMerge('[color-scheme:light]', className)}>
-      <GoogleOAuthProvider clientId={config.googleAuthClientId!}>
-        <GoogleLogin onSuccess={onSuccess} onError={onError} theme="filled_blue" />
-      </GoogleOAuthProvider>
+      <googlePlugin.GoogleOAuthProvider clientId={config.googleAuthClientId!}>
+        <googlePlugin.GoogleLogin onSuccess={onSuccess} onError={onError} theme="filled_blue" />
+      </googlePlugin.GoogleOAuthProvider>
     </div>
   );
 }

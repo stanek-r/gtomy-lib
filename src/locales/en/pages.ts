@@ -1,7 +1,7 @@
 export const pages = {
   privacy: {
     title: 'Privacy policy',
-    subtitle: 'Effective date: ',
+    subtitle: 'Effective date: 25.2.2024',
     description:
       'This Privacy Policy applies to all websites, applications, and services (collectively, "Services") operated by GTomy ("we", "us", or "our"). We are committed to protecting the privacy of our users ("you" or "your"). This policy outlines how we collect, use, disclose, and safeguard your information when you visit our Services.',
     informationWeCollect: {

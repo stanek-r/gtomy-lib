@@ -1,7 +1,7 @@
-import React, { FunctionComponent, ReactNode, useContext } from 'react';
+import { FunctionComponent, ReactNode, useContext } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { LayoutContext } from '@/components/layout/LayoutProvider';
-import { withComponent } from '@/utils';
+import { withComponent } from '@/utils/with-helpers/withComponent';
 
 export const columnPageWidthClasses = {
   sm: 'w-[640px]',

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Typography } from '@/components/atoms/Typography';
 import { twMerge } from 'tailwind-merge';
 import { PERM_ROLES, PermRoles } from '@/utils/hooks/storage';
@@ -9,27 +8,34 @@ import { ErrorState } from '@/components/atoms/ErrorState';
 import { Button } from '@/components/atoms/Button';
 import { LoginButton } from '@/components/auth/LoginButton';
 import { useRequestAccess } from '@/utils/hooks/useRequestAccess';
+import { ReactNode } from 'react';
 
 export interface RequirePermissionProps {
   title?: string;
   className?: string;
-  minimalRole: PermRoles;
+  minimalRole?: PermRoles;
   children?: JSX.Element;
   application?: string;
   displayWarning?: boolean;
+  displayLogin?: boolean;
   displayRequestAccess?: boolean;
   displayLoginInDialog?: boolean;
+  startElement?: ReactNode;
+  endElement?: ReactNode;
 }
 
 export function RequirePermission({
   title,
   className,
   children,
-  minimalRole,
+  minimalRole = 'user',
   application,
   displayWarning,
+  displayLogin,
   displayRequestAccess,
   displayLoginInDialog,
+  startElement,
+  endElement,
 }: RequirePermissionProps): JSX.Element | null {
   const { t } = useTranslation('auth');
   const { isAuthenticated, user } = useAuth();
@@ -40,41 +46,61 @@ export function RequirePermission({
   const roleId = PERM_ROLES[role as PermRoles];
 
   if (!isAuthenticated) {
-    if (!displayWarning) {
+    if (!displayLogin) {
       return null;
     }
     return (
-      <div className={twMerge('flex flex-col gap-4 justify-center items-center', className)}>
-        <Typography size="2xl" weight="semibold">
-          {title ?? t('noLogin.title')}
-        </Typography>
-        <LoginButton authDialog={displayLoginInDialog} />
-      </div>
+      <>
+        {startElement}
+        <div className={twMerge('flex flex-col gap-4 justify-center items-center', className)}>
+          <Typography size="2xl" weight="semibold">
+            {title ?? t('noLogin.title')}
+          </Typography>
+          <LoginButton authDialog={displayLoginInDialog} />
+        </div>
+        {endElement}
+      </>
     );
   }
   if (error) {
-    return <ErrorState error={error} className={className} />;
+    return (
+      <>
+        {startElement}
+        <ErrorState error={error} className={className} />
+        {endElement}
+      </>
+    );
   }
   if (roleId < minimalRoleId) {
     if (!displayWarning) {
       return null;
     }
     return (
-      <div role="alert" className={twMerge('alert alert-warning', className)}>
-        <LockClosedIcon className="size-8" />
-        <Typography size="xl" color="warning">
-          {title ?? t('noPermission.title')}
-        </Typography>
-        {displayRequestAccess &&
-          (sent ? (
-            <Typography color="warning">{t('requestRoleSent')}</Typography>
-          ) : (
-            <Button onClick={requestAccess} disabled={sending}>
-              {t('requestRole')}
-            </Button>
-          ))}
-      </div>
+      <>
+        {startElement}
+        <div role="alert" className={twMerge('alert alert-warning', className)}>
+          <LockClosedIcon className="size-8" />
+          <Typography size="xl" color="warning">
+            {title ?? t('noPermission.title')}
+          </Typography>
+          {displayRequestAccess &&
+            (sent ? (
+              <Typography color="warning">{t('requestRoleSent')}</Typography>
+            ) : (
+              <Button onClick={requestAccess} disabled={sending}>
+                {t('requestRole')}
+              </Button>
+            ))}
+        </div>
+        {endElement}
+      </>
     );
   }
-  return children ?? null;
+  return (
+    <>
+      {startElement}
+      {children}
+      {endElement}
+    </>
+  );
 }

@@ -4,7 +4,7 @@ import { UserAccessRequestDto } from '@/models/userAccessRequest.dto';
 import { config } from '@/config';
 import { Roles } from '@/utils/hooks/storage';
 import { useAuth } from '@/utils/hooks/useAuth';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useRequestAccessStore } from '@/utils/hooks/storage/useRequestAccessStore';
 
 export interface UseRequestAccessReturn {
@@ -15,11 +15,18 @@ export interface UseRequestAccessReturn {
 }
 
 export function useRequestAccess(role: string, application = config.appName): UseRequestAccessReturn {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const { get, put } = useRequest(config.authUrl);
+  const getRequestAccess: () => Promise<UserAccessRequestDto[]> = useCallback(() => {
+    if (isAuthenticated) {
+      return get<UserAccessRequestDto[]>('/request-access');
+    }
+    return new Promise((resolve) => resolve([]));
+  }, [isAuthenticated, get]);
+
   const { data, isError, isLoading, refetch } = useQuery<UserAccessRequestDto[]>({
-    queryKey: ['request-access'],
-    queryFn: () => get<UserAccessRequestDto[]>('/request-access'),
+    queryKey: ['request-access', isAuthenticated, user?.userId],
+    queryFn: getRequestAccess,
     fallbackValue: [],
   });
 

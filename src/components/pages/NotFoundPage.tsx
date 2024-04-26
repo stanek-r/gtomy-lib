@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormPage } from '@/components/layout';
 import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks';

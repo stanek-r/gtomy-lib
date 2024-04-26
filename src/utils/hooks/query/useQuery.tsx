@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback, useEffect, useMemo, useState } from 'react';
+import { FunctionComponent, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   DefaultError,
   QueryClient,
@@ -54,6 +54,7 @@ export function useQuery<
       showRetry: options.showRetry,
       retry: query.refetch,
       data: query.data,
+      fallbackValue: fallbackValue,
     }),
     [
       query.data,
@@ -64,6 +65,7 @@ export function useQuery<
       options.showRetry,
       showLoading,
       loadingMessage,
+      fallbackValue,
     ]
   );
   const QueryWrapperInner = useCallback(

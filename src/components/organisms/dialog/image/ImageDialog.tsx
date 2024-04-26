@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { BaseDialogProps } from '@/components/organisms/dialog';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import * as Dialog from '@radix-ui/react-dialog';
@@ -9,6 +9,7 @@ import { CloudflareStream } from '@/components/atoms/CloudflareStream';
 import { CloudflareImage } from '@/components/atoms/CloudflareImage';
 import { LoadingState } from '@/components/atoms/LoadingState';
 import { LazyLoadImageProps } from 'react-lazy-load-image-component';
+import { config } from '@/config';
 
 export interface ImageDialogProps extends BaseDialogProps, Pick<LazyLoadImageProps, 'effect'> {
   title: string;
@@ -20,6 +21,22 @@ export interface ImageDialogProps extends BaseDialogProps, Pick<LazyLoadImagePro
 export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenChange, effect }: ImageDialogProps) {
   const [height, setHeight] = useState<number>(window.innerHeight);
   const [loaded, setLoaded] = useState<boolean>(videoId != null);
+
+  const imageClasses = useMemo(
+    () =>
+      twMerge(
+        'max-w-[90vw] object-contain',
+        loaded && (height >= 1000 ? 'max-h-[80vh]' : 'max-h-[75vh]'),
+        !loaded && 'w-[90vw]',
+        !loaded && (height >= 1000 ? 'h-[80vh]' : 'h-[75vh]')
+      ),
+    [loaded, height]
+  );
+
+  const zoom = () => {
+    const src = `${config.cloudFlareImagesUrl}/${imageId}`;
+    window.open(`${src}/original`, '_blank', 'noreferrer');
+  };
 
   useEffect(() => {
     function handleResize() {
@@ -34,7 +51,7 @@ export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenCha
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black opacity-80" />
-        <Dialog.Content className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] focus:outline-none">
+        <Dialog.Content className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 focus:outline-none">
           <div className="flex flex-col items-center gap-4">
             <div
               className={twMerge(
@@ -69,14 +86,12 @@ export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenCha
             {imageId && (
               <CloudflareImage
                 imageId={imageId}
-                className={twMerge(
-                  'max-w-[90vw] object-contain',
-                  !loaded && 'w-[90vw]',
-                  height >= 1000 ? 'h-[80vh]' : 'h-[75vh]'
-                )}
-                wrapperClassName="!bg-contain bg-no-repeat bg-center"
+                className={imageClasses}
+                wrapperClassName="!bg-contain bg-no-repeat bg-center cursor-zoom-in"
                 onLoad={() => setLoaded(true)}
+                onClick={zoom}
                 effect={effect}
+                title="Otevřít na nové kartě"
               />
             )}
             {videoId && <CloudflareStream videoId={videoId} />}

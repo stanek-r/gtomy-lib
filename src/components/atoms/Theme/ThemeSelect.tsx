@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { useThemeStore } from '@/utils/hooks/storage/useThemeStore';
 import { config } from '@/config';

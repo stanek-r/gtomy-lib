@@ -1,4 +1,4 @@
-import React, { ComponentProps } from 'react';
+import { ComponentProps } from 'react';
 import { Threads } from '@/assets/social/Threads';
 import { Youtube } from '@/assets/social/Youtube';
 import { Instagram } from '@/assets/social/Instagram';
@@ -16,5 +16,9 @@ export interface FooterSocialItemProps extends Omit<ComponentProps<'a'>, 'childr
 }
 
 export function FooterSocialItem({ type, ...other }: FooterSocialItemProps) {
-  return <a {...other}>{types[type]}</a>;
+  return (
+    <a {...other} title={type}>
+      {types[type]}
+    </a>
+  );
 }

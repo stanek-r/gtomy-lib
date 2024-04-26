@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormPage } from '@/components/layout';
 import { RegisterForm } from '@/components/auth';
 

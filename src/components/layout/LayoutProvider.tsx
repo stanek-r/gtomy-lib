@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import { createContext, FunctionComponent, ReactNode } from 'react';
 import { useThemeStore } from '@/utils/hooks/storage/useThemeStore';
 
 export interface LayoutContext {
@@ -6,7 +6,7 @@ export interface LayoutContext {
   FooterComponent?: FunctionComponent | JSX.Element;
 }
 
-export const LayoutContext = React.createContext<LayoutContext>({});
+export const LayoutContext = createContext<LayoutContext>({});
 
 export interface LayoutProviderProps {
   children?: ReactNode;

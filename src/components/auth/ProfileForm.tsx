@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { FormTextInput } from '@/components/form/FormTextInput';
 import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
@@ -7,7 +7,6 @@ import { config } from '@/config';
 import { FormFileInput, SingleFormFile } from '@/components/form/FormFileInput';
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { TextInput } from '@/components/atoms/TextInput';
-import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { ProfileImage } from '@/components/auth/ProfileImage';
 import { useAuth, useBlobstorage, useRequest, useTranslation } from '@/utils/hooks';
 import { isUserAccountFromGoogle } from '@/utils/auth';
@@ -25,7 +24,7 @@ interface ProfileForm {
 
 export function ProfileForm({ children, className }: Props) {
   const { t } = useTranslation('auth');
-  const { user, refreshToken, updateAccessToken } = useAuth();
+  const { user, updateAccessToken } = useAuth();
   const { control, handleSubmit, reset } = useForm<ProfileForm>({
     defaultValues: {
       displayName: user?.displayName ?? null,
@@ -36,7 +35,11 @@ export function ProfileForm({ children, className }: Props) {
   const { post } = useRequest(config.authUrl);
   const [error, setError] = useState<any | null>(null);
   const [saving, setSaving] = useState<boolean>(false);
-  const { uploadImage, deleteImage, error: blobstorageError } = useBlobstorage('/user-profile/profile-image');
+  const {
+    uploadImage,
+    deleteImage,
+    error: blobstorageError,
+  } = useBlobstorage('/user-profile/profile-image', config.authUrl);
 
   const onSubmit = async (form: ProfileForm) => {
     setSaving(true);
@@ -77,12 +80,6 @@ export function ProfileForm({ children, className }: Props) {
 
   return (
     <>
-      {refreshToken == null && (
-        <div role="alert" className="alert">
-          <InformationCircleIcon className="size-6 shrink-0 stroke-current" />
-          <span>{t('profileAlert')}</span>
-        </div>
-      )}
       <form onSubmit={handleSubmit(onSubmit)} className={twMerge('grid grid-cols-1 lg:grid-cols-2 gap-2', className)}>
         <FormTextInput
           label={t('displayName')}
@@ -140,8 +137,8 @@ export function ProfileForm({ children, className }: Props) {
           </Button>
         </div>
         <div className="divider lg:col-span-2"></div>
-        {children}
       </form>
+      {children}
     </>
   );
 }

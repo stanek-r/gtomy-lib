@@ -1,4 +1,3 @@
-import React from 'react';
 import { ComponentStory } from '@storybook/react';
 import { BrowserRouter, Link } from 'react-router-dom';
 import { Footer } from '@/components/atoms/Footer/Footer';

@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, useId, useMemo } from 'react';
+import { ComponentPropsWithRef, forwardRef, useId, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Typography } from '@/components/atoms/Typography';
 import { CloudflareImage } from '@/components/atoms/CloudflareImage';
@@ -11,7 +11,7 @@ export interface CheckboxProps extends ComponentPropsWithRef<'input'> {
   outlined?: boolean;
 }
 
-export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ label, error, hint, className, type, imageId, checked, outlined, ...other }: CheckboxProps, ref) => {
     const id = useId();
     const displayOutline = useMemo(() => outlined && checked, [outlined, checked]);

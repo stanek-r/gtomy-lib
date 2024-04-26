@@ -1,7 +1,7 @@
-import React, { ChangeEvent } from 'react';
+import { ChangeEvent } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
 import { Radio } from '@/components/atoms/Radio/Radio';
-import { useFormController } from '@/utils/hooks';
+import { useFormController } from '@/utils/hooks/useFormController';
 
 /**
  * @group Components

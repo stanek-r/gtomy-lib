@@ -1,7 +1,7 @@
-import React, { ComponentPropsWithRef } from 'react';
+import { ComponentPropsWithRef } from 'react';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { SelectInput } from '@/components/atoms/SelectInput';
-import { changeLanguage } from '@/utils';
+import { changeLanguage } from '@/utils/i18n';
 
 export type LanguageSelectProps = Omit<
   Omit<Omit<Omit<ComponentPropsWithRef<'select'>, 'children'>, 'onChange'>, 'value'>,

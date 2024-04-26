@@ -1,10 +1,6 @@
-import React from 'react';
 import { ColumnPage } from '@/components/layout';
 import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks';
-import dayjs from 'dayjs';
-
-export const PRIVACY_EFFECTIVE_DATE = dayjs('2024-02-25', 'YYYY-MM-DD');
 
 export interface PrivacyPolicyPageProps {
   width?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
@@ -19,7 +15,6 @@ export function PrivacyPolicyPage({ width }: PrivacyPolicyPageProps) {
       </Typography>
       <Typography size="xl" weight="semibold">
         {t('privacy.subtitle')}
-        {PRIVACY_EFFECTIVE_DATE.format('D.M.YYYY')}
       </Typography>
       <p>{t('privacy.description')}</p>
       <Typography size="xl" weight="medium">

@@ -1,7 +1,7 @@
 export const pages = {
   privacy: {
     title: 'Zásady ochrany osobních údajů',
-    subtitle: 'Datum účinnosti: ',
+    subtitle: 'Datum účinnosti: 25.2.2024',
     description:
       'Tyto zásady ochrany osobních údajů se vztahují na všechny webové stránky, aplikace a služby (společně „Služby“) provozované společností GTomy („my“, „nás“ nebo „naše“). Jsme odhodláni chránit soukromí našich uživatelů („vy“ nebo „vaše“). Tyto zásady vysvětlují, jak shromažďujeme, používáme, zveřejňujeme a chráníme vaše informace, když navštívíte naše Služby.',
     informationWeCollect: {

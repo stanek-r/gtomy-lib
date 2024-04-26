@@ -1,4 +1,4 @@
-import React, { ElementType, ForwardedRef } from 'react';
+import { ElementType, ForwardedRef } from 'react';
 import { buttonColorClasses, buttonSizeClasses } from '@/components/atoms/Button';
 import { forwardRefWithTypes, PropsAs } from '@/utils/typeHelpers';
 import { twMerge } from 'tailwind-merge';

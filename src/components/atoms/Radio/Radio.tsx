@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, useId } from 'react';
+import { ComponentPropsWithRef, forwardRef, useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Typography } from '@/components/atoms/Typography';
 
@@ -8,7 +8,7 @@ export interface RadioProps extends ComponentPropsWithRef<'input'> {
   error?: string;
 }
 
-export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
+export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   ({ label, error, hint, className, type, checked, ...other }: RadioProps, ref) => {
     const id = useId();
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { CloudflareImage } from '@/components/atoms/CloudflareImage/CloudflareImage';
 import { ComponentStory } from '@storybook/react';
