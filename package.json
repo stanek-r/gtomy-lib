@@ -56,7 +56,7 @@
     "tailwind-merge": "^2.3.0",
     "zustand": "^4.5.2",
     "@react-oauth/google": "^0.12.1",
-    "@sentry/react": "^7.111.0",
+    "@sentry/react": "^7.112.2",
     "react-ga4": "^2.1.0"
   },
   "peerDependenciesMeta": {
@@ -98,7 +98,7 @@
     "autoprefixer": "^10.4.13",
     "cssnano": "^6.0.3",
     "ctix": "^2.4.0",
-    "daisyui": "^4.6.0",
+    "daisyui": "^4.10.2",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",

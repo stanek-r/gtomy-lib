@@ -18,12 +18,8 @@ export function initSentry(config: SentryConfig, tracePropagationTargets: string
     .then((plugin) => {
       plugin.init({
         dsn: config.dsn,
-        integrations: [
-          new plugin.BrowserTracing({
-            tracePropagationTargets: [...tracePropagationTargets, ...config.additionalTracePropagationTargets],
-          }),
-          new plugin.Replay(),
-        ],
+        tracePropagationTargets: [...tracePropagationTargets, ...config.additionalTracePropagationTargets],
+        integrations: [plugin.browserTracingIntegration(), plugin.replayIntegration()],
         // Performance Monitoring
         tracesSampleRate: 1.0,
         // Session Replay
