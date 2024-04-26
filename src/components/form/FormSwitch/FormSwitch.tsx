@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, ReactNode } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
 import { useFormController } from '@/utils/hooks/useFormController';
 import { Switch } from '@/components/atoms/Switch/Switch';
@@ -11,9 +11,11 @@ export interface FormSwitchProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends UseControllerProps<TFieldValues, TName> {
-  placeholder?: string;
   type?: string;
   className?: string;
+  startElement?: ReactNode;
+  endElement?: ReactNode;
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
 /**
@@ -23,7 +25,7 @@ export interface FormSwitchProps<
 export function FormSwitch<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
->({ placeholder, className, type, ...useControllerProps }: FormSwitchProps<TFieldValues, TName>) {
+>({ className, type, size, startElement, endElement, ...useControllerProps }: FormSwitchProps<TFieldValues, TName>) {
   const {
     field: { onChange, value, ...other },
   } = useFormController(useControllerProps);
@@ -34,11 +36,13 @@ export function FormSwitch<
 
   return (
     <Switch
-      placeholder={placeholder}
       className={className}
       onChange={handleOnChange}
       type={type}
       checked={value}
+      size={size}
+      startElement={startElement}
+      endElement={endElement}
       {...other}
     />
   );
