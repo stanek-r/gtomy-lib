@@ -1,6 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { captureException, captureMessage } from '@sentry/react';
-import { getIgnoredStatusCodes, isSentryEnabled } from './initSentry';
+import { getIgnoredStatusCodes, getSentryPlugin, isSentryEnabled } from './initSentry';
 
 /**
  * Log error to Sentry
@@ -28,7 +27,7 @@ export function logError(error: string | Error | AxiosError): void {
  * @param data - Additional data to log
  */
 function handleErrorMessage(msg: string, data?: any): string {
-  return captureMessage(msg, {
+  return getSentryPlugin().captureMessage(msg, {
     extra: {
       __serialized__: data,
     },
@@ -45,7 +44,7 @@ function handleHttpRequestError(error: AxiosError): string | undefined {
     return;
   }
   const captureData = (error.response?.status || 0) >= 400;
-  return captureException(error, {
+  return getSentryPlugin().captureException(error, {
     extra: {
       status: error.status || error.response?.status,
       message: error.message,
@@ -61,7 +60,7 @@ function handleHttpRequestError(error: AxiosError): string | undefined {
  * @param error - Error to log
  */
 function handleError(error: Error): string {
-  return captureException(error, {
+  return getSentryPlugin().captureException(error, {
     level: 'error',
   });
 }

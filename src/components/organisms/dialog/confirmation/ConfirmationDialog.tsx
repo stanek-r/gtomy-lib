@@ -3,7 +3,7 @@ import { BaseDialog, BaseDialogProps } from '@/components/organisms/dialog';
 import { Typography } from '@/components/atoms/Typography';
 import { Button } from '@/components/atoms/Button';
 import { ErrorState } from '@/components/atoms/ErrorState';
-import { useTranslation } from '@/utils/hooks';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 export type ConfirmationDialogOnAction = ({
   onClose,

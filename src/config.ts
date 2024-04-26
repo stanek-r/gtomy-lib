@@ -6,7 +6,7 @@ export interface GTomyLibConfig {
   backendUrl?: string;
   cloudFlareImagesUrl?: string;
   googleAuthClientId?: string;
-  googleAnalyticsEnabled?: boolean;
+  googleAnalyticsPlugin?: any;
 }
 
 export const config: GTomyLibConfig = {};

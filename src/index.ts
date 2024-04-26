@@ -49,3 +49,4 @@ export * from './utils/hooks';
 export * from './utils/hooks/query';
 export * from './utils/hooks/storage';
 export * from './utils/sentry';
+export * from './utils/with-helpers';

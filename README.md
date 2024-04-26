@@ -16,18 +16,20 @@ Contains some other libraries bundled and some are required to be added to the p
 * zustand
 * tailwind-merge
 
-## Bundled libraries
+## Optional libraries
+* react-ga4
+* @sentry/react
+* @react-oauth/google
+
+## Other used libraries
 * @cloudflare/stream-react
 * @radix-ui/react-dialog
-* @react-oauth/google
-* @sentry/react
 * @tanstack/query-sync-storage-persister
 * @tanstack/react-query
 * @tanstack/react-query-persist-client
 * i18next
 * i18next-browser-languagedetector
 * jwt-decode
-* react-ga4
 * react-hot-toast
 * react-i18next
 

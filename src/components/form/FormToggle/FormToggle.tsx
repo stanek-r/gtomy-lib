@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
-import { useFormController } from '@/utils/hooks';
+import { useFormController } from '@/utils/hooks/useFormController';
 import { Toggle } from '@/components/atoms/Toggle/Toggle';
 
 /**

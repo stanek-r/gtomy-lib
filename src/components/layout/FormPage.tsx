@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode, useContext } from 'react';
 import { LayoutContext } from '@/components/layout/LayoutProvider';
-import { withComponent } from '@/utils';
+import { withComponent } from '@/utils/with-helpers/withComponent';
 
 export interface FormPageProps {
   MenuComponent?: FunctionComponent | JSX.Element;
