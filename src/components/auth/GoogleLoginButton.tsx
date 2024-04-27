@@ -3,20 +3,21 @@ import { config } from '@/config';
 import { useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { useAuth, useTranslation } from '@/utils/hooks';
+import { useLoginRedirectStore } from '@/utils/hooks/storage';
 
 export interface GoogleAuthProps {
   setError: Dispatch<SetStateAction<string | null>>;
   isInDialog?: boolean;
   closeDialog?: () => void;
-  backURL?: string;
   className?: string;
 }
 
-export function GoogleLoginButton({ className, setError, isInDialog, closeDialog, backURL }: GoogleAuthProps) {
+export function GoogleLoginButton({ className, setError, isInDialog, closeDialog }: GoogleAuthProps) {
   const { loginWithGoogle } = useAuth();
   const { t } = useTranslation('auth');
   const navigate = useNavigate();
   const [googlePlugin, setGooglePlugin] = useState<any>(null);
+  const [redirectUrl, setRedirectUrl] = useLoginRedirectStore((state) => [state.redirectUrl, state.setRedirectUrl]);
 
   useEffect(() => {
     import('@react-oauth/google')
@@ -37,7 +38,8 @@ export function GoogleLoginButton({ className, setError, isInDialog, closeDialog
         if (isInDialog) {
           closeDialog?.();
         } else {
-          navigate(backURL || '/');
+          navigate(redirectUrl ?? '/');
+          setRedirectUrl(null);
         }
       } else {
         setError(t('loginErrorGoogle'));
