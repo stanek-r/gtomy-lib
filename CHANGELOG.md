@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.3](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.2...v0.5.3) (2024-04-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove authDialog options
+
+### Features
+
+* add CookiesProvider ([78de208](https://gitlab.com/gtomy-services/gtomy-lib/commit/78de2088d19c5d04cd96e937904bbbfac32ed10a))
+* remove authDialog options ([41b295d](https://gitlab.com/gtomy-services/gtomy-lib/commit/41b295d5b9078e767f25c01c702ab9f56200708d))
+
+
+### Bug Fixes
+
+* form switch props ([f008324](https://gitlab.com/gtomy-services/gtomy-lib/commit/f00832429b08855659ba8670c8df4d0ae7ca2f85))
+
 ### [0.5.2](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.1...v0.5.2) (2024-04-26)
 
 
