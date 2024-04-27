@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.4](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.3...v0.5.4) (2024-04-27)
+
+
+### Features
+
+* add typescript to zustand stores ([cdf975a](https://gitlab.com/gtomy-services/gtomy-lib/commit/cdf975abaa6f23cb620a48dd28cc04cf0ac286ba))
+
+
+### Bug Fixes
+
+* redirect url after google login ([fbbf81d](https://gitlab.com/gtomy-services/gtomy-lib/commit/fbbf81de43a5875592c0d922a84b00a9706d05b0))
+
 ### [0.5.3](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.2...v0.5.3) (2024-04-27)
 
 
