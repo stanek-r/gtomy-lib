@@ -33,6 +33,7 @@ export * from './components/form/FormTextareaInput';
 export * from './components/form/FormTextInput';
 export * from './components/form/FormToggle';
 export * from './components/layout';
+export * from './components/organisms/cookies';
 export * from './components/organisms/dialog';
 export * from './components/organisms/dialog/alert';
 export * from './components/organisms/dialog/confirmation';

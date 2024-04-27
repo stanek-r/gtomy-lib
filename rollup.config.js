@@ -34,6 +34,7 @@ export default [
       'react-hot-toast',
       'react-i18next',
       'js-file-download',
+      'dayjs',
     ],
   },
   {

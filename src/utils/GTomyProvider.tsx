@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ScrollToTop } from '@/components/organisms/ScrollToTop';
 import { useGoogleAnalyticsPageLoad } from '@/utils/hooks/useGoogleAnalytics';
 import { LayoutProvider } from '@/components/layout';
+import { CookiesProvider } from '@/components/organisms/cookies/CookiesProvider';
 
 const defaultQueryClient = new QueryClient({
   defaultOptions: {
@@ -22,6 +23,7 @@ export interface GTomyProvider {
   MenuComponent?: FunctionComponent | JSX.Element;
   FooterComponent?: FunctionComponent | JSX.Element;
   queryClient?: QueryClient;
+  displayCookies?: boolean;
 }
 
 export function GTomyProvider({
@@ -30,6 +32,7 @@ export function GTomyProvider({
   MenuComponent,
   FooterComponent,
   queryClient = defaultQueryClient,
+  displayCookies,
 }: GTomyProvider) {
   return (
     <BrowserRouter basename={routerBasename}>
@@ -37,6 +40,7 @@ export function GTomyProvider({
       <QueryClientProvider client={queryClient}>
         <LayoutProvider MenuComponent={MenuComponent} FooterComponent={FooterComponent}>
           <ToastProvider />
+          {displayCookies && <CookiesProvider />}
           {children}
         </LayoutProvider>
       </QueryClientProvider>

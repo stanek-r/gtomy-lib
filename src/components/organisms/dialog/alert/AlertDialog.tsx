@@ -3,10 +3,11 @@ import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
+import { ReactNode } from 'react';
 
 export interface AlertDialogProps extends BaseDialogProps {
   title: string;
-  text: string;
+  text: ReactNode;
 }
 
 export function AlertDialog({ title, text, ...props }: AlertDialogProps) {

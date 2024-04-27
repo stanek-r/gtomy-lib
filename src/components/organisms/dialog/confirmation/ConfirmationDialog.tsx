@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { BaseDialog, BaseDialogProps } from '@/components/organisms/dialog';
 import { Typography } from '@/components/atoms/Typography';
 import { Button } from '@/components/atoms/Button';
@@ -15,7 +15,7 @@ export type ConfirmationDialogOnAction = ({
 
 export interface ConfirmationDialogProps extends BaseDialogProps {
   title: string;
-  text: string;
+  text: ReactNode;
   confirm?: string;
   cancel?: string;
   onAction: ConfirmationDialogOnAction;
