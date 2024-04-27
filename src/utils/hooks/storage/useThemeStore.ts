@@ -1,11 +1,16 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
+interface ThemeStore {
+  theme: string | null;
+  setTheme: (theme: string | null) => void;
+}
+
 export const useThemeStore = create(
-  persist(
+  persist<ThemeStore>(
     (set) => ({
-      theme: undefined,
-      setTheme: (theme: string | undefined) => set(() => ({ theme: theme })),
+      theme: null,
+      setTheme: (theme: string | null) => set(() => ({ theme: theme })),
     }),
     {
       name: 'theme-storage',

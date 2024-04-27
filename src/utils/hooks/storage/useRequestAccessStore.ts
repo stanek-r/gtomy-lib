@@ -2,11 +2,17 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { Roles } from '@/utils/hooks/storage/useAuthStore';
 
+interface RequestAccessStore {
+  requests: Roles[];
+  addRequest: (request: Roles) => void;
+  clearRequests: () => void;
+}
+
 export const useRequestAccessStore = create(
-  persist(
+  persist<RequestAccessStore>(
     (set) => ({
       requests: [],
-      addRequest: (request: Roles) => set((prev: Roles[]) => ({ requests: [...prev, request] })),
+      addRequest: (request: Roles) => set((prev) => ({ requests: [...prev.requests, request] })),
       clearRequests: () => set(() => ({ requests: [] })),
     }),
     {

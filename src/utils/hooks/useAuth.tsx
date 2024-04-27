@@ -25,11 +25,8 @@ interface UseAuth {
 }
 
 export function useAuth(): UseAuth {
-  const [accessToken, setAccessToken] = useAccessTokenStore((state: any) => [state.accessToken, state.setAccessToken]);
-  const [refreshToken, setRefreshToken] = useRefreshTokenStore((state: any) => [
-    state.refreshToken,
-    state.setRefreshToken,
-  ]);
+  const [accessToken, setAccessToken] = useAccessTokenStore((state) => [state.accessToken, state.setAccessToken]);
+  const [refreshToken, setRefreshToken] = useRefreshTokenStore((state) => [state.refreshToken, state.setRefreshToken]);
 
   const user = useMemo(() => mapAccessTokenToUser(accessToken), [accessToken]);
   const { get, refresh } = useRequest(config.authUrl);

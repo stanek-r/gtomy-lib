@@ -21,7 +21,6 @@ interface LoginForm {
 }
 
 interface Props {
-  backURL?: string;
   isInDialog?: boolean;
   toggleRegister?: () => void;
   closeDialog?: () => void;
@@ -29,7 +28,7 @@ interface Props {
   showTheme?: boolean;
 }
 
-export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog, showTheme, showLanguage }: Props) {
+export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, showLanguage }: Props) {
   const { isAuthenticated, user, login, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -37,10 +36,7 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog, sh
   const { control, handleSubmit } = useForm<LoginForm>({
     defaultValues: { username: undefined, password: undefined, rememberLogin: false },
   });
-  const [redirectUrl, setRedirectUrl] = useLoginRedirectStore((state: any) => [
-    state.redirectUrl,
-    state.setRedirectUrl,
-  ]);
+  const [redirectUrl, setRedirectUrl] = useLoginRedirectStore((state) => [state.redirectUrl, state.setRedirectUrl]);
 
   const onHandleSubmit = (value: LoginForm) => {
     login(value.username, value.password, value.rememberLogin).then((value) => {
@@ -48,8 +44,8 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog, sh
         if (isInDialog) {
           closeDialog?.();
         } else {
-          navigate(backURL ?? redirectUrl ?? '/');
-          setRedirectUrl(undefined);
+          navigate(redirectUrl ?? '/');
+          setRedirectUrl(null);
         }
       } else if (value === false) {
         setError(t('invalidCredentials'));
@@ -124,7 +120,6 @@ export function LoginForm({ backURL, isInDialog, toggleRegister, closeDialog, sh
             setError={setError}
             isInDialog={isInDialog}
             closeDialog={closeDialog}
-            backURL={backURL}
           />
         )}
         {(showLanguage || showTheme) && (

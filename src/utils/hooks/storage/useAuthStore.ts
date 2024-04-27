@@ -32,8 +32,13 @@ export interface User {
   exp: number;
 }
 
+interface AccessTokenStore {
+  accessToken: string | undefined;
+  setAccessToken: (token: string | undefined) => void;
+}
+
 export const useAccessTokenStore = create(
-  persist(
+  persist<AccessTokenStore>(
     (set) => ({
       accessToken: undefined,
       setAccessToken: (accessToken: string | undefined) => set(() => ({ accessToken: accessToken })),
@@ -45,18 +50,21 @@ export const useAccessTokenStore = create(
   )
 );
 
-export function getAccessToken(): string {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
+export function getAccessToken(): string | undefined {
   return useAccessTokenStore.getState().accessToken;
 }
 
-export function setAccessToken(token?: string): void {
+export function setAccessToken(token: string | undefined): void {
   useAccessTokenStore.setState({ accessToken: token });
 }
 
+interface RefreshTokenStore {
+  refreshToken: string | undefined;
+  setRefreshToken: (token: string | undefined) => void;
+}
+
 export const useRefreshTokenStore = create(
-  persist(
+  persist<RefreshTokenStore>(
     (set) => ({
       refreshToken: undefined,
       setRefreshToken: (refreshToken: string | undefined) => set(() => ({ refreshToken: refreshToken })),
@@ -68,9 +76,7 @@ export const useRefreshTokenStore = create(
   )
 );
 
-export function getRefreshToken(): string {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
+export function getRefreshToken(): string | undefined {
   return useRefreshTokenStore.getState().refreshToken;
 }
 

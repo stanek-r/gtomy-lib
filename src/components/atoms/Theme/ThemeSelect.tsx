@@ -29,13 +29,13 @@ export function ThemeSelect({ className }: ThemeSelectProps) {
       label: t('theme.' + theme),
       value: theme,
     })) ?? null;
-  const [theme, setTheme] = useThemeStore((state: any) => [state.theme, state.setTheme]);
+  const [theme, setTheme] = useThemeStore((state) => [state.theme, state.setTheme]);
 
   if (options != null && options.length > 1) {
     return (
       <SelectInput
         className={className}
-        value={theme ?? options[0]}
+        value={theme ?? options[0].value}
         onChange={(event) => setTheme(event.target.value)}
         size="sm"
         options={options}

@@ -15,7 +15,7 @@ export interface LayoutProviderProps {
 }
 
 export function LayoutProvider({ children, MenuComponent, FooterComponent }: LayoutProviderProps) {
-  const [theme] = useThemeStore((state: any) => [state.theme]);
+  const [theme] = useThemeStore((state) => [state.theme]);
   return (
     <LayoutContext.Provider value={{ MenuComponent, FooterComponent }}>
       <div className="flex min-h-screen flex-col" data-theme={theme == null || theme === 'system' ? undefined : theme}>

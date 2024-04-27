@@ -15,7 +15,7 @@ export function LoginButton({ className, size }: LoginButtonProps) {
   const { isOverBreakpoint } = useBreakpoint('lg');
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [setRedirectUrl] = useLoginRedirectStore((state: any) => [state.setRedirectUrl]);
+  const [setRedirectUrl] = useLoginRedirectStore((state) => [state.setRedirectUrl]);
 
   const login = () => {
     if (isOverBreakpoint) {

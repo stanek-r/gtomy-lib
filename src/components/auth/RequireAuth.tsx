@@ -34,7 +34,7 @@ export function RequireAuth({
   const navigate = useNavigate();
   const minimalRoleId = PERM_ROLES[minimalRole];
   const { pathname } = useLocation();
-  const [setRedirectUrl] = useLoginRedirectStore((state: any) => [state.setRedirectUrl]);
+  const [setRedirectUrl] = useLoginRedirectStore((state) => [state.setRedirectUrl]);
   const { sent, requestAccess, error, sending } = useRequestAccess(minimalRole, application);
 
   useEffect(() => {
