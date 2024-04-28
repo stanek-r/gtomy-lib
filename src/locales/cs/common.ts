@@ -24,6 +24,8 @@ export const common = {
   'theme.night': 'Noc',
   'theme.cyberpunk': 'Cyberpunk',
   'theme.lofi': 'Lo-fi',
+  'theme.dracula': 'Dracula',
+  'theme.fantasy': 'Fantasy',
   'cookies.title': 'Soubory cookie',
   'cookies.subtitle':
     'Používáním našich stránek souhlasíte s používáním souborů cookie k zajištění lepšího zážitku ze stránek.',
