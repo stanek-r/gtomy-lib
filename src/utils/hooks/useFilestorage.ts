@@ -12,7 +12,7 @@ export interface UseFilestorageReturn {
   downloadFile: (fileId: string, fileName: string) => Promise<void>;
 }
 
-export function useFilestorage(path = '/storage/file', baseURL = config.storageUrl): UseFilestorageReturn {
+export function useFilestorage(path = '/file', baseURL = config.storageUrl): UseFilestorageReturn {
   const { post, delete: deleteRequest, get } = useRequest(baseURL);
   const [error, setError] = useState<any | null>();
 
