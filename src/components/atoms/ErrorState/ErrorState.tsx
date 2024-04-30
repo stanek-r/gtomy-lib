@@ -58,9 +58,12 @@ export function ErrorState({ error, retry, showRetry, className }: ErrorStatePro
     return (
       <div role="alert" className={twMerge('alert alert-error', className)}>
         <XCircleIcon className="size-8" />
-        <Typography size="xl" color="error">
-          {t('state.badRequest')}
-        </Typography>
+        <div className="flex flex-col">
+          <Typography size="xl" color="error">
+            {t('state.badRequest')}
+          </Typography>
+          {error.response?.data?.message && <Typography color="error">{error.response.data.message}</Typography>}
+        </div>
         {showRetry && (
           <Button startIcon={ArrowPathIcon} color="ghost" onClick={retry}>
             {t('state.retry')}
@@ -70,16 +73,22 @@ export function ErrorState({ error, retry, showRetry, className }: ErrorStatePro
     );
   }
 
+  let message: JSX.Element | null = null;
+  if (error.response?.data?.message) {
+    message = <Typography color="error">{error.response.data.message}</Typography>;
+  } else if (error.message) {
+    message = <Typography color="error">{error.message}</Typography>;
+  } else if (error.response?.status) {
+    message = <Typography color="error">Status code: {error.response?.status}</Typography>;
+  }
+
   return (
     <div role="alert" className={twMerge('alert alert-error', className)}>
       <XCircleIcon className="size-8" />
       <Typography size="xl" color="error">
         {t('state.error')}
       </Typography>
-      {error.message && <Typography color="error">{error.message}</Typography>}
-      {!error.message && error.response?.status && (
-        <Typography color="error">Status code: {error.response?.status}</Typography>
-      )}
+      {message}
       {showRetry && (
         <Button startIcon={ArrowPathIcon} color="ghost" onClick={retry}>
           {t('state.retry')}
