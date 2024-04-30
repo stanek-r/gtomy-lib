@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.5](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.4...v0.5.5) (2024-04-30)
+
+
+### Features
+
+* add dracula and fantasy theme translations ([498e19b](https://gitlab.com/gtomy-services/gtomy-lib/commit/498e19bac20979685119d1fa980ebb9e2e74d548))
+
+
+### Bug Fixes
+
+* storage path ([ceead64](https://gitlab.com/gtomy-services/gtomy-lib/commit/ceead64d2c598ab80fd0d5c4a2ae489cf16e2fab))
+
 ### [0.5.4](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.3...v0.5.4) (2024-04-27)
 
 
