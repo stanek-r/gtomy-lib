@@ -10,6 +10,8 @@ import { CloudflareImage } from '@/components/atoms/CloudflareImage';
 import { LoadingState } from '@/components/atoms/LoadingState';
 import { LazyLoadImageProps } from 'react-lazy-load-image-component';
 import { config } from '@/config';
+import { useBreakpoint } from '@/utils/hooks/useBreakpoint';
+import { useTranslation } from '@/utils/hooks/useTranslation';
 
 export interface ImageDialogProps extends BaseDialogProps, Pick<LazyLoadImageProps, 'effect'> {
   title: string;
@@ -19,8 +21,11 @@ export interface ImageDialogProps extends BaseDialogProps, Pick<LazyLoadImagePro
 }
 
 export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenChange, effect }: ImageDialogProps) {
+  const { t } = useTranslation('common');
   const [height, setHeight] = useState<number>(window.innerHeight);
   const [loaded, setLoaded] = useState<boolean>(videoId != null);
+  const [error, setError] = useState<boolean>(false);
+  const { isOverBreakpoint } = useBreakpoint('lg');
 
   const imageClasses = useMemo(
     () =>
@@ -56,12 +61,28 @@ export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenCha
             <div
               className={twMerge(
                 'relative flex w-full max-w-screen-lg justify-between p-4',
-                !loaded && 'justify-center items-center',
-                subtitle ? 'min-h-[96px]' : 'min-h-[68px]'
+                !loaded && !error ? 'justify-center items-center' : 'bg-base-100 text-base-content',
+                subtitle && !error ? 'min-h-[96px]' : 'min-h-[68px]'
               )}
-              style={{ backgroundColor: loaded ? 'rgba(255, 255, 255, 0.1)' : '' }}
             >
-              {loaded ? (
+              {error ? (
+                <>
+                  <div className="flex flex-col pr-10">
+                    <Typography size="3xl" weight="semibold">
+                      {t('state.error')}
+                    </Typography>
+                  </div>
+                  <Dialog.Close asChild>
+                    <ButtonIcon
+                      icon={XMarkIcon}
+                      variant="circle"
+                      size="sm"
+                      color="ghost"
+                      className="absolute right-[10px] top-[10px]"
+                    />
+                  </Dialog.Close>
+                </>
+              ) : loaded ? (
                 <>
                   <div className="flex flex-col pr-10">
                     <Typography size="3xl" weight="semibold">
@@ -87,9 +108,10 @@ export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenCha
               <CloudflareImage
                 imageId={imageId}
                 className={imageClasses}
-                wrapperClassName="!bg-contain bg-no-repeat bg-center cursor-zoom-in"
+                wrapperClassName={twMerge('!bg-contain bg-no-repeat bg-center', isOverBreakpoint && 'cursor-zoom-in')}
                 onLoad={() => setLoaded(true)}
-                onClick={zoom}
+                onError={() => setError(true)}
+                onClick={isOverBreakpoint ? zoom : undefined}
                 effect={effect}
                 title="Otevřít na nové kartě"
               />
