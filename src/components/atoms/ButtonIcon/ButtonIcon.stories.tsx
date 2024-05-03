@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ButtonIcon } from './ButtonIcon';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { ButtonError } from '@/components/atoms/Button/ButtonError';
 
 const meta: Meta<typeof ButtonIcon> = {
   title: 'Atoms/ButtonIcon',
@@ -69,5 +70,15 @@ export const Ghost: Story = {
   args: {
     icon: XMarkIcon,
     color: 'ghost',
+  },
+};
+
+export const WithError: Story = {
+  args: {
+    icon: XMarkIcon,
+    onClick: async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      throw new ButtonError('Test');
+    },
   },
 };

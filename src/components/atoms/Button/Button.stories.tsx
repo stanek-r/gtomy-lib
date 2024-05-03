@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
 import { KeyIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { ButtonError } from '@/components/atoms/Button/ButtonError';
 
 const meta: Meta<typeof Button> = {
   title: 'Atoms/Button',
@@ -84,5 +85,15 @@ export const WithIcons: Story = {
     startIcon: KeyIcon,
     children: 'Button',
     endIcon: XMarkIcon,
+  },
+};
+
+export const WithError: Story = {
+  args: {
+    children: 'Button',
+    onClick: async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      throw new ButtonError('Test');
+    },
   },
 };

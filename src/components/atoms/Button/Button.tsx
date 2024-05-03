@@ -1,7 +1,9 @@
-import { ElementType, ForwardedRef } from 'react';
+import { ElementType, ForwardedRef, useState } from 'react';
 import { forwardRefWithTypes, PropsAs } from '@/utils/typeHelpers';
 import { twMerge } from 'tailwind-merge';
 import { Icon, IconType } from '@/components/atoms/Icon';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { ButtonError } from '@/components/atoms/Button/ButtonError';
 
 export const buttonColorClasses = {
   primary: 'btn-primary',
@@ -41,12 +43,49 @@ export function ButtonInner<T extends ElementType = 'button'>(
     outline,
     wide,
     glass,
+    onClick,
+    disabled,
+    title,
     ...other
   }: PropsAs<ButtonProps<T>, T>,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
   const Component = as ?? 'button';
   const type = Component === 'button' ? 'button' : undefined;
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleOnClick = async (event: any) => {
+    if (onClick == null || loading || disabled) {
+      return;
+    }
+    setLoading(true);
+    try {
+      await onClick(event);
+      setError(null);
+    } catch (e) {
+      if (e instanceof ButtonError) {
+        setError(e.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    if (startIcon == null) {
+      startIcon = <span className="loading loading-spinner loading-sm mr-1.5"></span>;
+    } else if (endIcon == null) {
+      endIcon = <span className="loading loading-spinner loading-sm ml-1.5"></span>;
+    }
+  } else if (error) {
+    if (startIcon == null) {
+      startIcon = <Icon icon={ExclamationTriangleIcon} className="mr-1.5" />;
+    } else if (endIcon == null) {
+      endIcon = <Icon icon={ExclamationTriangleIcon} className="ml-1.5" />;
+    }
+  }
+
   return (
     <Component
       ref={ref}
@@ -60,6 +99,9 @@ export function ButtonInner<T extends ElementType = 'button'>(
         glass && 'glass',
         className
       )}
+      onClick={handleOnClick}
+      disabled={disabled}
+      title={error == null ? title : error}
       {...other}
     >
       <Icon icon={startIcon} className="mr-1.5" />

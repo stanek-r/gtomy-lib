@@ -25,6 +25,7 @@ export function initSentry(config: SentryConfig, tracePropagationTargets: string
         // Session Replay
         replaysSessionSampleRate: 0,
         replaysOnErrorSampleRate: 1.0,
+        // Release information
         release: config.release,
         environment: config.environment,
       });
