@@ -65,7 +65,7 @@ export function useAuth(): UseAuth {
 
   const loginWithGoogle = async (token: string, rememberLogin?: boolean): Promise<boolean> => {
     return axios
-      .post(`${config.authUrl}/google-login`, { token, rememberLogin })
+      .post(`${config.authUrl}/google-login`, { token, sendRefreshToken: !!rememberLogin })
       .then(async (response) => {
         if (!response.data?.access_token) {
           console.error('No access token');
