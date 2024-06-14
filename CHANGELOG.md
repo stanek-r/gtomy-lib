@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.6](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.5...v0.5.6) (2024-06-14)
+
+
+### Features
+
+* add async onClick handling to Button and ButtonIcon ([debbaba](https://gitlab.com/gtomy-services/gtomy-lib/commit/debbaba14324fd2723b1139dfcb3b263a7c7a4af))
+* enable remember login for google sso ([6a6525c](https://gitlab.com/gtomy-services/gtomy-lib/commit/6a6525c3e4c6a70f35979414c1dd6e16c62f959b))
+
+
+### Bug Fixes
+
+* color and error loading of ImageDialog ([3415f5e](https://gitlab.com/gtomy-services/gtomy-lib/commit/3415f5e196fadbd808e2fbb76f07e833fef80c32))
+* error state ([d0ed1b8](https://gitlab.com/gtomy-services/gtomy-lib/commit/d0ed1b85a6457a2cd78ab97ae9514e657875fd3d))
+
 ### [0.5.5](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.4...v0.5.5) (2024-04-30)
 
 
