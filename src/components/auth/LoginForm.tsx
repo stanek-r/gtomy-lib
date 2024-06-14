@@ -33,10 +33,12 @@ export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, 
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const { t } = useTranslation('auth');
-  const { control, handleSubmit } = useForm<LoginForm>({
+  const { control, handleSubmit, watch } = useForm<LoginForm>({
     defaultValues: { username: undefined, password: undefined, rememberLogin: false },
   });
   const [redirectUrl, setRedirectUrl] = useLoginRedirectStore((state) => [state.redirectUrl, state.setRedirectUrl]);
+
+  const rememberLogin = watch('rememberLogin');
 
   const onHandleSubmit = (value: LoginForm) => {
     login(value.username, value.password, value.rememberLogin).then((value) => {
@@ -120,6 +122,7 @@ export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, 
             setError={setError}
             isInDialog={isInDialog}
             closeDialog={closeDialog}
+            rememberLogin={rememberLogin}
           />
         )}
         {(showLanguage || showTheme) && (

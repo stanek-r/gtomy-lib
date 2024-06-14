@@ -18,7 +18,7 @@ interface UseAuth {
   refreshToken: string | undefined;
   user: User | undefined;
   login: (username: string, password: string, rememberLogin?: boolean) => Promise<boolean | null>;
-  loginWithGoogle: (token: string) => Promise<boolean>;
+  loginWithGoogle: (token: string, rememberLogin?: boolean) => Promise<boolean>;
   register: (username: string, password: string, email: string) => Promise<boolean>;
   logout: () => void;
   updateAccessToken: () => Promise<User | null>;
@@ -63,9 +63,9 @@ export function useAuth(): UseAuth {
       });
   };
 
-  const loginWithGoogle = async (token: string): Promise<boolean> => {
+  const loginWithGoogle = async (token: string, rememberLogin?: boolean): Promise<boolean> => {
     return axios
-      .post(`${config.authUrl}/google-login`, { token })
+      .post(`${config.authUrl}/google-login`, { token, rememberLogin })
       .then(async (response) => {
         if (!response.data?.access_token) {
           console.error('No access token');
@@ -140,7 +140,7 @@ export function useAuth(): UseAuth {
     login,
     loginWithGoogle,
     register,
-    logout: logout,
+    logout,
     updateAccessToken,
   };
 }

@@ -10,9 +10,10 @@ export interface GoogleAuthProps {
   isInDialog?: boolean;
   closeDialog?: () => void;
   className?: string;
+  rememberLogin: boolean;
 }
 
-export function GoogleLoginButton({ className, setError, isInDialog, closeDialog }: GoogleAuthProps) {
+export function GoogleLoginButton({ className, setError, isInDialog, closeDialog, rememberLogin }: GoogleAuthProps) {
   const { loginWithGoogle } = useAuth();
   const { t } = useTranslation('auth');
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ export function GoogleLoginButton({ className, setError, isInDialog, closeDialog
       return;
     }
     setError(null);
-    loginWithGoogle(credentialResponse.credential).then((value) => {
+    loginWithGoogle(credentialResponse.credential, rememberLogin).then((value) => {
       if (value) {
         if (isInDialog) {
           closeDialog?.();
