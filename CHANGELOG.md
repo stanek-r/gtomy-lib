@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.7](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.6...v0.5.7) (2024-06-14)
+
+
+### Bug Fixes
+
+* rename rememberLogin to sendRefreshToken ([298f171](https://gitlab.com/gtomy-services/gtomy-lib/commit/298f171dfd5bf6f1a026cfe2f3a6e3ca5f30745e))
+
 ### [0.5.6](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.5...v0.5.6) (2024-06-14)
 
 
