@@ -72,6 +72,9 @@ export function useAuth(): UseAuth {
           return false;
         }
         setAccessToken(response.data.access_token);
+        if (response.data.refresh_token && rememberLogin) {
+          setRefreshToken(response.data.refresh_token);
+        }
         return true;
       })
       .catch((e) => {
