@@ -42,6 +42,7 @@ deploy:
   dependencies:
     - build
   script:
+    - cd dist
     - echo "//registry.npmjs.org/:_authToken=${CI_NPM_TOKEN}" > .npmrc
     - npm publish
   only:

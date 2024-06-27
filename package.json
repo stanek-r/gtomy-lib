@@ -1,16 +1,12 @@
 {
   "name": "gtomy-lib",
   "version": "0.5.8",
-  "description": "Shared lib for react projects",
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
-  "types": "dist/index.d.ts",
+  "description": "GTomy lib for react projects",
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "rimraf dist && rollup -c --bundleConfigAsCjs",
     "build:watch": "rimraf dist && npx rollup -c -w --bundleConfigAsCjs --watch.buildDelay 500",
-    "prepare": "husky install",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "lint:check": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
@@ -36,30 +32,30 @@
   "dependencies": {
     "@cloudflare/stream-react": "^1.9.1",
     "@radix-ui/react-dialog": "^1.0.5",
-    "@tanstack/react-query": "^5.29.2",
     "@tanstack/query-sync-storage-persister": "^5.29.0",
+    "@tanstack/react-query": "^5.29.2",
     "@tanstack/react-query-persist-client": "^5.29.2",
     "axios": "^1.6.5",
+    "dayjs": "^1.11.10",
     "i18next": "^23.11.2",
     "i18next-browser-languagedetector": "^7.2.1",
     "js-file-download": "^0.4.12",
     "jwt-decode": "^4.0.0",
     "react-hot-toast": "^2.4.1",
-    "dayjs": "^1.11.10",
     "react-i18next": "^14.1.0"
   },
   "peerDependencies": {
     "@heroicons/react": "^2.0.14",
+    "@react-oauth/google": "^0.12.1",
+    "@sentry/react": "^7.112.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-ga4": "^2.1.0",
     "react-hook-form": "^7.39.4",
     "react-lazy-load-image-component": "^1.6.0",
     "react-router-dom": "^6.4.2",
     "tailwind-merge": "^2.3.0",
-    "zustand": "^4.5.2",
-    "@react-oauth/google": "^0.12.1",
-    "@sentry/react": "^7.112.2",
-    "react-ga4": "^2.1.0"
+    "zustand": "^4.5.2"
   },
   "peerDependenciesMeta": {
     "@react-oauth/google": {
@@ -116,6 +112,8 @@
     "prop-types": "^15.8.1",
     "rimraf": "^4.1.2",
     "rollup": "^4.15.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-import-css": "^3.5.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
