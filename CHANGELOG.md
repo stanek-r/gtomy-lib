@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.8...v1.0.0) (2024-06-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* update build to work with typescript 5
+
+### Features
+
+* update build to work with typescript 5 ([2a4a7ae](https://gitlab.com/gtomy-services/gtomy-lib/commit/2a4a7ae26a0b7e76ca57e4a2823a89c7fbcc7af7))
+
 ### [0.5.8](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.7...v0.5.8) (2024-06-15)
 
 
