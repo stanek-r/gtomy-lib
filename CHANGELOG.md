@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://gitlab.com/gtomy-services/gtomy-lib/compare/v1.0.0...v1.0.1) (2024-08-11)
+
+
+### Bug Fixes
+
+* change dialog overflow y to auto ([a2fbb5a](https://gitlab.com/gtomy-services/gtomy-lib/commit/a2fbb5ad551637522d443d31d6a9d1faea0b2acc))
+
 ## [1.0.0](https://gitlab.com/gtomy-services/gtomy-lib/compare/v0.5.8...v1.0.0) (2024-06-27)
 
 
