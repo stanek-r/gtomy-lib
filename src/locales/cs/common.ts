@@ -26,6 +26,8 @@ export const common = {
   'theme.lofi': 'Lo-fi',
   'theme.dracula': 'Dracula',
   'theme.fantasy': 'Fantasy',
+  'theme.autumn': 'Podzim',
+  'theme.coffee': 'Káva',
   'cookies.title': 'Soubory cookie',
   'cookies.subtitle':
     'Používáním našich stránek souhlasíte s používáním souborů cookie k zajištění lepšího zážitku ze stránek.',
