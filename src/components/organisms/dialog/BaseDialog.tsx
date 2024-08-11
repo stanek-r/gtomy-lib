@@ -51,7 +51,7 @@ export function BaseDialog({
         <Dialog.Overlay className="fixed inset-0 bg-black opacity-25" />
         <Dialog.Content
           className={twMerge(
-            'fixed top-1/2 left-1/2 max-h-[85dvh] w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-[6px] p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none bg-neutral text-neutral-content',
+            'fixed top-1/2 left-1/2 max-h-[85dvh] w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-[6px] p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none bg-neutral text-neutral-content overflow-y-auto',
             maxWidthClasses
           )}
         >
