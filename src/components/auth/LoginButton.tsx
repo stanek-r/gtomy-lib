@@ -3,6 +3,7 @@ import { Button } from '@/components/atoms/Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthDialog } from '@/components/auth/AuthDialog';
 import { useLoginRedirectStore } from '@/utils/hooks/storage';
+import { useCallback } from 'react';
 
 export interface LoginButtonProps {
   className?: string;
@@ -17,14 +18,14 @@ export function LoginButton({ className, size }: LoginButtonProps) {
   const { pathname } = useLocation();
   const [setRedirectUrl] = useLoginRedirectStore((state) => [state.setRedirectUrl]);
 
-  const login = () => {
+  const login = useCallback(() => {
     if (isOverBreakpoint) {
       openDialog();
     } else {
       setRedirectUrl(pathname);
       navigate('/login');
     }
-  };
+  }, [isOverBreakpoint, openDialog, setRedirectUrl, navigate]);
 
   return (
     <>

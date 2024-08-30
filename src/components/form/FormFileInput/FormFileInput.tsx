@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
 import { FileInput } from '@/components/atoms/FileInput';
 import { useFormController } from '@/utils/hooks/useFormController';
@@ -54,25 +54,28 @@ export function FormFileInput<
     errorMessage,
   } = useFormController(useControllerProps);
 
-  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files == null || event.target.files.length === 0) {
-      onChange(null);
-      return;
-    }
-    if (multiple) {
+  const handleOnChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      if (event.target.files == null || event.target.files.length === 0) {
+        onChange(null);
+        return;
+      }
+      if (multiple) {
+        onChange({
+          file: event.target.files,
+          value: event.target.value,
+          multiple: true,
+        } as MultipleFormFile);
+        return;
+      }
       onChange({
-        file: event.target.files,
+        file: event.target.files?.[0],
         value: event.target.value,
-        multiple: true,
-      } as MultipleFormFile);
-      return;
-    }
-    onChange({
-      file: event.target.files?.[0],
-      value: event.target.value,
-      multiple: false,
-    } as SingleFormFile);
-  };
+        multiple: false,
+      } as SingleFormFile);
+    },
+    [onChange, multiple]
+  );
 
   return (
     <FileInput

@@ -1,13 +1,13 @@
 import { config } from '@/config';
 import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 export interface UseGoogleAnalyticsReturn {
   logEvent: (category: string, action: string, label?: string) => void;
 }
 
 export function useGoogleAnalytics(): UseGoogleAnalyticsReturn {
-  const logEvent = (category: string, action: string, label?: string) => {
+  const logEvent = useCallback((category: string, action: string, label?: string) => {
     if (config.googleAnalyticsPlugin == null) {
       return;
     }
@@ -16,7 +16,7 @@ export function useGoogleAnalytics(): UseGoogleAnalyticsReturn {
       action: action,
       label: label,
     });
-  };
+  }, []);
 
   return {
     logEvent,

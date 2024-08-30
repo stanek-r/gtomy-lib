@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
 import { Radio } from '@/components/atoms/Radio/Radio';
 import { useFormController } from '@/utils/hooks/useFormController';
@@ -40,9 +40,12 @@ export function FormRadio<
     errorMessage,
   } = useFormController(useControllerProps);
 
-  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value);
-  };
+  const handleOnChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      onChange(event.target.value);
+    },
+    [onChange]
+  );
 
   return (
     <Radio

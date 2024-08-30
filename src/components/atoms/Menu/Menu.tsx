@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useCallback } from 'react';
 import { config } from '@/config';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from '@/utils/hooks/useTranslation';
@@ -33,14 +33,14 @@ export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdown
   const { pathname } = useLocation();
   const [setRedirectUrl] = useLoginRedirectStore((state) => [state.setRedirectUrl]);
 
-  const login = () => {
+  const login = useCallback(() => {
     if (isOverBreakpoint) {
       openDialog();
     } else {
       setRedirectUrl(pathname);
       navigate('/login');
     }
-  };
+  }, [isOverBreakpoint, openDialog, setRedirectUrl, navigate]);
 
   if (isOverBreakpoint) {
     return (

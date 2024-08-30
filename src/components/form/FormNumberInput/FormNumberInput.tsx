@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
 import { TextInput } from '@/components/atoms/TextInput';
 import { useFormController } from '@/utils/hooks/useFormController';
@@ -32,16 +32,19 @@ export function FormNumberInput<
     errorMessage,
   } = useFormController(useControllerProps);
 
-  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const convertedValue = ControlledFormTransformer.from(event.target.value);
-    if (convertedValue == null) {
-      onChange(null);
-      return;
-    }
-    if (!Number.isNaN(+convertedValue)) {
-      onChange(+convertedValue);
-    }
-  };
+  const handleOnChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const convertedValue = ControlledFormTransformer.from(event.target.value);
+      if (convertedValue == null) {
+        onChange(null);
+        return;
+      }
+      if (!Number.isNaN(+convertedValue)) {
+        onChange(+convertedValue);
+      }
+    },
+    [onChange]
+  );
 
   return (
     <TextInput

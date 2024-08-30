@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
 import { Link, useNavigate } from 'react-router-dom';
@@ -34,19 +34,22 @@ export function RegisterForm({ isInDialog, toggleRegister, showTheme, showLangua
     defaultValues: { username: undefined, password: undefined, passwordAgain: undefined, email: undefined },
   });
 
-  const onHandleSubmit = (value: RegisterForm) => {
-    register(value.username, value.password, value.email).then((value) => {
-      if (value) {
-        if (isInDialog) {
-          toggleRegister?.();
+  const onHandleSubmit = useCallback(
+    (value: RegisterForm) => {
+      register(value.username, value.password, value.email).then((value) => {
+        if (value) {
+          if (isInDialog) {
+            toggleRegister?.();
+          } else {
+            navigate('/login');
+          }
         } else {
-          navigate('/login');
+          setError(t('cannotRegister'));
         }
-      } else {
-        setError(t('cannotRegister'));
-      }
-    });
-  };
+      });
+    },
+    [register, isInDialog, toggleRegister, navigate, setError, t]
+  );
 
   if (isAuthenticated) {
     return (

@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
 import { Option, SelectInput } from '@/components/atoms/SelectInput';
 import { useFormController } from '@/utils/hooks/useFormController';
@@ -41,9 +41,12 @@ export function FormSelectInput<
     errorMessage,
   } = useFormController(useControllerProps);
 
-  const handleOnChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    onChange(ControlledFormTransformer.from(event.target.value));
-  };
+  const handleOnChange = useCallback(
+    (event: ChangeEvent<HTMLSelectElement>) => {
+      onChange(ControlledFormTransformer.from(event.target.value));
+    },
+    [onChange]
+  );
 
   return (
     <SelectInput

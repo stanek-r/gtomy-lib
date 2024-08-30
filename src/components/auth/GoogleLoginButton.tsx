@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
 import { config } from '@/config';
 import { useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
@@ -28,27 +28,30 @@ export function GoogleLoginButton({ className, setError, isInDialog, closeDialog
       .catch((e) => console.error(e));
   }, []);
 
-  const onSuccess = (credentialResponse: any) => {
-    if (credentialResponse.credential == null) {
-      setError(t('cannotLoginWiaGoogle'));
-      return;
-    }
-    setError(null);
-    loginWithGoogle(credentialResponse.credential, rememberLogin).then((value) => {
-      if (value) {
-        if (isInDialog) {
-          closeDialog?.();
-        } else {
-          navigate(redirectUrl ?? '/');
-          setRedirectUrl(null);
-        }
-      } else {
-        setError(t('loginErrorGoogle'));
+  const onSuccess = useCallback(
+    (credentialResponse: any) => {
+      if (credentialResponse.credential == null) {
+        setError(t('cannotLoginWiaGoogle'));
+        return;
       }
-    });
-  };
+      setError(null);
+      loginWithGoogle(credentialResponse.credential, rememberLogin).then((value) => {
+        if (value) {
+          if (isInDialog) {
+            closeDialog?.();
+          } else {
+            navigate(redirectUrl ?? '/');
+            setRedirectUrl(null);
+          }
+        } else {
+          setError(t('loginErrorGoogle'));
+        }
+      });
+    },
+    [setError, t, loginWithGoogle, rememberLogin, isInDialog, closeDialog, navigate, redirectUrl, setRedirectUrl]
+  );
 
-  const onError = () => setError(t('cannotLoginWiaGoogle'));
+  const onError = useCallback(() => setError(t('cannotLoginWiaGoogle')), [setError, t]);
 
   if (googlePlugin == null) {
     return null;

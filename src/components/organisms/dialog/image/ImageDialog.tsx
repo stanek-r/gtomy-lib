@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { BaseDialogProps } from '@/components/organisms/dialog';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import * as Dialog from '@radix-ui/react-dialog';
@@ -38,10 +38,10 @@ export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenCha
     [loaded, height]
   );
 
-  const zoom = () => {
+  const zoom = useCallback(() => {
     const src = `${config.cloudFlareImagesUrl}/${imageId}`;
     window.open(`${src}/original`, '_blank', 'noreferrer');
-  };
+  }, [imageId]);
 
   useEffect(() => {
     function handleResize() {

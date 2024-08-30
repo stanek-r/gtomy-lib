@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useCallback } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon';
@@ -39,11 +39,14 @@ export function BaseDialog({
 }: ExtendedBaseDialogProps) {
   const maxWidthClasses = maxWidth ? maxWidthOptions[maxWidth] : maxWidthOptions.md;
 
-  const onOpenChangeHandler = (open: boolean) => {
-    if (closable) {
-      onOpenChange?.(open);
-    }
-  };
+  const onOpenChangeHandler = useCallback(
+    (open: boolean) => {
+      if (closable) {
+        onOpenChange?.(open);
+      }
+    },
+    [closable, onOpenChange]
+  );
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChangeHandler}>

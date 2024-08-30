@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
 import { Checkbox } from '@/components/atoms/Checkbox/Checkbox';
 import { useFormController } from '@/utils/hooks/useFormController';
@@ -42,9 +42,12 @@ export function FormCheckbox<
     errorMessage,
   } = useFormController(useControllerProps);
 
-  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.checked);
-  };
+  const handleOnChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      onChange(event.target.checked);
+    },
+    [onChange]
+  );
 
   return (
     <Checkbox

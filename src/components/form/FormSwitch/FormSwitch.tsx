@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode } from 'react';
+import { ChangeEvent, ReactNode, useCallback } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
 import { useFormController } from '@/utils/hooks/useFormController';
 import { Switch } from '@/components/atoms/Switch/Switch';
@@ -30,9 +30,12 @@ export function FormSwitch<
     field: { onChange, value, ...other },
   } = useFormController(useControllerProps);
 
-  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.checked);
-  };
+  const handleOnChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      onChange(event.target.checked);
+    },
+    [onChange]
+  );
 
   return (
     <Switch

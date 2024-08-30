@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
 import { TextareaInput } from '@/components/atoms/TextareaInput';
 import { useFormController } from '@/utils/hooks/useFormController';
@@ -31,9 +31,12 @@ export function FormTextareaInput<
     errorMessage,
   } = useFormController(useControllerProps);
 
-  const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    onChange(ControlledFormTransformer.from(event.target.value));
-  };
+  const handleOnChange = useCallback(
+    (event: ChangeEvent<HTMLTextAreaElement>) => {
+      onChange(ControlledFormTransformer.from(event.target.value));
+    },
+    [onChange]
+  );
 
   return (
     <TextareaInput

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
 import { Link, useNavigate } from 'react-router-dom';
@@ -40,22 +40,25 @@ export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, 
 
   const rememberLogin = watch('rememberLogin');
 
-  const onHandleSubmit = (value: LoginForm) => {
-    login(value.username, value.password, value.rememberLogin).then((value) => {
-      if (value === true) {
-        if (isInDialog) {
-          closeDialog?.();
+  const onHandleSubmit = useCallback(
+    (value: LoginForm) => {
+      login(value.username, value.password, value.rememberLogin).then((value) => {
+        if (value === true) {
+          if (isInDialog) {
+            closeDialog?.();
+          } else {
+            navigate(redirectUrl ?? '/');
+            setRedirectUrl(null);
+          }
+        } else if (value === false) {
+          setError(t('invalidCredentials'));
         } else {
-          navigate(redirectUrl ?? '/');
-          setRedirectUrl(null);
+          setError(t('loginError'));
         }
-      } else if (value === false) {
-        setError(t('invalidCredentials'));
-      } else {
-        setError(t('loginError'));
-      }
-    });
-  };
+      });
+    },
+    [login, isInDialog, closeDialog, navigate, redirectUrl, setRedirectUrl, setError, t]
+  );
 
   if (isAuthenticated) {
     return (

@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 import { BaseDialog, BaseDialogProps } from '@/components/organisms/dialog';
 import { Typography } from '@/components/atoms/Typography';
 import { Button } from '@/components/atoms/Button';
@@ -24,26 +24,24 @@ export interface ConfirmationDialogProps extends BaseDialogProps {
 export function ConfirmationDialog({ text, title, onAction, confirm, cancel, ...props }: ConfirmationDialogProps) {
   const { t } = useTranslation('common');
   const [error, setError] = useState<any>();
+  const { onOpenChange } = props;
 
-  const onError = (error: any) => {
-    setError(error);
-  };
-
-  const onClose = () => {
-    props.onOpenChange?.(false);
-  };
-
-  const actions = (
-    <>
-      <Button color="error" onClick={() => onAction({ onClose, onError })}>
-        {confirm ?? t('confirm')}
-      </Button>
-      <Button onClick={() => props.onOpenChange?.(false)}>{cancel ?? t('cancel')}</Button>
-    </>
-  );
+  const onClose = useCallback(() => {
+    onOpenChange?.(false);
+  }, [onOpenChange]);
 
   return (
-    <BaseDialog actions={actions} {...props}>
+    <BaseDialog
+      actions={
+        <>
+          <Button color="error" onClick={() => onAction({ onClose, onError: setError })}>
+            {confirm ?? t('confirm')}
+          </Button>
+          <Button onClick={() => onOpenChange?.(false)}>{cancel ?? t('cancel')}</Button>
+        </>
+      }
+      {...props}
+    >
       <Typography size="3xl">{title}</Typography>
       <Typography as="p">{text}</Typography>
       {error && <ErrorState error={error} />}

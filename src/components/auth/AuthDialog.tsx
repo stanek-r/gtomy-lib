@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { BaseDialog, BaseDialogProps } from '@/components/organisms/dialog/BaseDialog';
 import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks/useTranslation';
@@ -9,9 +9,9 @@ export function AuthDialog(props: BaseDialogProps) {
   const { t } = useTranslation('auth');
   const [showRegister, setShowRegister] = useState<boolean>(false);
 
-  const toggleRegister = () => {
+  const toggleRegister = useCallback(() => {
     setShowRegister((prev) => !prev);
-  };
+  }, [setShowRegister]);
 
   return (
     <BaseDialog {...props}>
