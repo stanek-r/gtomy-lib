@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://gitlab.com/gtomy-services/gtomy-lib/compare/v1.0.1...v1.0.2) (2024-08-30)
+
+
+### Features
+
+* optimize callbacks ([449d72c](https://gitlab.com/gtomy-services/gtomy-lib/commit/449d72c706fc13462665b177048ca81f7e7dab89))
+* set maxContentLength and maxBodyLength for useBlobstorage and useFilestorage ([19503e7](https://gitlab.com/gtomy-services/gtomy-lib/commit/19503e7e919b48102e00352453355592fe398af9))
+* update sentry, add more options for customization ([b0b5f6b](https://gitlab.com/gtomy-services/gtomy-lib/commit/b0b5f6bc00349c85309d5ead10b7202388484f32))
+
 ### [1.0.1](https://gitlab.com/gtomy-services/gtomy-lib/compare/v1.0.0...v1.0.1) (2024-08-11)
 
 
