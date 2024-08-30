@@ -1,3 +1,5 @@
+import { BrowserClientReplayOptions } from '@sentry/types/build/types/browseroptions';
+
 const ignoredStatusCodes: number[] = [401, 403];
 let sentryPlugin: any = null;
 
@@ -8,6 +10,9 @@ export interface SentryConfig {
   environment: string;
   release: string;
   ignoredStatusCodes?: number[];
+  sampleRate?: number;
+  tracesSampleRate?: number;
+  sentryReplay?: BrowserClientReplayOptions;
 }
 
 export function initSentry(config: SentryConfig, tracePropagationTargets: string[] = []) {
@@ -19,12 +24,15 @@ export function initSentry(config: SentryConfig, tracePropagationTargets: string
       plugin.init({
         dsn: config.dsn,
         tracePropagationTargets: [...tracePropagationTargets, ...config.additionalTracePropagationTargets],
-        integrations: [plugin.browserTracingIntegration(), plugin.replayIntegration()],
+        integrations: [
+          plugin.browserTracingIntegration(),
+          ...(config.sentryReplay ? [plugin.replayIntegration()] : []),
+        ],
+        ...(config.sampleRate ? { sampleRate: config.sampleRate } : {}),
         // Performance Monitoring
-        tracesSampleRate: 1.0,
+        ...(config.tracesSampleRate ? { tracesSampleRate: config.tracesSampleRate } : { autoSessionTracking: false }),
         // Session Replay
-        replaysSessionSampleRate: 0,
-        replaysOnErrorSampleRate: 1.0,
+        ...(config.sentryReplay ? config.sentryReplay : {}),
         // Release information
         release: config.release,
         environment: config.environment,
