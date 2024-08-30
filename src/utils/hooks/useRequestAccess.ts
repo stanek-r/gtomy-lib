@@ -41,7 +41,7 @@ export function useRequestAccess(role: string, application = config.appName): Us
     return requests.find((request: Roles) => request.role === role && request.application === application) != null;
   }, [data, requests, isError, isLoading, role, application]);
 
-  const handleRequestAccess = async () => {
+  const handleRequestAccess = useCallback(async () => {
     if (!isAuthenticated) {
       return;
     }
@@ -58,7 +58,7 @@ export function useRequestAccess(role: string, application = config.appName): Us
       })
       .catch((e) => setError(e));
     setSending(false);
-  };
+  }, [isAuthenticated, setSending, application, role, put, setError, addRequest, refetch]);
 
   return {
     requestAccess: handleRequestAccess,

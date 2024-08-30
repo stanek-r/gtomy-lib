@@ -1,4 +1,4 @@
-import { ElementType, ForwardedRef, useState } from 'react';
+import { ElementType, ForwardedRef, useCallback, useState } from 'react';
 import { forwardRefWithTypes, PropsAs } from '@/utils/typeHelpers';
 import { twMerge } from 'tailwind-merge';
 import { Icon, IconType } from '@/components/atoms/Icon';
@@ -55,22 +55,25 @@ export function ButtonInner<T extends ElementType = 'button'>(
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleOnClick = async (event: any) => {
-    if (onClick == null || loading || disabled) {
-      return;
-    }
-    setLoading(true);
-    try {
-      await onClick(event);
-      setError(null);
-    } catch (e) {
-      if (e instanceof ButtonError) {
-        setError(e.message);
+  const handleOnClick = useCallback(
+    async (event: any) => {
+      if (onClick == null || loading || disabled) {
+        return;
       }
-    } finally {
-      setLoading(false);
-    }
-  };
+      setLoading(true);
+      try {
+        await onClick(event);
+        setError(null);
+      } catch (e) {
+        if (e instanceof ButtonError) {
+          setError(e.message);
+        }
+      } finally {
+        setLoading(false);
+      }
+    },
+    [onClick, loading, disabled, setLoading, setError]
+  );
 
   if (loading) {
     if (startIcon == null) {

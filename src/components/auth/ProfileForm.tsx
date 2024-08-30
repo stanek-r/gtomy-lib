@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 import { FormTextInput } from '@/components/form/FormTextInput';
 import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
@@ -10,6 +10,7 @@ import { TextInput } from '@/components/atoms/TextInput';
 import { ProfileImage } from '@/components/auth/ProfileImage';
 import { useAuth, useBlobstorage, useRequest, useTranslation } from '@/utils/hooks';
 import { isUserAccountFromGoogle } from '@/utils/auth';
+import { form } from '@/locales/cs/form';
 
 interface Props {
   className?: string;
@@ -41,31 +42,34 @@ export function ProfileForm({ children, className }: Props) {
     error: blobstorageError,
   } = useBlobstorage('/user-profile/profile-image', config.authUrl);
 
-  const onSubmit = async (form: ProfileForm) => {
-    setSaving(true);
-    if (form.profileImage) {
-      await uploadImage(form.profileImage.file);
-    }
-    await post('/user-profile', {
-      displayName: form.displayName,
-      email: form.email,
-    })
-      .then(() => {
-        setError(null);
-        return updateAccessToken();
+  const onSubmit = useCallback(
+    async (form: ProfileForm) => {
+      setSaving(true);
+      if (form.profileImage) {
+        await uploadImage(form.profileImage.file);
+      }
+      await post('/user-profile', {
+        displayName: form.displayName,
+        email: form.email,
       })
-      .catch((e) => {
-        setError(e);
+        .then(() => {
+          setError(null);
+          return updateAccessToken();
+        })
+        .catch((e) => {
+          setError(e);
+        });
+      reset({
+        email: form.email,
+        displayName: form.displayName,
+        profileImage: null,
       });
-    reset({
-      email: form.email,
-      displayName: form.displayName,
-      profileImage: null,
-    });
-    setSaving(false);
-  };
+      setSaving(false);
+    },
+    [setSaving, uploadImage, post, setError, updateAccessToken, reset]
+  );
 
-  const onUpdate = async () => {
+  const onUpdate = useCallback(async () => {
     setSaving(true);
     const refreshedUser = await updateAccessToken();
     if (refreshedUser != null) {
@@ -76,7 +80,7 @@ export function ProfileForm({ children, className }: Props) {
       });
     }
     setSaving(false);
-  };
+  }, [updateAccessToken, setSaving, reset]);
 
   return (
     <>
