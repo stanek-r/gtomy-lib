@@ -1,9 +1,13 @@
 # GTomy's shared library
 
 A shared REACT JS component and utils library for my projects.
-Contains some other libraries bundled and some are required to be added to the project.
+Combines useful libraries so that i can use them in my public and private projects.
 
 [![][npm-version]][npm-url] [![][gitlab-last-release]][npm-url] [![][npm-downloads]][npm-url]
+
+## Storybook
+
+Available components can be viewed on deployed storybook [here](https://storybook.gtomy.net).
 
 ## Required libraries
 * @heroicons/react
@@ -32,6 +36,7 @@ Contains some other libraries bundled and some are required to be added to the p
 * jwt-decode
 * react-hot-toast
 * react-i18next
+* daisyui
 
 [npm-version]: https://badgen.net/npm/v/gtomy-lib?label=version&color=green
 [npm-downloads]: https://badgen.net/npm/dt/gtomy-lib
