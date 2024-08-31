@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://gitlab.com/gtomy-services/gtomy-lib/compare/v1.0.2...v1.0.3) (2024-08-31)
+
+
+### Bug Fixes
+
+* remove infinite loops ([e9346d1](https://gitlab.com/gtomy-services/gtomy-lib/commit/e9346d1afcd3772a811c6e30e999d750ae4fe499))
+
 ### [1.0.2](https://gitlab.com/gtomy-services/gtomy-lib/compare/v1.0.1...v1.0.2) (2024-08-30)
 
 
