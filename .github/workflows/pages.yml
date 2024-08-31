@@ -23,6 +23,11 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npm run build-storybook
+      - name: Save untracked files
+        uses: actions/upload-artifact@v3
+        with:
+          name: untracked-files
+          path: './public'
   deploy:
     needs: build
     environment:
