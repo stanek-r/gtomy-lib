@@ -8,7 +8,7 @@ import { ErrorState } from '@/components/atoms/ErrorState';
 import { Button } from '@/components/atoms/Button';
 import { LoginButton } from '@/components/auth/LoginButton';
 import { useRequestAccess } from '@/utils/hooks/useRequestAccess';
-import { ReactNode, useMemo } from 'react';
+import { ReactNode } from 'react';
 
 export interface RequirePermissionProps {
   title?: string;
@@ -39,15 +39,6 @@ export function RequirePermission({
   const { isAuthenticated, user } = useAuth();
   const { sent, requestAccess, error, sending } = useRequestAccess(minimalRole, application);
 
-  const minimalRoleId = useMemo(() => PERM_ROLES[minimalRole], [minimalRole]);
-  const roleId = useMemo(() => {
-    if (!isAuthenticated) {
-      return PERM_ROLES.user;
-    }
-    const role = user?.roles.find((role) => role.application === (application ?? config.appName))?.role ?? 'user';
-    return PERM_ROLES[role as PermRoles];
-  }, [user, isAuthenticated, application]);
-
   if (!isAuthenticated) {
     if (!displayLogin) {
       return null;
@@ -75,6 +66,10 @@ export function RequirePermission({
       </>
     );
   }
+
+  const minimalRoleId = PERM_ROLES[minimalRole];
+  const role = user?.roles.find((role) => role.application === (application ?? config.appName))?.role ?? 'user';
+  const roleId = PERM_ROLES[role as PermRoles];
 
   if (roleId < minimalRoleId) {
     if (!displayWarning) {

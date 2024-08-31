@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useMemo } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
@@ -36,15 +36,6 @@ export function RequireAuth({
   const [setRedirectUrl] = useLoginRedirectStore((state) => [state.setRedirectUrl]);
   const { sent, requestAccess, error, sending } = useRequestAccess(minimalRole, application);
 
-  const roleId = useMemo(() => {
-    if (!isAuthenticated) {
-      return PERM_ROLES.user;
-    }
-    const role = user?.roles.find((role) => role.application === (application ?? config.appName))?.role ?? 'user';
-    return PERM_ROLES[role as PermRoles];
-  }, [user, isAuthenticated, application]);
-  const minimalRoleId = useMemo(() => PERM_ROLES[minimalRole], [minimalRole]);
-
   useEffect(() => {
     if (!isAuthenticated && !refreshToken) {
       setRedirectUrl(pathname);
@@ -59,6 +50,10 @@ export function RequireAuth({
       </FormPage>
     );
   }
+
+  const minimalRoleId = PERM_ROLES[minimalRole];
+  const role = user?.roles.find((role) => role.application === (application ?? config.appName))?.role ?? 'user';
+  const roleId = PERM_ROLES[role as PermRoles];
 
   if (roleId < minimalRoleId) {
     return (

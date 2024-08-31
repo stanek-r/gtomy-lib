@@ -32,30 +32,9 @@ export function useAuth(): UseAuth {
   const user = useMemo(() => mapAccessTokenToUser(accessToken), [accessToken]);
   const { get, refresh } = useRequest(config.authUrl);
 
+  useEffect(() => checkTokenValidity(), [accessToken, refreshToken, user]);
+
   const isLoadingUser = useMemo(() => user == null && refreshToken != null, [user, refreshToken]);
-
-  const logout = useCallback(() => {
-    setRefreshToken(undefined);
-    setAccessToken(undefined);
-    clearRequests();
-  }, [setRefreshToken, setAccessToken, clearRequests]);
-
-  const checkTokenValidity = useCallback(() => {
-    if (getRefetch()) {
-      return;
-    }
-    if (user == null || !isTokenValid(accessToken)) {
-      if (!isTokenValid(refreshToken)) {
-        logout();
-        return;
-      }
-      refresh().then((result) => {
-        if (result == null) {
-          logout();
-        }
-      });
-    }
-  }, [accessToken, refreshToken, user, logout, refresh]);
 
   const login = useCallback(
     async (username: string, password: string, rememberLogin?: boolean): Promise<boolean | null> => {
@@ -123,6 +102,12 @@ export function useAuth(): UseAuth {
       });
   }, []);
 
+  const logout = useCallback(() => {
+    setRefreshToken(undefined);
+    setAccessToken(undefined);
+    clearRequests();
+  }, [setRefreshToken, setAccessToken, clearRequests]);
+
   const updateAccessToken = useCallback(async (): Promise<User | null> => {
     return get<JwtResponse>('/access-token')
       .then((response) => {
@@ -139,7 +124,22 @@ export function useAuth(): UseAuth {
       });
   }, [get, setAccessToken, showToast, t]);
 
-  useEffect(() => checkTokenValidity(), [checkTokenValidity]);
+  const checkTokenValidity = () => {
+    if (getRefetch()) {
+      return;
+    }
+    if (user == null || !isTokenValid(accessToken)) {
+      if (!isTokenValid(refreshToken)) {
+        logout();
+        return;
+      }
+      refresh().then((result) => {
+        if (result == null) {
+          logout();
+        }
+      });
+    }
+  };
 
   return {
     isAuthenticated: !!user,

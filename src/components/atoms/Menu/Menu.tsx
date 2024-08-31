@@ -40,7 +40,7 @@ export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdown
       setRedirectUrl(pathname);
       navigate('/login');
     }
-  }, [isOverBreakpoint, openDialog, setRedirectUrl, navigate]);
+  }, [isOverBreakpoint, openDialog, setRedirectUrl, navigate, pathname]);
 
   if (isOverBreakpoint) {
     return (
