@@ -13,8 +13,8 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-
-  publish-npm:
+      - run: npm run build
+  publish:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -23,24 +23,7 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
       - run: cd dist
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-  publish-pages:
-    needs: build
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - run: npm ci
-      - run: npm run build-storybook
-      - name: Upload storybook to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.github_token }}
-          publish_dir: ./public
