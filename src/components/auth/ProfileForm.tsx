@@ -10,7 +10,6 @@ import { TextInput } from '@/components/atoms/TextInput';
 import { ProfileImage } from '@/components/auth/ProfileImage';
 import { useAuth, useBlobstorage, useRequest, useTranslation } from '@/utils/hooks';
 import { isUserAccountFromGoogle } from '@/utils/auth';
-import { form } from '@/locales/cs/form';
 
 interface Props {
   className?: string;

@@ -1,4 +1,4 @@
-name: Lint check and npm audit
+name: Build library
 
 on:
   push:
