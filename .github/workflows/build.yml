@@ -1,4 +1,4 @@
-name: Lint check, npm audit and build library
+name: Lint check, audit and build
 
 on:
   push:
@@ -10,6 +10,7 @@ on:
 
 jobs:
   lint-check:
+    name: Lint Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,19 +19,19 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npm run lint:check
-
   audit:
+    name: Npm Audit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
-      - run: npm audit --audit-level=critical
+      - run: npm audit --audit-level=high
   build:
-    needs: [lint-check, audit]
+    name: Build Application
     runs-on: ubuntu-latest
+    needs: [lint-check, audit]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

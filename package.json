@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@gitlab.com:gtomy-services/gtomy-lib.git"
+    "url": "git+ssh://git@github.com:stanek-r/gtomy-lib.git"
   },
   "author": "GTomy",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/gtomy-services/gtomy-lib/issues"
+    "url": "https://github.com/stanek-r/gtomy-lib/issues",
+    "email": "mail@stanekr.cz"
   },
-  "homepage": "https://gitlab.com/gtomy-services/gtomy-lib#readme",
   "dependencies": {
     "@cloudflare/stream-react": "^1.9.1",
     "@radix-ui/react-dialog": "^1.0.5",
