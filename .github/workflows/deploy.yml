@@ -55,7 +55,7 @@ jobs:
         with:
           name: untracked-files
           path: './dist'
-      - run: cd dist
       - run: npm publish
+        working-directory: ./dist
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
