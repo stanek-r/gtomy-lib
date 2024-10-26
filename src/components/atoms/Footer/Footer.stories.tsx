@@ -25,7 +25,7 @@ export const ShortWithSocial: ComponentStory<typeof Footer> = () => {
       title="Best page ever"
       socialMedia={
         <>
-          <FooterSocialItem href="/" type="threads" />
+          <FooterSocialItem href="/" type="bluesky" />
           <FooterSocialItem href="/" type="youtube" />
           <FooterSocialItem href="/" type="instagram" />
         </>
@@ -43,7 +43,7 @@ export const TallWithSocial: ComponentStory<typeof Footer> = () => {
       showSettings
       socialMedia={
         <>
-          <FooterSocialItem href="/" type="threads" />
+          <FooterSocialItem href="/" type="bluesky" />
           <FooterSocialItem href="/" type="youtube" />
           <FooterSocialItem href="/" type="instagram" />
         </>
@@ -106,7 +106,7 @@ export const TallWithSocialAndLinks: ComponentStory<typeof Footer> = () => {
       showSettings
       socialMedia={
         <>
-          <FooterSocialItem href="/" type="threads" />
+          <FooterSocialItem href="/" type="bluesky" />
           <FooterSocialItem href="/" type="youtube" />
           <FooterSocialItem href="/" type="instagram" />
         </>
