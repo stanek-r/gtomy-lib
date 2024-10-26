@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/stanek-r/gtomy-lib/compare/v1.0.3...v1.0.4) (2024-10-26)
+
+
+### Features
+
+* add bluesky social footer item ([0d7737a](https://github.com/stanek-r/gtomy-lib/commit/0d7737a1d46149d6801339f0799e97ce7203d855))
+
 ### [1.0.3](https://github.com/stanek-r/gtomy-lib/compare/v1.0.2...v1.0.3) (2024-08-31)
 
 
