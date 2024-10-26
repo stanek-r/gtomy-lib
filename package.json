@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:stanek-r/gtomy-lib.git"
+    "url": "git+ssh://git@github.com/stanek-r/gtomy-lib.git"
   },
   "author": "GTomy",
   "license": "MIT",
