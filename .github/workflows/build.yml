@@ -1,4 +1,4 @@
-name: Lint check, audit and build
+name: Lint Check, Audit and Build
 
 on:
   push:
