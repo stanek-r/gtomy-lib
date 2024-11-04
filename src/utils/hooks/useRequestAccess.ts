@@ -24,10 +24,9 @@ export function useRequestAccess(role: string, application = config.appName): Us
     return new Promise((resolve) => resolve([]));
   }, [isAuthenticated, get]);
 
-  const { data, isError, isLoading, refetch } = useQuery<UserAccessRequestDto[]>({
+  const { data, status, refetch } = useQuery<UserAccessRequestDto[]>({
     queryKey: ['request-access', isAuthenticated, user?.userId],
     queryFn: getRequestAccess,
-    fallbackValue: [],
   });
 
   const [requests, addRequest] = useRequestAccessStore((state) => [state.requests, state.addRequest]);
@@ -35,11 +34,11 @@ export function useRequestAccess(role: string, application = config.appName): Us
   const [error, setError] = useState<any | null>(null);
 
   const sent = useMemo(() => {
-    if (data.length === 0 && (isError || isLoading)) {
+    if (status === 'success') {
       return data.find((request: Roles) => request.role === role && request.application === application) != null;
     }
     return requests.find((request: Roles) => request.role === role && request.application === application) != null;
-  }, [data, requests, isError, isLoading, role, application]);
+  }, [data, requests, status, role, application]);
 
   const handleRequestAccess = useCallback(async () => {
     if (!isAuthenticated) {
