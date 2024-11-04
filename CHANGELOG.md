@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/stanek-r/gtomy-lib/compare/v1.1.0...v1.1.1) (2024-11-04)
+
+
+### Bug Fixes
+
+* useRequestAccess not rendering ([d2c1603](https://github.com/stanek-r/gtomy-lib/commit/d2c1603cdbcecf8931f99bf827992d03c2fc5725))
+
 ## [1.1.0](https://github.com/stanek-r/gtomy-lib/compare/v1.0.5...v1.1.0) (2024-11-04)
 
 
