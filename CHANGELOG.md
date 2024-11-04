@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/stanek-r/gtomy-lib/compare/v1.1.1...v1.1.2) (2024-11-04)
+
+
+### Bug Fixes
+
+* revert upgrade of zustand ([b960679](https://github.com/stanek-r/gtomy-lib/commit/b960679ef58e6789498ad6cbd9b2009c2cbe3c97))
+
 ### [1.1.1](https://github.com/stanek-r/gtomy-lib/compare/v1.1.0...v1.1.1) (2024-11-04)
 
 
