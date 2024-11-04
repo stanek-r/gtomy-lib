@@ -12,6 +12,7 @@ import { Icon, IconType } from '@/components/atoms/Icon';
 import { LoadingState } from '@/components/atoms/LoadingState';
 import { AuthDialog } from '@/components/auth';
 import { useLoginRedirectStore } from '@/utils/hooks/storage';
+import { DialogElement } from '@/components/organisms/dialog';
 
 const AppIcon = <img src="/favicon.ico" className="mr-2 size-8 shrink-0 rounded" alt="Application icon" />;
 
@@ -26,7 +27,7 @@ export interface MenuProps {
 
 export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdownActions, icon = AppIcon }: MenuProps) {
   const { user, isAuthenticated, logout, isLoadingUser } = useAuth();
-  const { openDialog, DialogElement } = useDialog(AuthDialog);
+  const { openDialog, dialogElementProps } = useDialog(AuthDialog);
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdown
   if (isOverBreakpoint) {
     return (
       <>
-        <DialogElement />
+        <DialogElement {...dialogElementProps} />
         <div className="navbar bg-neutral text-neutral-content">
           <div className="flex-1">
             {config.appDisplayName && (
@@ -99,7 +100,7 @@ export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdown
 
   return (
     <>
-      <DialogElement />
+      <DialogElement {...dialogElementProps} />
       <div className="navbar bg-neutral text-neutral-content">
         {children && (
           <div className="navbar-start">

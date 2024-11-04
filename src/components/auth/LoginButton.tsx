@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthDialog } from '@/components/auth/AuthDialog';
 import { useLoginRedirectStore } from '@/utils/hooks/storage';
 import { useCallback } from 'react';
+import { DialogElement } from '@/components/organisms/dialog/DialogElement';
 
 export interface LoginButtonProps {
   className?: string;
@@ -12,7 +13,7 @@ export interface LoginButtonProps {
 
 export function LoginButton({ className, size }: LoginButtonProps) {
   const { t } = useTranslation('auth');
-  const { openDialog, DialogElement } = useDialog(AuthDialog);
+  const { openDialog, dialogElementProps } = useDialog(AuthDialog);
   const { isOverBreakpoint } = useBreakpoint('lg');
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -29,7 +30,7 @@ export function LoginButton({ className, size }: LoginButtonProps) {
 
   return (
     <>
-      <DialogElement />
+      <DialogElement {...dialogElementProps} />
       <Button onClick={login} size={size} color="primary" className={className} wide>
         {t('login')}
       </Button>

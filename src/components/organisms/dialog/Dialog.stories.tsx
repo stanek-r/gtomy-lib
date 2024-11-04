@@ -11,6 +11,7 @@ import { Typography } from '@/components/atoms/Typography';
 import { BaseDialog } from './BaseDialog';
 import * as Dialog from '@radix-ui/react-dialog';
 import { ConfirmationDialogOnAction } from '@/components/organisms/dialog/confirmation/ConfirmationDialog';
+import { DialogElement } from '@/components/organisms/dialog/DialogElement';
 
 const meta: Meta<typeof BaseDialog> = {
   title: 'Organisms/Dialog',
@@ -29,7 +30,7 @@ export const Default: ComponentStory<typeof BaseDialog> = (args) => {
       </Dialog.Close>
     </>
   );
-  const { openDialog, DialogElement } = useDialog(
+  const { openDialog, dialogElementProps } = useDialog(
     <BaseDialog actions={actions} {...args}>
       <Typography size="3xl">Lorem ipsum dolor sit amet</Typography>
       <Typography as="p">
@@ -46,35 +47,35 @@ export const Default: ComponentStory<typeof BaseDialog> = (args) => {
 
   return (
     <>
-      <DialogElement />
+      <DialogElement {...dialogElementProps} />
       <Button onClick={openDialog}>Open dialog</Button>
     </>
   );
 };
 
 export const Alert: ComponentStory<typeof BaseDialog> = () => {
-  const { openDialog, DialogElement } = useAlertDialog({
+  const { openDialog, dialogElementProps } = useAlertDialog({
     title: 'Lorem ipsum dolor sit amet',
     text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero.',
   });
 
   return (
     <>
-      <DialogElement />
+      <DialogElement {...dialogElementProps} />
       <Button onClick={openDialog}>Open dialog</Button>
     </>
   );
 };
 
 export const Info: ComponentStory<typeof BaseDialog> = () => {
-  const { openDialog, DialogElement } = useInfoDialog({
+  const { openDialog, dialogElementProps } = useInfoDialog({
     title: 'Lorem ipsum dolor sit amet',
     text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero.',
   });
 
   return (
     <>
-      <DialogElement />
+      <DialogElement {...dialogElementProps} />
       <Button onClick={openDialog}>Open dialog</Button>
     </>
   );
@@ -85,7 +86,7 @@ export const Confirmation: ComponentStory<typeof BaseDialog> = () => {
     console.log('Action');
     onClose();
   };
-  const { openDialog, DialogElement } = useConfirmationDialog({
+  const { openDialog, dialogElementProps } = useConfirmationDialog({
     title: 'Lorem ipsum dolor sit amet',
     text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero.',
     onAction,
@@ -93,14 +94,14 @@ export const Confirmation: ComponentStory<typeof BaseDialog> = () => {
 
   return (
     <>
-      <DialogElement />
+      <DialogElement {...dialogElementProps} />
       <Button onClick={openDialog}>Open dialog</Button>
     </>
   );
 };
 
 export const ImageDialog: ComponentStory<typeof BaseDialog> = () => {
-  const { openDialog, DialogElement } = useImageDialog({
+  const { openDialog, dialogElementProps } = useImageDialog({
     title: 'Lorem ipsum dolor sit amet',
     subtitle: 'Lorem ipsum dolor sit amet',
     imageId: 'IMAGE_ID',
@@ -108,7 +109,7 @@ export const ImageDialog: ComponentStory<typeof BaseDialog> = () => {
 
   return (
     <>
-      <DialogElement />
+      <DialogElement {...dialogElementProps} />
       <Button onClick={openDialog}>Open dialog</Button>
     </>
   );

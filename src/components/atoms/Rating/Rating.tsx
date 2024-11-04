@@ -1,4 +1,4 @@
-import { Typography } from '../Typography/Typography';
+import { Typography } from '@/components/atoms/Typography/Typography';
 import { ComponentPropsWithRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 

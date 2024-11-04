@@ -1,6 +1,5 @@
-import { FunctionComponent, useCallback, useState } from 'react';
-import { BaseDialogProps } from '@/components/organisms/dialog';
-import { DialogElement } from '@/components/organisms/dialog/DialogElement';
+import { FunctionComponent, useCallback, useMemo, useState } from 'react';
+import { BaseDialogProps, DialogElementProps } from '@/components/organisms/dialog';
 import { InfoDialog, InfoDialogProps } from '@/components/organisms/dialog/info';
 import { AlertDialog, AlertDialogProps } from '@/components/organisms/dialog/alert';
 import {
@@ -14,21 +13,29 @@ export type DialogElementType = FunctionComponent;
 export interface UseDialogReturn {
   openDialog: () => void;
   closeDialog: () => void;
-  DialogElement: DialogElementType;
+  dialogElementProps: DialogElementProps;
 }
 
 export function useDialog(dialog: FunctionComponent<BaseDialogProps> | JSX.Element): UseDialogReturn {
   const [open, setOpen] = useState<boolean>(false);
 
-  const DialogElementInner = useCallback(
-    () => <DialogElement dialog={dialog} open={open} onOpenChange={(_open: boolean) => setOpen(_open)} />,
-    [dialog, open, setOpen]
+  const onOpenChange = useCallback((_open: boolean) => setOpen(_open), [setOpen]);
+  const openDialog = useCallback(() => setOpen(true), [setOpen]);
+  const closeDialog = useCallback(() => setOpen(false), [setOpen]);
+
+  const dialogElementProps = useMemo(
+    () => ({
+      dialog,
+      open,
+      onOpenChange,
+    }),
+    [dialog, open, onOpenChange]
   );
 
   return {
-    openDialog: () => setOpen(true),
-    closeDialog: () => setOpen(false),
-    DialogElement: DialogElementInner,
+    openDialog,
+    closeDialog,
+    dialogElementProps,
   };
 }
 

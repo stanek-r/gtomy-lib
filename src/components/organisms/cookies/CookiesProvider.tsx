@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import dayjs from 'dayjs';
 import { twMerge } from 'tailwind-merge';
 import { Trans } from 'react-i18next';
+import { DialogElement } from '@/components/organisms/dialog';
 
 export function CookiesProvider() {
   const { t } = useTranslation('common');
@@ -14,7 +15,7 @@ export function CookiesProvider() {
     state.acceptCookies,
     state.clearCookies,
   ]);
-  const { openDialog, DialogElement } = useInfoDialog({
+  const { openDialog, dialogElementProps } = useInfoDialog({
     title: t('cookies.dialog.title'),
     text: (
       <Trans i18nKey="cookies.dialog.text" ns="common" components={{ a: <br />, b: <Typography weight="medium" /> }} />
@@ -37,7 +38,7 @@ export function CookiesProvider() {
 
   return (
     <>
-      <DialogElement />
+      <DialogElement {...dialogElementProps} />
       <div className="fixed inset-x-0 bottom-0 flex w-full items-center justify-between gap-4 bg-base-300 px-10 py-4 text-base-content">
         <div className="flex items-center gap-10">
           <div className="flex flex-col">
