@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/stanek-r/gtomy-lib/compare/v1.0.5...v1.1.0) (2024-11-04)
+
+
+### Features
+
+* add Rating component ([aae7815](https://github.com/stanek-r/gtomy-lib/commit/aae7815a4c0a26f531176e2d488ee4d6d9132064))
+* remove unneeded props from QueryWrapper ([e3987d1](https://github.com/stanek-r/gtomy-lib/commit/e3987d1df6a84797eb0f8a4ef0dbe370ca4c1f66))
+
 ### [1.0.5](https://github.com/stanek-r/gtomy-lib/compare/v1.0.4...v1.0.5) (2024-10-26)
 
 ### [1.0.4](https://github.com/stanek-r/gtomy-lib/compare/v1.0.3...v1.0.4) (2024-10-26)
