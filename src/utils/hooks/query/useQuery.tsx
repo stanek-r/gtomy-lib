@@ -1,4 +1,4 @@
-import { FunctionComponent, useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import {
   DefaultError,
   QueryClient,
@@ -7,7 +7,7 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query';
-import { QueryWrapper, QueryWrapperProps } from './QueryWrapper';
+import { QueryWrapperProps } from './QueryWrapper';
 import { showToast } from '@/components/organisms/toast';
 import i18n from '@/utils/i18n';
 import { XMarkIcon } from '@heroicons/react/24/outline';
@@ -19,17 +19,12 @@ export interface QueryOptions<
   TData = TQueryFnData,
   TQueryKey extends QueryKey = QueryKey,
 > extends UseQueryOptions<TQueryFnData, TError, TData, TQueryKey> {
-  loadingMessage?: string;
-  delay?: number;
   showRetry?: boolean;
-  fallbackValue: TData;
 }
 
 export type QueryResult<TData = unknown, TError = DefaultError> = {
-  data: TData;
-  QueryWrapper: FunctionComponent<{ children: JSX.Element }>;
   wrapperProps: Omit<QueryWrapperProps<TData>, 'children'>;
-} & Omit<UseQueryResult<TData, TError>, 'data'>;
+} & UseQueryResult<TData, TError>;
 
 export function useQuery<
   TQueryFnData = unknown,
@@ -40,48 +35,20 @@ export function useQuery<
   options: QueryOptions<TQueryFnData, TError, TData, TQueryKey>,
   queryClient?: QueryClient
 ): QueryResult<TData, TError> {
-  const { loadingMessage, delay, fallbackValue, ...queryOptions } = options;
-  const query = useTanStackQuery(queryOptions, queryClient);
+  const query = useTanStackQuery(options, queryClient);
 
-  const [showLoading, setShowLoading] = useState<boolean>(false);
   const queryWrapperProps = useMemo(
     () => ({
-      isLoading: query.isLoading,
-      showLoading: showLoading,
-      isError: query.isError,
       error: query.error,
-      loadingMessage: loadingMessage,
+      status: query.status,
       showRetry: options.showRetry,
       retry: query.refetch,
-      data: query.data,
-      fallbackValue: fallbackValue,
     }),
-    [
-      query.data,
-      query.isLoading,
-      query.isError,
-      query.error,
-      query.refetch,
-      options.showRetry,
-      showLoading,
-      loadingMessage,
-      fallbackValue,
-    ]
-  );
-  const QueryWrapperInner = useCallback(
-    ({ children }: { children: JSX.Element }) => <QueryWrapper {...queryWrapperProps}>{children}</QueryWrapper>,
-    [queryWrapperProps]
+    [query.status, query.error, query.refetch, options.showRetry]
   );
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowLoading(true);
-    }, delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
-
-  useEffect(() => {
-    if (!query.isError || query.isLoading) {
+    if (query.status !== 'error') {
       return;
     }
     if (isAxiosError(query.error) && (query.error.response?.status === 401 || query.error.response?.status === 403)) {
@@ -92,12 +59,10 @@ export function useQuery<
       icon: XMarkIcon,
       iconColor: 'error',
     });
-  }, [query.isError, query.isLoading, query.error]);
+  }, [query.status, query.error]);
 
   return {
     ...query,
-    data: query.data == null ? fallbackValue : query.data,
-    QueryWrapper: QueryWrapperInner,
     wrapperProps: queryWrapperProps,
   };
 }

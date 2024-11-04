@@ -17,7 +17,7 @@ export interface PageQueryOptions<
   queryKey: ReadonlyArray<any>;
 }
 
-export interface PageQueryResult<TData = unknown, TError = DefaultError> extends QueryResult<TData, TError> {
+export type PageQueryResult<TData = unknown, TError = DefaultError> = QueryResult<TData, TError> & {
   prevPage: () => void;
   nextPage: () => void;
   setPage: (page: number) => void;
@@ -25,7 +25,7 @@ export interface PageQueryResult<TData = unknown, TError = DefaultError> extends
   numberOfPages: number | null;
   page: number;
   setResultsPerPage: (results: number) => void;
-}
+};
 
 export function usePageQuery<
   TQueryFnData extends PageQueryData = PageQueryData,

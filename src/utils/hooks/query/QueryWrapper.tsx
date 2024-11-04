@@ -1,54 +1,60 @@
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { LoadingState } from '@/components/atoms/LoadingState';
+import { useEffect, useState } from 'react';
 
-export type QueryWrapperPropsWithoutChildren<T> = Omit<QueryWrapperProps<T>, 'children'>;
+export type QueryWrapperPropsWithoutChildren<T> = Omit<QueryWrapperProps<T>, 'children' | 'loadingMessage'>;
 
 export function combineQueryWrapperProps<T1, T2>(
   wrapperProps1: QueryWrapperPropsWithoutChildren<T1>,
   wrapperProps2: QueryWrapperPropsWithoutChildren<T2>
 ): QueryWrapperPropsWithoutChildren<T1> {
+  const isPending = wrapperProps1.status === 'error' || wrapperProps2.status === 'error';
+  const isError = wrapperProps1.status === 'pending' || wrapperProps2.status === 'pending';
   return {
-    data: wrapperProps1.data != null && wrapperProps2.data != null ? wrapperProps1.data : undefined,
-    isError: wrapperProps1.isError || wrapperProps2.isError,
-    isLoading: wrapperProps1.isLoading || wrapperProps2.isLoading,
-    showLoading: wrapperProps1.showLoading || wrapperProps2.showLoading,
-    error: wrapperProps1.isError ? wrapperProps1.error : wrapperProps2.isError ? wrapperProps2.error : undefined,
+    status: isError ? 'error' : isPending ? 'pending' : 'success',
+    error:
+      wrapperProps1.status === 'error'
+        ? wrapperProps1.error
+        : wrapperProps2.status === 'error'
+          ? wrapperProps2.error
+          : undefined,
     showRetry: wrapperProps1.showRetry || wrapperProps2.showRetry,
     retry: wrapperProps1.showRetry ? wrapperProps1.retry : wrapperProps2.retry,
-    loadingMessage: wrapperProps1.isLoading ? wrapperProps1.loadingMessage : wrapperProps2.loadingMessage,
-    fallbackValue: wrapperProps1.fallbackValue,
   };
 }
 
 export interface QueryWrapperProps<T> {
   children: JSX.Element;
-  isError: boolean;
-  isLoading: boolean;
-  showLoading: boolean;
+  status: 'error' | 'success' | 'pending';
   error: any;
   showRetry?: boolean;
   retry: () => void;
   loadingMessage?: string;
-  data?: T;
-  fallbackValue: T;
+  delay?: number;
 }
 
 export function QueryWrapper<T>({
   children,
-  isError,
-  isLoading,
-  showLoading,
+  status,
   error,
   showRetry,
   retry,
   loadingMessage,
-  data,
-  fallbackValue,
+  delay = 200,
 }: QueryWrapperProps<T>): JSX.Element {
-  if (isError) {
+  const [showLoading, setShowLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoading(true);
+    }, delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  if (status === 'error') {
     return <ErrorState error={error} retry={retry} showRetry={showRetry} />;
   }
-  if (data == null || (isLoading && fallbackValue != data)) {
+  if (status === 'pending') {
     return <LoadingState message={loadingMessage} showLoading={showLoading} />;
   }
   return children;
