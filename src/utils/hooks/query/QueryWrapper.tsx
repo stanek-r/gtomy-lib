@@ -2,12 +2,12 @@ import { ErrorState } from '@/components/atoms/ErrorState';
 import { LoadingState } from '@/components/atoms/LoadingState';
 import { useEffect, useState } from 'react';
 
-export type QueryWrapperPropsWithoutChildren<T> = Omit<QueryWrapperProps<T>, 'children' | 'loadingMessage'>;
+export type QueryWrapperPropsWithoutChildren = Omit<QueryWrapperProps, 'children' | 'loadingMessage'>;
 
-export function combineQueryWrapperProps<T1, T2>(
-  wrapperProps1: QueryWrapperPropsWithoutChildren<T1>,
-  wrapperProps2: QueryWrapperPropsWithoutChildren<T2>
-): QueryWrapperPropsWithoutChildren<T1> {
+export function combineQueryWrapperProps(
+  wrapperProps1: QueryWrapperPropsWithoutChildren,
+  wrapperProps2: QueryWrapperPropsWithoutChildren
+): QueryWrapperPropsWithoutChildren {
   const isPending = wrapperProps1.status === 'error' || wrapperProps2.status === 'error';
   const isError = wrapperProps1.status === 'pending' || wrapperProps2.status === 'pending';
   return {
@@ -23,7 +23,7 @@ export function combineQueryWrapperProps<T1, T2>(
   };
 }
 
-export interface QueryWrapperProps<T> {
+export interface QueryWrapperProps {
   children: JSX.Element;
   status: 'error' | 'success' | 'pending';
   error: any;
@@ -33,7 +33,7 @@ export interface QueryWrapperProps<T> {
   delay?: number;
 }
 
-export function QueryWrapper<T>({
+export function QueryWrapper({
   children,
   status,
   error,
@@ -41,7 +41,7 @@ export function QueryWrapper<T>({
   retry,
   loadingMessage,
   delay = 200,
-}: QueryWrapperProps<T>): JSX.Element {
+}: QueryWrapperProps): JSX.Element {
   const [showLoading, setShowLoading] = useState<boolean>(false);
 
   useEffect(() => {
