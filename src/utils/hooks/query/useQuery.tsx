@@ -23,7 +23,7 @@ export interface QueryOptions<
 }
 
 export type QueryResult<TData = unknown, TError = DefaultError> = {
-  wrapperProps: Omit<QueryWrapperProps<TData>, 'children'>;
+  wrapperProps: Omit<QueryWrapperProps, 'children'>;
 } & UseQueryResult<TData, TError>;
 
 export function useQuery<
@@ -37,7 +37,7 @@ export function useQuery<
 ): QueryResult<TData, TError> {
   const query = useTanStackQuery(options, queryClient);
 
-  const queryWrapperProps = useMemo(
+  const queryWrapperProps: Omit<QueryWrapperProps, 'children'> = useMemo(
     () => ({
       error: query.error,
       status: query.status,

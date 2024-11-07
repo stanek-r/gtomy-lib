@@ -30,7 +30,7 @@ const queryClient = new QueryClient();
 
 export const Default = () => {
   const { wrapperProps, data } = useQuery<string | null>(
-    { fallbackValue: null, queryKey: ['test'], queryFn: testCallFunction, showRetry: true },
+    { queryKey: ['test'], queryFn: testCallFunction, showRetry: true },
     queryClient
   );
 
@@ -48,7 +48,6 @@ interface StoryPage extends PageQueryData {
 export const Page = () => {
   const { wrapperProps, data, page, nextPage, prevPage, numberOfPages } = usePageQuery<StoryPage>(
     {
-      fallbackValue: { isLast: false, numberOfPages: 0, data: null },
       queryKey: ['test'],
       queryFn: testCallFunction2,
       showRetry: true,
@@ -60,7 +59,7 @@ export const Page = () => {
   return (
     <QueryWrapper {...wrapperProps}>
       <>
-        <Typography>{data.data}</Typography>
+        <Typography>{data?.data}</Typography>
         <div className="flex items-center justify-between gap-2">
           <Button onClick={prevPage}>Prev</Button>
           <Button>

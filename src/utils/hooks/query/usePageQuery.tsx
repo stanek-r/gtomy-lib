@@ -38,9 +38,8 @@ export function usePageQuery<
 
   const pageQueryFn = useCallback(() => queryFn(page, resultsPerPage), [page, resultsPerPage, queryFn]);
 
-  const key: ReadonlyArray<any> = [...queryKey, page];
   const query = useQuery<TQueryFnData, TError, TData, ReadonlyArray<any>>(
-    { queryKey: key, queryFn: pageQueryFn, ...queryOptions },
+    { queryKey: [...queryKey, page], queryFn: pageQueryFn, ...queryOptions },
     queryClient
   );
 
