@@ -27,7 +27,7 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/stanek-r/gtomy-lib/issues",
-    "email": "mail@stanekr.cz"
+    "email": "admin@gtomy.net"
   },
   "dependencies": {
     "@cloudflare/stream-react": "^1.9.1",
