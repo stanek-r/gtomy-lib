@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/stanek-r/gtomy-lib/compare/v1.1.2...v1.1.3) (2024-11-07)
+
+
+### Bug Fixes
+
+* hide divider in menu if children are not present ([ce837e7](https://github.com/stanek-r/gtomy-lib/commit/ce837e7ecd6235f17caf75e09c8cf96aed8110af))
+* z indexes for dialogs and cookies ([05572c3](https://github.com/stanek-r/gtomy-lib/commit/05572c35a633eb341e4afe79864458dd7564db4e))
+
 ### [1.1.2](https://github.com/stanek-r/gtomy-lib/compare/v1.1.1...v1.1.2) (2024-11-04)
 
 
