@@ -1,31 +1,11 @@
-import {
-  ComponentPropsWithoutRef,
-  ElementType,
-  forwardRef,
-  MutableRefObject,
-  ReactElement,
-  Ref,
-  RefAttributes,
-} from 'react';
+import { ComponentPropsWithoutRef, ElementType, ForwardedRef, forwardRef, ReactElement, RefAttributes } from 'react';
 
 export type PropsAs<Props, T extends ElementType> = Props & Omit<ComponentPropsWithoutRef<T>, keyof Props>;
 
 export function forwardRefWithTypes<T, P = Record<string, unknown>>(
-  render: (props: P, ref: Ref<T>) => ReactElement | null
+  render: (props: P, ref: ForwardedRef<T>) => ReactElement | null
 ): (props: P & RefAttributes<T>) => ReactElement | null {
-  return forwardRef(render) as any;
-}
-
-export function assignRefs<T>(...refs: Ref<T | null>[]) {
-  return (node: T | null) => {
-    refs.forEach((r) => {
-      if (typeof r === 'function') {
-        r(node);
-      } else if (r) {
-        (r as MutableRefObject<T | null>).current = node;
-      }
-    });
-  };
+  return forwardRef(render as any) as any;
 }
 
 export const ControlledFormTransformer = {

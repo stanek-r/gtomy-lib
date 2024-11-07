@@ -14,7 +14,6 @@ export interface FormSelectInputProps<
 > extends UseControllerProps<TFieldValues, TName> {
   label?: string;
   hint?: string;
-  placeholder?: string;
   className?: string;
   options: Option[];
   allowEmpty?: boolean;
@@ -27,15 +26,7 @@ export interface FormSelectInputProps<
 export function FormSelectInput<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
->({
-  label,
-  hint,
-  placeholder,
-  className,
-  options,
-  allowEmpty,
-  ...useControllerProps
-}: FormSelectInputProps<TFieldValues, TName>) {
+>({ label, hint, className, options, allowEmpty, ...useControllerProps }: FormSelectInputProps<TFieldValues, TName>) {
   const {
     field: { onChange, value, ...other },
     errorMessage,
@@ -52,7 +43,6 @@ export function FormSelectInput<
     <SelectInput
       label={label}
       hint={hint}
-      placeholder={placeholder}
       error={errorMessage}
       className={className}
       onChange={handleOnChange}
