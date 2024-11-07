@@ -27,6 +27,7 @@ export function useRequestAccess(role: string, application = config.appName): Us
   const { data, status, refetch } = useQuery<UserAccessRequestDto[]>({
     queryKey: ['request-access', isAuthenticated, user?.userId],
     queryFn: getRequestAccess,
+    staleTime: 30 * 1000,
   });
 
   const [requests, addRequest] = useRequestAccessStore((state) => [state.requests, state.addRequest]);
