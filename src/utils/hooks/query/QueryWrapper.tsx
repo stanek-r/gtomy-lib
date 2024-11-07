@@ -8,8 +8,8 @@ export function combineQueryWrapperProps(
   wrapperProps1: QueryWrapperPropsWithoutChildren,
   wrapperProps2: QueryWrapperPropsWithoutChildren
 ): QueryWrapperPropsWithoutChildren {
-  const isPending = wrapperProps1.status === 'error' || wrapperProps2.status === 'error';
-  const isError = wrapperProps1.status === 'pending' || wrapperProps2.status === 'pending';
+  const isError = wrapperProps1.status === 'error' || wrapperProps2.status === 'error';
+  const isPending = wrapperProps1.status === 'pending' || wrapperProps2.status === 'pending';
   return {
     status: isError ? 'error' : isPending ? 'pending' : 'success',
     error:

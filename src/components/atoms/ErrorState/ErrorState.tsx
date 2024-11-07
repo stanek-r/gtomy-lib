@@ -74,12 +74,14 @@ export function ErrorState({ error, retry, showRetry, className }: ErrorStatePro
   }
 
   let message: JSX.Element | null = null;
-  if (error.response?.data?.message) {
-    message = <Typography color="error">{error.response.data.message}</Typography>;
-  } else if (error.message) {
-    message = <Typography color="error">{error.message}</Typography>;
-  } else if (error.response?.status) {
-    message = <Typography color="error">Status code: {error.response?.status}</Typography>;
+  if (error != null) {
+    if (error.response?.data?.message) {
+      message = <Typography color="error">{error.response.data.message}</Typography>;
+    } else if (error.message) {
+      message = <Typography color="error">{error.message}</Typography>;
+    } else if (error.response?.status) {
+      message = <Typography color="error">Status code: {error.response?.status}</Typography>;
+    }
   }
 
   return (
