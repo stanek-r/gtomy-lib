@@ -39,7 +39,7 @@ export function CookiesProvider() {
   return (
     <>
       <DialogElement {...dialogElementProps} />
-      <div className="fixed inset-x-0 bottom-0 flex w-full items-center justify-between gap-4 bg-base-300 px-10 py-4 text-base-content">
+      <div className="fixed inset-x-0 bottom-0 z-10 flex w-full items-center justify-between gap-4 bg-base-300 px-10 py-4 text-base-content">
         <div className="flex items-center gap-10">
           <div className="flex flex-col">
             <Typography size="lg" weight="medium">
