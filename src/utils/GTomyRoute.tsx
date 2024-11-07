@@ -1,8 +1,25 @@
 import { Route } from 'react-router-dom';
 import { NotFoundPage } from '@/components/pages/NotFoundPage';
-import { PrivacyPolicyPage, ProfilePage } from '@/components/pages';
-import { withRequireAuth } from '@/utils/with-helpers/withAuth';
+import { PrivacyPolicyPage, ProfilePage, ProfilePageProps } from '@/components/pages';
+import { RequireAuth } from '@/components/auth';
 
-export const NOT_FOUND_ROUTE = <Route path="*" element={<NotFoundPage />} />;
-export const PRIVACY_POLICY_ROUTE = <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />;
-export const BASE_PROFILE_ROUTE = <Route path="/profile" element={withRequireAuth(ProfilePage, 'user')} />;
+export function NotFoundRoute() {
+  return <Route path="*" element={<NotFoundPage />} />;
+}
+
+export function PrivacyPolicyRoute() {
+  return <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />;
+}
+
+export function BaseProfileRoute(props: ProfilePageProps) {
+  return (
+    <Route
+      path="/profile"
+      element={
+        <RequireAuth minimalRole="user">
+          <ProfilePage {...props} />
+        </RequireAuth>
+      }
+    />
+  );
+}

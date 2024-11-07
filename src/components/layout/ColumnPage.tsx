@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode, useContext } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { LayoutContext } from '@/components/layout/LayoutProvider';
-import { withComponent } from '@/utils/with-helpers/withComponent';
+import { WithComponent } from '@/components/layout/WithComponent';
 
 export const columnPageWidthClasses = {
   sm: 'w-[640px]',
@@ -31,11 +31,11 @@ export function ColumnPage({
 
   return (
     <>
-      {withComponent(ForceMenuComponent ?? MenuComponent)}
+      <WithComponent Component={ForceMenuComponent ?? MenuComponent} />
       <div className={twMerge('max-w-full mx-auto flex flex-col gap-4 px-4 py-8 flex-1', widthClass, className)}>
         {children}
       </div>
-      {withComponent(ForceFooterComponent ?? FooterComponent)}
+      <WithComponent Component={ForceFooterComponent ?? FooterComponent} />
     </>
   );
 }

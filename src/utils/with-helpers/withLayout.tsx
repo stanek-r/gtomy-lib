@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { ColumnPage, FormPage } from '@/components/layout';
-import { withComponent } from '@/utils/with-helpers/withComponent';
+import { WithComponent } from '@/components/layout/WithComponent';
 
 /**
  * Renders a page with a column layout, consisting of a main component and optional menu and footer components.
@@ -20,7 +20,7 @@ export function withColumnPage(
 ): JSX.Element {
   return (
     <ColumnPage MenuComponent={MenuComponent} FooterComponent={FooterComponent} width={width}>
-      {withComponent(Component)}
+      <WithComponent Component={Component} />
     </ColumnPage>
   );
 }
@@ -40,7 +40,7 @@ export function withFormPage(
 ): JSX.Element {
   return (
     <FormPage MenuComponent={MenuComponent} FooterComponent={FooterComponent}>
-      {withComponent(Component)}
+      <WithComponent Component={Component} />
     </FormPage>
   );
 }

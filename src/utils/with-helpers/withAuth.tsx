@@ -1,9 +1,8 @@
-import { ComponentType, FunctionComponent, LazyExoticComponent, Suspense } from 'react';
+import { ComponentType, FunctionComponent, LazyExoticComponent } from 'react';
 import { PermRoles } from '@/utils/hooks/storage';
 import { RequireAuth, RequirePermission } from '@/components/auth';
-import { withComponent } from '@/utils/with-helpers/withComponent';
-import { withFormPage } from '@/utils/with-helpers/withLayout';
-import { LoadingState } from '@/components/atoms/LoadingState';
+import { WithComponent } from '@/components/layout/WithComponent';
+import { LazyPage } from '@/components/layout/LazyPage';
 
 /**
  * Provides a higher-order component that enables authentication validation for a given component.
@@ -33,7 +32,7 @@ export function withRequireAuth(
       FooterComponent={FooterComponent}
       displayRequestAccess={displayRequestAccess}
     >
-      {withComponent(Component)}
+      <WithComponent Component={Component} />
     </RequireAuth>
   );
 }
@@ -52,17 +51,7 @@ export function withLazyPage(
   MenuComponent?: FunctionComponent | JSX.Element,
   FooterComponent?: FunctionComponent | JSX.Element
 ): JSX.Element {
-  return (
-    <Suspense
-      fallback={withFormPage(
-        <LoadingState showLoading className="flex-1 justify-center" />,
-        MenuComponent,
-        FooterComponent
-      )}
-    >
-      <Component />
-    </Suspense>
-  );
+  return <LazyPage Component={Component} MenuComponent={MenuComponent} FooterComponent={FooterComponent} />;
 }
 
 /**
@@ -82,7 +71,7 @@ export function withPermission(
 ): JSX.Element {
   return (
     <RequirePermission minimalRole={minimalRole} application={application}>
-      {withComponent(Component)}
+      <WithComponent Component={Component} />
     </RequirePermission>
   );
 }

@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode, useContext } from 'react';
 import { LayoutContext } from '@/components/layout/LayoutProvider';
-import { withComponent } from '@/utils/with-helpers/withComponent';
+import { WithComponent } from '@/components/layout/WithComponent';
 
 export interface FormPageProps {
   MenuComponent?: FunctionComponent | JSX.Element;
@@ -16,9 +16,9 @@ export function FormPage({
   const { MenuComponent, FooterComponent } = useContext(LayoutContext);
   return (
     <div className="flex h-screen flex-col">
-      {withComponent(ForceMenuComponent ?? MenuComponent)}
+      <WithComponent Component={ForceMenuComponent ?? MenuComponent} />
       {children}
-      {withComponent(ForceFooterComponent ?? FooterComponent)}
+      <WithComponent Component={ForceFooterComponent ?? FooterComponent} />
     </div>
   );
 }
