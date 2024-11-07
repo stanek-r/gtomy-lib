@@ -60,7 +60,7 @@ export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdown
             <ul className="menu menu-horizontal gap-2 px-1">{children}</ul>
             {showAuth && (
               <>
-                <div className="divider divider-horizontal ml-1 mr-3 py-2"></div>
+                {children && <div className="divider divider-horizontal ml-1 mr-3 py-2"></div>}
                 {isAuthenticated ? (
                   <>
                     <div className=" mr-3">{user?.displayName}</div>
