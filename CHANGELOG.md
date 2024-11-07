@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.5](https://github.com/stanek-r/gtomy-lib/compare/v1.1.4...v1.1.5) (2024-11-07)
+
+
+### Bug Fixes
+
+* combineQueryWrapperProps ([011e2de](https://github.com/stanek-r/gtomy-lib/commit/011e2de039b419725b7ed02eed9232668827ff2d))
+
 ### [1.1.4](https://github.com/stanek-r/gtomy-lib/compare/v1.1.3...v1.1.4) (2024-11-07)
 
 

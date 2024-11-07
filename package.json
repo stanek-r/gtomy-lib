@@ -1,6 +1,6 @@
 {
   "name": "gtomy-lib",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "GTomy lib for react projects",
   "main": "index.js",
   "types": "index.d.ts",
