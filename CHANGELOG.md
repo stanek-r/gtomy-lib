@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/stanek-r/gtomy-lib/compare/v1.1.3...v1.1.4) (2024-11-07)
+
+
+### Features
+
+* add component alternatives to with helpers ([1b41d7d](https://github.com/stanek-r/gtomy-lib/commit/1b41d7d98bb29df9a27ccdb238ee553d4fa8a834))
+
+
+### Bug Fixes
+
+* typesHelpers react update ([0dd9eaf](https://github.com/stanek-r/gtomy-lib/commit/0dd9eaf40e9f54dcb2a554043f4674604ba5a9b7))
+* useBreakpoint rerender ([cd79c78](https://github.com/stanek-r/gtomy-lib/commit/cd79c78813378a3b86b22bc613b8057ee2d6371f))
+* useQuery types ([4343216](https://github.com/stanek-r/gtomy-lib/commit/4343216db6fcdca6cbbe5dbf2bb5ebcfe367ede2))
+
 ### [1.1.3](https://github.com/stanek-r/gtomy-lib/compare/v1.1.2...v1.1.3) (2024-11-07)
 
 
