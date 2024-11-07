@@ -1,13 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 
-export function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height,
-  };
-}
-
 export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 export const breakpointPoints = {
   xs: 320,
@@ -21,37 +13,39 @@ export const breakpointPoints = {
 export interface UseBreakpoint {
   breakpoint: Breakpoint;
   isOverBreakpoint?: boolean;
-  windowDimensions: { width: number; height: number };
+  width: number;
 }
 
 export function useBreakpoint(breakpoint?: Breakpoint): UseBreakpoint {
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-  const selectedBreakpoint = breakpoint ? breakpointPoints[breakpoint] : undefined;
+  const [width, setWidth] = useState<number>(window.innerWidth);
 
   const currentBreakpoint = useMemo((): Breakpoint => {
-    if (windowDimensions.width >= breakpointPoints['2xl']) {
+    if (width >= breakpointPoints['2xl']) {
       return '2xl';
     }
-    if (windowDimensions.width >= breakpointPoints.xl) {
+    if (width >= breakpointPoints.xl) {
       return 'xl';
     }
-    if (windowDimensions.width >= breakpointPoints.lg) {
+    if (width >= breakpointPoints.lg) {
       return 'lg';
     }
-    if (windowDimensions.width >= breakpointPoints.md) {
+    if (width >= breakpointPoints.md) {
       return 'md';
     }
-    if (windowDimensions.width >= breakpointPoints.sm) {
+    if (width >= breakpointPoints.sm) {
       return 'sm';
     }
     return 'xs';
-  }, [windowDimensions]);
-  const isOverBreakpoint =
-    selectedBreakpoint != null ? selectedBreakpoint <= breakpointPoints[currentBreakpoint] : undefined;
+  }, [width]);
+
+  const isOverBreakpoint = useMemo(() => {
+    const selectedBreakpoint = breakpoint ? breakpointPoints[breakpoint] : undefined;
+    return selectedBreakpoint != null ? selectedBreakpoint <= breakpointPoints[currentBreakpoint] : undefined;
+  }, [breakpoint, currentBreakpoint]);
 
   useEffect(() => {
     function handleResize() {
-      setWindowDimensions(getWindowDimensions());
+      setWidth(window.innerWidth);
     }
 
     window.addEventListener('resize', handleResize);
@@ -61,6 +55,6 @@ export function useBreakpoint(breakpoint?: Breakpoint): UseBreakpoint {
   return {
     breakpoint: currentBreakpoint,
     isOverBreakpoint: isOverBreakpoint,
-    windowDimensions,
+    width,
   };
 }

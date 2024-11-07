@@ -22,13 +22,12 @@ const defaultSettings: UseObjectSizeSettings = {
 };
 
 export function useObjectSize(settings: UseObjectSizeSettings = defaultSettings): UseObjectSizeReturn {
-  const { breakpoint, windowDimensions } = useBreakpoint();
+  const { breakpoint, width } = useBreakpoint();
 
   return useMemo(() => {
     const size = settings.sizes.find((s) => s.breakpoint === breakpoint);
     if (size) {
-      const calculatedSize =
-        typeof size.size === 'function' ? size.size(breakpoint, windowDimensions.width) : size.size;
+      const calculatedSize = typeof size.size === 'function' ? size.size(breakpoint, width) : size.size;
       return {
         width: calculatedSize,
         height: (calculatedSize * settings.aspectRatio[1]) / settings.aspectRatio[0],
@@ -41,5 +40,5 @@ export function useObjectSize(settings: UseObjectSizeSettings = defaultSettings)
       width: breakpointPoints[lowerBreakpoint],
       height: (breakpointPoints[lowerBreakpoint] * settings.aspectRatio[1]) / settings.aspectRatio[0],
     };
-  }, [breakpoint, windowDimensions]);
+  }, [breakpoint, width]);
 }
