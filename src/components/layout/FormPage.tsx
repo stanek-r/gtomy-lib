@@ -8,6 +8,9 @@ export interface FormPageProps {
   children?: ReactNode;
 }
 
+/**
+ * @deprecated Use ColumnPage instead.
+ */
 export function FormPage({
   MenuComponent: ForceMenuComponent,
   FooterComponent: ForceFooterComponent,
