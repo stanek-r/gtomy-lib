@@ -1,5 +1,5 @@
-import { FormPage } from '@/components/layout';
 import { LoginForm } from '@/components/auth';
+import { ColumnPage } from '@/components/layout';
 
 export interface LoginPageProps {
   showLanguage?: boolean;
@@ -8,8 +8,8 @@ export interface LoginPageProps {
 
 export function LoginPage({ showTheme, showLanguage }: LoginPageProps) {
   return (
-    <FormPage>
+    <ColumnPage>
       <LoginForm showLanguage={showLanguage} showTheme={showTheme} />
-    </FormPage>
+    </ColumnPage>
   );
 }

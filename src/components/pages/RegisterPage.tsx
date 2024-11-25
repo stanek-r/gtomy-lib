@@ -1,4 +1,4 @@
-import { FormPage } from '@/components/layout';
+import { ColumnPage } from '@/components/layout';
 import { RegisterForm } from '@/components/auth';
 
 export interface RegisterPageProps {
@@ -8,8 +8,8 @@ export interface RegisterPageProps {
 
 export function RegisterPage({ showTheme, showLanguage }: RegisterPageProps) {
   return (
-    <FormPage>
+    <ColumnPage>
       <RegisterForm showLanguage={showLanguage} showTheme={showTheme} />
-    </FormPage>
+    </ColumnPage>
   );
 }

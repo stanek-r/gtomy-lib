@@ -4,7 +4,7 @@ import { Button } from '@/components/atoms/Button';
 import { Typography } from '@/components/atoms/Typography';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { config } from '@/config';
-import { FormPage } from '@/components/layout';
+import { ColumnPage } from '@/components/layout';
 import { ErrorState } from '@/components/atoms/ErrorState';
 import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
 import { PERM_ROLES, PermRoles } from '@/utils/hooks/storage';
@@ -45,9 +45,9 @@ export function RequireAuth({
 
   if (!isAuthenticated) {
     return (
-      <FormPage MenuComponent={MenuComponent} FooterComponent={FooterComponent}>
+      <ColumnPage MenuComponent={MenuComponent} FooterComponent={FooterComponent}>
         <LoadingState showLoading className="flex-1 justify-center" />
-      </FormPage>
+      </ColumnPage>
     );
   }
 
@@ -57,7 +57,7 @@ export function RequireAuth({
 
   if (roleId < minimalRoleId) {
     return (
-      <FormPage MenuComponent={MenuComponent} FooterComponent={FooterComponent}>
+      <ColumnPage MenuComponent={MenuComponent} FooterComponent={FooterComponent}>
         <div className="flex w-full flex-1 items-center justify-center">
           <div className="flex w-[768px] max-w-full flex-col gap-y-3 p-4">
             <Typography size="3xl" weight="bold" className="text-center">
@@ -85,7 +85,7 @@ export function RequireAuth({
             {sent && <Typography className="text-center">{t('requestRoleSent')}</Typography>}
           </div>
         </div>
-      </FormPage>
+      </ColumnPage>
     );
   }
   return children ?? null;
