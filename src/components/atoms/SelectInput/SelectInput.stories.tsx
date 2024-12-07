@@ -26,14 +26,12 @@ type Story = StoryObj<typeof SelectInput>;
 
 export const Default: Story = {
   args: {
-    placeholder: 'SelectInput',
     options: options,
   },
 };
 
 export const AllowEmpty: Story = {
   args: {
-    placeholder: 'SelectInput',
     options: options,
     allowEmpty: true,
   },
@@ -41,7 +39,6 @@ export const AllowEmpty: Story = {
 
 export const WithForm: Story = {
   args: {
-    placeholder: 'SelectInput',
     label: 'Label',
     hint: 'Hint',
     options: options,

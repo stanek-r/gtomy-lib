@@ -52,7 +52,6 @@ export const Default: ComponentStory<typeof FormSelectInput<FieldValues>> = () =
         name="test"
         rules={{ required: true }}
         label="FormSelectInput Label"
-        placeholder="FormSelectInput placeholder"
         options={options}
         allowEmpty
       />

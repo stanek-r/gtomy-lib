@@ -22,7 +22,7 @@ export default [
       },
     ],
     plugins: [
-      peerDepsExternal({ includeDependencies: true }),
+      peerDepsExternal(),
       css(),
       resolve(),
       commonjs(),
