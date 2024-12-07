@@ -60,7 +60,7 @@ export const pages = {
     childrenPrivacy: {
       title: 'Ochrana soukromí dětí',
       paragraph1:
-        'Naše Služby nejsou určeny jednotlivcům mladším 16 let. Neúmyslně neshromažďujeme osobně identifikovatelné informace od dětí mladších 16 let. Pokud se dozvíte, že nám dítě bez souhlasu rodičů poskytlo osobní údaje, kontaktujte nás, abychom mohli přijmout kroky k odstranění těchto informací a ukončení účtu dítěte.',
+        'Naše Služby nejsou určeny jednotlivcům mladším 16 let. Úmyslně neshromažďujeme osobně identifikovatelné informace od dětí mladších 16 let. Pokud se dozvíte, že nám dítě bez souhlasu rodičů poskytlo osobní údaje, kontaktujte nás, abychom mohli přijmout kroky k odstranění těchto informací a ukončení účtu dítěte.',
     },
     changesToPolicy: {
       title: 'Změny těchto zásad',
@@ -72,7 +72,7 @@ export const pages = {
       paragraph1:
         'Pokud máte dotazy nebo obavy týkající se našich Zásad ochrany osobních údajů nebo si přejete uplatnit svá práva, jak je popsáno výše, kontaktujte nás prosím prostřednictvím:',
       list: {
-        element1: 'E-mail: stanek@gtomy.net',
+        element1: 'Email: mail@stanekr.cz',
         element2: 'IG/Threads: @gtomyasek',
       },
       paragraph2:

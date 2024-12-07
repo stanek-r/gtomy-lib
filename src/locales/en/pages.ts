@@ -72,7 +72,7 @@ export const pages = {
       paragraph1:
         'If you have questions or concerns about our Privacy Policy or wish to exercise your rights as described above, please contact us through:',
       list: {
-        element1: 'Email: stanek@gtomy.net',
+        element1: 'Email: mail@stanekr.cz',
         element2: 'IG/Threads: @gtomyasek',
       },
       paragraph2:
