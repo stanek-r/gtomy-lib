@@ -16,7 +16,8 @@ export interface FormRadioProps<
   placeholder?: string;
   type?: string;
   className?: string;
-  value: string;
+  value: string | boolean | number;
+  reversed?: boolean;
 }
 
 /**
@@ -33,6 +34,7 @@ export function FormRadio<
   className,
   type,
   value: radioValue,
+  reversed,
   ...useControllerProps
 }: FormRadioProps<TFieldValues, TName>) {
   const {
@@ -42,7 +44,7 @@ export function FormRadio<
 
   const handleOnChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      onChange(event.target.value);
+      onChange(JSON.parse(event.target.value));
     },
     [onChange]
   );
@@ -56,8 +58,9 @@ export function FormRadio<
       onChange={handleOnChange}
       type={type}
       hint={hint}
-      value={radioValue}
+      value={JSON.stringify(radioValue)}
       checked={radioValue === value}
+      reversed={reversed}
       {...other}
     />
   );
