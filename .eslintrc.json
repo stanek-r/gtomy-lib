@@ -8,7 +8,7 @@
     "plugin:@tanstack/eslint-plugin-query/recommended",
     "plugin:tailwindcss/recommended"
   ],
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "eslint-plugin-react-compiler"],
   "rules": {
     "quotes": [
       "error",
