@@ -8,7 +8,7 @@ const persistedQueryClient = new QueryClient({
     queries: {
       retry: 2,
       refetchOnWindowFocus: false,
-      staleTime: 30 * 1000,
+      staleTime: 5 * 60 * 1000,
     },
   },
 });
