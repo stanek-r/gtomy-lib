@@ -6,7 +6,6 @@ import { logError } from '@/utils/sentry';
 import { isTokenValid, JwtResponse, mapAccessTokenToUser } from '@/utils/auth';
 import { getRefetch } from '@/utils/hooks/storage/useRefetchStore';
 import { useRequest } from '@/utils/hooks/useRequest';
-import { clearRequests } from '@/utils/hooks/storage';
 import { showToast } from '@/components/organisms/toast';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useTranslation } from '@/utils/hooks/useTranslation';
@@ -105,8 +104,7 @@ export function useAuth(): UseAuth {
   const logout = useCallback(() => {
     setRefreshToken(undefined);
     setAccessToken(undefined);
-    clearRequests();
-  }, [setRefreshToken, setAccessToken, clearRequests]);
+  }, [setRefreshToken, setAccessToken]);
 
   const updateAccessToken = useCallback(async (): Promise<User | null> => {
     return get<JwtResponse>('/access-token')

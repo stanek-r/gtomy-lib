@@ -61,7 +61,12 @@ export function RequirePermission({
     return (
       <>
         {startElement}
-        <ErrorState error={error} className={className} />
+        <ErrorState
+          error={error}
+          className={className}
+          showRetry={displayRequestAccess && !sent}
+          retry={requestAccess}
+        />
         {endElement}
       </>
     );

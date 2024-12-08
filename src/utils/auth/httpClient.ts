@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { logError } from '@/utils/sentry';
-import { clearRequests, getAccessToken, getRefreshToken, setAccessToken, setRefreshToken } from '@/utils/hooks/storage';
+import { getAccessToken, getRefreshToken, setAccessToken, setRefreshToken } from '@/utils/hooks/storage';
 import { isTokenValid } from '@/utils/auth/userUtils';
 import { config } from '@/config';
 import { getRefetch, setRefetch } from '@/utils/hooks/storage/useRefetchStore';
@@ -41,7 +41,6 @@ export class HttpClient {
           } else {
             setRefreshToken(undefined);
             setAccessToken(undefined);
-            clearRequests();
           }
           return request;
         });
