@@ -1,4 +1,4 @@
-import { ComponentStory } from '@storybook/react';
+import { type StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 import { FormTextInput } from './FormTextInput';
 import { Button } from '@/components/atoms/Button';
@@ -20,25 +20,29 @@ interface FieldValues {
   test: string | null;
 }
 
-export const Default: ComponentStory<typeof FormTextInput<FieldValues>> = () => {
-  const { control, handleSubmit } = useForm<FieldValues>({
-    defaultValues: { test: 'Test value' },
-  });
+type Story = StoryObj<typeof FormTextInput<FieldValues>>;
 
-  const onHandleSubmit = (props: FieldValues) => {
-    console.log('[onHandleSubmit] props', props);
-  };
+export const Default: Story = {
+  render: () => {
+    const { control, handleSubmit } = useForm<FieldValues>({
+      defaultValues: { test: 'Test value' },
+    });
 
-  return (
-    <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col gap-y-4">
-      <FormTextInput
-        control={control}
-        name="test"
-        rules={{ required: true }}
-        label="FormTextInput Label"
-        placeholder="FormTextInput placeholder"
-      />
-      <Button type="submit">Submit</Button>
-    </form>
-  );
+    const onHandleSubmit = (props: FieldValues) => {
+      console.log('[onHandleSubmit] props', props);
+    };
+
+    return (
+      <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col gap-y-4">
+        <FormTextInput
+          control={control}
+          name="test"
+          rules={{ required: true }}
+          label="FormTextInput Label"
+          placeholder="FormTextInput placeholder"
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    );
+  },
 };

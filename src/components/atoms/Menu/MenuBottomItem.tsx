@@ -1,5 +1,5 @@
-import { ElementType, ForwardedRef } from 'react';
-import { forwardRefWithTypes, PropsAs } from '@/utils';
+import { ElementType } from 'react';
+import { PropsAs } from '@/utils';
 import { twMerge } from 'tailwind-merge';
 import { Icon, IconType } from '@/components/atoms/Icon';
 
@@ -10,10 +10,15 @@ export interface MenuBottomItemProps<T extends ElementType> {
   active?: boolean | ((name: string) => boolean);
 }
 
-function MenuBottomItemInner<T extends ElementType = 'button'>(
-  { as, icon, children, className, active, name, ...other }: PropsAs<MenuBottomItemProps<T>, T>,
-  ref: ForwardedRef<HTMLButtonElement>
-) {
+export function MenuBottomItem<T extends ElementType = 'button'>({
+  as,
+  icon,
+  children,
+  className,
+  active,
+  name,
+  ...other
+}: PropsAs<MenuBottomItemProps<T>, T>) {
   const Component = as ?? 'button';
   const type = Component === 'button' ? 'button' : undefined;
 
@@ -28,5 +33,3 @@ function MenuBottomItemInner<T extends ElementType = 'button'>(
     </Component>
   );
 }
-
-export const MenuBottomItem = forwardRefWithTypes(MenuBottomItemInner);

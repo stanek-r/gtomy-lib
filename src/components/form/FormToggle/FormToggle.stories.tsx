@@ -1,7 +1,7 @@
-import { ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 import { FormToggle } from './FormToggle';
 import { Button } from '@/components/atoms/Button';
+import { StoryObj } from '@storybook/react';
 
 export default {
   title: 'Form/FormToggle',
@@ -20,19 +20,23 @@ interface FieldValues {
   test: boolean | null;
 }
 
-export const Default: ComponentStory<typeof FormToggle<FieldValues>> = () => {
-  const { control, handleSubmit } = useForm<FieldValues>({
-    defaultValues: { test: false },
-  });
+type Story = StoryObj<typeof FormToggle<FieldValues>>;
 
-  const onHandleSubmit = (props: FieldValues) => {
-    console.log('[onHandleSubmit] props', props);
-  };
+export const Default: Story = {
+  render: () => {
+    const { control, handleSubmit } = useForm<FieldValues>({
+      defaultValues: { test: false },
+    });
 
-  return (
-    <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col gap-y-4">
-      <FormToggle control={control} name="test" rules={{ required: true }} label="FormToggle Label" />
-      <Button type="submit">Submit</Button>
-    </form>
-  );
+    const onHandleSubmit = (props: FieldValues) => {
+      console.log('[onHandleSubmit] props', props);
+    };
+
+    return (
+      <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col gap-y-4">
+        <FormToggle control={control} name="test" rules={{ required: true }} label="FormToggle Label" />
+        <Button type="submit">Submit</Button>
+      </form>
+    );
+  },
 };

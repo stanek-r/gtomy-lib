@@ -1,4 +1,4 @@
-import { ComponentStory } from '@storybook/react';
+import { StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 import { FormCheckbox } from './FormCheckbox';
 import { Button } from '@/components/atoms/Button';
@@ -20,19 +20,23 @@ interface FieldValues {
   test: boolean | null;
 }
 
-export const Default: ComponentStory<typeof FormCheckbox<FieldValues>> = () => {
-  const { control, handleSubmit } = useForm<FieldValues>({
-    defaultValues: { test: false },
-  });
+type Story = StoryObj<typeof FormCheckbox<FieldValues>>;
 
-  const onHandleSubmit = (props: FieldValues) => {
-    console.log('[onHandleSubmit] props', props);
-  };
+export const Default: Story = {
+  render: () => {
+    const { control, handleSubmit } = useForm<FieldValues>({
+      defaultValues: { test: false },
+    });
 
-  return (
-    <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col gap-y-4">
-      <FormCheckbox control={control} name="test" rules={{ required: true }} label="FormCheckbox Label" />
-      <Button type="submit">Submit</Button>
-    </form>
-  );
+    const onHandleSubmit = (props: FieldValues) => {
+      console.log('[onHandleSubmit] props', props);
+    };
+
+    return (
+      <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col gap-y-4">
+        <FormCheckbox control={control} name="test" rules={{ required: true }} label="FormCheckbox Label" />
+        <Button type="submit">Submit</Button>
+      </form>
+    );
+  },
 };

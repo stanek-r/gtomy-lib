@@ -1,7 +1,7 @@
-import { ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 import { FormFileInput } from './FormFileInput';
 import { Button } from '@/components/atoms/Button';
+import { StoryObj } from '@storybook/react';
 
 export default {
   title: 'Form/FormFileInput',
@@ -20,25 +20,29 @@ interface FieldValues {
   test: string | null;
 }
 
-export const Default: ComponentStory<typeof FormFileInput<FieldValues>> = () => {
-  const { control, handleSubmit } = useForm<FieldValues>({
-    defaultValues: { test: null },
-  });
+type Story = StoryObj<typeof FormFileInput<FieldValues>>;
 
-  const onHandleSubmit = (props: FieldValues) => {
-    console.log('[onHandleSubmit] props', props);
-  };
+export const Default: Story = {
+  render: () => {
+    const { control, handleSubmit } = useForm<FieldValues>({
+      defaultValues: { test: null },
+    });
 
-  return (
-    <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col gap-y-4">
-      <FormFileInput
-        control={control}
-        name="test"
-        rules={{ required: true }}
-        label="FormFileInput Label"
-        placeholder="FormFileInput placeholder"
-      />
-      <Button type="submit">Submit</Button>
-    </form>
-  );
+    const onHandleSubmit = (props: FieldValues) => {
+      console.log('[onHandleSubmit] props', props);
+    };
+
+    return (
+      <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col gap-y-4">
+        <FormFileInput
+          control={control}
+          name="test"
+          rules={{ required: true }}
+          label="FormFileInput Label"
+          placeholder="FormFileInput placeholder"
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    );
+  },
 };

@@ -1,6 +1,6 @@
-import { ElementType, ForwardedRef, useCallback, useState } from 'react';
+import { ElementType, useCallback, useState } from 'react';
 import { buttonColorClasses, buttonSizeClasses } from '@/components/atoms/Button';
-import { forwardRefWithTypes, PropsAs } from '@/utils/typeHelpers';
+import { PropsAs } from '@/utils/typeHelpers';
 import { twMerge } from 'tailwind-merge';
 import { Icon, IconType } from '@/components/atoms/Icon';
 import { ButtonError } from '@/components/atoms/Button/ButtonError';
@@ -19,22 +19,19 @@ export interface ButtonIconProps<T extends ElementType> {
   outline?: true;
 }
 
-function ButtonIconInner<T extends ElementType = 'button'>(
-  {
-    as,
-    color,
-    size,
-    className,
-    icon,
-    variant = 'square',
-    outline,
-    onClick,
-    disabled,
-    title,
-    ...other
-  }: PropsAs<ButtonIconProps<T>, T>,
-  ref: ForwardedRef<HTMLButtonElement>
-) {
+export function ButtonIcon<T extends ElementType = 'button'>({
+  as,
+  color,
+  size,
+  className,
+  icon,
+  variant = 'square',
+  outline,
+  onClick,
+  disabled,
+  title,
+  ...other
+}: PropsAs<ButtonIconProps<T>, T>) {
   const Component = as ?? 'button';
   const type = Component === 'button' ? 'button' : undefined;
   const [loading, setLoading] = useState<boolean>(false);
@@ -62,7 +59,6 @@ function ButtonIconInner<T extends ElementType = 'button'>(
 
   return (
     <Component
-      ref={ref}
       type={type}
       className={twMerge(
         'btn',
@@ -81,5 +77,3 @@ function ButtonIconInner<T extends ElementType = 'button'>(
     </Component>
   );
 }
-
-export const ButtonIcon = forwardRefWithTypes(ButtonIconInner);

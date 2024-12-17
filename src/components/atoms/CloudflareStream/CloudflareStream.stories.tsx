@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
-import { ComponentStory } from '@storybook/react';
 import { CloudflareStream } from '@/components/atoms/CloudflareStream/CloudflareStream';
 import { Breakpoint } from '@/utils/hooks';
+import { StoryObj } from '@storybook/react';
 
 export default {
   title: 'Atoms/CloudflareStream',
@@ -25,6 +25,10 @@ export default {
   },
 };
 
-export const Default: ComponentStory<typeof CloudflareStream> = (args) => {
-  return <CloudflareStream {...args} />;
+type Story = StoryObj<typeof CloudflareStream>;
+
+export const Default: Story = {
+  render: (args) => {
+    return <CloudflareStream {...args} />;
+  },
 };

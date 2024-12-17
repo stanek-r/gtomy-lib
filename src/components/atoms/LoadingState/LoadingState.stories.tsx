@@ -1,5 +1,5 @@
-import { ComponentStory } from '@storybook/react';
 import { LoadingState } from './LoadingState';
+import { StoryObj } from '@storybook/react';
 
 export default {
   title: 'Atoms/LoadingState',
@@ -14,30 +14,46 @@ export default {
   },
 };
 
-export const Default: ComponentStory<typeof LoadingState> = () => {
-  return <LoadingState showLoading={true} />;
+type Story = StoryObj<typeof LoadingState>;
+
+export const Default: Story = {
+  render: () => {
+    return <LoadingState showLoading={true} />;
+  },
 };
 
-export const Spinner: ComponentStory<typeof LoadingState> = () => {
-  return <LoadingState showLoading={true} variant="spinner" />;
+export const Spinner: Story = {
+  render: () => {
+    return <LoadingState showLoading={true} variant="spinner" />;
+  },
 };
 
-export const Ball: ComponentStory<typeof LoadingState> = () => {
-  return <LoadingState showLoading={true} variant="ball" />;
+export const Ball: Story = {
+  render: () => {
+    return <LoadingState showLoading={true} variant="ball" />;
+  },
 };
 
-export const Dots: ComponentStory<typeof LoadingState> = () => {
-  return <LoadingState showLoading={true} variant="dots" />;
+export const Dots: Story = {
+  render: () => {
+    return <LoadingState showLoading={true} variant="dots" />;
+  },
 };
 
-export const Bars: ComponentStory<typeof LoadingState> = () => {
-  return <LoadingState showLoading={true} variant="bars" />;
+export const Bars: Story = {
+  render: () => {
+    return <LoadingState showLoading={true} variant="bars" />;
+  },
 };
 
-export const Ring: ComponentStory<typeof LoadingState> = () => {
-  return <LoadingState showLoading={true} variant="ring" />;
+export const Ring: Story = {
+  render: () => {
+    return <LoadingState showLoading={true} variant="ring" />;
+  },
 };
 
-export const Infinite: ComponentStory<typeof LoadingState> = () => {
-  return <LoadingState showLoading={true} variant="infinity" />;
+export const Infinite: Story = {
+  render: () => {
+    return <LoadingState showLoading={true} variant="infinity" />;
+  },
 };

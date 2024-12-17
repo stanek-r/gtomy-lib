@@ -1,13 +1,13 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import { StorybookConfig } from '@storybook/react-vite';
 import path from 'path';
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(ts|tsx)'],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
-    '@storybook/addon-links',
+    '@storybook/addon-onboarding',
     '@storybook/addon-essentials',
+    '@chromatic-com/storybook',
     '@storybook/addon-interactions',
-    '@storybook/addon-mdx-gfm',
     {
       name: '@storybook/addon-styling',
       options: {
@@ -15,15 +15,14 @@ const config: StorybookConfig = {
       },
     },
   ],
-  framework: {
-    name: '@storybook/react-webpack5',
-    options: {},
-  },
   docs: {
-    autodocs: true,
     defaultName: 'Documentation',
   },
-  webpackFinal: async (config) => {
+  framework: {
+    name: '@storybook/react-vite',
+    options: {},
+  },
+  viteFinal: async (config) => {
     if (!config.resolve) {
       return config;
     }

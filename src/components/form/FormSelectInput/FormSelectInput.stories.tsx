@@ -1,8 +1,8 @@
-import { ComponentStory } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/atoms/Button';
 import { FormSelectInput } from './FormSelectInput';
 import { Option } from '@/components/atoms/SelectInput';
+import { StoryObj } from '@storybook/react';
 
 export default {
   title: 'Form/FormSelectInput',
@@ -36,26 +36,30 @@ interface FieldValues {
   test: string | null;
 }
 
-export const Default: ComponentStory<typeof FormSelectInput<FieldValues>> = () => {
-  const { control, handleSubmit } = useForm<FieldValues>({
-    defaultValues: { test: null },
-  });
+type Story = StoryObj<typeof FormSelectInput<FieldValues>>;
 
-  const onHandleSubmit = (props: FieldValues) => {
-    console.log('[onHandleSubmit] props', props);
-  };
+export const Default: Story = {
+  render: () => {
+    const { control, handleSubmit } = useForm<FieldValues>({
+      defaultValues: { test: null },
+    });
 
-  return (
-    <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col gap-y-4">
-      <FormSelectInput
-        control={control}
-        name="test"
-        rules={{ required: true }}
-        label="FormSelectInput Label"
-        options={options}
-        allowEmpty
-      />
-      <Button type="submit">Submit</Button>
-    </form>
-  );
+    const onHandleSubmit = (props: FieldValues) => {
+      console.log('[onHandleSubmit] props', props);
+    };
+
+    return (
+      <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col gap-y-4">
+        <FormSelectInput
+          control={control}
+          name="test"
+          rules={{ required: true }}
+          label="FormSelectInput Label"
+          options={options}
+          allowEmpty
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    );
+  },
 };

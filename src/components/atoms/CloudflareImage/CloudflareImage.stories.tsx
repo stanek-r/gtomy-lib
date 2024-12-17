@@ -1,9 +1,11 @@
-import { BrowserRouter } from 'react-router-dom';
+import type { Meta, StoryObj } from '@storybook/react';
 import { CloudflareImage } from '@/components/atoms/CloudflareImage/CloudflareImage';
-import { ComponentStory } from '@storybook/react';
+import { BrowserRouter } from 'react-router-dom';
 import { config } from '@/config';
 
-export default {
+config.cloudFlareImagesUrl = 'https://gtomy.net/images';
+
+const meta: Meta<typeof CloudflareImage> = {
   title: 'Atoms/CloudflareImage',
   component: CloudflareImage,
   decorators: [(Story: any) => <BrowserRouter>{Story()}</BrowserRouter>],
@@ -12,8 +14,7 @@ export default {
   },
 };
 
-config.cloudFlareImagesUrl = 'https://gtomy.net/images';
+export default meta;
+type Story = StoryObj<typeof CloudflareImage>;
 
-export const Default: ComponentStory<typeof CloudflareImage> = (args) => {
-  return <CloudflareImage {...args} />;
-};
+export const Default: Story = {};

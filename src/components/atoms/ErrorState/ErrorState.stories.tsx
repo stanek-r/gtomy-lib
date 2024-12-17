@@ -1,5 +1,5 @@
-import { ComponentStory } from '@storybook/react';
 import { ErrorState } from './ErrorState';
+import { StoryObj } from '@storybook/react';
 
 export default {
   title: 'Atoms/ErrorState',
@@ -14,6 +14,10 @@ export default {
   },
 };
 
-export const Default: ComponentStory<typeof ErrorState> = () => {
-  return <ErrorState error={{ hello: 'bug' }} showRetry={true} retry={() => console.log('Test')} />;
+type Story = StoryObj<typeof ErrorState>;
+
+export const Default: Story = {
+  render: () => {
+    return <ErrorState error={{ hello: 'bug' }} showRetry={true} retry={() => console.log('Test')} />;
+  },
 };

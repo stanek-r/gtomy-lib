@@ -1,4 +1,4 @@
-import { ComponentStory } from '@storybook/react';
+import { StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/atoms/Button';
 import { FormRating } from '@/components/form/FormRating/FormRating';
@@ -20,19 +20,23 @@ interface FieldValues {
   test: number;
 }
 
-export const Default: ComponentStory<typeof FormRating<FieldValues>> = () => {
-  const { control, handleSubmit } = useForm<FieldValues>({
-    defaultValues: { test: 4 },
-  });
+type Story = StoryObj<typeof FormRating<FieldValues>>;
 
-  const onHandleSubmit = (props: FieldValues) => {
-    console.log('[onHandleSubmit] props', props);
-  };
+export const Default: Story = {
+  render: () => {
+    const { control, handleSubmit } = useForm<FieldValues>({
+      defaultValues: { test: 4 },
+    });
 
-  return (
-    <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col gap-y-4">
-      <FormRating control={control} name="test" amount={10} label="FormRating Label" />
-      <Button type="submit">Submit</Button>
-    </form>
-  );
+    const onHandleSubmit = (props: FieldValues) => {
+      console.log('[onHandleSubmit] props', props);
+    };
+
+    return (
+      <form onSubmit={handleSubmit(onHandleSubmit)} className="flex flex-col gap-y-4">
+        <FormRating control={control} name="test" amount={10} label="FormRating Label" />
+        <Button type="submit">Submit</Button>
+      </form>
+    );
+  },
 };
