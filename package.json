@@ -22,6 +22,7 @@
     "generate-index-files": "npx ctix build",
     "lint:check": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
+    "release": "standard-version --release-as",
     "storybook": "storybook dev -p 6006"
   },
   "commitlint": {
