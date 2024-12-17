@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { config } from '@/config';
 import { ThemeSelect } from '@/components/atoms/Theme/ThemeSelect';
 import { LanguageSelect } from '@/components/atoms/LanguageSelect/LanguageSelect';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { FormTextInput } from '@/components/form/FormTextInput';
 import { useTranslation } from '@/utils/hooks/useTranslation';
 import { twMerge } from 'tailwind-merge';
@@ -33,12 +33,15 @@ export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, 
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const { t } = useTranslation('auth');
-  const { control, handleSubmit, watch } = useForm<LoginForm>({
+  const { control, handleSubmit } = useForm<LoginForm>({
     defaultValues: { username: undefined, password: undefined, rememberLogin: false },
   });
   const [redirectUrl, setRedirectUrl] = useLoginRedirectStore((state) => [state.redirectUrl, state.setRedirectUrl]);
 
-  const rememberLogin = watch('rememberLogin');
+  const rememberLogin = useWatch({
+    control,
+    name: 'rememberLogin',
+  });
 
   const onHandleSubmit = useCallback(
     (value: LoginForm) => {
