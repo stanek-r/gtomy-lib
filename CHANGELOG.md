@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/stanek-r/gtomy-lib/compare/v1.1.5...v1.2.0) (2024-12-17)
+
+
+### Features
+
+* add RadioGroup component ([23aaeec](https://github.com/stanek-r/gtomy-lib/commit/23aaeec2b243624aa9b3b52cb22f83ae8fadda43))
+* add react compiler, support for react 19 ([ca4bf27](https://github.com/stanek-r/gtomy-lib/commit/ca4bf277979eafe246fc92086e59577534d808bb))
+* add support for boolean and number values to radio ([56a1ea0](https://github.com/stanek-r/gtomy-lib/commit/56a1ea06479a0e369c5f0b49ae94e77354f6ea06))
+* redesign not found page ([12bc31e](https://github.com/stanek-r/gtomy-lib/commit/12bc31ed1ac762ca7ca10fec99beb60a10089788))
+* remove useRequestAccessStore, optimize require permission, allow retry ([8716bee](https://github.com/stanek-r/gtomy-lib/commit/8716beef1a872fe5c2ef29dd8d7b131e755df49c))
+
+
+### Bug Fixes
+
+* increase usePersistQueries times ([272471d](https://github.com/stanek-r/gtomy-lib/commit/272471d39dc8aae6064c43e8242525bd72a66ba7))
+* lazy, register and login pages footer ([864eac1](https://github.com/stanek-r/gtomy-lib/commit/864eac11b9f396398c8d7acf30beb3191371c0a5))
+* replace watch with useWatch to prevent problems with react compiler ([6506101](https://github.com/stanek-r/gtomy-lib/commit/65061017d9e8e6d4d722d20a99363b1b018a8b09))
+* typescript error on select inputs ([fe33bce](https://github.com/stanek-r/gtomy-lib/commit/fe33bcec71c6647bac6d8e661476dbfaf1d4bc00))
+
 ### [1.1.5](https://github.com/stanek-r/gtomy-lib/compare/v1.1.4...v1.1.5) (2024-11-07)
 
 
