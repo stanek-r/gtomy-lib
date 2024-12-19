@@ -1,7 +1,7 @@
 import { ElementType } from 'react';
-import { PropsAs } from '@/utils';
 import { twMerge } from 'tailwind-merge';
-import { Icon, IconType } from '@/components/atoms/Icon';
+import { Icon, IconType } from '@/components/atoms/Icon/Icon';
+import { PropsAs } from '@/utils/typeHelpers';
 
 export interface MenuBottomItemProps<T extends ElementType> {
   as?: T;

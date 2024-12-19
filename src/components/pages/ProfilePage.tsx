@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { ColumnPage } from '@/components/layout';
 import { ProfileForm } from '@/components/auth/ProfileForm';
+import { ColumnPage } from '@/components/layout/ColumnPage';
 
 export interface ProfilePageProps {
   width?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';

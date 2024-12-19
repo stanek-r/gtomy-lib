@@ -15,6 +15,7 @@ export default [
     input: 'src/index.ts',
     output: [
       {
+        banner: "'use client';",
         file: 'dist/index.js',
         format: 'esm',
         sourcemap: true,
@@ -38,7 +39,13 @@ export default [
   },
   {
     input: 'dist/types/index.d.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
+    output: [
+      {
+        banner: "'use client';",
+        file: 'dist/index.d.ts',
+        format: 'esm',
+      },
+    ],
     plugins: [
       alias({
         entries: [

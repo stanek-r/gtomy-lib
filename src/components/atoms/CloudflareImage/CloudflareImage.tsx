@@ -1,5 +1,5 @@
 import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component';
-import { config } from '@/config';
+import { useConfig } from '@/utils/ConfigProvider';
 
 export type CloudflareImageType = 'original' | 'fullhd' | 'miniature' | 'profile' | 'blur';
 
@@ -16,7 +16,8 @@ export function CloudflareImage({
   effect,
   ...otherProps
 }: CloudflareImageProps) {
-  const src = `${config.cloudFlareImagesUrl}/${imageId}`;
+  const { cloudFlareImagesUrl } = useConfig();
+  const src = `${cloudFlareImagesUrl}/${imageId}`;
   const isSame = srcType === placeholderType;
   return (
     <LazyLoadImage

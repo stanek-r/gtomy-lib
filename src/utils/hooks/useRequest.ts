@@ -1,7 +1,7 @@
 import { HttpClient } from '@/utils/auth/httpClient';
 import { AxiosRequestConfig } from 'axios';
-import { config } from '@/config';
 import { useMemo } from 'react';
+import { useConfig } from '@/utils/ConfigProvider';
 
 interface UseRequest {
   get: <T>(url: string, config?: AxiosRequestConfig<T>) => Promise<T>;
@@ -11,7 +11,9 @@ interface UseRequest {
   refresh: () => Promise<string | null>;
 }
 
-export function useRequest(baseURL = config.backendUrl): UseRequest {
+export function useRequest(forceBackendUrl?: string): UseRequest {
+  const { backendUrl } = useConfig();
+  const baseURL = useMemo(() => forceBackendUrl ?? backendUrl, [forceBackendUrl, backendUrl]);
   const client = useMemo(() => new HttpClient({ baseURL }), [baseURL]);
 
   return {

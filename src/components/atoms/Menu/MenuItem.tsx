@@ -1,5 +1,5 @@
 import { ElementType } from 'react';
-import { PropsAs } from '@/utils';
+import { PropsAs } from '@/utils/typeHelpers';
 
 export interface MenuItemProps<T extends ElementType> {
   as?: T;

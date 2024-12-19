@@ -1,7 +1,7 @@
 import { type StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 import { FormTextInput } from './FormTextInput';
-import { Button } from '@/components/atoms/Button';
+import { Button } from '@/components/atoms/Button/Button';
 
 export default {
   title: 'Form/FormTextInput',

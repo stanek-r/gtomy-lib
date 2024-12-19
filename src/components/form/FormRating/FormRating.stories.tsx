@@ -1,7 +1,7 @@
 import { StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
-import { Button } from '@/components/atoms/Button';
 import { FormRating } from '@/components/form/FormRating/FormRating';
+import { Button } from '@/components/atoms/Button/Button';
 
 export default {
   title: 'Form/FormRating',

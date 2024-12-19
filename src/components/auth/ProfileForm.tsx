@@ -1,15 +1,18 @@
 import { ReactNode, useCallback, useState } from 'react';
-import { FormTextInput } from '@/components/form/FormTextInput';
 import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
-import { Button } from '@/components/atoms/Button';
-import { config } from '@/config';
-import { FormFileInput, SingleFormFile } from '@/components/form/FormFileInput';
-import { ErrorState } from '@/components/atoms/ErrorState';
-import { TextInput } from '@/components/atoms/TextInput';
 import { ProfileImage } from '@/components/auth/ProfileImage';
-import { useAuth, useBlobstorage, useRequest, useTranslation } from '@/utils/hooks';
-import { isUserAccountFromGoogle } from '@/utils/auth';
+import { FormFileInput, SingleFormFile } from '@/components/form/FormFileInput/FormFileInput';
+import { useTranslation } from 'react-i18next';
+import { useAuth } from '@/utils/hooks/useAuth';
+import { useRequest } from '@/utils/hooks/useRequest';
+import { useBlobstorage } from '@/utils/hooks/useBlobstorage';
+import { FormTextInput } from '@/components/form/FormTextInput/FormTextInput';
+import { TextInput } from '@/components/atoms/TextInput/TextInput';
+import { isUserAccountFromGoogle } from '@/utils/auth/userUtils';
+import { Button } from '@/components/atoms/Button/Button';
+import { ErrorState } from '@/components/atoms/ErrorState/ErrorState';
+import { useConfig } from '@/utils/ConfigProvider';
 
 interface Props {
   className?: string;
@@ -24,6 +27,7 @@ interface ProfileForm {
 
 export function ProfileForm({ children, className }: Props) {
   const { t } = useTranslation('auth');
+  const { authUrl } = useConfig();
   const { user, updateAccessToken } = useAuth();
   const { control, handleSubmit, reset } = useForm<ProfileForm>({
     defaultValues: {
@@ -32,14 +36,10 @@ export function ProfileForm({ children, className }: Props) {
       profileImage: null,
     },
   });
-  const { post } = useRequest(config.authUrl);
+  const { post } = useRequest(authUrl);
   const [error, setError] = useState<any | null>(null);
   const [saving, setSaving] = useState<boolean>(false);
-  const {
-    uploadImage,
-    deleteImage,
-    error: blobstorageError,
-  } = useBlobstorage('/user-profile/profile-image', config.authUrl);
+  const { uploadImage, deleteImage, error: blobstorageError } = useBlobstorage('/user-profile/profile-image', authUrl);
 
   const onSubmit = useCallback(
     async (form: ProfileForm) => {

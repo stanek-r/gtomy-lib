@@ -1,18 +1,19 @@
 import { ReactNode, useCallback } from 'react';
-import { config } from '@/config';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from '@/utils/hooks/useTranslation';
-import { Button } from '@/components/atoms/Button';
-import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import { UserIcon } from '@heroicons/react/24/outline';
 import { ProfileImage } from '@/components/auth/ProfileImage';
-import { Typography } from '@/components/atoms/Typography';
-import { useAuth, useBreakpoint, useDialog } from '@/utils/hooks';
-import { Icon, IconType } from '@/components/atoms/Icon';
-import { LoadingState } from '@/components/atoms/LoadingState';
-import { AuthDialog } from '@/components/auth';
-import { useLoginRedirectStore } from '@/utils/hooks/storage';
-import { DialogElement } from '@/components/organisms/dialog';
+import { Icon, IconType } from '@/components/atoms/Icon/Icon';
+import { useAuth } from '@/utils/hooks/useAuth';
+import { useDialog } from '@/utils/hooks/useDialog';
+import { AuthDialog } from '@/components/auth/AuthDialog';
+import { useTranslation } from 'react-i18next';
+import { useBreakpoint } from '@/utils/hooks/useBreakpoint';
+import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
+import { DialogElement } from '@/components/organisms/dialog/DialogElement';
+import { LoadingState } from '@/components/atoms/LoadingState/LoadingState';
+import { Button } from '@/components/atoms/Button/Button';
+import { Typography } from '@/components/atoms/Typography/Typography';
+import { ButtonIcon } from '@/components/atoms/ButtonIcon/ButtonIcon';
+import { useConfig } from '@/utils/ConfigProvider';
 
 const AppIcon = <img src="/favicon.ico" className="mr-2 size-8 shrink-0 rounded" alt="Application icon" />;
 
@@ -27,21 +28,25 @@ export interface MenuProps {
 
 export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdownActions, icon = AppIcon }: MenuProps) {
   const { user, isAuthenticated, logout, isLoadingUser } = useAuth();
+  const { appDisplayName } = useConfig();
   const { openDialog, dialogElementProps } = useDialog(AuthDialog);
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { navigate } = useConfig();
   const [setRedirectUrl] = useLoginRedirectStore((state) => [state.setRedirectUrl]);
 
   const login = useCallback(() => {
-    if (isOverBreakpoint) {
+    if (isOverBreakpoint || navigate == null) {
       openDialog();
     } else {
-      setRedirectUrl(pathname);
+      setRedirectUrl(window.location.pathname);
       navigate('/login');
     }
-  }, [isOverBreakpoint, openDialog, setRedirectUrl, navigate, pathname]);
+  }, [isOverBreakpoint, openDialog, setRedirectUrl, navigate]);
+
+  const onLogoClick = useCallback(() => {
+    navigate?.('/');
+  }, [navigate]);
 
   if (isOverBreakpoint) {
     return (
@@ -49,11 +54,11 @@ export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdown
         <DialogElement {...dialogElementProps} />
         <div className="navbar bg-neutral text-neutral-content">
           <div className="flex-1">
-            {config.appDisplayName && (
-              <Link className="btn btn-ghost text-xl" to="/">
+            {appDisplayName && (
+              <button type="button" onClick={onLogoClick} className="btn btn-ghost text-xl">
                 {showIcon && <Icon icon={icon} size="xl" className="mr-2" />}
-                {config.appDisplayName}
-              </Link>
+                {appDisplayName}
+              </button>
             )}
           </div>
           <div className="flex-none">
@@ -126,10 +131,10 @@ export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdown
           </div>
         )}
         <div className={children ? 'navbar-center' : 'navbar-start'}>
-          <Link className="btn btn-ghost text-xl" to="/">
+          <button type="button" onClick={onLogoClick} className="btn btn-ghost text-xl">
             {showIcon && <Icon icon={icon} size="xl" className="mr-2" />}
-            {config.appDisplayName}
-          </Link>
+            {appDisplayName}
+          </button>
         </div>
         <div className="navbar-end">
           {showAuth && (

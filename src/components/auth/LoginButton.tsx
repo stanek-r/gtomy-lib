@@ -1,10 +1,12 @@
-import { useBreakpoint, useDialog, useTranslation } from '@/utils/hooks';
-import { Button } from '@/components/atoms/Button';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthDialog } from '@/components/auth/AuthDialog';
-import { useLoginRedirectStore } from '@/utils/hooks/storage';
 import { useCallback } from 'react';
 import { DialogElement } from '@/components/organisms/dialog/DialogElement';
+import { useTranslation } from 'react-i18next';
+import { useDialog } from '@/utils/hooks/useDialog';
+import { useBreakpoint } from '@/utils/hooks/useBreakpoint';
+import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
+import { Button } from '@/components/atoms/Button/Button';
+import { useConfig } from '@/utils/ConfigProvider';
 
 export interface LoginButtonProps {
   className?: string;
@@ -15,15 +17,14 @@ export function LoginButton({ className, size }: LoginButtonProps) {
   const { t } = useTranslation('auth');
   const { openDialog, dialogElementProps } = useDialog(AuthDialog);
   const { isOverBreakpoint } = useBreakpoint('lg');
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
   const [setRedirectUrl] = useLoginRedirectStore((state) => [state.setRedirectUrl]);
+  const { navigate } = useConfig();
 
   const login = useCallback(() => {
-    if (isOverBreakpoint) {
+    if (isOverBreakpoint || navigate == null) {
       openDialog();
     } else {
-      setRedirectUrl(pathname);
+      setRedirectUrl(window.location.pathname);
       navigate('/login');
     }
   }, [isOverBreakpoint, openDialog, setRedirectUrl, navigate]);
