@@ -1,5 +1,4 @@
-import { FunctionComponent, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FunctionComponent, useCallback, useEffect } from 'react';
 import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
 import { useRequestAccess } from '@/utils/hooks/useRequestAccess';
 import { PERM_ROLES, PermRoles } from '@/utils/hooks/storage/useAuthStore';
@@ -31,18 +30,21 @@ export function RequireAuth({
 }: RequireAuthProps): JSX.Element | null {
   const { t } = useTranslation('auth');
   const { isAuthenticated, user, logout, refreshToken } = useAuth();
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { navigate } = useConfig();
   const [setRedirectUrl] = useLoginRedirectStore((state) => [state.setRedirectUrl]);
   const { sent, requestAccess, error, sending } = useRequestAccess(minimalRole, application);
   const { appName } = useConfig();
 
+  const onBackClick = useCallback(() => {
+    navigate?.('/');
+  }, [navigate]);
+
   useEffect(() => {
-    if (!isAuthenticated && !refreshToken) {
-      setRedirectUrl(pathname);
+    if (!isAuthenticated && !refreshToken && navigate != null) {
+      setRedirectUrl(window.location.pathname);
       navigate('/login');
     }
-  }, [pathname, isAuthenticated, navigate, refreshToken, setRedirectUrl]);
+  }, [isAuthenticated, navigate, refreshToken, setRedirectUrl]);
 
   if (!isAuthenticated) {
     return (
@@ -68,7 +70,7 @@ export function RequireAuth({
               {t('noAccess.subtitle', { minimalRole: t('role.' + minimalRole) })}
             </Typography>
             <div className="join justify-center">
-              <Button as={Link} to="/" className="join-item w-1/2 sm:w-1/3" color="primary">
+              <Button onClick={onBackClick} className="join-item w-1/2 sm:w-1/3" color="primary">
                 {t('back', { ns: 'common' })}
               </Button>
               <Button onClick={logout} className="join-item w-1/2 sm:w-1/3">

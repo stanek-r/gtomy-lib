@@ -3,7 +3,6 @@ import { ToastProvider } from '@/components/organisms/toast/ToastProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useGoogleAnalyticsPageLoad } from '@/utils/hooks/useGoogleAnalytics';
 import { CookiesProvider } from '@/components/organisms/cookies/CookiesProvider';
-import { ScrollToTop } from '@/components/organisms/ScrollToTop/ScrollToTop';
 import { LayoutProvider } from '@/components/layout/LayoutProvider';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '@/utils/i18n';
@@ -34,7 +33,6 @@ export function GTomyProvider({
 }: GTomyProvider) {
   return (
     <I18nextProvider i18n={i18n}>
-      <ScrollToTop />
       <QueryClientProvider client={queryClient}>
         <LayoutProvider MenuComponent={MenuComponent} FooterComponent={FooterComponent}>
           <ToastProvider />

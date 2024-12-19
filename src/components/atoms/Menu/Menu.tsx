@@ -1,5 +1,4 @@
 import { ReactNode, useCallback } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserIcon } from '@heroicons/react/24/outline';
 import { ProfileImage } from '@/components/auth/ProfileImage';
 import { Icon, IconType } from '@/components/atoms/Icon/Icon';
@@ -33,18 +32,21 @@ export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdown
   const { openDialog, dialogElementProps } = useDialog(AuthDialog);
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { navigate } = useConfig();
   const [setRedirectUrl] = useLoginRedirectStore((state) => [state.setRedirectUrl]);
 
   const login = useCallback(() => {
-    if (isOverBreakpoint) {
+    if (isOverBreakpoint || navigate == null) {
       openDialog();
     } else {
-      setRedirectUrl(pathname);
+      setRedirectUrl(window.location.pathname);
       navigate('/login');
     }
-  }, [isOverBreakpoint, openDialog, setRedirectUrl, navigate, pathname]);
+  }, [isOverBreakpoint, openDialog, setRedirectUrl, navigate]);
+
+  const onLogoClick = useCallback(() => {
+    navigate?.('/');
+  }, [navigate]);
 
   if (isOverBreakpoint) {
     return (
@@ -53,10 +55,10 @@ export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdown
         <div className="navbar bg-neutral text-neutral-content">
           <div className="flex-1">
             {appDisplayName && (
-              <Link className="btn btn-ghost text-xl" to="/">
+              <button type="button" onClick={onLogoClick} className="btn btn-ghost text-xl">
                 {showIcon && <Icon icon={icon} size="xl" className="mr-2" />}
                 {appDisplayName}
-              </Link>
+              </button>
             )}
           </div>
           <div className="flex-none">
@@ -129,10 +131,10 @@ export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdown
           </div>
         )}
         <div className={children ? 'navbar-center' : 'navbar-start'}>
-          <Link className="btn btn-ghost text-xl" to="/">
+          <button type="button" onClick={onLogoClick} className="btn btn-ghost text-xl">
             {showIcon && <Icon icon={icon} size="xl" className="mr-2" />}
             {appDisplayName}
-          </Link>
+          </button>
         </div>
         <div className="navbar-end">
           {showAuth && (

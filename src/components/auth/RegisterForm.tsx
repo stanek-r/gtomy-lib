@@ -1,5 +1,4 @@
 import { useCallback, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { ThemeSelect } from '@/components/atoms/Theme/ThemeSelect';
 import { LanguageSelect } from '@/components/atoms/LanguageSelect/LanguageSelect';
 import { useForm } from 'react-hook-form';
@@ -29,7 +28,7 @@ export function RegisterForm({ isInDialog, toggleRegister, showTheme, showLangua
   const { isAuthenticated, user, register, logout } = useAuth();
   const { appDisplayName } = useConfig();
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
+  const { navigate } = useConfig();
   const { t } = useTranslation('auth');
   const { control, handleSubmit } = useForm<RegisterForm>({
     defaultValues: { username: undefined, password: undefined, passwordAgain: undefined, email: undefined },
@@ -38,7 +37,7 @@ export function RegisterForm({ isInDialog, toggleRegister, showTheme, showLangua
   const onHandleSubmit = useCallback(
     (value: RegisterForm) => {
       register(value.username, value.password, value.email).then((value) => {
-        if (value) {
+        if (value && navigate != null) {
           if (isInDialog) {
             toggleRegister?.();
           } else {
@@ -52,6 +51,14 @@ export function RegisterForm({ isInDialog, toggleRegister, showTheme, showLangua
     [register, isInDialog, toggleRegister, navigate, setError, t]
   );
 
+  const onBackClick = useCallback(() => {
+    navigate?.('/');
+  }, [navigate]);
+
+  const onLoginClick = useCallback(() => {
+    navigate?.('/login');
+  }, [navigate]);
+
   if (isAuthenticated) {
     return (
       <div className={twMerge('flex justify-center items-center w-full', isInDialog ? 'py-4' : 'flex-1')}>
@@ -60,11 +67,7 @@ export function RegisterForm({ isInDialog, toggleRegister, showTheme, showLangua
             {t('alreadyLoggedIn', { name: user?.displayName })}
           </Typography>
           <div className="flex justify-center gap-x-2">
-            {!isInDialog && (
-              <Button as={Link} to="/">
-                {t('common:back')}
-              </Button>
-            )}
+            {!isInDialog && <Button onClick={onBackClick}>{t('common:back')}</Button>}
             <Button onClick={logout}>{t('logout')}</Button>
           </div>
         </div>
@@ -116,7 +119,7 @@ export function RegisterForm({ isInDialog, toggleRegister, showTheme, showLangua
               {t('login')}
             </Button>
           ) : (
-            <Button as={Link} to="/login" className="join-item w-1/2 sm:w-1/3">
+            <Button onClick={onLoginClick} className="join-item w-1/2 sm:w-1/3">
               {t('login')}
             </Button>
           )}

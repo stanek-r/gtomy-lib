@@ -3,7 +3,6 @@ import { twMerge } from 'tailwind-merge';
 import { useAuth } from '@/utils/hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
-import { useNavigate } from 'react-router-dom';
 import { useConfig } from '@/utils/ConfigProvider';
 
 export interface GoogleAuthProps {
@@ -17,7 +16,7 @@ export interface GoogleAuthProps {
 export function GoogleLoginButton({ className, setError, isInDialog, closeDialog, rememberLogin }: GoogleAuthProps) {
   const { loginWithGoogle } = useAuth();
   const { t } = useTranslation('auth');
-  const navigate = useNavigate();
+  const { navigate } = useConfig();
   const [googlePlugin, setGooglePlugin] = useState<any>(null);
   const [redirectUrl, setRedirectUrl] = useLoginRedirectStore((state) => [state.redirectUrl, state.setRedirectUrl]);
   const { googleAuthClientId } = useConfig();
@@ -32,7 +31,7 @@ export function GoogleLoginButton({ className, setError, isInDialog, closeDialog
 
   const onSuccess = useCallback(
     (credentialResponse: any) => {
-      if (credentialResponse.credential == null) {
+      if (credentialResponse.credential == null || navigate == null) {
         setError(t('cannotLoginWiaGoogle'));
         return;
       }

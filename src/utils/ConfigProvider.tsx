@@ -5,6 +5,7 @@ import { HttpClient } from '@/utils/auth/httpClient';
 export interface GTomyLibInitConfig {
   appName: string;
   appDisplayName: string;
+  navigate: (url: string) => void;
   themes?: string[];
   authUrl?: string;
   backendUrl?: string;
@@ -28,6 +29,7 @@ export interface GTomyLibConfig {
   storageUrl?: string;
   cloudFlareImagesUrl?: string;
   googleAuthClientId?: string;
+  navigate?: (url: string) => void;
 }
 
 export const ConfigContext = createContext<GTomyLibConfig>({});
@@ -51,6 +53,7 @@ export function ConfigProvider({ children, config: initConfig }: ConfigProviderP
     storageUrl: initConfig.storageUrl,
     cloudFlareImagesUrl: initConfig.cloudflareConfig?.imagesUrl ?? '/images',
     googleAuthClientId: initConfig.googleConfig?.clientId,
+    navigate: initConfig.navigate,
   };
 
   useEffect(() => {

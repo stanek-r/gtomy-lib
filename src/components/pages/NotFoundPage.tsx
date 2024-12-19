@@ -1,11 +1,17 @@
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ColumnPage } from '@/components/layout/ColumnPage';
 import { Typography } from '@/components/atoms/Typography/Typography';
 import { Button } from '@/components/atoms/Button/Button';
+import { useCallback } from 'react';
+import { useConfig } from '@/utils/ConfigProvider';
 
 export function NotFoundPage() {
   const { t } = useTranslation('common');
+  const { navigate } = useConfig();
+
+  const onBackClick = useCallback(() => {
+    navigate?.('/');
+  }, [navigate]);
 
   return (
     <ColumnPage>
@@ -14,7 +20,7 @@ export function NotFoundPage() {
           {t('notFound')}
         </Typography>
         <div>
-          <Button as={Link} to="/" wide outline>
+          <Button onClick={onBackClick} wide outline>
             {t('back')}
           </Button>
         </div>

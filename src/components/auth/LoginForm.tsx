@@ -1,5 +1,4 @@
 import { useCallback, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { ThemeSelect } from '@/components/atoms/Theme/ThemeSelect';
 import { LanguageSelect } from '@/components/atoms/LanguageSelect/LanguageSelect';
 import { useForm, useWatch } from 'react-hook-form';
@@ -32,7 +31,7 @@ export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, 
   const { appDisplayName, googleAuthClientId } = useConfig();
   const { isAuthenticated, user, login, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
+  const { navigate } = useConfig();
   const { t } = useTranslation('auth');
   const { control, handleSubmit } = useForm<LoginForm>({
     defaultValues: { username: undefined, password: undefined, rememberLogin: false },
@@ -47,7 +46,7 @@ export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, 
   const onHandleSubmit = useCallback(
     (value: LoginForm) => {
       login(value.username, value.password, value.rememberLogin).then((value) => {
-        if (value === true) {
+        if (value === true && navigate != null) {
           if (isInDialog) {
             closeDialog?.();
           } else {
@@ -64,6 +63,14 @@ export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, 
     [login, isInDialog, closeDialog, navigate, redirectUrl, setRedirectUrl, setError, t]
   );
 
+  const onBackClick = useCallback(() => {
+    navigate?.('/');
+  }, [navigate]);
+
+  const onRegisterClick = useCallback(() => {
+    navigate?.('/register');
+  }, [navigate]);
+
   if (isAuthenticated) {
     return (
       <div className={twMerge('flex justify-center items-center w-full', isInDialog ? 'py-8' : 'flex-1')}>
@@ -72,11 +79,7 @@ export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, 
             {t('alreadyLoggedIn', { name: user?.displayName })}
           </Typography>
           <div className="flex justify-center gap-x-2">
-            {!isInDialog && (
-              <Button as={Link} to="/">
-                {t('common:back')}
-              </Button>
-            )}
+            {!isInDialog && <Button onClick={onBackClick}>{t('common:back')}</Button>}
             <Button onClick={logout}>{t('logout')}</Button>
           </div>
         </div>
@@ -118,7 +121,7 @@ export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, 
               {t('register')}
             </Button>
           ) : (
-            <Button as={Link} to="/register" className="join-item w-1/2 sm:w-1/3">
+            <Button onClick={onRegisterClick} className="join-item w-1/2 sm:w-1/3">
               {t('register')}
             </Button>
           )}
