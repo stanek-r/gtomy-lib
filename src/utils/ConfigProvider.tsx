@@ -18,6 +18,7 @@ export interface GTomyLibInitConfig {
     clientId?: string;
     googleMeasurementId?: string;
   };
+  displayCookies?: boolean;
 }
 
 export interface GTomyLibConfig {
