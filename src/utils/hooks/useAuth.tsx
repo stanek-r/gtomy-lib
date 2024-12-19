@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { useAccessTokenStore, User, useRefreshTokenStore } from '@/utils/hooks/storage/useAuthStore';
-import { config } from '@/config';
 import { getRefetch } from '@/utils/hooks/storage/useRefetchStore';
 import { useRequest } from '@/utils/hooks/useRequest';
 import { XMarkIcon } from '@heroicons/react/24/outline';
@@ -10,6 +9,7 @@ import { logError } from '@/utils/sentry/sentry';
 import { JwtResponse } from '@/utils/auth/httpClient';
 import { showToast } from '@/components/organisms/toast/ToastProvider';
 import { useTranslation } from 'react-i18next';
+import { useConfig } from '@/utils/ConfigProvider';
 
 interface UseAuth {
   isAuthenticated: boolean;
@@ -26,11 +26,12 @@ interface UseAuth {
 
 export function useAuth(): UseAuth {
   const { t } = useTranslation('common');
+  const { authUrl, appName } = useConfig();
   const [accessToken, setAccessToken] = useAccessTokenStore((state) => [state.accessToken, state.setAccessToken]);
   const [refreshToken, setRefreshToken] = useRefreshTokenStore((state) => [state.refreshToken, state.setRefreshToken]);
 
   const user = useMemo(() => mapAccessTokenToUser(accessToken), [accessToken]);
-  const { get, refresh } = useRequest(config.authUrl);
+  const { get, refresh } = useRequest(authUrl);
 
   useEffect(() => checkTokenValidity(), [accessToken, refreshToken, user]);
 
@@ -39,11 +40,11 @@ export function useAuth(): UseAuth {
   const login = useCallback(
     async (username: string, password: string, rememberLogin?: boolean): Promise<boolean | null> => {
       return axios
-        .post(`${config.authUrl}/login`, {
+        .post(`${authUrl}/login`, {
           username,
           password,
           sendRefreshToken: !!rememberLogin,
-          appName: config.appName,
+          appName: appName,
         })
         .then(async (response) => {
           if (!response.data?.access_token) {
@@ -64,13 +65,13 @@ export function useAuth(): UseAuth {
           return null;
         });
     },
-    [setAccessToken, setRefreshToken]
+    [setAccessToken, setRefreshToken, authUrl, appName]
   );
 
   const loginWithGoogle = useCallback(
     async (token: string, rememberLogin?: boolean): Promise<boolean> => {
       return axios
-        .post(`${config.authUrl}/google-login`, { token, sendRefreshToken: !!rememberLogin })
+        .post(`${authUrl}/google-login`, { token, sendRefreshToken: !!rememberLogin })
         .then(async (response) => {
           if (!response.data?.access_token) {
             console.error('No access token');
@@ -87,20 +88,23 @@ export function useAuth(): UseAuth {
           return false;
         });
     },
-    [setAccessToken, setRefreshToken]
+    [setAccessToken, setRefreshToken, authUrl]
   );
 
-  const register = useCallback(async (username: string, password: string, email: string): Promise<boolean> => {
-    return axios
-      .post(`${config.authUrl}/register`, { username, password, email })
-      .then(() => {
-        return true;
-      })
-      .catch((e) => {
-        logError(e);
-        return false;
-      });
-  }, []);
+  const register = useCallback(
+    async (username: string, password: string, email: string): Promise<boolean> => {
+      return axios
+        .post(`${authUrl}/register`, { username, password, email })
+        .then(() => {
+          return true;
+        })
+        .catch((e) => {
+          logError(e);
+          return false;
+        });
+    },
+    [authUrl]
+  );
 
   const logout = useCallback(() => {
     setRefreshToken(undefined);

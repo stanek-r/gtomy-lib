@@ -1,5 +1,4 @@
 import { twMerge } from 'tailwind-merge';
-import { config } from '@/config';
 import { LockClosedIcon } from '@heroicons/react/24/outline';
 import { LoginButton } from '@/components/auth/LoginButton';
 import { useRequestAccess } from '@/utils/hooks/useRequestAccess';
@@ -10,6 +9,7 @@ import { useAuth } from '@/utils/hooks/useAuth';
 import { Typography } from '@/components/atoms/Typography/Typography';
 import { ErrorState } from '@/components/atoms/ErrorState/ErrorState';
 import { Button } from '@/components/atoms/Button/Button';
+import { useConfig } from '@/utils/ConfigProvider';
 
 export interface RequirePermissionProps {
   title?: string;
@@ -36,6 +36,7 @@ export function RequirePermission({
   startElement,
   endElement,
 }: RequirePermissionProps): JSX.Element | null {
+  const { appName } = useConfig();
   const { t } = useTranslation('auth');
   const { isAuthenticated, user } = useAuth();
   const { sent, requestAccess, error, sending } = useRequestAccess(minimalRole, application);
@@ -74,7 +75,7 @@ export function RequirePermission({
   }
 
   const minimalRoleId = PERM_ROLES[minimalRole];
-  const role = user?.roles.find((role) => role.application === (application ?? config.appName))?.role ?? 'user';
+  const role = user?.roles.find((role) => role.application === (application ?? appName))?.role ?? 'user';
   const roleId = PERM_ROLES[role as PermRoles];
 
   if (roleId < minimalRoleId) {

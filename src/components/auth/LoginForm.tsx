@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { config } from '@/config';
 import { ThemeSelect } from '@/components/atoms/Theme/ThemeSelect';
 import { LanguageSelect } from '@/components/atoms/LanguageSelect/LanguageSelect';
 import { useForm, useWatch } from 'react-hook-form';
@@ -13,6 +12,7 @@ import { Typography } from '@/components/atoms/Typography/Typography';
 import { Button } from '@/components/atoms/Button/Button';
 import { FormTextInput } from '@/components/form/FormTextInput/FormTextInput';
 import { FormCheckbox } from '@/components/form/FormCheckbox/FormCheckbox';
+import { useConfig } from '@/utils/ConfigProvider';
 
 interface LoginForm {
   username: string;
@@ -29,6 +29,7 @@ interface Props {
 }
 
 export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, showLanguage }: Props) {
+  const { appDisplayName, googleAuthClientId } = useConfig();
   const { isAuthenticated, user, login, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -89,9 +90,9 @@ export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, 
       className={twMerge('flex justify-center items-center w-full', isInDialog ? 'py-8' : 'flex-1')}
     >
       <div className="flex w-[500px] max-w-full flex-col gap-y-3 p-4">
-        {config.appDisplayName && (
+        {appDisplayName && (
           <Typography as="h1" size="3xl" weight="bold" className="mb-3 text-center">
-            {config.appDisplayName}
+            {appDisplayName}
           </Typography>
         )}
         <FormTextInput control={control} name="username" rules={{ required: true }} placeholder={t('username')} />
@@ -122,7 +123,7 @@ export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, 
             </Button>
           )}
         </div>
-        {config.googleAuthClientId && (
+        {googleAuthClientId && (
           <GoogleLoginButton
             className="self-center"
             setError={setError}

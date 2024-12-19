@@ -1,6 +1,5 @@
 import { FunctionComponent, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { config } from '@/config';
 import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
 import { useRequestAccess } from '@/utils/hooks/useRequestAccess';
 import { PERM_ROLES, PermRoles } from '@/utils/hooks/storage/useAuthStore';
@@ -11,6 +10,7 @@ import { LoadingState } from '@/components/atoms/LoadingState/LoadingState';
 import { Typography } from '@/components/atoms/Typography/Typography';
 import { Button } from '@/components/atoms/Button/Button';
 import { ErrorState } from '@/components/atoms/ErrorState/ErrorState';
+import { useConfig } from '@/utils/ConfigProvider';
 
 export interface RequireAuthProps {
   MenuComponent?: FunctionComponent | JSX.Element;
@@ -35,6 +35,7 @@ export function RequireAuth({
   const { pathname } = useLocation();
   const [setRedirectUrl] = useLoginRedirectStore((state) => [state.setRedirectUrl]);
   const { sent, requestAccess, error, sending } = useRequestAccess(minimalRole, application);
+  const { appName } = useConfig();
 
   useEffect(() => {
     if (!isAuthenticated && !refreshToken) {
@@ -52,7 +53,7 @@ export function RequireAuth({
   }
 
   const minimalRoleId = PERM_ROLES[minimalRole];
-  const role = user?.roles.find((role) => role.application === (application ?? config.appName))?.role ?? 'user';
+  const role = user?.roles.find((role) => role.application === (application ?? appName))?.role ?? 'user';
   const roleId = PERM_ROLES[role as PermRoles];
 
   if (roleId < minimalRoleId) {

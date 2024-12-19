@@ -1,9 +1,9 @@
 import axios from 'axios';
 import fileDownload from 'js-file-download';
 import { useRequest } from '@/utils/hooks/useRequest';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { FileStorageDto, NewFileStorageDto } from '@/models/filestorage.model';
-import { config } from '@/config';
+import { useConfig } from '@/utils/ConfigProvider';
 
 export interface UseFilestorageReturn {
   error: any | null;
@@ -12,7 +12,9 @@ export interface UseFilestorageReturn {
   downloadFile: (fileId: string, fileName: string) => Promise<void>;
 }
 
-export function useFilestorage(path = '/file', baseURL = config.storageUrl): UseFilestorageReturn {
+export function useFilestorage(path = '/file', forceStorageUrl?: string): UseFilestorageReturn {
+  const { storageUrl } = useConfig();
+  const baseURL = useMemo(() => forceStorageUrl ?? storageUrl, [forceStorageUrl, storageUrl]);
   const { post, delete: deleteRequest, get } = useRequest(baseURL);
   const [error, setError] = useState<any | null>();
 

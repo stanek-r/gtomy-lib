@@ -1,7 +1,7 @@
 import { Image } from '@/models/blobstorage.model';
 import { useRequest } from '@/utils/hooks/useRequest';
-import { useCallback, useState } from 'react';
-import { config } from '@/config';
+import { useCallback, useMemo, useState } from 'react';
+import { useConfig } from '@/utils/ConfigProvider';
 
 export interface UseBlobstorageReturn {
   error: any | null;
@@ -9,7 +9,9 @@ export interface UseBlobstorageReturn {
   deleteImage: (imageId?: string) => Promise<void>;
 }
 
-export function useBlobstorage(path = '/image', baseURL = config.storageUrl): UseBlobstorageReturn {
+export function useBlobstorage(path = '/image', forceStorageUrl?: string): UseBlobstorageReturn {
+  const { storageUrl } = useConfig();
+  const baseURL = useMemo(() => forceStorageUrl ?? storageUrl, [forceStorageUrl, storageUrl]);
   const { post, delete: deleteRequest } = useRequest(baseURL);
   const [error, setError] = useState<any | null>();
 

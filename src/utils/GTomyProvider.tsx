@@ -5,6 +5,8 @@ import { useGoogleAnalyticsPageLoad } from '@/utils/hooks/useGoogleAnalytics';
 import { CookiesProvider } from '@/components/organisms/cookies/CookiesProvider';
 import { ScrollToTop } from '@/components/organisms/ScrollToTop/ScrollToTop';
 import { LayoutProvider } from '@/components/layout/LayoutProvider';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '@/utils/i18n';
 
 const defaultQueryClient = new QueryClient({
   defaultOptions: {
@@ -31,7 +33,7 @@ export function GTomyProvider({
   displayCookies,
 }: GTomyProvider) {
   return (
-    <>
+    <I18nextProvider i18n={i18n}>
       <ScrollToTop />
       <QueryClientProvider client={queryClient}>
         <LayoutProvider MenuComponent={MenuComponent} FooterComponent={FooterComponent}>
@@ -40,7 +42,7 @@ export function GTomyProvider({
           {children}
         </LayoutProvider>
       </QueryClientProvider>
-    </>
+    </I18nextProvider>
   );
 }
 

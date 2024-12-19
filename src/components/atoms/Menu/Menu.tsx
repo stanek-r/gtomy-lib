@@ -1,5 +1,4 @@
 import { ReactNode, useCallback } from 'react';
-import { config } from '@/config';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UserIcon } from '@heroicons/react/24/outline';
 import { ProfileImage } from '@/components/auth/ProfileImage';
@@ -15,6 +14,7 @@ import { LoadingState } from '@/components/atoms/LoadingState/LoadingState';
 import { Button } from '@/components/atoms/Button/Button';
 import { Typography } from '@/components/atoms/Typography/Typography';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon/ButtonIcon';
+import { useConfig } from '@/utils/ConfigProvider';
 
 const AppIcon = <img src="/favicon.ico" className="mr-2 size-8 shrink-0 rounded" alt="Application icon" />;
 
@@ -29,6 +29,7 @@ export interface MenuProps {
 
 export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdownActions, icon = AppIcon }: MenuProps) {
   const { user, isAuthenticated, logout, isLoadingUser } = useAuth();
+  const { appDisplayName } = useConfig();
   const { openDialog, dialogElementProps } = useDialog(AuthDialog);
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
@@ -51,10 +52,10 @@ export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdown
         <DialogElement {...dialogElementProps} />
         <div className="navbar bg-neutral text-neutral-content">
           <div className="flex-1">
-            {config.appDisplayName && (
+            {appDisplayName && (
               <Link className="btn btn-ghost text-xl" to="/">
                 {showIcon && <Icon icon={icon} size="xl" className="mr-2" />}
-                {config.appDisplayName}
+                {appDisplayName}
               </Link>
             )}
           </div>
@@ -130,7 +131,7 @@ export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdown
         <div className={children ? 'navbar-center' : 'navbar-start'}>
           <Link className="btn btn-ghost text-xl" to="/">
             {showIcon && <Icon icon={icon} size="xl" className="mr-2" />}
-            {config.appDisplayName}
+            {appDisplayName}
           </Link>
         </div>
         <div className="navbar-end">

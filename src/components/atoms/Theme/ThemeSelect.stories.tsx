@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ThemeSelect } from '@/components/atoms/Theme/ThemeSelect';
 import { LayoutProvider } from '@/components/layout/LayoutProvider';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { config } from '@/config';
 import { Button } from '@/components/atoms/Button/Button';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon/ButtonIcon';
+import { ConfigProvider } from '@/utils/ConfigProvider';
 
 const meta: Meta<typeof ThemeSelect> = {
   title: 'Atoms/ThemeSelect',
@@ -15,9 +15,14 @@ type Story = StoryObj<typeof ThemeSelect>;
 
 export default meta;
 export const Default: Story = {
+  decorators: [
+    (Story: any) => (
+      <ConfigProvider config={{ appName: '', appDisplayName: '', themes: ['system', 'light', 'dark'] }}>
+        {Story()}
+      </ConfigProvider>
+    ),
+  ],
   render: () => {
-    config.themes = ['system', 'light', 'dark'];
-
     return (
       <LayoutProvider>
         <div className="flex flex-col gap-6">

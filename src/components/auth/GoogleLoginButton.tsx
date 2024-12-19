@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
-import { config } from '@/config';
 import { twMerge } from 'tailwind-merge';
 import { useAuth } from '@/utils/hooks/useAuth';
 import { useTranslation } from 'react-i18next';
 import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
 import { useNavigate } from 'react-router-dom';
+import { useConfig } from '@/utils/ConfigProvider';
 
 export interface GoogleAuthProps {
   setError: Dispatch<SetStateAction<string | null>>;
@@ -20,6 +20,7 @@ export function GoogleLoginButton({ className, setError, isInDialog, closeDialog
   const navigate = useNavigate();
   const [googlePlugin, setGooglePlugin] = useState<any>(null);
   const [redirectUrl, setRedirectUrl] = useLoginRedirectStore((state) => [state.redirectUrl, state.setRedirectUrl]);
+  const { googleAuthClientId } = useConfig();
 
   useEffect(() => {
     import('@react-oauth/google')
@@ -60,7 +61,7 @@ export function GoogleLoginButton({ className, setError, isInDialog, closeDialog
 
   return (
     <div className={twMerge('[color-scheme:light]', className)}>
-      <googlePlugin.GoogleOAuthProvider clientId={config.googleAuthClientId!}>
+      <googlePlugin.GoogleOAuthProvider clientId={googleAuthClientId!}>
         <googlePlugin.GoogleLogin onSuccess={onSuccess} onError={onError} theme="filled_blue" />
       </googlePlugin.GoogleOAuthProvider>
     </div>

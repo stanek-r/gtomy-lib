@@ -1,6 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { isTokenValid } from '@/utils/auth/userUtils';
-import { config } from '@/config';
 import { getRefetch, setRefetch } from '@/utils/hooks/storage/useRefetchStore';
 import i18n from '@/utils/i18n';
 import { XMarkIcon } from '@heroicons/react/24/outline';
@@ -18,6 +17,7 @@ export interface JwtResponse {
 }
 
 export class HttpClient {
+  public static AUTH_URL?: string;
   private httpClient: AxiosInstance;
 
   constructor({ baseURL }: HttpClientConfig) {
@@ -65,7 +65,7 @@ export class HttpClient {
     }
     setRefetch(true);
     return axios
-      .post(`${config.authUrl}/refresh-token`, { refreshToken: refreshToken })
+      .post(`${HttpClient.AUTH_URL}/refresh-token`, { refreshToken: refreshToken })
       .then((response) => {
         if (!response.data?.access_token) {
           console.error('No access token');
