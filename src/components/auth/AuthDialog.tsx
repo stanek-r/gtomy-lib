@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
 import { BaseDialog, BaseDialogProps } from '@/components/organisms/dialog/BaseDialog';
-import { Typography } from '@/components/atoms/Typography';
-import { useTranslation } from '@/utils/hooks/useTranslation';
 import { LoginForm } from '@/components/auth/LoginForm';
 import { RegisterForm } from '@/components/auth/RegisterForm';
+import { useTranslation } from 'react-i18next';
+import { Typography } from '@/components/atoms/Typography/Typography';
 
 export function AuthDialog(props: BaseDialogProps) {
   const { t } = useTranslation('auth');

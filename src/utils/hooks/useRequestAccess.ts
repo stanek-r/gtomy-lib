@@ -1,8 +1,8 @@
-import { useQuery } from '@/utils/hooks/query';
+import { useQuery } from '@/utils/hooks/query/useQuery';
 import { useRequest } from '@/utils/hooks/useRequest';
 import { UserAccessRequestDto } from '@/models/userAccessRequest.dto';
 import { config } from '@/config';
-import { Roles } from '@/utils/hooks/storage';
+import { Roles } from '@/utils/hooks/storage/useAuthStore';
 import { useAuth } from '@/utils/hooks/useAuth';
 import { useCallback, useMemo, useState } from 'react';
 

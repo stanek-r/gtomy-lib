@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef, forwardRef, useId } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { Typography } from '@/components/atoms/Typography';
+import { Typography } from '@/components/atoms/Typography/Typography';
 
 export interface RadioProps extends ComponentPropsWithRef<'input'> {
   label?: string;

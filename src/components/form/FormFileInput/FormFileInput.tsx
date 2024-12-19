@@ -1,7 +1,7 @@
 import { ChangeEvent, useCallback } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
-import { FileInput } from '@/components/atoms/FileInput';
 import { useFormController } from '@/utils/hooks/useFormController';
+import { FileInput } from '@/components/atoms/FileInput/FileInput';
 
 export interface SingleFormFile {
   multiple: false;

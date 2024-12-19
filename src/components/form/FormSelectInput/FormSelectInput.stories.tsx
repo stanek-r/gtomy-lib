@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
-import { Button } from '@/components/atoms/Button';
 import { FormSelectInput } from './FormSelectInput';
-import { Option } from '@/components/atoms/SelectInput';
 import { StoryObj } from '@storybook/react';
+import { Button } from '@/components/atoms/Button/Button';
+import { Option } from '@/components/atoms/SelectInput/SelectInput';
 
 export default {
   title: 'Form/FormSelectInput',

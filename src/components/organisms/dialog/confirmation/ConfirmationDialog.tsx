@@ -1,9 +1,9 @@
 import { ReactNode, useCallback, useState } from 'react';
-import { BaseDialog, BaseDialogProps } from '@/components/organisms/dialog';
-import { Typography } from '@/components/atoms/Typography';
-import { Button } from '@/components/atoms/Button';
-import { ErrorState } from '@/components/atoms/ErrorState';
-import { useTranslation } from '@/utils/hooks/useTranslation';
+import { BaseDialog, BaseDialogProps } from '@/components/organisms/dialog/BaseDialog';
+import { useTranslation } from 'react-i18next';
+import { Button } from '@/components/atoms/Button/Button';
+import { Typography } from '@/components/atoms/Typography/Typography';
+import { ErrorState } from '@/components/atoms/ErrorState/ErrorState';
 
 export type ConfirmationDialogOnAction = ({
   onClose,

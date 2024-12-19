@@ -1,12 +1,12 @@
-import { Typography } from '@/components/atoms/Typography';
-import { Button } from '@/components/atoms/Button';
-import { useInfoDialog, useTranslation } from '@/utils/hooks';
 import { useCookiesStore } from '@/utils/hooks/storage/useCookiesStore';
 import { useEffect } from 'react';
 import dayjs from 'dayjs';
 import { twMerge } from 'tailwind-merge';
-import { Trans } from 'react-i18next';
-import { DialogElement } from '@/components/organisms/dialog';
+import { Trans, useTranslation } from 'react-i18next';
+import { useInfoDialog } from '@/utils/hooks/useDialog';
+import { Typography } from '@/components/atoms/Typography/Typography';
+import { DialogElement } from '@/components/organisms/dialog/DialogElement';
+import { Button } from '@/components/atoms/Button/Button';
 
 export function CookiesProvider() {
   const { t } = useTranslation('common');

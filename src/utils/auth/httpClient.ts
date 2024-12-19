@@ -1,12 +1,12 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import { logError } from '@/utils/sentry';
-import { getAccessToken, getRefreshToken, setAccessToken, setRefreshToken } from '@/utils/hooks/storage';
 import { isTokenValid } from '@/utils/auth/userUtils';
 import { config } from '@/config';
 import { getRefetch, setRefetch } from '@/utils/hooks/storage/useRefetchStore';
-import { showToast } from '@/components/organisms/toast';
 import i18n from '@/utils/i18n';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { getAccessToken, getRefreshToken, setAccessToken, setRefreshToken } from '@/utils/hooks/storage/useAuthStore';
+import { logError } from '@/utils/sentry/sentry';
+import { showToast } from '@/components/organisms/toast/ToastProvider';
 
 export interface HttpClientConfig {
   baseURL?: string;

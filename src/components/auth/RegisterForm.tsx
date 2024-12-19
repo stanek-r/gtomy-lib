@@ -1,15 +1,15 @@
 import { useCallback, useState } from 'react';
-import { Button } from '@/components/atoms/Button';
-import { Typography } from '@/components/atoms/Typography';
 import { Link, useNavigate } from 'react-router-dom';
 import { config } from '@/config';
 import { ThemeSelect } from '@/components/atoms/Theme/ThemeSelect';
 import { LanguageSelect } from '@/components/atoms/LanguageSelect/LanguageSelect';
 import { useForm } from 'react-hook-form';
-import { FormTextInput } from '@/components/form/FormTextInput';
-import { useTranslation } from '@/utils/hooks/useTranslation';
 import { twMerge } from 'tailwind-merge';
-import { useAuth } from '@/utils/hooks';
+import { useAuth } from '@/utils/hooks/useAuth';
+import { useTranslation } from 'react-i18next';
+import { Typography } from '@/components/atoms/Typography/Typography';
+import { Button } from '@/components/atoms/Button/Button';
+import { FormTextInput } from '@/components/form/FormTextInput/FormTextInput';
 
 interface RegisterForm {
   username: string;

@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
 import { config } from '@/config';
-import { useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { useAuth, useTranslation } from '@/utils/hooks';
-import { useLoginRedirectStore } from '@/utils/hooks/storage';
+import { useAuth } from '@/utils/hooks/useAuth';
+import { useTranslation } from 'react-i18next';
+import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
+import { useNavigate } from 'react-router-dom';
 
 export interface GoogleAuthProps {
   setError: Dispatch<SetStateAction<string | null>>;

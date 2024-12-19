@@ -1,15 +1,18 @@
 import { ReactNode, useCallback, useState } from 'react';
-import { FormTextInput } from '@/components/form/FormTextInput';
 import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
-import { Button } from '@/components/atoms/Button';
 import { config } from '@/config';
-import { FormFileInput, SingleFormFile } from '@/components/form/FormFileInput';
-import { ErrorState } from '@/components/atoms/ErrorState';
-import { TextInput } from '@/components/atoms/TextInput';
 import { ProfileImage } from '@/components/auth/ProfileImage';
-import { useAuth, useBlobstorage, useRequest, useTranslation } from '@/utils/hooks';
-import { isUserAccountFromGoogle } from '@/utils/auth';
+import { FormFileInput, SingleFormFile } from '@/components/form/FormFileInput/FormFileInput';
+import { useTranslation } from 'react-i18next';
+import { useAuth } from '@/utils/hooks/useAuth';
+import { useRequest } from '@/utils/hooks/useRequest';
+import { useBlobstorage } from '@/utils/hooks/useBlobstorage';
+import { FormTextInput } from '@/components/form/FormTextInput/FormTextInput';
+import { TextInput } from '@/components/atoms/TextInput/TextInput';
+import { isUserAccountFromGoogle } from '@/utils/auth/userUtils';
+import { Button } from '@/components/atoms/Button/Button';
+import { ErrorState } from '@/components/atoms/ErrorState/ErrorState';
 
 interface Props {
   className?: string;

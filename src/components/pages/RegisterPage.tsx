@@ -1,5 +1,5 @@
-import { ColumnPage } from '@/components/layout';
-import { RegisterForm } from '@/components/auth';
+import { ColumnPage } from '@/components/layout/ColumnPage';
+import { RegisterForm } from '@/components/auth/RegisterForm';
 
 export interface RegisterPageProps {
   showLanguage?: boolean;

@@ -1,18 +1,20 @@
 import { ReactNode, useCallback } from 'react';
 import { config } from '@/config';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from '@/utils/hooks/useTranslation';
-import { Button } from '@/components/atoms/Button';
-import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import { UserIcon } from '@heroicons/react/24/outline';
 import { ProfileImage } from '@/components/auth/ProfileImage';
-import { Typography } from '@/components/atoms/Typography';
-import { useAuth, useBreakpoint, useDialog } from '@/utils/hooks';
-import { Icon, IconType } from '@/components/atoms/Icon';
-import { LoadingState } from '@/components/atoms/LoadingState';
-import { AuthDialog } from '@/components/auth';
-import { useLoginRedirectStore } from '@/utils/hooks/storage';
-import { DialogElement } from '@/components/organisms/dialog';
+import { Icon, IconType } from '@/components/atoms/Icon/Icon';
+import { useAuth } from '@/utils/hooks/useAuth';
+import { useDialog } from '@/utils/hooks/useDialog';
+import { AuthDialog } from '@/components/auth/AuthDialog';
+import { useTranslation } from 'react-i18next';
+import { useBreakpoint } from '@/utils/hooks/useBreakpoint';
+import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
+import { DialogElement } from '@/components/organisms/dialog/DialogElement';
+import { LoadingState } from '@/components/atoms/LoadingState/LoadingState';
+import { Button } from '@/components/atoms/Button/Button';
+import { Typography } from '@/components/atoms/Typography/Typography';
+import { ButtonIcon } from '@/components/atoms/ButtonIcon/ButtonIcon';
 
 const AppIcon = <img src="/favicon.ico" className="mr-2 size-8 shrink-0 rounded" alt="Application icon" />;
 

@@ -1,5 +1,5 @@
 import { config, GTomyLibConfig } from './config';
-import { initSentry, SentryConfig } from '@/utils/sentry';
+import { initSentry, SentryConfig } from '@/utils/sentry/initSentry';
 
 interface CloudflareConfig {
   imagesUrl?: string;

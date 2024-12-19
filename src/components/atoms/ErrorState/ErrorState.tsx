@@ -1,10 +1,10 @@
 import { useEffect, useMemo } from 'react';
-import { Typography } from '@/components/atoms/Typography';
-import { useTranslation } from '@/utils/hooks/useTranslation';
-import { Button } from '@/components/atoms/Button';
 import { ArrowPathIcon, LockClosedIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { twMerge } from 'tailwind-merge';
 import { isAxiosError } from 'axios';
+import { useTranslation } from 'react-i18next';
+import { Typography } from '@/components/atoms/Typography/Typography';
+import { Button } from '@/components/atoms/Button/Button';
 
 export interface ErrorStateProps {
   error?: any;

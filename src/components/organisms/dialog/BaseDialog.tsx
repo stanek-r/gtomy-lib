@@ -1,9 +1,9 @@
 import { ReactNode, useCallback } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import { twMerge } from 'tailwind-merge';
-import { Icon, IconType } from '@/components/atoms/Icon';
+import { Icon, IconType } from '@/components/atoms/Icon/Icon';
+import { ButtonIcon } from '@/components/atoms/ButtonIcon/ButtonIcon';
 
 export const maxWidthOptions = {
   sm: 'max-w-screen-sm ',

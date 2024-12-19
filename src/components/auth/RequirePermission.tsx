@@ -1,14 +1,15 @@
-import { Typography } from '@/components/atoms/Typography';
 import { twMerge } from 'tailwind-merge';
-import { PERM_ROLES, PermRoles } from '@/utils/hooks/storage';
 import { config } from '@/config';
-import { useAuth, useTranslation } from '@/utils/hooks';
 import { LockClosedIcon } from '@heroicons/react/24/outline';
-import { ErrorState } from '@/components/atoms/ErrorState';
-import { Button } from '@/components/atoms/Button';
 import { LoginButton } from '@/components/auth/LoginButton';
 import { useRequestAccess } from '@/utils/hooks/useRequestAccess';
 import { ReactNode } from 'react';
+import { PERM_ROLES, PermRoles } from '@/utils/hooks/storage/useAuthStore';
+import { useTranslation } from 'react-i18next';
+import { useAuth } from '@/utils/hooks/useAuth';
+import { Typography } from '@/components/atoms/Typography/Typography';
+import { ErrorState } from '@/components/atoms/ErrorState/ErrorState';
+import { Button } from '@/components/atoms/Button/Button';
 
 export interface RequirePermissionProps {
   title?: string;

@@ -1,8 +1,8 @@
-import { Typography } from '@/components/atoms/Typography';
-import { useTranslation } from '@/utils/hooks';
-import { Button } from '@/components/atoms/Button';
 import { Link } from 'react-router-dom';
-import { ColumnPage } from '@/components/layout';
+import { useTranslation } from 'react-i18next';
+import { ColumnPage } from '@/components/layout/ColumnPage';
+import { Typography } from '@/components/atoms/Typography/Typography';
+import { Button } from '@/components/atoms/Button/Button';
 
 export function NotFoundPage() {
   const { t } = useTranslation('common');

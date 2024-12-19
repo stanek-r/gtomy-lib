@@ -2,13 +2,14 @@ import { useCallback, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { useAccessTokenStore, User, useRefreshTokenStore } from '@/utils/hooks/storage/useAuthStore';
 import { config } from '@/config';
-import { logError } from '@/utils/sentry';
-import { isTokenValid, JwtResponse, mapAccessTokenToUser } from '@/utils/auth';
 import { getRefetch } from '@/utils/hooks/storage/useRefetchStore';
 import { useRequest } from '@/utils/hooks/useRequest';
-import { showToast } from '@/components/organisms/toast';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { useTranslation } from '@/utils/hooks/useTranslation';
+import { isTokenValid, mapAccessTokenToUser } from '@/utils/auth/userUtils';
+import { logError } from '@/utils/sentry/sentry';
+import { JwtResponse } from '@/utils/auth/httpClient';
+import { showToast } from '@/components/organisms/toast/ToastProvider';
+import { useTranslation } from 'react-i18next';
 
 interface UseAuth {
   isAuthenticated: boolean;
@@ -120,7 +121,7 @@ export function useAuth(): UseAuth {
         });
         return null;
       });
-  }, [get, setAccessToken, showToast, t]);
+  }, [get, setAccessToken, t]);
 
   const checkTokenValidity = () => {
     if (getRefetch()) {

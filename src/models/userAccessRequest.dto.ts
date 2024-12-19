@@ -1,4 +1,4 @@
-import { PermRoles } from '@/utils/hooks/storage';
+import { PermRoles } from '@/utils/hooks/storage/useAuthStore';
 
 export interface UserAccessRequestDto {
   requestId: string;

@@ -1,8 +1,8 @@
 import { PERM_ROLES, User } from '@/utils/hooks/storage/useAuthStore';
 import { config } from '@/config';
-import { RefreshToken } from '@/models';
-import { logError } from '@/utils/sentry';
 import { jwtDecode } from 'jwt-decode';
+import { RefreshToken } from '@/models/refreshToken.dto';
+import { logError } from '@/utils/sentry/sentry';
 
 export function getUserFirstChar(user?: User): string {
   if (user == null) {

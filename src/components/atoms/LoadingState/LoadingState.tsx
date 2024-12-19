@@ -1,6 +1,6 @@
-import { Typography } from '@/components/atoms/Typography';
-import { useTranslation } from '@/utils/hooks/useTranslation';
 import { twMerge } from 'tailwind-merge';
+import { Typography } from '@/components/atoms/Typography/Typography';
+import { useTranslation } from 'react-i18next';
 
 export const loadingVariants = {
   spinner: 'loading-spinner',

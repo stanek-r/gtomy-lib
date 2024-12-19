@@ -1,12 +1,13 @@
 import { FunctionComponent, useCallback, useMemo, useState } from 'react';
-import { BaseDialogProps, DialogElementProps } from '@/components/organisms/dialog';
-import { InfoDialog, InfoDialogProps } from '@/components/organisms/dialog/info';
-import { AlertDialog, AlertDialogProps } from '@/components/organisms/dialog/alert';
 import {
   ConfirmationDialog,
   ConfirmationDialogProps,
 } from '@/components/organisms/dialog/confirmation/ConfirmationDialog';
 import { ImageDialog, ImageDialogProps } from '@/components/organisms/dialog/image/ImageDialog';
+import { DialogElementProps } from '@/components/organisms/dialog/DialogElement';
+import { BaseDialogProps } from '@/components/organisms/dialog/BaseDialog';
+import { InfoDialog, InfoDialogProps } from '@/components/organisms/dialog/info/InfoDialog';
+import { AlertDialog, AlertDialogProps } from '@/components/organisms/dialog/alert/AlertDialog';
 
 export type DialogElementType = FunctionComponent;
 

@@ -1,6 +1,6 @@
 import { FieldError, FieldPath, FieldValues, useController, UseControllerProps } from 'react-hook-form';
 import { useMemo } from 'react';
-import { useTranslation } from '@/utils/hooks/useTranslation';
+import { useTranslation } from 'react-i18next';
 
 function getFieldErrorMessage(error: FieldError | undefined): string | undefined {
   if (!error) {
