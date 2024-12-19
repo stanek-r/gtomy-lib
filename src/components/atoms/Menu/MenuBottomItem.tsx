@@ -27,7 +27,7 @@ export function MenuBottomItem<T extends ElementType = 'button'>({
   }
 
   return (
-    <Component ref={ref} type={type} className={twMerge(active && 'active', className)} {...other}>
+    <Component type={type} className={twMerge(active && 'active', className)} {...other}>
       <Icon icon={icon} />
       <span className="btm-nav-label">{children}</span>
     </Component>
