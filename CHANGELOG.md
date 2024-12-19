@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/stanek-r/gtomy-lib/compare/v1.2.0...v1.2.1) (2024-12-19)
+
+
+### Features
+
+* add forwardRef to Rating ([2f2c12f](https://github.com/stanek-r/gtomy-lib/commit/2f2c12ffbf5d55d540303b69fcbddafd310fd1e7))
+* update storybook to version 8 ([2fc67ed](https://github.com/stanek-r/gtomy-lib/commit/2fc67edf8199a3e4a6f059940086792554c023f8))
+
+
+### Bug Fixes
+
+* remove ref from MenuBottomItem ([ea46611](https://github.com/stanek-r/gtomy-lib/commit/ea466113ccc2d8e7ce95772736a4485357ff6d08))
+
 ## [1.2.0](https://github.com/stanek-r/gtomy-lib/compare/v1.1.5...v1.2.0) (2024-12-17)
 
 
