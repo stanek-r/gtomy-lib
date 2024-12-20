@@ -1,8 +1,8 @@
 import { ChangeEvent, useCallback } from 'react';
 import { FieldPath, FieldValues, UseControllerProps } from 'react-hook-form';
-import { TextareaInput } from '@/components/atoms/TextareaInput';
 import { useFormController } from '@/utils/hooks/useFormController';
 import { ControlledFormTransformer } from '@/utils/typeHelpers';
+import { TextareaInput } from '@/components/atoms/TextareaInput/TextareaInput';
 
 /**
  * @group Components

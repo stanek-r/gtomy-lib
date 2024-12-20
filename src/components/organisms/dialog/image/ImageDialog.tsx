@@ -1,17 +1,17 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { BaseDialogProps } from '@/components/organisms/dialog';
-import { ButtonIcon } from '@/components/atoms/ButtonIcon';
 import * as Dialog from '@radix-ui/react-dialog';
-import { Typography } from '@/components/atoms/Typography';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { twMerge } from 'tailwind-merge';
-import { CloudflareStream } from '@/components/atoms/CloudflareStream';
-import { CloudflareImage } from '@/components/atoms/CloudflareImage';
-import { LoadingState } from '@/components/atoms/LoadingState';
 import { LazyLoadImageProps } from 'react-lazy-load-image-component';
-import { config } from '@/config';
 import { useBreakpoint } from '@/utils/hooks/useBreakpoint';
-import { useTranslation } from '@/utils/hooks/useTranslation';
+import { BaseDialogProps } from '@/components/organisms/dialog/BaseDialog';
+import { useTranslation } from 'react-i18next';
+import { Typography } from '@/components/atoms/Typography/Typography';
+import { ButtonIcon } from '@/components/atoms/ButtonIcon/ButtonIcon';
+import { LoadingState } from '@/components/atoms/LoadingState/LoadingState';
+import { CloudflareImage } from '@/components/atoms/CloudflareImage/CloudflareImage';
+import { CloudflareStream } from '@/components/atoms/CloudflareStream/CloudflareStream';
+import { useConfig } from '@/utils/config/context';
 
 export interface ImageDialogProps extends BaseDialogProps, Pick<LazyLoadImageProps, 'effect'> {
   title: string;
@@ -26,6 +26,7 @@ export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenCha
   const [loaded, setLoaded] = useState<boolean>(videoId != null);
   const [error, setError] = useState<boolean>(false);
   const { isOverBreakpoint } = useBreakpoint('lg');
+  const { cloudFlareImagesUrl } = useConfig();
 
   const imageClasses = useMemo(
     () =>
@@ -39,9 +40,9 @@ export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenCha
   );
 
   const zoom = useCallback(() => {
-    const src = `${config.cloudFlareImagesUrl}/${imageId}`;
+    const src = `${cloudFlareImagesUrl}/${imageId}`;
     window.open(`${src}/original`, '_blank', 'noreferrer');
-  }, [imageId]);
+  }, [imageId, cloudFlareImagesUrl]);
 
   useEffect(() => {
     function handleResize() {

@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import { CloudflareStream } from '@/components/atoms/CloudflareStream/CloudflareStream';
-import { Breakpoint } from '@/utils/hooks';
 import { StoryObj } from '@storybook/react';
+import { Breakpoint } from '@/utils/hooks/useBreakpoint';
 
 export default {
   title: 'Atoms/CloudflareStream',

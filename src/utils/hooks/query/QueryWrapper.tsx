@@ -1,6 +1,6 @@
-import { ErrorState } from '@/components/atoms/ErrorState';
-import { LoadingState } from '@/components/atoms/LoadingState';
 import { useEffect, useState } from 'react';
+import { ErrorState } from '@/components/atoms/ErrorState/ErrorState';
+import { LoadingState } from '@/components/atoms/LoadingState/LoadingState';
 
 export type QueryWrapperPropsWithoutChildren = Omit<QueryWrapperProps, 'children' | 'loadingMessage'>;
 

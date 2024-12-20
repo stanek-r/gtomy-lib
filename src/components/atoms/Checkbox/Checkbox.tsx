@@ -1,7 +1,7 @@
 import { ComponentPropsWithRef, forwardRef, useId, useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { Typography } from '@/components/atoms/Typography';
-import { CloudflareImage } from '@/components/atoms/CloudflareImage';
+import { CloudflareImage } from '@/components/atoms/CloudflareImage/CloudflareImage';
+import { Typography } from '@/components/atoms/Typography/Typography';
 
 export interface CheckboxProps extends ComponentPropsWithRef<'input'> {
   label?: string;

@@ -1,6 +1,6 @@
-import { ColumnPage } from '@/components/layout';
-import { Typography } from '@/components/atoms/Typography';
-import { useTranslation } from '@/utils/hooks';
+import { useTranslation } from 'react-i18next';
+import { ColumnPage } from '@/components/layout/ColumnPage';
+import { Typography } from '@/components/atoms/Typography/Typography';
 
 export interface PrivacyPolicyPageProps {
   width?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';

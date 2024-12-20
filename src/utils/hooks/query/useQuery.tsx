@@ -8,10 +8,10 @@ import {
   UseQueryResult,
 } from '@tanstack/react-query';
 import { QueryWrapperProps } from './QueryWrapper';
-import { showToast } from '@/components/organisms/toast';
 import i18n from '@/utils/i18n';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { isAxiosError } from 'axios';
+import { showToast } from '@/components/organisms/toast/ToastProvider';
 
 export interface QueryOptions<
   TQueryFnData = unknown,

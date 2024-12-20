@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { FormFileInput } from './FormFileInput';
-import { Button } from '@/components/atoms/Button';
 import { StoryObj } from '@storybook/react';
+import { Button } from '@/components/atoms/Button/Button';
 
 export default {
   title: 'Form/FormFileInput',

@@ -1,5 +1,5 @@
-import { LoginForm } from '@/components/auth';
-import { ColumnPage } from '@/components/layout';
+import { ColumnPage } from '@/components/layout/ColumnPage';
+import { LoginForm } from '@/components/auth/LoginForm';
 
 export interface LoginPageProps {
   showLanguage?: boolean;

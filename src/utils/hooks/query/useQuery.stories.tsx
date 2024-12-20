@@ -1,9 +1,9 @@
 import { useQuery } from './useQuery';
 import { QueryClient } from '@tanstack/react-query';
 import { QueryWrapper } from '@/utils/hooks/query/QueryWrapper';
-import { Typography } from '@/components/atoms/Typography';
-import { Button } from '@/components/atoms/Button';
 import { PageQueryData, usePageQuery } from '@/utils/hooks/query/usePageQuery';
+import { Typography } from '@/components/atoms/Typography/Typography';
+import { Button } from '@/components/atoms/Button/Button';
 
 export default {
   title: 'Hooks/useQuery',

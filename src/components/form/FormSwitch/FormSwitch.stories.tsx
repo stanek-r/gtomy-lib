@@ -1,7 +1,7 @@
 import { StoryObj } from '@storybook/react';
 import { useForm } from 'react-hook-form';
 import { FormSwitch } from './FormSwitch';
-import { Button } from '@/components/atoms/Button';
+import { Button } from '@/components/atoms/Button/Button';
 
 export default {
   title: 'Form/FormSwitch',
