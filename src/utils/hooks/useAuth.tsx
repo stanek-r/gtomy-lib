@@ -9,7 +9,7 @@ import { logError } from '@/utils/sentry/sentry';
 import { JwtResponse } from '@/utils/auth/httpClient';
 import { showToast } from '@/components/organisms/toast/ToastProvider';
 import { useTranslation } from 'react-i18next';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 interface UseAuth {
   isAuthenticated: boolean;

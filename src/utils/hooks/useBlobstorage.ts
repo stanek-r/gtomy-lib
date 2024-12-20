@@ -1,7 +1,7 @@
 import { Image } from '@/models/blobstorage.model';
 import { useRequest } from '@/utils/hooks/useRequest';
 import { useCallback, useMemo, useState } from 'react';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 export interface UseBlobstorageReturn {
   error: any | null;

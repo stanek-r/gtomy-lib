@@ -3,7 +3,7 @@ import fileDownload from 'js-file-download';
 import { useRequest } from '@/utils/hooks/useRequest';
 import { useCallback, useMemo, useState } from 'react';
 import { FileStorageDto, NewFileStorageDto } from '@/models/filestorage.model';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 export interface UseFilestorageReturn {
   error: any | null;

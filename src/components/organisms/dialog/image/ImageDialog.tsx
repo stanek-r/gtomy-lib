@@ -11,7 +11,7 @@ import { ButtonIcon } from '@/components/atoms/ButtonIcon/ButtonIcon';
 import { LoadingState } from '@/components/atoms/LoadingState/LoadingState';
 import { CloudflareImage } from '@/components/atoms/CloudflareImage/CloudflareImage';
 import { CloudflareStream } from '@/components/atoms/CloudflareStream/CloudflareStream';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 export interface ImageDialogProps extends BaseDialogProps, Pick<LazyLoadImageProps, 'effect'> {
   title: string;

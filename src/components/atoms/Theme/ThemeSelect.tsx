@@ -1,7 +1,7 @@
 import { useThemeStore } from '@/utils/hooks/storage/useThemeStore';
 import { Option, SelectInput } from '@/components/atoms/SelectInput/SelectInput';
 import { useTranslation } from 'react-i18next';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 export interface ThemeSelectProps {
   className?: string;

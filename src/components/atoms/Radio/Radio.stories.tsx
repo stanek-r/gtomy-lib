@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Radio } from './Radio';
-import { ConfigProvider } from '@/utils/ConfigProvider';
+import { ConfigProviderVite } from '@/utils/config/ConfigProviderVite';
 
 const meta: Meta<typeof Radio> = {
   title: 'Atoms/Inputs/Radio',
@@ -10,11 +10,15 @@ const meta: Meta<typeof Radio> = {
   },
   decorators: [
     (Story: any) => (
-      <ConfigProvider
-        config={{ appName: '', appDisplayName: '', cloudflareConfig: { imagesUrl: 'https://gtomy.net/images' } }}
+      <ConfigProviderVite
+        config={{
+          appName: '',
+          appDisplayName: '',
+          cloudflareConfig: { imagesUrl: 'https://gtomy.net/images' },
+        }}
       >
         {Story()}
-      </ConfigProvider>
+      </ConfigProviderVite>
     ),
   ],
 };

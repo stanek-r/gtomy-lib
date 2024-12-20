@@ -4,7 +4,7 @@ import { UserAccessRequestDto } from '@/models/userAccessRequest.dto';
 import { Roles } from '@/utils/hooks/storage/useAuthStore';
 import { useAuth } from '@/utils/hooks/useAuth';
 import { useCallback, useMemo, useState } from 'react';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 export interface UseRequestAccessReturn {
   requestAccess: () => Promise<void>;

@@ -3,7 +3,7 @@ import { BrowserRouter, Link } from 'react-router-dom';
 import { MenuItem } from '@/components/atoms/Menu/MenuItem';
 import { CpuChipIcon } from '@heroicons/react/24/outline';
 import { StoryObj } from '@storybook/react';
-import { ConfigProvider } from '@/utils/ConfigProvider';
+import { ConfigProviderVite } from '@/utils/config/ConfigProviderVite';
 
 export default {
   title: 'Atoms/Menu',
@@ -11,9 +11,9 @@ export default {
   decorators: [
     (Story: any) => (
       <BrowserRouter>
-        <ConfigProvider config={{ appName: '', appDisplayName: 'App display name' }}>
+        <ConfigProviderVite config={{ appName: '', appDisplayName: 'App display name' }}>
           <Story />
-        </ConfigProvider>
+        </ConfigProviderVite>
       </BrowserRouter>
     ),
   ],

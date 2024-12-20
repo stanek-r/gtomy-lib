@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { Typography } from '@/components/atoms/Typography/Typography';
 import { Button } from '@/components/atoms/Button/Button';
 import { FormTextInput } from '@/components/form/FormTextInput/FormTextInput';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 interface RegisterForm {
   username: string;
@@ -26,9 +26,8 @@ interface Props {
 
 export function RegisterForm({ isInDialog, toggleRegister, showTheme, showLanguage }: Props) {
   const { isAuthenticated, user, register, logout } = useAuth();
-  const { appDisplayName } = useConfig();
+  const { appDisplayName, navigate } = useConfig();
   const [error, setError] = useState<string | null>(null);
-  const { navigate } = useConfig();
   const { t } = useTranslation('auth');
   const { control, handleSubmit } = useForm<RegisterForm>({
     defaultValues: { username: undefined, password: undefined, passwordAgain: undefined, email: undefined },

@@ -6,7 +6,7 @@ import { useDialog } from '@/utils/hooks/useDialog';
 import { useBreakpoint } from '@/utils/hooks/useBreakpoint';
 import { useLoginRedirectStore } from '@/utils/hooks/storage/useLoginRedirectStore';
 import { Button } from '@/components/atoms/Button/Button';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 export interface LoginButtonProps {
   className?: string;

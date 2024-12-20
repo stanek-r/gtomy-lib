@@ -13,7 +13,7 @@ import { LoadingState } from '@/components/atoms/LoadingState/LoadingState';
 import { Button } from '@/components/atoms/Button/Button';
 import { Typography } from '@/components/atoms/Typography/Typography';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon/ButtonIcon';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 const AppIcon = <img src="/favicon.ico" className="mr-2 size-8 shrink-0 rounded" alt="Application icon" />;
 
@@ -28,11 +28,10 @@ export interface MenuProps {
 
 export function Menu({ children, showAuth, showIcon, bottomMenuActions, dropdownActions, icon = AppIcon }: MenuProps) {
   const { user, isAuthenticated, logout, isLoadingUser } = useAuth();
-  const { appDisplayName } = useConfig();
+  const { appDisplayName, navigate } = useConfig();
   const { openDialog, dialogElementProps } = useDialog(AuthDialog);
   const { t } = useTranslation('auth');
   const { isOverBreakpoint } = useBreakpoint('lg');
-  const { navigate } = useConfig();
   const [setRedirectUrl] = useLoginRedirectStore((state) => [state.setRedirectUrl]);
 
   const login = useCallback(() => {

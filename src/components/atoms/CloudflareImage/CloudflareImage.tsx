@@ -1,5 +1,5 @@
 import { LazyLoadImage, LazyLoadImageProps } from 'react-lazy-load-image-component';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 export type CloudflareImageType = 'original' | 'fullhd' | 'miniature' | 'profile' | 'blur';
 

@@ -11,7 +11,7 @@ import { Typography } from '@/components/atoms/Typography/Typography';
 import { Button } from '@/components/atoms/Button/Button';
 import { FormTextInput } from '@/components/form/FormTextInput/FormTextInput';
 import { FormCheckbox } from '@/components/form/FormCheckbox/FormCheckbox';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 interface LoginForm {
   username: string;
@@ -28,10 +28,9 @@ interface Props {
 }
 
 export function LoginForm({ isInDialog, toggleRegister, closeDialog, showTheme, showLanguage }: Props) {
-  const { appDisplayName, googleAuthClientId } = useConfig();
+  const { appDisplayName, googleAuthClientId, navigate } = useConfig();
   const { isAuthenticated, user, login, logout } = useAuth();
   const [error, setError] = useState<string | null>(null);
-  const { navigate } = useConfig();
   const { t } = useTranslation('auth');
   const { control, handleSubmit } = useForm<LoginForm>({
     defaultValues: { username: undefined, password: undefined, rememberLogin: false },

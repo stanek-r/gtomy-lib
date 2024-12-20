@@ -9,7 +9,7 @@ import { LoadingState } from '@/components/atoms/LoadingState/LoadingState';
 import { Typography } from '@/components/atoms/Typography/Typography';
 import { Button } from '@/components/atoms/Button/Button';
 import { ErrorState } from '@/components/atoms/ErrorState/ErrorState';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 export interface RequireAuthProps {
   MenuComponent?: FunctionComponent | JSX.Element;
@@ -30,10 +30,9 @@ export function RequireAuth({
 }: RequireAuthProps): JSX.Element | null {
   const { t } = useTranslation('auth');
   const { isAuthenticated, user, logout, refreshToken } = useAuth();
-  const { navigate } = useConfig();
+  const { navigate, appName } = useConfig();
   const [setRedirectUrl] = useLoginRedirectStore((state) => [state.setRedirectUrl]);
   const { sent, requestAccess, error, sending } = useRequestAccess(minimalRole, application);
-  const { appName } = useConfig();
 
   const onBackClick = useCallback(() => {
     navigate?.('/');

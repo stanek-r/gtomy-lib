@@ -1,6 +1,6 @@
 {
   "name": "gtomy-lib",
-  "version": "1.2.1",
+  "version": "2.0.0-rc.2",
   "description": "GTomy lib for react projects",
   "bugs": {
     "url": "https://github.com/stanek-r/gtomy-lib/issues",
@@ -38,13 +38,11 @@
     "@chromatic-com/storybook": "^3.2.2",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
-    "@react-oauth/google": "^0.12.1",
     "@rollup/plugin-alias": "^5.1.0",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@sentry/react": "^8.27.0",
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/addon-interactions": "^8.4.7",
     "@storybook/addon-onboarding": "^8.4.7",
@@ -75,7 +73,6 @@
     "postcss-preset-env": "^9.3.0",
     "prettier": "^3.2.4",
     "prop-types": "^15.8.1",
-    "react-ga4": "^2.1.0",
     "rimraf": "^4.1.2",
     "rollup": "^4.15.0",
     "rollup-plugin-copy": "^3.5.0",
@@ -105,6 +102,7 @@
     "i18next-browser-languagedetector": "^7.2.1",
     "js-file-download": "^0.4.12",
     "jwt-decode": "^4.0.0",
+    "next": "15.1.1",
     "react": "^18 || ^19",
     "react-dom": "^18 || ^19",
     "react-ga4": "^2.1.0",
@@ -115,16 +113,5 @@
     "react-router-dom": "^6.27.0",
     "tailwind-merge": "^2.5.4",
     "zustand": "^4.5.5"
-  },
-  "peerDependenciesMeta": {
-    "@react-oauth/google": {
-      "optional": true
-    },
-    "@sentry/react": {
-      "optional": true
-    },
-    "react-ga4": {
-      "optional": true
-    }
   }
 }

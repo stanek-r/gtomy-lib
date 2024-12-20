@@ -9,7 +9,7 @@ import { useAuth } from '@/utils/hooks/useAuth';
 import { Typography } from '@/components/atoms/Typography/Typography';
 import { ErrorState } from '@/components/atoms/ErrorState/ErrorState';
 import { Button } from '@/components/atoms/Button/Button';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 export interface RequirePermissionProps {
   title?: string;

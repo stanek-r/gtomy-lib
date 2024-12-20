@@ -12,7 +12,7 @@ import { TextInput } from '@/components/atoms/TextInput/TextInput';
 import { isUserAccountFromGoogle } from '@/utils/auth/userUtils';
 import { Button } from '@/components/atoms/Button/Button';
 import { ErrorState } from '@/components/atoms/ErrorState/ErrorState';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 interface Props {
   className?: string;

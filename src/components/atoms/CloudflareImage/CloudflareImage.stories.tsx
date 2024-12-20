@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { CloudflareImage } from '@/components/atoms/CloudflareImage/CloudflareImage';
 import { BrowserRouter } from 'react-router-dom';
-import { ConfigProvider } from '@/utils/ConfigProvider';
+import { ConfigProviderVite } from '@/utils/config/ConfigProviderVite';
 
 const meta: Meta<typeof CloudflareImage> = {
   title: 'Atoms/CloudflareImage',
@@ -9,11 +9,15 @@ const meta: Meta<typeof CloudflareImage> = {
   decorators: [
     (Story: any) => (
       <BrowserRouter>
-        <ConfigProvider
-          config={{ appName: '', appDisplayName: '', cloudflareConfig: { imagesUrl: 'https://gtomy.net/images' } }}
+        <ConfigProviderVite
+          config={{
+            appName: '',
+            appDisplayName: '',
+            cloudflareConfig: { imagesUrl: 'https://gtomy.net/images' },
+          }}
         >
           {Story()}
-        </ConfigProvider>
+        </ConfigProviderVite>
       </BrowserRouter>
     ),
   ],

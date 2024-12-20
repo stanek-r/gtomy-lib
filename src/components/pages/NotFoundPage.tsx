@@ -3,7 +3,7 @@ import { ColumnPage } from '@/components/layout/ColumnPage';
 import { Typography } from '@/components/atoms/Typography/Typography';
 import { Button } from '@/components/atoms/Button/Button';
 import { useCallback } from 'react';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 export function NotFoundPage() {
   const { t } = useTranslation('common');

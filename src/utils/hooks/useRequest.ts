@@ -1,7 +1,7 @@
 import { HttpClient } from '@/utils/auth/httpClient';
 import { AxiosRequestConfig } from 'axios';
 import { useMemo } from 'react';
-import { useConfig } from '@/utils/ConfigProvider';
+import { useConfig } from '@/utils/config/context';
 
 interface UseRequest {
   get: <T>(url: string, config?: AxiosRequestConfig<T>) => Promise<T>;

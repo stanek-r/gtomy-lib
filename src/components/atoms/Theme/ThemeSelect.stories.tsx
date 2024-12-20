@@ -4,7 +4,7 @@ import { LayoutProvider } from '@/components/layout/LayoutProvider';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Button } from '@/components/atoms/Button/Button';
 import { ButtonIcon } from '@/components/atoms/ButtonIcon/ButtonIcon';
-import { ConfigProvider } from '@/utils/ConfigProvider';
+import { ConfigProviderVite } from '@/utils/config/ConfigProviderVite';
 
 const meta: Meta<typeof ThemeSelect> = {
   title: 'Atoms/ThemeSelect',
@@ -17,9 +17,15 @@ export default meta;
 export const Default: Story = {
   decorators: [
     (Story: any) => (
-      <ConfigProvider config={{ appName: '', appDisplayName: '', themes: ['system', 'light', 'dark'] }}>
+      <ConfigProviderVite
+        config={{
+          appName: '',
+          appDisplayName: '',
+          themes: ['system', 'light', 'dark'],
+        }}
+      >
         {Story()}
-      </ConfigProvider>
+      </ConfigProviderVite>
     ),
   ],
   render: () => {

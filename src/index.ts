@@ -3,7 +3,7 @@ export * from './models/filestorage.model';
 export * from './models/refreshToken.dto';
 export * from './models/svg.model';
 export * from './models/userAccessRequest.dto';
-export * from './utils/ConfigProvider';
+export * from './utils/config/ConfigProviderVite';
 export * from './utils/GTomyProvider';
 export * from './utils/i18n';
 export * from './utils/typeHelpers';
