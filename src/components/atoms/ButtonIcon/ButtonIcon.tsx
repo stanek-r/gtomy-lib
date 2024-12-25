@@ -1,9 +1,9 @@
 import { ElementType, useCallback, useState } from 'react';
-import { buttonColorClasses, buttonSizeClasses } from '@/components/atoms/Button';
 import { PropsAs } from '@/utils/typeHelpers';
 import { twMerge } from 'tailwind-merge';
-import { Icon, IconType } from '@/components/atoms/Icon';
 import { ButtonError } from '@/components/atoms/Button/ButtonError';
+import { buttonColorClasses, buttonSizeClasses } from '@/components/atoms/Button/Button';
+import { Icon, IconType } from '@/components/atoms/Icon/Icon';
 
 export const buttonVariantClasses = {
   square: 'btn-square',

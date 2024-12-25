@@ -1,9 +1,9 @@
 import { ComponentProps } from 'react';
-import { Threads } from '@/assets/social/Threads';
-import { Youtube } from '@/assets/social/Youtube';
-import { Instagram } from '@/assets/social/Instagram';
-import { X } from '@/assets/social/X';
-import { Bluesky } from '@/assets/social/Bluesky';
+import { Threads } from '@/components/icons/Threads';
+import { Youtube } from '@/components/icons/Youtube';
+import { Instagram } from '@/components/icons/Instagram';
+import { X } from '@/components/icons/X';
+import { Bluesky } from '@/components/icons/Bluesky';
 
 const types = {
   bluesky: <Bluesky />,

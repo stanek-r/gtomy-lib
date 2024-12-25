@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
-import { LanguageSelect } from '@/components/atoms/LanguageSelect';
-import { ThemeSelect } from '@/components/atoms/Theme';
-import { useTranslation } from '@/utils/hooks';
-import { Icon, IconType } from '@/components/atoms/Icon';
-import { Typography } from '@/components/atoms/Typography';
+import { Icon, IconType } from '@/components/atoms/Icon/Icon';
+import { useTranslation } from 'react-i18next';
+import { LanguageSelect } from '@/components/atoms/LanguageSelect/LanguageSelect';
+import { ThemeSelect } from '@/components/atoms/Theme/ThemeSelect';
+import { Typography } from '@/components/atoms/Typography/Typography';
 
 const AppIcon = <img src="/favicon.ico" className="size-8 shrink-0 rounded" alt="Application icon" />;
 

@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { FormRadio } from './FormRadio';
-import { Button } from '@/components/atoms/Button';
-import { RadioGroup } from '@/components/atoms/Radio';
 import { StoryObj } from '@storybook/react';
+import { RadioGroup } from '@/components/atoms/Radio/RadioGroup';
+import { Button } from '@/components/atoms/Button/Button';
 
 export default {
   title: 'Form/FormRadio',

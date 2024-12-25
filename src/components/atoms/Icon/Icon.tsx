@@ -1,7 +1,7 @@
-import { isSvgIcon, SvgIconType } from '@/models';
 import { createElement } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { typographyColorClasses, typographyContentColorClasses } from '@/components/atoms/Typography';
+import { isSvgIcon, SvgIconType } from '@/models/svg.model';
+import { typographyColorClasses, typographyContentColorClasses } from '@/components/atoms/Typography/Typography';
 
 export const iconSizeClasses = {
   sm: 'size-4',

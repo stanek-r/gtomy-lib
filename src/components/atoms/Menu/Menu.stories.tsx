@@ -1,11 +1,9 @@
 import { Menu } from '@/components/atoms/Menu/Menu';
 import { BrowserRouter, Link } from 'react-router-dom';
 import { MenuItem } from '@/components/atoms/Menu/MenuItem';
-import { config } from '@/config';
 import { CpuChipIcon } from '@heroicons/react/24/outline';
 import { StoryObj } from '@storybook/react';
-
-config.appDisplayName = 'App display name';
+import { ConfigProviderVite } from '@/utils/config/ConfigProviderVite';
 
 export default {
   title: 'Atoms/Menu',
@@ -13,7 +11,9 @@ export default {
   decorators: [
     (Story: any) => (
       <BrowserRouter>
-        <Story />
+        <ConfigProviderVite config={{ appName: '', appDisplayName: 'App display name' }}>
+          <Story />
+        </ConfigProviderVite>
       </BrowserRouter>
     ),
   ],

@@ -1,7 +1,7 @@
-import { LoadingState } from '@/components/atoms/LoadingState';
 import { ComponentType, FunctionComponent, LazyExoticComponent, Suspense, useContext } from 'react';
 import { LayoutContext } from '@/components/layout/LayoutProvider';
 import { ColumnPage } from '@/components/layout/ColumnPage';
+import { LoadingState } from '@/components/atoms/LoadingState/LoadingState';
 
 export interface LazyPageProps {
   Component: LazyExoticComponent<ComponentType>;

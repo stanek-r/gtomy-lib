@@ -1,13 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Checkbox } from './Checkbox';
-import { config } from '@/config';
+import { ConfigProviderVite } from '@/utils/config/ConfigProviderVite';
 
 const meta: Meta<typeof Checkbox> = {
   title: 'Atoms/Inputs/Checkbox',
   component: Checkbox,
+  decorators: [
+    (Story: any) => (
+      <ConfigProviderVite
+        config={{
+          appName: '',
+          appDisplayName: '',
+          cloudflareConfig: { imagesUrl: 'https://gtomy.net/images' },
+        }}
+      >
+        {Story()}
+      </ConfigProviderVite>
+    ),
+  ],
 };
-
-config.cloudFlareImagesUrl = 'https://gtomy.net/images';
 
 export default meta;
 type Story = StoryObj<typeof Checkbox>;

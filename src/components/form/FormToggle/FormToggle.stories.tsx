@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { FormToggle } from './FormToggle';
-import { Button } from '@/components/atoms/Button';
 import { StoryObj } from '@storybook/react';
+import { Button } from '@/components/atoms/Button/Button';
 
 export default {
   title: 'Form/FormToggle',

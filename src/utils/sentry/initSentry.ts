@@ -1,6 +1,5 @@
 import { BrowserClientReplayOptions } from '@sentry/types/build/types/browseroptions';
 
-const ignoredStatusCodes: number[] = [401, 403];
 let sentryPlugin: any = null;
 
 export interface SentryConfig {
@@ -9,16 +8,12 @@ export interface SentryConfig {
   additionalTracePropagationTargets: string[];
   environment: string;
   release: string;
-  ignoredStatusCodes?: number[];
   sampleRate?: number;
   tracesSampleRate?: number;
   sentryReplay?: BrowserClientReplayOptions;
 }
 
 export function initSentry(config: SentryConfig, tracePropagationTargets: string[] = []) {
-  if (config.ignoredStatusCodes) {
-    ignoredStatusCodes.push(...config.ignoredStatusCodes);
-  }
   import('@sentry/react')
     .then((plugin) => {
       plugin.init({
@@ -42,18 +37,8 @@ export function initSentry(config: SentryConfig, tracePropagationTargets: string
     .catch((e) => console.error(e));
 }
 
-/**
- * Returns whether Sentry is enabled or not.
- */
 export function isSentryEnabled(): boolean {
   return sentryPlugin != null;
-}
-
-/**
- * Returns the ignored status codes.
- */
-export function getIgnoredStatusCodes(): number[] {
-  return ignoredStatusCodes;
 }
 
 export function getSentryPlugin(): any {

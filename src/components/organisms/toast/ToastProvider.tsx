@@ -1,6 +1,6 @@
 import toast, { Toaster } from 'react-hot-toast';
-import { SvgIconType } from '@/models';
-import { Icon } from '@/components/atoms/Icon';
+import { Icon } from '@/components/atoms/Icon/Icon';
+import { SvgIconType } from '@/models/svg.model';
 
 export function ToastProvider() {
   return <Toaster position="bottom-right" reverseOrder={false} />;

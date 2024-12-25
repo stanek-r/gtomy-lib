@@ -1,7 +1,7 @@
 import { BaseDialog, BaseDialogProps } from '@/components/organisms/dialog/BaseDialog';
-import { Typography } from '@/components/atoms/Typography';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import { ReactNode } from 'react';
+import { Typography } from '@/components/atoms/Typography/Typography';
 
 export interface InfoDialogProps extends BaseDialogProps {
   title: string;

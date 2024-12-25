@@ -17,7 +17,7 @@ export interface UseBreakpoint {
 }
 
 export function useBreakpoint(breakpoint?: Breakpoint): UseBreakpoint {
-  const [width, setWidth] = useState<number>(window.innerWidth);
+  const [width, setWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : breakpointPoints.xl);
 
   const currentBreakpoint = useMemo((): Breakpoint => {
     if (width >= breakpointPoints['2xl']) {
@@ -47,7 +47,6 @@ export function useBreakpoint(breakpoint?: Breakpoint): UseBreakpoint {
     function handleResize() {
       setWidth(window.innerWidth);
     }
-
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);

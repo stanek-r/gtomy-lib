@@ -1,8 +1,7 @@
 import { PERM_ROLES, User } from '@/utils/hooks/storage/useAuthStore';
-import { config } from '@/config';
-import { RefreshToken } from '@/models';
-import { logError } from '@/utils/sentry';
 import { jwtDecode } from 'jwt-decode';
+import { RefreshToken } from '@/models/refreshToken.dto';
+import { logError } from '@/utils/sentry/sentry';
 
 export function getUserFirstChar(user?: User): string {
   if (user == null) {
@@ -22,7 +21,7 @@ export function getUserProfileImageId(user?: User): string {
   return user.profileImageId;
 }
 
-export function getUsersRoleId(user: User, application = config.appName): number {
+export function getUsersRoleId(user: User, application: string): number {
   const role = user.roles.find((role) => role.application === application);
   return PERM_ROLES[role?.role ?? 'user'];
 }

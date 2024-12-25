@@ -1,6 +1,6 @@
 import { ElementType } from 'react';
-import { PropsAs } from '@/utils';
 import { twMerge } from 'tailwind-merge';
+import { PropsAs } from '@/utils/typeHelpers';
 
 export const typographyContentColorClasses = {
   inherit: 'text-inherit',

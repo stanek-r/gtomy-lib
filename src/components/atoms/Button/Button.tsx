@@ -1,9 +1,9 @@
 import { ElementType, useCallback, useState } from 'react';
 import { PropsAs } from '@/utils/typeHelpers';
 import { twMerge } from 'tailwind-merge';
-import { Icon, IconType } from '@/components/atoms/Icon';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { ButtonError } from '@/components/atoms/Button/ButtonError';
+import { Icon, IconType } from '@/components/atoms/Icon/Icon';
 
 export const buttonColorClasses = {
   primary: 'btn-primary',

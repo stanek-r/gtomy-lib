@@ -1,6 +1,6 @@
 import { ElementType } from 'react';
-import { PropsAs } from '@/utils';
 import { twMerge } from 'tailwind-merge';
+import { PropsAs } from '@/utils/typeHelpers';
 
 export interface FooterItemProps<T extends ElementType> {
   as?: T;

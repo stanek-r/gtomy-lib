@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef, forwardRef, useId } from 'react';
-import { Typography } from '@/components/atoms/Typography';
 import { twMerge } from 'tailwind-merge';
+import { Typography } from '@/components/atoms/Typography/Typography';
 
 const sizeClasses = {
   lg: 'select-lg',
