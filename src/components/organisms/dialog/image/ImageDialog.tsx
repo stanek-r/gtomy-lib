@@ -18,9 +18,21 @@ export interface ImageDialogProps extends BaseDialogProps, Pick<LazyLoadImagePro
   subtitle?: string;
   imageId?: string;
   videoId?: string;
+  onPrevious?: () => void;
+  onNext?: () => void;
 }
 
-export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenChange, effect }: ImageDialogProps) {
+export function ImageDialog({
+  title,
+  imageId,
+  videoId,
+  subtitle,
+  open,
+  onOpenChange,
+  effect,
+  onNext,
+  onPrevious,
+}: ImageDialogProps) {
   const { t } = useTranslation('common');
   const [height, setHeight] = useState<number>(window.innerHeight);
   const [loaded, setLoaded] = useState<boolean>(videoId != null);
@@ -43,14 +55,40 @@ export function ImageDialog({ title, imageId, videoId, subtitle, open, onOpenCha
     window.open(`${src}/original`, '_blank', 'noreferrer');
   }, [imageId]);
 
-  useEffect(() => {
-    function handleResize() {
-      setHeight(window.innerHeight);
+  const handleResize = useCallback(() => {
+    if (!open) {
+      return;
     }
+    setHeight(window.innerHeight);
+  }, [setHeight, open]);
 
+  const handleKeyPress = useCallback(
+    (e: KeyboardEvent) => {
+      if (!open) {
+        return;
+      }
+
+      if (e.key === 'ArrowLeft' && onPrevious != null) {
+        onOpenChange?.(false);
+        onPrevious();
+      }
+      if (e.key === 'ArrowRight' && onNext != null) {
+        onOpenChange?.(false);
+        onNext();
+      }
+    },
+    [onNext, onPrevious, open]
+  );
+
+  useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [handleResize]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [handleKeyPress]);
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>

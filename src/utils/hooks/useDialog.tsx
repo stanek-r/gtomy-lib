@@ -8,8 +8,6 @@ import {
 } from '@/components/organisms/dialog/confirmation/ConfirmationDialog';
 import { ImageDialog, ImageDialogProps } from '@/components/organisms/dialog/image/ImageDialog';
 
-export type DialogElementType = FunctionComponent;
-
 export interface UseDialogReturn {
   openDialog: () => void;
   closeDialog: () => void;
