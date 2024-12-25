@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, forwardRef, useId, useMemo } from 'react';
+import { ComponentPropsWithRef, forwardRef, useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { CloudflareImage } from '@/components/atoms/CloudflareImage/CloudflareImage';
 import { Typography } from '@/components/atoms/Typography/Typography';
@@ -14,13 +14,12 @@ export interface CheckboxProps extends ComponentPropsWithRef<'input'> {
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ label, error, hint, className, type, imageId, checked, outlined, ...other }: CheckboxProps, ref) => {
     const id = useId();
-    const displayOutline = useMemo(() => outlined && checked, [outlined, checked]);
 
     return (
       <div
         className={twMerge(
           'form-control',
-          displayOutline && 'outline outline-1 outline-offset-4 outline-base-content rounded',
+          outlined && checked && 'outline outline-1 outline-offset-4 outline-base-content rounded',
           imageId && 'w-52'
         )}
       >

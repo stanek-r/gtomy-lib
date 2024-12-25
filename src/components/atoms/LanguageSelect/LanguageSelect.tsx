@@ -1,5 +1,5 @@
-import { ComponentPropsWithRef } from 'react';
-import { changeLanguage } from '@/utils/i18n';
+import { ComponentPropsWithRef, useMemo } from 'react';
+import { changeLanguage, supportedLngs } from '@/utils/i18n';
 import { useTranslation } from 'react-i18next';
 import { SelectInput } from '@/components/atoms/SelectInput/SelectInput';
 
@@ -11,10 +11,10 @@ export type LanguageSelectProps = Omit<
 export function LanguageSelect(props: LanguageSelectProps) {
   const { i18n, t } = useTranslation('common');
 
-  const options = [
-    { value: 'en', label: t('languages.english') },
-    { value: 'cs', label: t('languages.czech') },
-  ];
+  const options = useMemo(
+    () => supportedLngs.map((lng) => ({ value: lng, label: t('languages.' + lng, { lng }) })),
+    [t]
+  );
 
   return (
     <SelectInput
