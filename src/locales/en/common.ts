@@ -4,7 +4,7 @@ export const common = {
   close: 'Zavřít',
   confirm: 'Confirm',
   cancel: 'Cancel',
-  notFound: 'Tato stránka neexistuje.',
+  notFound: 'This page does not exist.',
   'footer.settings': 'Settings',
   'footer.social': 'Social',
   'languages.en-US': 'English',
