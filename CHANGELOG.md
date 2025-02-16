@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/stanek-r/gtomy-lib/compare/v1.2.2...v2.0.0) (2025-02-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* library rework to atomic components to support nextjs server components, auth and other web components will be in separate libraries
+
+### Features
+
+* library rework to atomic components to support nextjs server components, auth and other web components will be in separate libraries ([8dbc751](https://github.com/stanek-r/gtomy-lib/commit/8dbc751a9f26b26c534933576fb0178efdeefee1))
+
 ### [1.2.2](https://github.com/stanek-r/gtomy-lib/compare/v1.2.1...v1.2.2) (2024-12-25)
 
 
