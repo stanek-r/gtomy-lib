@@ -12,15 +12,15 @@ Available components can be viewed on deployed storybook [here](https://storyboo
 ## Main libraries used
 * @heroicons/react
 * @radix-ui/react-dialog
-* @tanstack/react-query
+* axios
+* tailwind
+* tailwind-merge
 * daisyui
+* js-file-download
 * react
-* zustand
-
-## Optional libraries
-* react-ga4
-* @sentry/react
-* @react-oauth/google
+* react-dom
+* react-hot-toast
+* react-lazy-load-image-component
 
 [npm-version]: https://badgen.net/npm/v/gtomy-lib?label=version&color=green
 [npm-downloads]: https://badgen.net/npm/dt/gtomy-lib
