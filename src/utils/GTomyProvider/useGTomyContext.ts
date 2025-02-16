@@ -3,6 +3,8 @@ import { gtomyContext } from '@/utils/GTomyProvider/GTomyProvider.core';
 
 export interface GTomyContext {
   cloudFlareImagesUrl?: string;
+  storageUrl?: string;
+  backendUrl?: string;
   translation?: {
     close?: string;
     confirm?: string;

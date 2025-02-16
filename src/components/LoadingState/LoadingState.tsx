@@ -10,7 +10,7 @@ import { useGTomyContext } from '@/utils/GTomyProvider/useGTomyContext';
 
 export function LoadingState({
   message,
-  showLoading,
+  showLoading = true,
   variant = 'ring',
   size = 'lg',
   layout = 'column',

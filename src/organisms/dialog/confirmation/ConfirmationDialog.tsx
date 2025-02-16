@@ -8,7 +8,7 @@ import { useGTomyContext } from '@/utils/GTomyProvider/useGTomyContext';
 
 export function ConfirmationDialog({ text, title, onAction, confirm, cancel, ...props }: ConfirmationDialogProps) {
   const gtomyContext = useGTomyContext();
-  const [error, setError] = useState<Error | null>();
+  const [error, setError] = useState<unknown>();
   const { onOpenChange } = props;
 
   const onClose = useCallback(() => {
@@ -29,7 +29,7 @@ export function ConfirmationDialog({ text, title, onAction, confirm, cancel, ...
     >
       <Typography size="3xl">{title}</Typography>
       <Typography as="p">{text}</Typography>
-      {error && <ErrorState error={error} />}
+      {error != null && <ErrorState error={error} />}
     </BaseDialog>
   );
 }

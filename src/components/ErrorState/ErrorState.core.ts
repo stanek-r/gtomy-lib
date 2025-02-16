@@ -1,5 +1,5 @@
 export interface ErrorStateProps {
-  error?: Error | null;
+  error?: unknown;
   showRetry?: boolean;
   retry?: () => void;
   className?: string;
