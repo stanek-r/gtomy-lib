@@ -9,7 +9,7 @@ export const buttonVariantClasses = {
 export interface ButtonIconProps<T extends ElementType> {
   as?: T;
   variant?: 'square' | 'circle';
-  color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info' | 'ghost';
+  color?: 'neutral' | 'primary' | 'secondary' | 'accent' | 'ghost' | 'link' | 'info' | 'success' | 'warning' | 'error';
   size?: 'sm' | 'lg';
   icon: IconType;
   outline?: true;

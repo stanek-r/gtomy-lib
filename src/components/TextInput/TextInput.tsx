@@ -1,11 +1,12 @@
 import { forwardRef, useId } from 'react';
 import { twJoin, twMerge } from 'tailwind-merge';
-import { TextInputProps } from '@/components/TextInput/TextInput.core';
+import { sizeClasses, TextInputProps } from '@/components/TextInput/TextInput.core';
 import { Typography } from '@/components/Typography/Typography';
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
-  ({ children, className, label, hint, error, type, ...other }: TextInputProps, ref) => {
+  ({ children, className, label, size = 'md', hint, error, type, ...other }: TextInputProps, ref) => {
     const id = useId();
+    const sizeClass = sizeClasses[size];
 
     return (
       <div className={twMerge('form-control', className)}>
@@ -18,7 +19,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           id={id}
           ref={ref}
           type={type ?? 'text'}
-          className={twJoin('input input-bordered', error && 'input-error')}
+          className={twJoin('input input-bordered', error && 'input-error', sizeClass)}
           {...other}
         >
           {children}

@@ -2,13 +2,16 @@ import { ElementType } from 'react';
 import { IconType } from '@/components/Icon/Icon.core';
 
 export const buttonColorClasses = {
+  neutral: 'btn-neutral',
   primary: 'btn-primary',
   secondary: 'btn-secondary',
-  success: 'btn-success',
-  error: 'btn-error',
-  warning: 'btn-warning',
-  info: 'btn-info',
+  accent: 'btn-accent',
   ghost: 'btn-ghost',
+  link: 'btn-link',
+  info: 'btn-info',
+  success: 'btn-success',
+  warning: 'btn-warning',
+  error: 'btn-error',
 };
 
 export const buttonSizeClasses = {
@@ -18,7 +21,7 @@ export const buttonSizeClasses = {
 
 export interface ButtonProps<T extends ElementType> {
   as?: T;
-  color?: 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info' | 'ghost';
+  color?: 'neutral' | 'primary' | 'secondary' | 'accent' | 'ghost' | 'link' | 'info' | 'success' | 'warning' | 'error';
   size?: 'sm' | 'lg';
   wide?: boolean;
   glass?: boolean;

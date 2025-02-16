@@ -14,7 +14,7 @@ export default [
     output: {
       file: 'dist/index.js',
       format: 'esm',
-      sourcemap: true,
+      sourcemap: false,
     },
     plugins: [
       peerDepsExternal({ includeDependencies: true }),

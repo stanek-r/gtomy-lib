@@ -1,11 +1,12 @@
 import { forwardRef, useId } from 'react';
 import { twJoin, twMerge } from 'tailwind-merge';
-import { TextareaInputProps } from '@/components/TextareaInput/TextareaInput.core';
+import { sizeClasses, TextareaInputProps } from '@/components/TextareaInput/TextareaInput.core';
 import { Typography } from '@/components/Typography/Typography';
 
 export const TextareaInput = forwardRef<HTMLTextAreaElement, TextareaInputProps>(
-  ({ className, label, hint, error, resizable, rows, ...other }: TextareaInputProps, ref) => {
+  ({ className, label, hint, error, size = 'md', resizable, rows, ...other }: TextareaInputProps, ref) => {
     const id = useId();
+    const sizeClass = sizeClasses[size];
 
     return (
       <div className={twMerge('form-control', className)}>
@@ -19,7 +20,8 @@ export const TextareaInput = forwardRef<HTMLTextAreaElement, TextareaInputProps>
           className={twJoin(
             'textarea textarea-bordered',
             error && 'textarea-error',
-            resizable ? 'resize-y' : 'resize-none'
+            resizable ? 'resize-y' : 'resize-none',
+            sizeClass
           )}
           placeholder="Write something interesting"
           rows={rows ?? 5}
