@@ -1,10 +1,7 @@
-import toast, { Toaster } from 'react-hot-toast';
-import { Icon } from '@/components/atoms/Icon/Icon';
-import { SvgIconType } from '@/models/svg.model';
-
-export function ToastProvider() {
-  return <Toaster position="bottom-right" reverseOrder={false} />;
-}
+import { SvgIconType } from '@/utils/svg.core';
+import toast from 'react-hot-toast';
+import { createElement } from 'react';
+import { Icon } from '@/components/Icon/Icon';
 
 export interface ShowToastSettings {
   message: string;
@@ -25,7 +22,12 @@ export interface ShowToastSettings {
 
 export function showToast({ message, duration, icon, iconColor = 'base' }: ShowToastSettings) {
   return toast(message, {
-    icon: <Icon icon={icon} color={iconColor} content={false} className="mr-1.5" />,
+    icon: createElement(Icon, {
+      icon,
+      color: iconColor,
+      content: false,
+      className: 'mr-1.5',
+    }),
     duration,
   });
 }

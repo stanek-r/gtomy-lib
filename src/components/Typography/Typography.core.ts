@@ -1,6 +1,4 @@
 import { ElementType } from 'react';
-import { twMerge } from 'tailwind-merge';
-import { PropsAs } from '@/utils/typeHelpers';
 
 export const typographyContentColorClasses = {
   inherit: 'text-inherit',
@@ -60,6 +58,22 @@ export const typographyDecorationClasses = {
   overline: 'overline',
 };
 
+export type TypographySizes =
+  | 'inherit'
+  | 'xs'
+  | 'sm'
+  | 'base'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '3xl'
+  | '4xl'
+  | '5xl'
+  | '6xl'
+  | '7xl'
+  | '8xl'
+  | '9xl';
+
 export interface TypographyProps<T extends ElementType> {
   as?: T;
   className?: string;
@@ -74,31 +88,8 @@ export interface TypographyProps<T extends ElementType> {
     | 'success'
     | 'warning'
     | 'error';
-  size?: 'inherit' | 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl';
+  size?: TypographySizes;
   weight?: 'inherit' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
   decoration?: 'underline' | 'line-through' | 'overline';
   content?: boolean;
-}
-
-export function Typography<T extends ElementType = 'span'>({
-  as,
-  className,
-  color = 'inherit',
-  size = 'inherit',
-  weight = 'inherit',
-  decoration,
-  content = true,
-  ...other
-}: PropsAs<TypographyProps<T>, T>) {
-  const Component = as ?? 'span';
-
-  const combinedClasses = twMerge(
-    className,
-    color && (content ? typographyContentColorClasses[color] : typographyColorClasses[color]),
-    size && typographySizeClasses[size],
-    weight && typographyWeightClasses[weight],
-    decoration && typographyDecorationClasses[decoration]
-  );
-
-  return <Component className={combinedClasses} {...other} />;
 }

@@ -1,5 +1,3 @@
-import { twMerge } from 'tailwind-merge';
-
 export const codeMockupColorClasses = {
   neutral: 'bg-neutral text-neutral-content',
   primary: 'bg-primary text-primary-content',
@@ -15,22 +13,4 @@ export interface CodeMockupProps {
   color?: 'neutral' | 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info';
   className?: string;
   numbered?: boolean;
-}
-
-export function CodeMockup({ rows, color, className, numbered = true }: CodeMockupProps) {
-  return (
-    <div className={twMerge('mockup-code', color && codeMockupColorClasses[color], className)}>
-      {rows.map((row, index) =>
-        numbered ? (
-          <pre key={index} data-prefix={index + 1}>
-            <code>{row}</code>
-          </pre>
-        ) : (
-          <pre key={index}>
-            <code>{row}</code>
-          </pre>
-        )
-      )}
-    </div>
-  );
 }
