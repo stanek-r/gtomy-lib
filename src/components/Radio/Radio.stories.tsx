@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { GTomyProvider } from '@/utils/GTomyProvider';
 import { Radio } from '@/components/Radio/Radio';
+import { GTomyProvider } from '@/utils/GTomyProvider/GTomyProvider';
 
 const meta: Meta<typeof Radio> = {
   title: 'Components/Radio',

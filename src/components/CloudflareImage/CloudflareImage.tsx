@@ -1,6 +1,6 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CloudflareImageProps } from '@/components/CloudflareImage/CloudflareImage.core';
-import { useGTomyContext } from '@/utils/GTomyProvider.core';
+import { useGTomyContext } from '@/utils/GTomyProvider/useGTomyContext';
 
 export function CloudflareImage({
   imageId,

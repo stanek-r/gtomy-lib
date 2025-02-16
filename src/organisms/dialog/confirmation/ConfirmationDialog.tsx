@@ -4,7 +4,7 @@ import { BaseDialog } from '@/organisms/dialog/BaseDialog';
 import { Button } from '@/components/Button/Button';
 import { Typography } from '@/components/Typography/Typography';
 import { ErrorState } from '@/components/ErrorState/ErrorState';
-import { useGTomyContext } from '@/utils/GTomyProvider.core';
+import { useGTomyContext } from '@/utils/GTomyProvider/useGTomyContext';
 
 export function ConfirmationDialog({ text, title, onAction, confirm, cancel, ...props }: ConfirmationDialogProps) {
   const gtomyContext = useGTomyContext();

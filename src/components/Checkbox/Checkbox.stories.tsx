@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { GTomyProvider } from '@/utils/GTomyProvider';
 import { Checkbox } from '@/components/Checkbox/Checkbox';
+import { GTomyProvider } from '@/utils/GTomyProvider/GTomyProvider';
 
 const meta: Meta<typeof Checkbox> = {
   title: 'Components/Checkbox',

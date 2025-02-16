@@ -6,7 +6,7 @@ import {
   loadingVariants,
 } from '@/components/LoadingState/LoadingState.core';
 import { Typography } from '@/components/Typography/Typography';
-import { useGTomyContext } from '@/utils/GTomyProvider.core';
+import { useGTomyContext } from '@/utils/GTomyProvider/useGTomyContext';
 
 export function LoadingState({
   message,

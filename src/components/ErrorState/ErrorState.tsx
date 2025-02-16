@@ -5,7 +5,7 @@ import { ErrorStateProps } from '@/components/ErrorState/ErrorState.core';
 import { isAxiosError } from 'axios';
 import { Typography } from '@/components/Typography/Typography';
 import { Button } from '@/components/Button/Button';
-import { useGTomyContext } from '@/utils/GTomyProvider.core';
+import { useGTomyContext } from '@/utils/GTomyProvider/useGTomyContext';
 
 export function ErrorState({ error, retry, showRetry, className }: ErrorStateProps) {
   const gtomyContext = useGTomyContext();

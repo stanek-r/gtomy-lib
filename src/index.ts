@@ -1,4 +1,3 @@
-export * from './utils/GTomyProvider';
 export * from './components/Button/Button';
 export * from './components/ButtonIcon/ButtonIcon';
 export * from './components/Checkbox/Checkbox';
@@ -21,6 +20,8 @@ export * from './organisms/dialog/BaseDialog';
 export * from './organisms/dialog/DialogElement';
 export * from './organisms/toast/showToast';
 export * from './organisms/toast/ToastProvider';
+export * from './utils/GTomyProvider/GTomyProvider';
+export * from './utils/GTomyProvider/useGTomyContext';
 export * from './organisms/dialog/alert/AlertDialog';
 export * from './organisms/dialog/confirmation/ConfirmationDialog';
 export * from './organisms/dialog/info/InfoDialog';

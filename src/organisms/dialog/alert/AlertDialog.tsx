@@ -3,7 +3,7 @@ import { AlertDialogProps } from '@/organisms/dialog/alert/AlertDialog.core';
 import { Button } from '@/components/Button/Button';
 import { BaseDialog } from '@/organisms/dialog/BaseDialog';
 import { Typography } from '@/components/Typography/Typography';
-import { useGTomyContext } from '@/utils/GTomyProvider.core';
+import { useGTomyContext } from '@/utils/GTomyProvider/useGTomyContext';
 
 export function AlertDialog({ title, text, ...props }: AlertDialogProps) {
   const gtomyContext = useGTomyContext();

@@ -1,4 +1,5 @@
-import { createContext, PropsWithChildren, useContext } from 'react';
+import { useContext } from 'react';
+import { gtomyContext } from '@/utils/GTomyProvider/GTomyProvider.core';
 
 export interface GTomyContext {
   cloudFlareImagesUrl?: string;
@@ -14,12 +15,6 @@ export interface GTomyContext {
   };
 }
 
-export const gtomyContext = createContext<GTomyContext | null>(null);
-
 export function useGTomyContext(): GTomyContext | null {
   return useContext(gtomyContext);
-}
-
-export interface GTomyProviderProps extends PropsWithChildren {
-  value: GTomyContext | null;
 }
