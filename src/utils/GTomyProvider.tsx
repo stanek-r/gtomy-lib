@@ -1,5 +1,12 @@
 import { gtomyContext, GTomyProviderProps } from '@/utils/GTomyProvider.core';
+import { ToastProvider } from '@/organisms/toast/ToastProvider';
+import { ReactElement } from 'react';
 
-export function GTomyProvider({ value, children }: GTomyProviderProps) {
-  return <gtomyContext.Provider value={value}>{children}</gtomyContext.Provider>;
+export function GTomyProvider({ value, children }: GTomyProviderProps): ReactElement {
+  return (
+    <gtomyContext.Provider value={value}>
+      <ToastProvider />
+      {children}
+    </gtomyContext.Provider>
+  );
 }
