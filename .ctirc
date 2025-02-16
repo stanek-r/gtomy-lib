@@ -21,6 +21,7 @@
       ],
       "exclude": [
         "src/**/*.stories.*",
+        "src/**/*.core.*",
         "src/locales/**"
       ],
       "skipEmptyDir": true,
