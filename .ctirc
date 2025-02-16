@@ -4,7 +4,7 @@
   "reasonerStream": "stderr",
   "options": [
     {
-      "mode": "create",
+      "mode": "bundle",
       "project": "tsconfig.json",
       "exportFilename": "index.ts",
       "useSemicolon": true,
@@ -21,12 +21,12 @@
       ],
       "exclude": [
         "src/**/*.stories.*",
-        "src/locales/cs/**",
-        "src/locales/en/**"
+        "src/**/*.core.*",
+        "src/locales/**"
       ],
       "skipEmptyDir": true,
       "startFrom": "./src",
-      "output": "undefined",
+      "output": "./src",
       "removeBackup": false,
       "forceYes": false
     }

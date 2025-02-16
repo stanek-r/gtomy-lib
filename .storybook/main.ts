@@ -1,4 +1,4 @@
-import { StorybookConfig } from '@storybook/react-vite';
+import type { StorybookConfig } from '@storybook/react-vite';
 import path from 'path';
 
 const config: StorybookConfig = {
@@ -10,6 +10,7 @@ const config: StorybookConfig = {
     '@storybook/addon-interactions',
   ],
   docs: {
+    autodocs: true,
     defaultName: 'Documentation',
   },
   framework: {
@@ -17,9 +18,10 @@ const config: StorybookConfig = {
     options: {},
   },
   viteFinal: async (config) => {
-    if (!config.resolve) {
-      return config;
-    }
+    config.plugins = config.plugins || [];
+    // @ts-expect-error: Tailwind's package.json is nonstandard
+    config.plugins.push((await import('@tailwindcss/vite')).default());
+    config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': path.resolve(__dirname, '..', 'src'),
