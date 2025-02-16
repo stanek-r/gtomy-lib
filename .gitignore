@@ -9,7 +9,7 @@ lerna-debug.log*
 
 node_modules
 dist
-public
+storybook-static
 dist-ssr
 *.local
 
