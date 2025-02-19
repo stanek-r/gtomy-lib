@@ -1,8 +1,10 @@
-import { LazyLoadImageProps } from 'react-lazy-load-image-component';
+import { ElementType } from 'react';
 
 export type CloudflareImageType = 'original' | 'fullhd' | 'miniature' | 'profile' | 'blur';
 
-export interface CloudflareImageProps extends Omit<LazyLoadImageProps, 'src'> {
+export interface CloudflareImageProps<T extends ElementType> {
+  as?: T;
+  imagesUrl: string;
   imageId: string;
   srcType?: CloudflareImageType;
   placeholderType?: CloudflareImageType;

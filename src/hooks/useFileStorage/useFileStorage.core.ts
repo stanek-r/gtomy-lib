@@ -11,7 +11,7 @@ export interface NewFileStorageDto {
 export interface UseFilestorageProps {
   onError: (error: unknown) => void;
   path: string;
-  forceStorageUrl?: string;
+  storageUrl: string;
 }
 
 export interface UseFilestorageReturn {

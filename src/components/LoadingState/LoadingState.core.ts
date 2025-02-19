@@ -30,5 +30,4 @@ export interface LoadingStateProps {
   layout?: 'column' | 'row';
   size?: 'xs' | 'sm' | 'md' | 'lg';
   className?: string;
-  hideMessage?: boolean;
 }

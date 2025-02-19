@@ -3,4 +3,10 @@ export interface ErrorStateProps {
   showRetry?: boolean;
   retry?: () => void;
   className?: string;
+  translation: {
+    retry: string;
+    error: string;
+    noPermission: string;
+    badGateway: string;
+  };
 }

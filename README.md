@@ -20,7 +20,6 @@ Available components can be viewed on deployed storybook [here](https://storyboo
 * react
 * react-dom
 * react-hot-toast
-* react-lazy-load-image-component
 
 [npm-version]: https://badgen.net/npm/v/gtomy-lib?label=version&color=green
 [npm-downloads]: https://badgen.net/npm/dt/gtomy-lib

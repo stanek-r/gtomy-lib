@@ -12,7 +12,7 @@ export type ConfirmationDialogOnAction = ({
 export interface ConfirmationDialogProps extends BaseDialogProps {
   title: string;
   text: ReactNode;
-  confirm?: string;
-  cancel?: string;
+  confirm: string;
+  cancel: string;
   onAction: ConfirmationDialogOnAction;
 }

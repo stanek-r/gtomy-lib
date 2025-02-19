@@ -1,4 +1,3 @@
-import { useGTomyContext } from '@/utils/GTomyProvider/useGTomyContext';
 import { useRequest } from '@/hooks/useRequest/useRequest';
 import {
   BlobstorageImage,
@@ -6,10 +5,8 @@ import {
   UseBlobstorageReturn,
 } from '@/hooks/useBlobstorage/useBlobstorage.core';
 
-export function useBlobstorage({ path, onError, forceStorageUrl }: UseBlobstorageProps): UseBlobstorageReturn {
-  const gtomyContext = useGTomyContext();
-  const baseURL = forceStorageUrl ?? gtomyContext?.storageUrl;
-  const { post, delete: deleteRequest } = useRequest(baseURL);
+export function useBlobstorage({ path, onError, storageUrl }: UseBlobstorageProps): UseBlobstorageReturn {
+  const { post, delete: deleteRequest } = useRequest(storageUrl);
 
   path ??= '/image';
 

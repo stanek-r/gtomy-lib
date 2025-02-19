@@ -5,14 +5,11 @@ import {
   UseFilestorageProps,
   UseFilestorageReturn,
 } from '@/hooks/useFileStorage/useFileStorage.core';
-import { useGTomyContext } from '@/utils/GTomyProvider/useGTomyContext';
 import { useRequest } from '@/hooks/useRequest/useRequest';
 import fileDownload from 'js-file-download';
 
-export function useFilestorage({ path, forceStorageUrl, onError }: UseFilestorageProps): UseFilestorageReturn {
-  const gtomyContext = useGTomyContext();
-  const baseURL = forceStorageUrl ?? gtomyContext?.storageUrl;
-  const { post, delete: deleteRequest, get } = useRequest(baseURL);
+export function useFilestorage({ path, storageUrl, onError }: UseFilestorageProps): UseFilestorageReturn {
+  const { post, delete: deleteRequest, get } = useRequest(storageUrl);
 
   path ??= '/file';
 

@@ -1,12 +1,9 @@
 import axios from 'axios';
-import { useGTomyContext } from '@/utils/GTomyProvider/useGTomyContext';
 import { UseRequest } from '@/hooks/useRequest/useRequest.core';
 
-export function useRequest(forceBackendUrl?: string): UseRequest {
-  const gtomyContext = useGTomyContext();
-  const baseURL = forceBackendUrl ?? gtomyContext?.backendUrl;
+export function useRequest(backendUrl: string): UseRequest {
   const client = axios.create({
-    baseURL: baseURL,
+    baseURL: backendUrl,
   });
 
   return {

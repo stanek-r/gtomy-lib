@@ -4,10 +4,8 @@ import { BaseDialog } from '@/organisms/dialog/BaseDialog';
 import { Button } from '@/components/Button/Button';
 import { Typography } from '@/components/Typography/Typography';
 import { ErrorState } from '@/components/ErrorState/ErrorState';
-import { useGTomyContext } from '@/utils/GTomyProvider/useGTomyContext';
 
 export function ConfirmationDialog({ text, title, onAction, confirm, cancel, ...props }: ConfirmationDialogProps) {
-  const gtomyContext = useGTomyContext();
   const [error, setError] = useState<unknown>();
   const { onOpenChange } = props;
 
@@ -20,9 +18,9 @@ export function ConfirmationDialog({ text, title, onAction, confirm, cancel, ...
       actions={
         <>
           <Button color="error" onClick={() => onAction({ onClose, onError: setError })}>
-            {confirm ?? gtomyContext?.translation?.confirm}
+            {confirm}
           </Button>
-          <Button onClick={() => onOpenChange?.(false)}>{cancel ?? gtomyContext?.translation?.cancel}</Button>
+          <Button onClick={() => onOpenChange?.(false)}>{cancel}</Button>
         </>
       }
       {...props}

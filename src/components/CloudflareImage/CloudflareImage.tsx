@@ -1,19 +1,22 @@
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CloudflareImageProps } from '@/components/CloudflareImage/CloudflareImage.core';
-import { useGTomyContext } from '@/utils/GTomyProvider/useGTomyContext';
+import { PropsAs } from '@/utils/typeHelpers.core';
+import { ElementType } from 'react';
 
-export function CloudflareImage({
+export function CloudflareImage<T extends ElementType = 'img'>({
+  as,
   imageId,
+  imagesUrl,
   srcType = 'original',
   placeholderType = 'miniature',
   effect,
   ...otherProps
-}: CloudflareImageProps) {
-  const gtomyContext = useGTomyContext();
-  const src = `${gtomyContext?.cloudFlareImagesUrl}/${imageId}`;
+}: PropsAs<CloudflareImageProps<T>, T>) {
+  const Component = as ?? 'img';
+
+  const src = `${imagesUrl}/${imageId}`;
   const isSame = srcType === placeholderType;
   return (
-    <LazyLoadImage
+    <Component
       src={`${src}/${srcType}`}
       placeholderSrc={isSame ? undefined : `${src}/${placeholderType}`}
       effect={effect}
