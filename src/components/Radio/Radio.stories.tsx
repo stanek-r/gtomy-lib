@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Radio } from '@/components/Radio/Radio';
-import { GTomyProvider } from '@/utils/GTomyProvider/GTomyProvider';
 
 const meta: Meta<typeof Radio> = {
   title: 'Components/Radio',
@@ -8,17 +7,6 @@ const meta: Meta<typeof Radio> = {
   args: {
     name: 'radio-1',
   },
-  decorators: [
-    (Story) => (
-      <GTomyProvider
-        value={{
-          cloudFlareImagesUrl: 'https://gtomy.net/images',
-        }}
-      >
-        <Story />
-      </GTomyProvider>
-    ),
-  ],
 };
 
 export default meta;

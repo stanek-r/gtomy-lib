@@ -1,21 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Checkbox } from '@/components/Checkbox/Checkbox';
-import { GTomyProvider } from '@/utils/GTomyProvider/GTomyProvider';
 
 const meta: Meta<typeof Checkbox> = {
   title: 'Components/Checkbox',
   component: Checkbox,
-  decorators: [
-    (Story) => (
-      <GTomyProvider
-        value={{
-          cloudFlareImagesUrl: 'https://gtomy.net/images',
-        }}
-      >
-        <Story />
-      </GTomyProvider>
-    ),
-  ],
 };
 
 export default meta;
