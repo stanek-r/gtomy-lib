@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/stanek-r/gtomy-lib/compare/v2.0.0...v2.0.1) (2025-02-20)
+
+
+### Bug Fixes
+
+* remove context and react-lazy-load-image-component ([23e8653](https://github.com/stanek-r/gtomy-lib/commit/23e865353f811478001e26e249befa87e0c84cc0))
+
 ## [2.0.0](https://github.com/stanek-r/gtomy-lib/compare/v1.2.2...v2.0.0) (2025-02-16)
 
 
