@@ -1,3 +1,5 @@
+export * from './layout/ColumnPage';
+export * from './layout/WithComponent';
 export * from './components/Button/Button';
 export * from './components/ButtonIcon/ButtonIcon';
 export * from './components/Checkbox/Checkbox';

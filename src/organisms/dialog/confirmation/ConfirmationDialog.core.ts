@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { BaseDialogProps } from '@/organisms/BaseDialog.core';
+import { BaseDialogProps } from '@/organisms/dialog/BaseDialog.core';
 
 export type ConfirmationDialogOnAction = ({
   onClose,

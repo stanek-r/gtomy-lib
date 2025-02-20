@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { FunctionComponent, ReactElement, useCallback, useMemo, useState } from 'react';
-import { BaseDialogProps } from '@/organisms/BaseDialog.core';
+import { BaseDialogProps } from '@/organisms/dialog/BaseDialog.core';
 import { DialogElement, DialogElementProps } from '@/organisms/dialog/DialogElement';
 import { BaseDialog } from '@/organisms/dialog/BaseDialog';
 import { Button } from '@/components/Button/Button';

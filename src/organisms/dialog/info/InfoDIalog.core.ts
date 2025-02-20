@@ -1,4 +1,4 @@
-import { BaseDialogProps } from '@/organisms/BaseDialog.core';
+import { BaseDialogProps } from '@/organisms/dialog/BaseDialog.core';
 import { ReactNode } from 'react';
 
 export interface InfoDialogProps extends BaseDialogProps {

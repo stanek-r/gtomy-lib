@@ -1,7 +1,7 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { twJoin } from 'tailwind-merge';
-import { ExtendedBaseDialogProps, maxWidthOptions } from '@/organisms/BaseDialog.core';
+import { ExtendedBaseDialogProps, maxWidthOptions } from '@/organisms/dialog/BaseDialog.core';
 import { Icon } from '@/components/Icon/Icon';
 import { ButtonIcon } from '@/components/ButtonIcon/ButtonIcon';
 

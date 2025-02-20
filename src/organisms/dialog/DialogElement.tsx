@@ -1,5 +1,5 @@
 import { cloneElement, createElement, FunctionComponent, ReactElement } from 'react';
-import { BaseDialogProps } from '@/organisms/BaseDialog.core';
+import { BaseDialogProps } from '@/organisms/dialog/BaseDialog.core';
 
 export interface DialogElementProps {
   dialog: FunctionComponent<BaseDialogProps> | ReactElement;

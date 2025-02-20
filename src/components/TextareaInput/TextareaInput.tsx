@@ -1,20 +1,15 @@
-import { forwardRef, useId } from 'react';
+import { forwardRef } from 'react';
 import { twJoin, twMerge } from 'tailwind-merge';
 import { sizeClasses, TextareaInputProps } from '@/components/TextareaInput/TextareaInput.core';
 import { Typography } from '@/components/Typography/Typography';
 
 export const TextareaInput = forwardRef<HTMLTextAreaElement, TextareaInputProps>(
   ({ className, label, hint, error, size = 'md', resizable, rows, ...other }: TextareaInputProps, ref) => {
-    const id = useId();
     const sizeClass = sizeClasses[size];
 
     return (
-      <div className={twMerge('form-control', className)}>
-        {label && (
-          <label className="label" htmlFor={id}>
-            <span className="label-text">{label}</span>
-          </label>
-        )}
+      <fieldset className={twMerge('fieldset', className)}>
+        {label && <legend className="fieldset-legend">{label}</legend>}
         <textarea
           ref={ref}
           className={twJoin(
@@ -28,18 +23,14 @@ export const TextareaInput = forwardRef<HTMLTextAreaElement, TextareaInputProps>
           {...other}
         ></textarea>
         {error && (
-          <div className="label">
-            <Typography color="error" content={false} className="label-text-alt">
+          <div className="fieldset-label">
+            <Typography color="error" content={false}>
               {error}
             </Typography>
           </div>
         )}
-        {hint && !error && (
-          <div className="label">
-            <span className="label-text-alt">{hint}</span>
-          </div>
-        )}
-      </div>
+        {hint && !error && <div className="fieldset-label">{hint}</div>}
+      </fieldset>
     );
   }
 );
