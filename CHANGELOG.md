@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/stanek-r/gtomy-lib/compare/v2.0.1...v2.0.2) (2025-02-20)
+
+
+### Features
+
+* add ColumnPage and WithComponent ([55ebc9e](https://github.com/stanek-r/gtomy-lib/commit/55ebc9e3927880ef570ae91cda292fd16ff2b946))
+
+
+### Bug Fixes
+
+* input fieldsets ([3eb4692](https://github.com/stanek-r/gtomy-lib/commit/3eb4692eeb661106f95fc7694009342369c7984c))
+* storybook build ([b618d9e](https://github.com/stanek-r/gtomy-lib/commit/b618d9e135cdb3b5d35a5a8ce9f153f43768eb34))
+
 ### [2.0.1](https://github.com/stanek-r/gtomy-lib/compare/v2.0.0...v2.0.1) (2025-02-20)
 
 
