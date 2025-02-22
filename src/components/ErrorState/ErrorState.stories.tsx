@@ -18,6 +18,18 @@ type Story = StoryObj<typeof ErrorState>;
 
 export const Default: Story = {
   render: () => {
-    return <ErrorState error={new Error()} showRetry={true} retry={() => console.log('Test')} />;
+    return (
+      <ErrorState
+        translation={{
+          error: 'Error occured',
+          retry: 'Try again',
+          badGateway: 'Server unreachable',
+          noPermission: "You don't have permission to view this.",
+        }}
+        error={new Error()}
+        showRetry={true}
+        retry={() => console.log('Test')}
+      />
+    );
   },
 };
