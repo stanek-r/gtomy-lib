@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement, ReactNode } from 'react';
+import { FunctionComponent, PropsWithChildren, ReactElement } from 'react';
 
 export const columnPageWidthClasses = {
   sm: 'w-[640px]',
@@ -8,10 +8,9 @@ export const columnPageWidthClasses = {
   '2xl': 'w-[1536px]',
 };
 
-export interface ColumnPageProps {
+export interface ColumnPageProps extends PropsWithChildren {
   MenuComponent?: FunctionComponent | ReactElement;
   FooterComponent?: FunctionComponent | ReactElement;
-  children?: ReactNode;
   width?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   className?: string;
 }

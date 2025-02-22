@@ -3,6 +3,7 @@ export * from './icons/Instagram';
 export * from './icons/Threads';
 export * from './icons/X';
 export * from './icons/Youtube';
+export * from './layout/CenteredPage';
 export * from './layout/ColumnPage';
 export * from './layout/WithComponent';
 export * from './components/Button/Button';
