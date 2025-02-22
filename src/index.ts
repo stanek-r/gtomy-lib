@@ -1,3 +1,8 @@
+export * from './icons/Bluesky';
+export * from './icons/Instagram';
+export * from './icons/Threads';
+export * from './icons/X';
+export * from './icons/Youtube';
 export * from './layout/ColumnPage';
 export * from './layout/WithComponent';
 export * from './components/Button/Button';
@@ -7,6 +12,7 @@ export * from './components/CloudflareImage/CloudflareImage';
 export * from './components/CodeMockup/CodeMockup';
 export * from './components/ErrorState/ErrorState';
 export * from './components/FileInput/FileInput';
+export * from './components/Gapper/Gapper';
 export * from './components/Icon/Icon';
 export * from './components/LoadingState/LoadingState';
 export * from './components/QueryWrapper/combineQueryWrapperProps';
