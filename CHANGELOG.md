@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/stanek-r/gtomy-lib/compare/v2.0.2...v2.1.0) (2025-02-22)
+
+
+### Features
+
+* add CenteredPage component ([dc226c7](https://github.com/stanek-r/gtomy-lib/commit/dc226c772947f463550ff4c3b8f01a1c1c9165d9))
+* add Gapper component ([b885c9f](https://github.com/stanek-r/gtomy-lib/commit/b885c9fc79997123d2db81059d540e0d84e4aea7))
+* add social icons ([18c61f2](https://github.com/stanek-r/gtomy-lib/commit/18c61f219f6f4f216716571e152ce72c39ce90bb))
+
+
+### Bug Fixes
+
+* checkbox layout ([cbace75](https://github.com/stanek-r/gtomy-lib/commit/cbace75d28fb8fe6ba8605da1434714c64bd93ff))
+* images and translations in stories ([226e731](https://github.com/stanek-r/gtomy-lib/commit/226e73142205bfc9a46e09cf55fe5ec220589fd3))
+* storybook theme ([c3e01de](https://github.com/stanek-r/gtomy-lib/commit/c3e01dee522f49b6bb698f239342db30a5e6e0c1))
+
 ### [2.0.2](https://github.com/stanek-r/gtomy-lib/compare/v2.0.1...v2.0.2) (2025-02-20)
 
 
