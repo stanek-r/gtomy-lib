@@ -5,22 +5,26 @@ import { Typography } from '@/components/Typography/Typography';
 import { CloudflareImage } from '@/components/CloudflareImage/CloudflareImage';
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ label, error, hint, className, type, imageId, checked, outlined, ...other }: CheckboxProps, ref) => {
+  ({ label, error, hint, className, type, imageId, checked, outlined, imagesUrl, ...other }: CheckboxProps, ref) => {
     const id = useId();
 
     const classes = twMerge(
-      'form-control',
+      'fieldset',
       outlined && checked && 'outline outline-1 outline-offset-4 outline-base-content rounded',
       imageId && 'w-52',
       className
     );
 
     return (
-      <div className={classes}>
-        <label className="label cursor-pointer flex-col">
-          {imageId && (
+      <fieldset className={classes}>
+        <label className="fieldset-label cursor-pointer flex-col">
+          {imageId && imagesUrl && (
             <div className="mb-3 px-1">
-              <CloudflareImage imageId={imageId} className="size-[12.5rem] object-cover shadow-lg" />
+              <CloudflareImage
+                imagesUrl={imagesUrl}
+                imageId={imageId}
+                className="size-[12.5rem] object-cover shadow-lg"
+              />
             </div>
           )}
           <div className="flex w-full justify-between">
@@ -36,18 +40,14 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           </div>
         </label>
         {error && (
-          <div className="label">
-            <Typography color="error" content={false} className="label-text-alt">
+          <div className="fieldset-label">
+            <Typography color="error" content={false}>
               {error}
             </Typography>
           </div>
         )}
-        {hint && !error && (
-          <div className="label">
-            <span className="label-text-alt">{hint}</span>
-          </div>
-        )}
-      </div>
+        {hint && !error && <div className="fieldset-label">{hint}</div>}
+      </fieldset>
     );
   }
 );
