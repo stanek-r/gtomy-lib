@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { FunctionComponent, ReactElement, useCallback, useMemo, useState } from 'react';
+import { FunctionComponent, ReactElement, useState } from 'react';
 import { BaseDialogProps } from '@/organisms/dialog/BaseDialog.core';
 import { DialogElement, DialogElementProps } from '@/organisms/dialog/DialogElement';
 import { BaseDialog } from '@/organisms/dialog/BaseDialog';
@@ -23,18 +23,15 @@ interface UseDialogReturn {
 function useDialog(dialog: FunctionComponent<BaseDialogProps> | ReactElement): UseDialogReturn {
   const [open, setOpen] = useState<boolean>(false);
 
-  const onOpenChange = useCallback((_open: boolean) => setOpen(_open), [setOpen]);
-  const openDialog = useCallback(() => setOpen(true), [setOpen]);
-  const closeDialog = useCallback(() => setOpen(false), [setOpen]);
+  const onOpenChange = (_open: boolean) => setOpen(_open);
+  const openDialog = () => setOpen(true);
+  const closeDialog = () => setOpen(false);
 
-  const dialogElementProps = useMemo(
-    () => ({
-      dialog,
-      open,
-      onOpenChange,
-    }),
-    [dialog, open, onOpenChange]
-  );
+  const dialogElementProps = {
+    dialog,
+    open,
+    onOpenChange,
+  };
 
   return {
     openDialog,

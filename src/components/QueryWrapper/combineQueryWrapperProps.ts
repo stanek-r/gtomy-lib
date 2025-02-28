@@ -16,5 +16,6 @@ export function combineQueryWrapperProps(
           : undefined,
     showRetry: wrapperProps1.showRetry || wrapperProps2.showRetry,
     retry: wrapperProps1.showRetry ? wrapperProps1.retry : wrapperProps2.retry,
+    translation: wrapperProps1.translation,
   };
 }

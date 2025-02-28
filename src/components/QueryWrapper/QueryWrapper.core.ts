@@ -8,5 +8,11 @@ export interface QueryWrapperProps {
   error: unknown;
   showRetry?: boolean;
   retry: () => void;
-  loadingMessage?: string;
+  translation: {
+    loadingMessage?: string;
+    retry: string;
+    error: string;
+    noPermission: string;
+    badGateway: string;
+  };
 }

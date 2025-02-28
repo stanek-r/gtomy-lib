@@ -7,7 +7,7 @@ export type ConfirmationDialogOnAction = ({
 }: {
   onClose: () => void;
   onError: (error: unknown) => void;
-}) => void;
+}) => Promise<void> | void;
 
 export interface ConfirmationDialogProps extends BaseDialogProps {
   title: string;
@@ -15,4 +15,10 @@ export interface ConfirmationDialogProps extends BaseDialogProps {
   confirm: string;
   cancel: string;
   onAction: ConfirmationDialogOnAction;
+  translation: {
+    retry: string;
+    error: string;
+    noPermission: string;
+    badGateway: string;
+  };
 }
