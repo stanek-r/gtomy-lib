@@ -1,10 +1,9 @@
-import { ComponentPropsWithRef } from 'react';
+import { ComponentPropsWithRef, FunctionComponent } from 'react';
 
 export interface CheckboxProps extends ComponentPropsWithRef<'input'> {
   label?: string;
   hint?: string;
   error?: string;
-  imagesUrl?: string;
-  imageId?: string;
   outlined?: boolean;
+  Image?: FunctionComponent<{ className?: string }>;
 }

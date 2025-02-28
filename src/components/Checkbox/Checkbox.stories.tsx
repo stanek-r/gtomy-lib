@@ -26,12 +26,17 @@ export const WithFormError: Story = {
   },
 };
 
+function CheckboxImage() {
+  const imagesUrl = 'https://gtomy.net/images';
+  const imageId = '5b46b9fd-8d41-4fbc-987f-3e7fd0e99600';
+  return <img src={`${imagesUrl}/${imageId}/original`} alt="Checkbox image" />;
+}
+
 export const WithImage: Story = {
   args: {
     label: 'Label',
     hint: 'Hint',
-    imagesUrl: 'https://gtomy.net/images',
-    imageId: '5b46b9fd-8d41-4fbc-987f-3e7fd0e99600',
+    Image: CheckboxImage,
   },
   render: (args) => (
     <div className="w-52">
