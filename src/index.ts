@@ -9,7 +9,6 @@ export * from './layout/WithComponent';
 export * from './components/Button/Button';
 export * from './components/ButtonIcon/ButtonIcon';
 export * from './components/Checkbox/Checkbox';
-export * from './components/CloudflareImage/CloudflareImage';
 export * from './components/CodeMockup/CodeMockup';
 export * from './components/ErrorState/ErrorState';
 export * from './components/FileInput/FileInput';

@@ -10,6 +10,11 @@ const preview: Preview = {
       },
     },
   },
+  decorators: (Story) => (
+    <div className="text-base text-base-content">
+      <Story />
+    </div>
+  ),
 };
 
 export default preview;

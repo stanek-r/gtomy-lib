@@ -522,7 +522,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* add CLoudflareStream component ([32c4524](https://github.com/stanek-r/gtomy-lib/commit/32c4524e14bbc1cdf7d3859e53b59c8e87721ebb))
+* add CloudflareStream component ([32c4524](https://github.com/stanek-r/gtomy-lib/commit/32c4524e14bbc1cdf7d3859e53b59c8e87721ebb))
 * add Checkbox component ([0cc07d2](https://github.com/stanek-r/gtomy-lib/commit/0cc07d2cd7d2492c728e74c0df7677858019b48b))
 * add Checkbox image support ([ba9b521](https://github.com/stanek-r/gtomy-lib/commit/ba9b521d8b6f0ba4500884160374a972f8363788))
 * add useTitle, rework DialogProvider ([7e13b05](https://github.com/stanek-r/gtomy-lib/commit/7e13b0563e62ce4f37a148803249771c5918eb6f))

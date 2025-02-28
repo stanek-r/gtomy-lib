@@ -13,7 +13,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         <input
           ref={ref}
           type={type ?? 'text'}
-          className={twJoin('input input-bordered', error && 'input-error', sizeClass)}
+          className={twJoin('input', error && 'input-error', sizeClass)}
           {...other}
         >
           {children}

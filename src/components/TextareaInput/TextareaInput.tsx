@@ -12,12 +12,7 @@ export const TextareaInput = forwardRef<HTMLTextAreaElement, TextareaInputProps>
         {label && <legend className="fieldset-legend">{label}</legend>}
         <textarea
           ref={ref}
-          className={twJoin(
-            'textarea textarea-bordered',
-            error && 'textarea-error',
-            resizable ? 'resize-y' : 'resize-none',
-            sizeClass
-          )}
+          className={twJoin('textarea', error && 'textarea-error', resizable ? 'resize-y' : 'resize-none', sizeClass)}
           placeholder="Write something interesting"
           rows={rows ?? 5}
           {...other}

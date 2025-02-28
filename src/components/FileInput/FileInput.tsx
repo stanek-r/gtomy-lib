@@ -8,12 +8,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     return (
       <fieldset className={twMerge('fieldset', className)}>
         {label && <label className="fieldset-legend">{label}</label>}
-        <input
-          ref={ref}
-          type="file"
-          className={twJoin('file-input file-input-bordered', size && fileInputSizeClasses[size])}
-          {...other}
-        >
+        <input ref={ref} type="file" className={twJoin('file-input', size && fileInputSizeClasses[size])} {...other}>
           {children}
         </input>
         {error && (

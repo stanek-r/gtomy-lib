@@ -10,7 +10,7 @@ export const SelectInput = forwardRef<HTMLSelectElement, SelectInputProps>(
     return (
       <fieldset className={twMerge('fieldset', className)}>
         {label && <legend className="fieldset-legend">{label}</legend>}
-        <select ref={ref} className={twJoin('select select-bordered', sizeClass)} {...other}>
+        <select ref={ref} className={twJoin('select', sizeClass)} {...other}>
           {allowEmpty && <option value="">Not selected</option>}
           {options.map((option) => (
             <option key={option.value} value={option.value}>
