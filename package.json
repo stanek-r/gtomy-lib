@@ -30,18 +30,9 @@
       "plugin:storybook/recommended"
     ]
   },
-  "peerDependencies": {
-    "@heroicons/react": "2.2.0",
-    "@radix-ui/react-dialog": "^1.1.6",
-    "axios": "^1.7.9",
-    "js-file-download": "^0.4.12",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-hot-toast": "^2.5.2",
-    "tailwind-merge": "^3.0.1"
-  },
   "devDependencies": {
     "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
     "@chromatic-com/storybook": "^3.2.4",
     "@eslint/js": "^9.19.0",
     "@rollup/plugin-alias": "^5.1.1",
@@ -84,5 +75,15 @@
     "storybook": "^8.5.6",
     "tailwindcss": "^4.0.6",
     "typescript-eslint": "^8.24.0"
+  },
+  "peerDependencies": {
+    "@heroicons/react": "2.2.0",
+    "@radix-ui/react-dialog": "^1.1.6",
+    "axios": "^1.7.9",
+    "js-file-download": "^0.4.12",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
+    "tailwind-merge": "^3.0.1"
   }
 }
