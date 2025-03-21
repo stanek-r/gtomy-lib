@@ -30,7 +30,7 @@
       "plugin:storybook/recommended"
     ]
   },
-  "dependencies": {
+  "peerDependencies": {
     "@heroicons/react": "2.2.0",
     "@radix-ui/react-dialog": "^1.1.6",
     "axios": "^1.7.9",
