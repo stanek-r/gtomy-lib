@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/stanek-r/gtomy-lib/compare/v2.1.0...v2.2.0) (2025-03-21)
+
+
+### Features
+
+* add react compiler ([6a8ccdc](https://github.com/stanek-r/gtomy-lib/commit/6a8ccdc26a108758596223a439a965a1a87f96b6))
+* remove CloudFlareImage componnet and add Image prop to Checkbox ([d56866c](https://github.com/stanek-r/gtomy-lib/commit/d56866cdfcac66046c32b9f2c01d71153a95bc04))
+
+
+### Bug Fixes
+
+* add error translation prop to components ([71b0e5c](https://github.com/stanek-r/gtomy-lib/commit/71b0e5cac32628e9c1ae1f1d647fe27d38c3515c))
+* move dependencies to peer ([910d0c9](https://github.com/stanek-r/gtomy-lib/commit/910d0c9f8d6c51eb0d41f51487a1ad3931586995))
+* remove forwardRef from components ([ad30475](https://github.com/stanek-r/gtomy-lib/commit/ad30475ded5e43c5f9b62bb37fbb7ebabcb746ab))
+* remove old classes from daisy ui ([69c7c89](https://github.com/stanek-r/gtomy-lib/commit/69c7c89a1a23583625da8e304f69ce75ae4d3425))
+
 ## [2.1.0](https://github.com/stanek-r/gtomy-lib/compare/v2.0.2...v2.1.0) (2025-02-22)
 
 
