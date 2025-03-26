@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.3](https://github.com/stanek-r/gtomy-lib/compare/v1.2.2...v1.2.3) (2025-03-26)
+
+
+### Features
+
+* make menu button link only ([454b284](https://github.com/stanek-r/gtomy-lib/commit/454b2840f861ba03551f9773daef2e4aa750e810))
+
 ### [1.2.2](https://github.com/stanek-r/gtomy-lib/compare/v1.2.1...v1.2.2) (2024-12-25)
 
 
