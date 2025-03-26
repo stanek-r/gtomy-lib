@@ -1,4 +1,3 @@
-export * from './AuthDialog';
 export * from './GoogleLoginButton';
 export * from './LoginButton';
 export * from './LoginForm';

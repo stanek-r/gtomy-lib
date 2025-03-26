@@ -10,3 +10,5 @@ export * from './useRequest';
 export * from './useRequestAccess';
 export * from './useTitle';
 export * from './useTranslation';
+export * from './query';
+export * from './storage';
