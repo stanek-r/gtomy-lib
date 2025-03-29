@@ -13,14 +13,12 @@ export function useBlobstorage({ path, onError, storageUrl }: UseBlobstorageProp
   const uploadImage = async (file: File): Promise<BlobstorageImage | null> => {
     const formData = new FormData();
     formData.append('image', file as File);
-    return post<BlobstorageImage>(path, formData, { maxContentLength: Infinity, maxBodyLength: Infinity })
-      .then((image) => {
-        return image;
-      })
-      .catch((e) => {
+    return post<BlobstorageImage>(path, formData, { maxContentLength: Infinity, maxBodyLength: Infinity }).catch(
+      (e) => {
         onError(e);
         return null;
-      });
+      }
+    );
   };
 
   const deleteImage = async (imageId?: string): Promise<void> => {

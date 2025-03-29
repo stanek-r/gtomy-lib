@@ -7,9 +7,9 @@ export function useRequest(backendUrl: string): UseRequest {
   });
 
   return {
-    get: (url, config) => client.get(url, config),
-    post: (url, data, config) => client.post(url, data, config),
-    put: (url, data, config) => client.put(url, data, config),
-    delete: (url, config) => client.delete(url, config),
+    get: (url, config) => client.get(url, config).then((response) => response.data),
+    post: (url, data, config) => client.post(url, data, config).then((response) => response.data),
+    put: (url, data, config) => client.put(url, data, config).then((response) => response.data),
+    delete: (url, config) => client.delete(url, config).then((response) => response.data),
   };
 }

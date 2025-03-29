@@ -16,14 +16,12 @@ export function useFilestorage({ path, storageUrl, onError }: UseFilestorageProp
   const uploadFile = async (file: File): Promise<NewFileStorageDto | null> => {
     const formData = new FormData();
     formData.append('file', file);
-    return post<NewFileStorageDto>(path, formData, { maxContentLength: Infinity, maxBodyLength: Infinity })
-      .then((file) => {
-        return file;
-      })
-      .catch((e) => {
+    return post<NewFileStorageDto>(path, formData, { maxContentLength: Infinity, maxBodyLength: Infinity }).catch(
+      (e) => {
         onError(e);
         return null;
-      });
+      }
+    );
   };
 
   const deleteFile = async (fileId: string): Promise<void> => {
