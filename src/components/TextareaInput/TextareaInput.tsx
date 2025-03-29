@@ -18,7 +18,12 @@ export function TextareaInput({
     <fieldset className={twMerge('fieldset', className)}>
       {label && <legend className="fieldset-legend">{label}</legend>}
       <textarea
-        className={twJoin('textarea', error && 'textarea-error', resizable ? 'resize-y' : 'resize-none', sizeClass)}
+        className={twJoin(
+          'textarea w-full',
+          error && 'textarea-error',
+          resizable ? 'resize-y' : 'resize-none',
+          sizeClass
+        )}
         placeholder="Write something interesting"
         rows={rows ?? 5}
         {...other}

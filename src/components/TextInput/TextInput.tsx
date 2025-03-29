@@ -8,7 +8,7 @@ export function TextInput({ children, className, label, size = 'md', hint, error
   return (
     <fieldset className={twMerge('fieldset', className)}>
       {label && <legend className="fieldset-legend">{label}</legend>}
-      <input type={type ?? 'text'} className={twJoin('input', error && 'input-error', sizeClass)} {...other}>
+      <input type={type ?? 'text'} className={twJoin('input w-full', error && 'input-error', sizeClass)} {...other}>
         {children}
       </input>
       {error && (

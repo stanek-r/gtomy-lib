@@ -17,7 +17,7 @@ export function SelectInput({
   return (
     <fieldset className={twMerge('fieldset', className)}>
       {label && <legend className="fieldset-legend">{label}</legend>}
-      <select className={twJoin('select', sizeClass)} {...other}>
+      <select className={twJoin('select w-full', sizeClass)} {...other}>
         {allowEmpty && <option value="">Not selected</option>}
         {options.map((option) => (
           <option key={option.value} value={option.value}>
