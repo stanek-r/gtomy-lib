@@ -6,7 +6,6 @@ import alias from '@rollup/plugin-alias';
 import copy from 'rollup-plugin-copy';
 import del from 'rollup-plugin-delete';
 import { dts } from 'rollup-plugin-dts';
-import { babel } from '@rollup/plugin-babel';
 import path from 'path';
 
 export default [
@@ -27,10 +26,6 @@ export default [
           { src: './package.json', dest: 'dist' },
           { src: './README.md', dest: 'dist' },
         ],
-      }),
-      babel({
-        babelHelpers: 'bundled',
-        extensions: ['.ts', '.tsx'],
       }),
     ],
   },

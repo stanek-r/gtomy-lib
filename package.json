@@ -31,12 +31,9 @@
     ]
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.26.3",
-    "@babel/preset-typescript": "^7.26.0",
     "@chromatic-com/storybook": "^3.2.4",
     "@eslint/js": "^9.19.0",
     "@rollup/plugin-alias": "^5.1.1",
-    "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-typescript": "^12.1.2",
@@ -51,7 +48,6 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@types/react-lazy-load-image-component": "^1.6.4",
-    "babel-plugin-react-compiler": "^19.0.0-beta-3229e95-20250315",
     "ctix": "^2.7.0",
     "daisyui": "^5.0.6",
     "eslint": "^9.19.0",
