@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.2](https://github.com/stanek-r/gtomy-lib/compare/v2.2.1...v2.2.2) (2025-03-29)
+
+
+### Bug Fixes
+
+* axios response mapping ([c4705ba](https://github.com/stanek-r/gtomy-lib/commit/c4705ba43232be5d02923fcc042859f55a1ac38c))
+* remove required path from useBlobstorage ([d295484](https://github.com/stanek-r/gtomy-lib/commit/d295484cf270f04d27c9f1d8f696cbcd4d9d00d3))
+
 ### [2.2.1](https://github.com/stanek-r/gtomy-lib/compare/v2.2.0...v2.2.1) (2025-03-29)
 
 
