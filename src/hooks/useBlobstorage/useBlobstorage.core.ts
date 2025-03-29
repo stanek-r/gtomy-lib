@@ -9,7 +9,7 @@ export interface BlobstorageImage {
 
 export interface UseBlobstorageProps {
   onError: (error: unknown) => void;
-  path: string;
+  path?: string;
   storageUrl: string;
 }
 
