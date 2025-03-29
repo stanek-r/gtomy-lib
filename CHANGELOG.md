@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.1](https://github.com/stanek-r/gtomy-lib/compare/v2.2.0...v2.2.1) (2025-03-29)
+
+
+### Bug Fixes
+
+* add w-full class to inputs ([fbafc77](https://github.com/stanek-r/gtomy-lib/commit/fbafc77e0de100fd45e221efb004f45cb25339aa))
+* remove react compiler ([acc34a1](https://github.com/stanek-r/gtomy-lib/commit/acc34a1886365da7dd772ae1ea7ccb72aa6c0d7f))
+
 ## [2.2.0](https://github.com/stanek-r/gtomy-lib/compare/v2.1.0...v2.2.0) (2025-03-21)
 
 
