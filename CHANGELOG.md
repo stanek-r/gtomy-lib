@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.5](https://github.com/stanek-r/gtomy-lib/compare/v2.2.4...v2.2.5) (2025-04-05)
+
+
+### Bug Fixes
+
+* dialog title error ([d45d393](https://github.com/stanek-r/gtomy-lib/commit/d45d393e1e47b5f4ef4dc267e2f158f537dc6e8d))
+* do not display cookies on first render ([435bde6](https://github.com/stanek-r/gtomy-lib/commit/435bde6f7890138d0e7456f0796c80f5a1a4269d))
+
 ### [2.2.4](https://github.com/stanek-r/gtomy-lib/compare/v2.2.3...v2.2.4) (2025-04-05)
 
 
