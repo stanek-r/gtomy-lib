@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.4](https://github.com/stanek-r/gtomy-lib/compare/v2.2.3...v2.2.4) (2025-04-05)
+
+
+### Bug Fixes
+
+* replace react-use-cookie with js-cookie ([29a40a6](https://github.com/stanek-r/gtomy-lib/commit/29a40a6f8e219754001d2efddeb4b3b806b862bb))
+
 ### [2.2.3](https://github.com/stanek-r/gtomy-lib/compare/v2.2.2...v2.2.3) (2025-04-05)
 
 
