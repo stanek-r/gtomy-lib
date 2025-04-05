@@ -17,7 +17,7 @@ export default [
       sourcemap: false,
     },
     plugins: [
-      peerDepsExternal({ includeDependencies: true }),
+      peerDepsExternal(),
       typescript({ tsconfig: './tsconfig.json' }),
       resolve(),
       commonjs(),
