@@ -21,7 +21,7 @@ export interface CookiesProps {
 }
 
 export function Cookies({ translation }: CookiesProps) {
-  const [cookiesAccepted, setCookiesAccepted] = useCookie('cookiesAccepted');
+  const [cookiesAccepted, setCookiesAccepted] = useCookie('cookiesAccepted', 'false');
 
   const dialog = useMemo(
     () => <InfoDialog title={translation.dialog.title} text={translation.dialog.text} />,
@@ -35,7 +35,7 @@ export function Cookies({ translation }: CookiesProps) {
     });
   }, [setCookiesAccepted]);
 
-  if (cookiesAccepted === 'true') {
+  if (cookiesAccepted !== 'false') {
     return null;
   }
 
