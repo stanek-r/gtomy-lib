@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ConfirmationDialogProps } from '@/organisms/dialog/confirmation/ConfirmationDialog.core';
 import { BaseDialog } from '@/organisms/dialog/BaseDialog';
 import { Button } from '@/components/Button/Button';
@@ -12,12 +12,12 @@ export function ConfirmationDialog({
   confirm,
   cancel,
   translation,
+  onOpenChange,
   ...props
 }: ConfirmationDialogProps) {
   const [error, setError] = useState<unknown>();
-  const { onOpenChange } = props;
 
-  const onClose = () => onOpenChange?.(false);
+  const onClose = useCallback(() => onOpenChange?.(false), [onOpenChange]);
 
   return (
     <BaseDialog
@@ -29,6 +29,7 @@ export function ConfirmationDialog({
           <Button onClick={onClose}>{cancel}</Button>
         </>
       }
+      onOpenChange={onOpenChange}
       {...props}
     >
       <Typography size="3xl">{title}</Typography>

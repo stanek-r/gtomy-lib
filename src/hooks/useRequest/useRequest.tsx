@@ -1,15 +1,37 @@
 import axios from 'axios';
 import { UseRequest } from '@/hooks/useRequest/useRequest.core';
+import { useCallback, useMemo } from 'react';
 
 export function useRequest(backendUrl: string): UseRequest {
-  const client = axios.create({
-    baseURL: backendUrl,
-  });
+  const client = useMemo(
+    () =>
+      axios.create({
+        baseURL: backendUrl,
+      }),
+    [backendUrl]
+  );
+
+  const get: UseRequest['get'] = useCallback(
+    (url, config) => client.get(url, config).then((response) => response.data),
+    [client]
+  );
+  const post: UseRequest['post'] = useCallback(
+    (url, data, config) => client.post(url, data, config).then((response) => response.data),
+    [client]
+  );
+  const put: UseRequest['put'] = useCallback(
+    (url, data, config) => client.put(url, data, config).then((response) => response.data),
+    [client]
+  );
+  const deleteRequest: UseRequest['delete'] = useCallback(
+    (url, config) => client.delete(url, config).then((response) => response.data),
+    [client]
+  );
 
   return {
-    get: (url, config) => client.get(url, config).then((response) => response.data),
-    post: (url, data, config) => client.post(url, data, config).then((response) => response.data),
-    put: (url, data, config) => client.put(url, data, config).then((response) => response.data),
-    delete: (url, config) => client.delete(url, config).then((response) => response.data),
+    get,
+    post,
+    put,
+    delete: deleteRequest,
   };
 }

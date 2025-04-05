@@ -4,6 +4,7 @@ import { twJoin } from 'tailwind-merge';
 import { ExtendedBaseDialogProps, maxWidthOptions } from '@/organisms/dialog/BaseDialog.core';
 import { Icon } from '@/components/Icon/Icon';
 import { ButtonIcon } from '@/components/ButtonIcon/ButtonIcon';
+import { useCallback } from 'react';
 
 export function BaseDialog({
   open,
@@ -17,11 +18,14 @@ export function BaseDialog({
 }: ExtendedBaseDialogProps) {
   const maxWidthClasses = maxWidth ? maxWidthOptions[maxWidth] : maxWidthOptions.md;
 
-  const onOpenChangeHandler = (open: boolean) => {
-    if (closable) {
-      onOpenChange?.(open);
-    }
-  };
+  const onOpenChangeHandler = useCallback(
+    (open: boolean) => {
+      if (closable) {
+        onOpenChange?.(open);
+      }
+    },
+    [onOpenChange, closable]
+  );
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChangeHandler}>

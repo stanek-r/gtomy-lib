@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { FunctionComponent, ReactElement, useState } from 'react';
-import { BaseDialogProps } from '@/organisms/dialog/BaseDialog.core';
-import { DialogElement, DialogElementProps } from '@/organisms/dialog/DialogElement';
+import { DialogElement } from '@/organisms/dialog/DialogElement';
 import { BaseDialog } from '@/organisms/dialog/BaseDialog';
 import { Button } from '@/components/Button/Button';
 import { Typography } from '@/components/Typography/Typography';
+import { useDialog } from '@/organisms/dialog/useDialog';
 
 const meta: Meta<typeof BaseDialog> = {
   title: 'Organisms/Dialog',
@@ -13,32 +12,6 @@ const meta: Meta<typeof BaseDialog> = {
 };
 
 type Story = StoryObj<typeof BaseDialog>;
-
-interface UseDialogReturn {
-  openDialog: () => void;
-  closeDialog: () => void;
-  dialogElementProps: DialogElementProps;
-}
-
-function useDialog(dialog: FunctionComponent<BaseDialogProps> | ReactElement): UseDialogReturn {
-  const [open, setOpen] = useState<boolean>(false);
-
-  const onOpenChange = (_open: boolean) => setOpen(_open);
-  const openDialog = () => setOpen(true);
-  const closeDialog = () => setOpen(false);
-
-  const dialogElementProps = {
-    dialog,
-    open,
-    onOpenChange,
-  };
-
-  return {
-    openDialog,
-    closeDialog,
-    dialogElementProps,
-  };
-}
 
 export default meta;
 export const Default: Story = {
