@@ -18,18 +18,16 @@ export const Default: Story = {
   render: (args) => {
     const actions = (
       <>
-        <Dialog.Close asChild>
-          <Button>Hello</Button>
-        </Dialog.Close>
-        <Dialog.Close asChild>
-          <Button>there</Button>
-        </Dialog.Close>
+        <Button as={Dialog.Close}>Hello</Button>
+        <Button as={Dialog.Close}>there</Button>
       </>
     );
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { openDialog, dialogElementProps } = useDialog(
       <BaseDialog actions={actions} {...args}>
-        <Typography size="3xl">Lorem ipsum dolor sit amet</Typography>
+        <Typography as={Dialog.Title} size="3xl">
+          Lorem ipsum dolor sit amet
+        </Typography>
         <Typography as="p">
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In laoreet, magna id viverra tincidunt, sem odio
           bibendum justo, vel imperdiet sapien wisi sed libero. Nullam sapien sem, ornare ac, nonummy non, lobortis a
