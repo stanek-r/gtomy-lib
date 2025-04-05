@@ -8,11 +8,11 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * add Reddit icon ([d23d1ff](https://github.com/stanek-r/gtomy-lib/commit/d23d1ff2c329749d2f9e5538266926871dd9e963))
+* add Cookies banner and dialog ([95869e2](https://github.com/stanek-r/gtomy-lib/commit/95869e26d5018f3555e4a1efa2bd82eda5cfa289))
 
 
 ### Bug Fixes
 
-* add Cookies banner and dialog ([95869e2](https://github.com/stanek-r/gtomy-lib/commit/95869e26d5018f3555e4a1efa2bd82eda5cfa289))
 * add useCallbacks to client components ([1cdaecb](https://github.com/stanek-r/gtomy-lib/commit/1cdaecb865e67030fdb817c087c6fb81422ef119))
 
 ### [2.2.2](https://github.com/stanek-r/gtomy-lib/compare/v2.2.1...v2.2.2) (2025-03-29)
