@@ -28,6 +28,7 @@ export * from './components/TextInput/TextInput';
 export * from './components/Toggle/Toggle';
 export * from './components/Typography/Typography';
 export * from './hooks/useBlobstorage/useBlobstorage';
+export * from './hooks/useCookie/useCookie';
 export * from './hooks/useFileStorage/useFileStorage';
 export * from './hooks/useRequest/useRequest';
 export * from './organisms/cookies/Cookies';

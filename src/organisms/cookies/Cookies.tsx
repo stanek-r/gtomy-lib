@@ -2,9 +2,10 @@ import { useCallback, useMemo } from 'react';
 import { Typography } from '@/components/Typography/Typography';
 import { Button } from '@/components/Button/Button';
 import { InfoDialog } from '@/organisms/dialog/info/InfoDialog';
-import useCookie from 'react-use-cookie';
 import { useDialog } from '@/organisms/dialog/useDialog';
 import { DialogElement } from '@/organisms/dialog/DialogElement';
+import { useCookie } from '@/hooks/useCookie/useCookie';
+import { addDays } from 'date-fns';
 
 export interface CookiesProps {
   translation: {
@@ -20,7 +21,7 @@ export interface CookiesProps {
 }
 
 export function Cookies({ translation }: CookiesProps) {
-  const [cookiesAccepted, setCookiesAccepted] = useCookie('cookiesAccepted', 'false');
+  const [cookiesAccepted, setCookiesAccepted] = useCookie('cookiesAccepted');
 
   const dialog = useMemo(
     () => <InfoDialog title={translation.dialog.title} text={translation.dialog.text} />,
@@ -30,7 +31,7 @@ export function Cookies({ translation }: CookiesProps) {
 
   const acceptCookies = useCallback(() => {
     setCookiesAccepted('true', {
-      days: 365,
+      expires: addDays(new Date(), 365),
     });
   }, [setCookiesAccepted]);
 
