@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.7](https://github.com/stanek-r/gtomy-lib/compare/v2.2.6...v2.2.7) (2025-08-25)
+
+
+### Bug Fixes
+
+* heroicons dependency and audit ([35f95ae](https://github.com/stanek-r/gtomy-lib/commit/35f95aef0394ba1e1a1c3cb3b9753bf35d671763))
+
 ### [2.2.6](https://github.com/stanek-r/gtomy-lib/compare/v2.2.5...v2.2.6) (2025-08-25)
 
 
