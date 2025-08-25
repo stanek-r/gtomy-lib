@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/stanek-r/gtomy-lib/compare/v2.2.7...v2.3.0) (2025-08-25)
+
+
+### Features
+
+* update `useRequest` hook for config-based initialization and rename `delete` to `del` ([5256807](https://github.com/stanek-r/gtomy-lib/commit/5256807f27ffacce4da6575e1f70063c029d6ce7))
+
+
+### Bug Fixes
+
+* ensure consistent layout structure by adding parent div with flex and min-height styles ([97b13b9](https://github.com/stanek-r/gtomy-lib/commit/97b13b99da4cc2189608cfe2e2150c89f6c47b41))
+* replace `twJoin` with `twMerge` in Button and ButtonIcon components for better class merging ([090ce48](https://github.com/stanek-r/gtomy-lib/commit/090ce4889ef275dc93e87c411207aed4a048a0fb))
+* update React and related dependencies to the latest versions ([5a4b3b6](https://github.com/stanek-r/gtomy-lib/commit/5a4b3b652c7b29820daf8bf29146a787ce8851e5))
+
 ### [2.2.7](https://github.com/stanek-r/gtomy-lib/compare/v2.2.6...v2.2.7) (2025-08-25)
 
 
