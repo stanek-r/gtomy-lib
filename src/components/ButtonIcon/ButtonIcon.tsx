@@ -1,5 +1,5 @@
 import { ElementType } from 'react';
-import { twJoin } from 'tailwind-merge';
+import { twMerge } from 'tailwind-merge';
 import { PropsAs } from '@/utils/typeHelpers.core';
 import { ButtonIconProps, buttonVariantClasses } from '@/components/ButtonIcon/ButtonIcon.core';
 import { buttonColorClasses, buttonSizeClasses } from '@/components/Button/Button.core';
@@ -19,7 +19,7 @@ export function ButtonIcon<T extends ElementType = 'button'>({
   const Component = as ?? 'button';
   const type = Component === 'button' ? 'button' : undefined;
 
-  const classes = twJoin(
+  const classes = twMerge(
     'btn',
     color && buttonColorClasses[color],
     size && buttonSizeClasses[size],
