@@ -2,11 +2,11 @@ import { twJoin, twMerge } from 'tailwind-merge';
 import { ToggleProps, toggleSizeClasses } from '@/components/Toggle/Toggle.core';
 import { Typography } from '@/components/Typography/Typography';
 
-export function Toggle({ label, error, hint, className, type, checked, size, ...other }: ToggleProps) {
+export function Toggle({ label, error, hint, className, type, checked, size, vertical, ...other }: ToggleProps) {
   return (
     <fieldset className={twMerge('fieldset', className)}>
       <label className="fieldset-label cursor-pointer flex-col">
-        <div className="flex w-full justify-between">
+        <div className={twJoin('flex w-full gap-2', vertical ? 'flex-col' : 'flex-row justify-between')}>
           {label}
           <input
             type={type ?? 'checkbox'}

@@ -12,4 +12,5 @@ export interface ToggleProps extends Omit<ComponentPropsWithRef<'input'>, 'size'
   hint?: string;
   error?: string;
   size?: 'xs' | 'sm' | 'md' | 'lg';
+  vertical?: boolean;
 }
