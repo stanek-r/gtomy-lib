@@ -25,7 +25,6 @@ export const loadingTextSizes: Record<string, TypographySizes> = {
 
 export interface LoadingStateProps {
   message?: string;
-  showLoading?: boolean;
   variant?: 'spinner' | 'dots' | 'ring' | 'ball' | 'bars' | 'infinity';
   layout?: 'column' | 'row';
   size?: 'xs' | 'sm' | 'md' | 'lg';
