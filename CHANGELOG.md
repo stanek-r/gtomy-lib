@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.6](https://github.com/stanek-r/gtomy-lib/compare/v2.2.5...v2.2.6) (2025-08-25)
+
+
+### Features
+
+* add vertical layout option to Toggle component ([8ceef70](https://github.com/stanek-r/gtomy-lib/commit/8ceef707f379d235a5822079a1e9366ac821936c))
+
 ### [2.2.5](https://github.com/stanek-r/gtomy-lib/compare/v2.2.4...v2.2.5) (2025-04-05)
 
 
