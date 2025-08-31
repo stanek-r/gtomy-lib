@@ -7,7 +7,7 @@ import {
 import { useCallback } from 'react';
 
 export function useBlobstorage({ path, onError, storageUrl }: UseBlobstorageProps): UseBlobstorageReturn {
-  const { post, delete: deleteRequest } = useRequest(storageUrl);
+  const { post, del } = useRequest({ baseURL: storageUrl });
 
   const uploadImage = useCallback(
     async (file: File): Promise<BlobstorageImage | null> => {
@@ -26,11 +26,11 @@ export function useBlobstorage({ path, onError, storageUrl }: UseBlobstorageProp
 
   const deleteImage = useCallback(
     async (imageId?: string): Promise<void> => {
-      return deleteRequest((path ?? '/image') + (imageId == null ? '' : `/${imageId}`)).catch((e) => {
+      return del((path ?? '/image') + (imageId == null ? '' : `/${imageId}`)).catch((e) => {
         onError(e);
       });
     },
-    [deleteRequest, onError, path]
+    [del, onError, path]
   );
 
   return {

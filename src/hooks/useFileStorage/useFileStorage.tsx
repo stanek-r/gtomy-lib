@@ -10,7 +10,7 @@ import fileDownload from 'js-file-download';
 import { useCallback } from 'react';
 
 export function useFilestorage({ path, storageUrl, onError }: UseFilestorageProps): UseFilestorageReturn {
-  const { post, delete: deleteRequest, get } = useRequest(storageUrl);
+  const { post, del, get } = useRequest({ baseURL: storageUrl });
 
   const uploadFile = useCallback(
     async (file: File): Promise<NewFileStorageDto | null> => {
@@ -29,11 +29,11 @@ export function useFilestorage({ path, storageUrl, onError }: UseFilestorageProp
 
   const deleteFile = useCallback(
     async (fileId: string): Promise<void> => {
-      return deleteRequest(`${path ?? '/file'}/${fileId}`).catch((e) => {
+      return del(`${path ?? '/file'}/${fileId}`).catch((e) => {
         onError(e);
       });
     },
-    [deleteRequest, onError, path]
+    [del, onError, path]
   );
 
   const downloadFile = useCallback(
