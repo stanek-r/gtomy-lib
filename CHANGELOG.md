@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.1](https://github.com/stanek-r/gtomy-lib/compare/v2.3.0...v2.3.1) (2025-08-31)
+
+
+### Bug Fixes
+
+* update `useRequest` to config-based initialization and rename `deleteRequest` to `del` in storage hooks ([5abecd4](https://github.com/stanek-r/gtomy-lib/commit/5abecd4370af9e9fbbe5d75ba45dcac435d46898))
+
 ## [2.3.0](https://github.com/stanek-r/gtomy-lib/compare/v2.2.7...v2.3.0) (2025-08-25)
 
 
