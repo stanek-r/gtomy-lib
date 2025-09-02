@@ -1,4 +1,4 @@
-name: Create and Push Release Tag
+name: Create Release Tag
 on:
   workflow_dispatch:
     inputs:
