@@ -15,4 +15,5 @@ export interface QueryWrapperProps {
     noPermission: string;
     badGateway: string;
   };
+  className?: string;
 }
