@@ -15,6 +15,7 @@ export interface BaseDialogProps {
 }
 
 export interface ExtendedBaseDialogProps extends BaseDialogProps {
+  title: string;
   closable?: boolean;
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   actions?: ReactNode;
