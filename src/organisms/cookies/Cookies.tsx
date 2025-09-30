@@ -7,17 +7,19 @@ import { DialogElement } from '@/organisms/dialog/DialogElement';
 import { useCookie } from '@/hooks/useCookie/useCookie';
 import { addDays } from 'date-fns';
 
-export interface CookiesProps {
-  translation: {
+export interface CookiesTranslation {
+  title: string;
+  subtitle: string;
+  info: string;
+  accept: string;
+  dialog: {
     title: string;
-    subtitle: string;
-    info: string;
-    accept: string;
-    dialog: {
-      title: string;
-      text: string;
-    };
+    text: string;
   };
+}
+
+export interface CookiesProps {
+  translation: CookiesTranslation;
 }
 
 export function Cookies({ translation }: CookiesProps) {
