@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { BaseDialogProps } from '@/organisms/dialog/BaseDialog.core';
+import { ErrorTranslations } from '@/types/translations';
 
 export type ConfirmationDialogOnAction = ({
   onClose,
@@ -15,10 +16,5 @@ export interface ConfirmationDialogProps extends BaseDialogProps {
   confirm: string;
   cancel: string;
   onAction: ConfirmationDialogOnAction;
-  translation: {
-    retry: string;
-    error: string;
-    noPermission: string;
-    badGateway: string;
-  };
+  translation: ErrorTranslations;
 }

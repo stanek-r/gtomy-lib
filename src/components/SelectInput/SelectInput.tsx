@@ -1,5 +1,5 @@
 import { twJoin, twMerge } from 'tailwind-merge';
-import { SelectInputProps, sizeClasses } from '@/components/SelectInput/SelectInput.core';
+import { SelectInputProps, selectInputSizeClasses } from '@/components/SelectInput/SelectInput.core';
 import { Typography } from '@/components/Typography/Typography';
 
 export function SelectInput({
@@ -12,7 +12,7 @@ export function SelectInput({
   size = 'md',
   ...other
 }: SelectInputProps) {
-  const sizeClass = sizeClasses[size];
+  const sizeClass = selectInputSizeClasses[size];
 
   return (
     <fieldset className={twMerge('fieldset', className)}>

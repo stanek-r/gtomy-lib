@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef } from 'react';
 
-export const sizeClasses = {
+export const textInputSizeClasses = {
   lg: 'input-lg',
   md: '',
   sm: 'input-sm',

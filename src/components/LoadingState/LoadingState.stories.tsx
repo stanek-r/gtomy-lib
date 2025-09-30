@@ -18,42 +18,42 @@ type Story = StoryObj<typeof LoadingState>;
 
 export const Default: Story = {
   render: () => {
-    return <LoadingState showLoading={true} />;
+    return <LoadingState />;
   },
 };
 
 export const Spinner: Story = {
   render: () => {
-    return <LoadingState showLoading={true} variant="spinner" />;
+    return <LoadingState variant="spinner" />;
   },
 };
 
 export const Ball: Story = {
   render: () => {
-    return <LoadingState showLoading={true} variant="ball" />;
+    return <LoadingState variant="ball" />;
   },
 };
 
 export const Dots: Story = {
   render: () => {
-    return <LoadingState showLoading={true} variant="dots" />;
+    return <LoadingState variant="dots" />;
   },
 };
 
 export const Bars: Story = {
   render: () => {
-    return <LoadingState showLoading={true} variant="bars" />;
+    return <LoadingState variant="bars" />;
   },
 };
 
 export const Ring: Story = {
   render: () => {
-    return <LoadingState showLoading={true} variant="ring" />;
+    return <LoadingState variant="ring" />;
   },
 };
 
 export const Infinite: Story = {
   render: () => {
-    return <LoadingState showLoading={true} variant="infinity" />;
+    return <LoadingState variant="infinity" />;
   },
 };

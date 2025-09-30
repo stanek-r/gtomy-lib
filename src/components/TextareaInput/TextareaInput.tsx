@@ -1,5 +1,5 @@
 import { twJoin, twMerge } from 'tailwind-merge';
-import { sizeClasses, TextareaInputProps } from '@/components/TextareaInput/TextareaInput.core';
+import { TextareaInputProps, textAreaSizeClasses } from '@/components/TextareaInput/TextareaInput.core';
 import { Typography } from '@/components/Typography/Typography';
 
 export function TextareaInput({
@@ -12,7 +12,7 @@ export function TextareaInput({
   rows,
   ...other
 }: TextareaInputProps) {
-  const sizeClass = sizeClasses[size];
+  const sizeClass = textAreaSizeClasses[size];
 
   return (
     <fieldset className={twMerge('fieldset', className)}>

@@ -1,9 +1,9 @@
 import { twJoin, twMerge } from 'tailwind-merge';
-import { sizeClasses, TextInputProps } from '@/components/TextInput/TextInput.core';
+import { TextInputProps, textInputSizeClasses } from '@/components/TextInput/TextInput.core';
 import { Typography } from '@/components/Typography/Typography';
 
 export function TextInput({ children, className, label, size = 'md', hint, error, type, ...other }: TextInputProps) {
-  const sizeClass = sizeClasses[size];
+  const sizeClass = textInputSizeClasses[size];
 
   return (
     <fieldset className={twMerge('fieldset', className)}>

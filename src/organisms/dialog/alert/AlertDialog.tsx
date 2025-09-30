@@ -8,6 +8,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 export function AlertDialog({ title, text, close, ...props }: AlertDialogProps) {
   return (
     <BaseDialog
+      title={title}
       icon={ExclamationCircleIcon}
       actions={<Button onClick={() => props.onOpenChange?.(false)}>{close}</Button>}
       closable={false}

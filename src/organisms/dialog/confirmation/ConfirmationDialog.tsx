@@ -30,6 +30,7 @@ export function ConfirmationDialog({
         </>
       }
       onOpenChange={onOpenChange}
+      title={title}
       {...props}
     >
       <Typography size="3xl">{title}</Typography>

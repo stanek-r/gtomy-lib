@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef } from 'react';
 
-export const sizeClasses = {
+export const textAreaSizeClasses = {
   lg: 'textarea-lg',
   md: '',
   sm: 'textarea-sm',

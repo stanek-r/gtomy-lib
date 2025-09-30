@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef } from 'react';
 
-export const sizeClasses = {
+export const selectInputSizeClasses = {
   lg: 'select-lg',
   md: '',
   sm: 'select-sm',

@@ -6,7 +6,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 
 export function InfoDialog({ title, text, ...other }: InfoDialogProps) {
   return (
-    <BaseDialog icon={InformationCircleIcon} {...other}>
+    <BaseDialog title={title} icon={InformationCircleIcon} {...other}>
       <Typography as={Dialog.Title} size="3xl">
         {title}
       </Typography>
