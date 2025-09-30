@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.2](https://github.com/stanek-r/gtomy-lib/compare/v2.3.1...v2.3.2) (2025-09-30)
+
+
+### Features
+
+* add `useConfirmationDialog` helper for streamlined use of ConfirmationDialog component ([3ead8a6](https://github.com/stanek-r/gtomy-lib/commit/3ead8a6b94110ce22e8f9fe75ffd41a44ead2976))
+* add FullScreenDialog component and export it from index ([73ee073](https://github.com/stanek-r/gtomy-lib/commit/73ee0738e8b99ae51f61abf1305df16f41f49d97))
+
+
+### Bug Fixes
+
+* add className to QueryWrapper ([0af9cdc](https://github.com/stanek-r/gtomy-lib/commit/0af9cdce77c0b09a3d9d50f134452e5c27e43629))
+* add title prop to BaseDialog and support hidden Dialog.Title element ([7617659](https://github.com/stanek-r/gtomy-lib/commit/761765909f25d4daecaf5c464c9d265f9abaa8c9))
+* include `.core` modules in exports and adjust exclusion rules in `.ctirc` ([3af92e4](https://github.com/stanek-r/gtomy-lib/commit/3af92e496409bc47a068b7d79d26e55536aca83c))
+* pass through remaining props in CenteredPage and ColumnPage components ([dee45cf](https://github.com/stanek-r/gtomy-lib/commit/dee45cfe027d4fc59f34a0bef83962bfd6e0430b))
+
 ### [2.3.1](https://github.com/stanek-r/gtomy-lib/compare/v2.3.0...v2.3.1) (2025-08-31)
 
 
