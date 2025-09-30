@@ -34,6 +34,7 @@ export * from './hooks/useRequest/useRequest';
 export * from './organisms/cookies/Cookies';
 export * from './organisms/dialog/BaseDialog';
 export * from './organisms/dialog/DialogElement';
+export * from './organisms/dialog/FullScreenDialog';
 export * from './organisms/dialog/useDialog';
 export * from './organisms/toast/showToast';
 export * from './organisms/toast/ToastProvider';
