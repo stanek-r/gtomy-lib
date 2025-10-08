@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.3](https://github.com/stanek-r/gtomy-lib/compare/v2.3.2...v2.3.3) (2025-10-08)
+
+
+### Features
+
+* add `position` prop to BaseDialog for customizable dialog placement ([67745c3](https://github.com/stanek-r/gtomy-lib/commit/67745c33ab1dd6974cadf4fb67d4c31af56048d0))
+
+
+### Bug Fixes
+
+* add `text-wrap` class to Checkbox label for better text wrapping ([a7a4c18](https://github.com/stanek-r/gtomy-lib/commit/a7a4c1891e1112d60fc1d722d94720a86370a013))
+
 ### [2.3.2](https://github.com/stanek-r/gtomy-lib/compare/v2.3.1...v2.3.2) (2025-09-30)
 
 
