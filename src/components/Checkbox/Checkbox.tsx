@@ -22,7 +22,7 @@ export function Checkbox({ label, error, hint, className, type, Image, checked, 
           </div>
         )}
         <div className="flex w-full justify-between">
-          <span className="label-text">{label}</span>
+          <span className="label-text text-wrap">{label}</span>
           <input
             id={id}
             type={type ?? 'checkbox'}
