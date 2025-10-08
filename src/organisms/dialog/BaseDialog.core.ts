@@ -9,6 +9,14 @@ export const maxWidthOptions = {
   '2xl': 'max-w-screen-2xl',
 };
 
+export const positionOptions = {
+  top: 'modal-top',
+  middle: 'modal-middle',
+  bottom: 'modal-bottom',
+  start: 'modal-start',
+  end: 'modal-end',
+};
+
 export interface BaseDialogProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -22,4 +30,5 @@ export interface ExtendedBaseDialogProps extends BaseDialogProps {
   children?: ReactNode;
   spacing?: boolean;
   icon?: IconType;
+  position?: 'top' | 'middle' | 'bottom' | 'start' | 'end';
 }

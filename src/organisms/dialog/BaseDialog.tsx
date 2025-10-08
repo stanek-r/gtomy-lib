@@ -1,7 +1,7 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { twJoin } from 'tailwind-merge';
-import { ExtendedBaseDialogProps, maxWidthOptions } from '@/organisms/dialog/BaseDialog.core';
+import { ExtendedBaseDialogProps, maxWidthOptions, positionOptions } from '@/organisms/dialog/BaseDialog.core';
 import { Icon } from '@/components/Icon/Icon';
 import { ButtonIcon } from '@/components/ButtonIcon/ButtonIcon';
 import { useCallback } from 'react';
@@ -16,8 +16,10 @@ export function BaseDialog({
   spacing = true,
   icon,
   title,
+  position,
 }: ExtendedBaseDialogProps) {
   const maxWidthClasses = maxWidth ? maxWidthOptions[maxWidth] : maxWidthOptions.md;
+  const positionClasses = position ? positionOptions[position] : positionOptions.middle;
 
   const onOpenChangeHandler = useCallback(
     (open: boolean) => {
@@ -36,7 +38,8 @@ export function BaseDialog({
           aria-describedby={undefined}
           className={twJoin(
             'fixed top-1/2 left-1/2 max-h-[85dvh] w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-[6px] p-4 md:p-6 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none bg-neutral text-neutral-content overflow-y-auto z-30',
-            maxWidthClasses
+            maxWidthClasses,
+            positionClasses
           )}
         >
           <Dialog.Title className="hidden">{title}</Dialog.Title>
