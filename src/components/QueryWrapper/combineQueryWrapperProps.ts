@@ -1,9 +1,9 @@
 import { QueryWrapperPropsWithoutChildren } from '@/components/QueryWrapper/QueryWrapper.core';
 
 export function combineQueryWrapperProps(
-  wrapperProps1: QueryWrapperPropsWithoutChildren,
+  wrapperProps1: Omit<QueryWrapperPropsWithoutChildren, 'translation'>,
   wrapperProps2: Omit<QueryWrapperPropsWithoutChildren, 'translation'>
-): QueryWrapperPropsWithoutChildren {
+): Omit<QueryWrapperPropsWithoutChildren, 'translation'> {
   const isError = wrapperProps1.status === 'error' || wrapperProps2.status === 'error';
   const isPending = wrapperProps1.status === 'pending' || wrapperProps2.status === 'pending';
   return {
@@ -16,6 +16,5 @@ export function combineQueryWrapperProps(
           : undefined,
     showRetry: wrapperProps1.showRetry || wrapperProps2.showRetry,
     refetch: wrapperProps1.showRetry ? wrapperProps1.refetch : wrapperProps2.refetch,
-    translation: wrapperProps1.translation,
   };
 }
