@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.4](https://github.com/stanek-r/gtomy-lib/compare/v2.3.3...v2.3.4) (2025-10-08)
+
+
+### Bug Fixes
+
+* remove position from dialog ([42c3bad](https://github.com/stanek-r/gtomy-lib/commit/42c3bad7e0749e37812aa5f76e07695e9080be15))
+
 ### [2.3.3](https://github.com/stanek-r/gtomy-lib/compare/v2.3.2...v2.3.3) (2025-10-08)
 
 
