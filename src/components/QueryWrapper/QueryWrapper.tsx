@@ -8,13 +8,19 @@ export function QueryWrapper({
   status,
   error,
   showRetry,
-  retry,
+  refetch,
   translation,
   className,
 }: QueryWrapperProps): ReactNode {
   if (status === 'error') {
     return (
-      <ErrorState error={error} retry={retry} showRetry={showRetry} translation={translation} className={className} />
+      <ErrorState
+        error={error}
+        refetch={refetch}
+        showRetry={showRetry}
+        translation={translation}
+        className={className}
+      />
     );
   }
   if (status === 'pending') {

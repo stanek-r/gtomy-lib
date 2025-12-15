@@ -8,7 +8,7 @@ export interface QueryWrapperProps {
   status: 'error' | 'success' | 'pending';
   error: unknown;
   showRetry?: boolean;
-  retry: () => void;
+  refetch: () => void;
   translation: ErrorWithLoadingTranslations;
   className?: string;
 }

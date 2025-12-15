@@ -6,7 +6,7 @@ import { isAxiosError } from 'axios';
 import { Typography } from '@/components/Typography/Typography';
 import { Button } from '@/components/Button/Button';
 
-export function ErrorState({ error, retry, showRetry, className, translation }: ErrorStateProps) {
+export function ErrorState({ error, refetch, showRetry, className, translation }: ErrorStateProps) {
   const isBadRequest = isAxiosError(error) && error.response?.status === 400;
   const isUnauthorizedError = isAxiosError(error) && error.response?.status === 401;
   const isForbiddenError = isAxiosError(error) && error.response?.status === 403;
@@ -31,7 +31,7 @@ export function ErrorState({ error, retry, showRetry, className, translation }: 
           {translation.badGateway}
         </Typography>
         {showRetry && (
-          <Button startIcon={ArrowPathIcon} color="ghost" onClick={retry}>
+          <Button startIcon={ArrowPathIcon} color="ghost" onClick={refetch}>
             {translation.retry}
           </Button>
         )}
@@ -50,7 +50,7 @@ export function ErrorState({ error, retry, showRetry, className, translation }: 
           {error.response?.data?.message && <Typography color="error">{error.response.data.message}</Typography>}
         </div>
         {showRetry && (
-          <Button startIcon={ArrowPathIcon} color="ghost" onClick={retry}>
+          <Button startIcon={ArrowPathIcon} color="ghost" onClick={refetch}>
             {translation.retry}
           </Button>
         )}
@@ -77,7 +77,7 @@ export function ErrorState({ error, retry, showRetry, className, translation }: 
       </Typography>
       {message}
       {showRetry && (
-        <Button startIcon={ArrowPathIcon} color="ghost" onClick={retry}>
+        <Button startIcon={ArrowPathIcon} color="ghost" onClick={refetch}>
           {translation.retry}
         </Button>
       )}

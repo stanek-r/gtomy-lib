@@ -28,7 +28,7 @@ export const Default: Story = {
         }}
         error={new Error()}
         showRetry={true}
-        retry={() => console.log('Test')}
+        refetch={() => console.log('Test')}
       />
     );
   },

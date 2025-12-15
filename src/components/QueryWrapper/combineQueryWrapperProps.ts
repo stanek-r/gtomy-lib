@@ -2,7 +2,7 @@ import { QueryWrapperPropsWithoutChildren } from '@/components/QueryWrapper/Quer
 
 export function combineQueryWrapperProps(
   wrapperProps1: QueryWrapperPropsWithoutChildren,
-  wrapperProps2: QueryWrapperPropsWithoutChildren
+  wrapperProps2: Omit<QueryWrapperPropsWithoutChildren, 'translation'>
 ): QueryWrapperPropsWithoutChildren {
   const isError = wrapperProps1.status === 'error' || wrapperProps2.status === 'error';
   const isPending = wrapperProps1.status === 'pending' || wrapperProps2.status === 'pending';
@@ -15,7 +15,7 @@ export function combineQueryWrapperProps(
           ? wrapperProps2.error
           : undefined,
     showRetry: wrapperProps1.showRetry || wrapperProps2.showRetry,
-    retry: wrapperProps1.showRetry ? wrapperProps1.retry : wrapperProps2.retry,
+    refetch: wrapperProps1.showRetry ? wrapperProps1.refetch : wrapperProps2.refetch,
     translation: wrapperProps1.translation,
   };
 }
