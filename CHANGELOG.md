@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.6](https://github.com/stanek-r/gtomy-lib/compare/v2.3.5...v2.3.6) (2025-12-15)
+
+
+### Bug Fixes
+
+* omit `translation` from `combineQueryWrapperProps` return type and parameters ([cab0ec8](https://github.com/stanek-r/gtomy-lib/commit/cab0ec8b514b04d5ca02c0a8b7adce8c4b79b829))
+
 ### [2.3.5](https://github.com/stanek-r/gtomy-lib/compare/v2.3.4...v2.3.5) (2025-12-15)
 
 
