@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: 'npm'
       - run: npm ci
       - run: npm run build
@@ -32,14 +32,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: 'npm'
           registry-url: https://registry.npmjs.org/
       - uses: actions/download-artifact@v4
         with:
           name: untracked-files
           path: './dist'
+      - run: npm install -g npm@latest
       - run: npm publish
         working-directory: ./dist
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
