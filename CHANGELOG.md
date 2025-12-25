@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.7](https://github.com/stanek-r/gtomy-lib/compare/v2.3.6...v2.3.7) (2025-12-25)
+
+
+### Bug Fixes
+
+* remove unused `open` prop and refactor dialog root configuration ([0531a3a](https://github.com/stanek-r/gtomy-lib/commit/0531a3a77def875e875d98ba1a7478cce8e74949))
+
 ### [2.3.6](https://github.com/stanek-r/gtomy-lib/compare/v2.3.5...v2.3.6) (2025-12-15)
 
 
