@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.8](https://github.com/stanek-r/gtomy-lib/compare/v2.3.7...v2.3.8) (2025-12-25)
+
+
+### Bug Fixes
+
+* add onClose handler to closeable dialogs ([7fbb2ae](https://github.com/stanek-r/gtomy-lib/commit/7fbb2aeb48742527393c5e837378175acce8c4e3))
+
 ### [2.3.7](https://github.com/stanek-r/gtomy-lib/compare/v2.3.6...v2.3.7) (2025-12-25)
 
 
