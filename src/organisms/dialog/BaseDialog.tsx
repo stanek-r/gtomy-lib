@@ -27,6 +27,8 @@ export function BaseDialog({
     [onOpenChange, closable]
   );
 
+  const onClose = useCallback(() => onOpenChange?.(false), [onOpenChange]);
+
   return (
     <Dialog.Root open={true} onOpenChange={onOpenChangeHandler}>
       <Dialog.Portal>
@@ -50,12 +52,12 @@ export function BaseDialog({
           {actions && <div className="flex justify-end gap-x-2 pt-4">{actions}</div>}
           {closable && (
             <ButtonIcon
-              as={Dialog.Close}
               icon={XMarkIcon}
               variant="circle"
               size="sm"
               color="ghost"
               className="absolute right-[10px] top-[10px]"
+              onClick={onClose}
             />
           )}
         </Dialog.Content>

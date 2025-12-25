@@ -24,6 +24,8 @@ export function FullScreenDialog({
     [onOpenChange, closable]
   );
 
+  const onClose = useCallback(() => onOpenChange?.(false), [onOpenChange]);
+
   return (
     <Dialog.Root open={true} onOpenChange={onOpenChangeHandler}>
       <Dialog.Portal>
@@ -44,12 +46,12 @@ export function FullScreenDialog({
           {actions && <div className="flex justify-end gap-x-2 pt-4">{actions}</div>}
           {closable && (
             <ButtonIcon
-              as={Dialog.Close}
               icon={XMarkIcon}
               variant="circle"
               size="lg"
               color="ghost"
               className="absolute right-[10px] top-[10px]"
+              onClick={onClose}
             />
           )}
         </Dialog.Content>
