@@ -7,7 +7,6 @@ import { Icon } from '@/components/Icon/Icon';
 import { ButtonIcon } from '@/components/ButtonIcon/ButtonIcon';
 
 export function FullScreenDialog({
-  open,
   onOpenChange,
   closable = true,
   actions,
@@ -26,7 +25,7 @@ export function FullScreenDialog({
   );
 
   return (
-    <Dialog.Root open={open} onOpenChange={onOpenChangeHandler}>
+    <Dialog.Root open={true} onOpenChange={onOpenChangeHandler}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-20 bg-neutral opacity-99 h-lvh" />
         <Dialog.Content
@@ -44,15 +43,14 @@ export function FullScreenDialog({
           )}
           {actions && <div className="flex justify-end gap-x-2 pt-4">{actions}</div>}
           {closable && (
-            <Dialog.Close asChild>
-              <ButtonIcon
-                icon={XMarkIcon}
-                variant="circle"
-                size="lg"
-                color="ghost"
-                className="absolute right-[10px] top-[10px]"
-              />
-            </Dialog.Close>
+            <ButtonIcon
+              as={Dialog.Close}
+              icon={XMarkIcon}
+              variant="circle"
+              size="lg"
+              color="ghost"
+              className="absolute right-[10px] top-[10px]"
+            />
           )}
         </Dialog.Content>
       </Dialog.Portal>

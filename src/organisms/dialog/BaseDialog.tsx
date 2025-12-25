@@ -7,7 +7,6 @@ import { ButtonIcon } from '@/components/ButtonIcon/ButtonIcon';
 import { useCallback } from 'react';
 
 export function BaseDialog({
-  open,
   onOpenChange,
   closable = true,
   maxWidth,
@@ -29,7 +28,7 @@ export function BaseDialog({
   );
 
   return (
-    <Dialog.Root open={open} onOpenChange={onOpenChangeHandler}>
+    <Dialog.Root open={true} onOpenChange={onOpenChangeHandler}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-20 bg-black opacity-25" />
         <Dialog.Content
@@ -50,15 +49,14 @@ export function BaseDialog({
           )}
           {actions && <div className="flex justify-end gap-x-2 pt-4">{actions}</div>}
           {closable && (
-            <Dialog.Close asChild>
-              <ButtonIcon
-                icon={XMarkIcon}
-                variant="circle"
-                size="sm"
-                color="ghost"
-                className="absolute right-[10px] top-[10px]"
-              />
-            </Dialog.Close>
+            <ButtonIcon
+              as={Dialog.Close}
+              icon={XMarkIcon}
+              variant="circle"
+              size="sm"
+              color="ghost"
+              className="absolute right-[10px] top-[10px]"
+            />
           )}
         </Dialog.Content>
       </Dialog.Portal>
