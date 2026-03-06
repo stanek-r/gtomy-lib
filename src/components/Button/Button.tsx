@@ -1,4 +1,4 @@
-import { ElementType } from 'react';
+import { ElementType, useMemo } from 'react';
 import { PropsAs } from '@/utils/typeHelpers.core';
 import { twMerge } from 'tailwind-merge';
 import { Icon } from '@/components/Icon/Icon';
@@ -31,19 +31,26 @@ export function Button<T extends ElementType = 'button'>({
     className
   );
 
-  if (loading) {
-    if (startIcon == null) {
-      startIcon = <span className="loading loading-spinner loading-sm mr-1.5"></span>;
-    } else if (endIcon == null) {
-      endIcon = <span className="loading loading-spinner loading-sm ml-1.5"></span>;
-    }
-  }
+  const resolvedStartIcon = useMemo(
+    () =>
+      loading && startIcon == null ? <span className="loading loading-spinner loading-sm mr-1.5"></span> : startIcon,
+    [loading, startIcon]
+  );
+  const resolvedEndIcon = useMemo(
+    () =>
+      loading && startIcon != null && endIcon == null ? (
+        <span className="loading loading-spinner loading-sm ml-1.5"></span>
+      ) : (
+        endIcon
+      ),
+    [endIcon, loading, startIcon]
+  );
 
   return (
     <Component type={type} className={classes} {...other}>
-      <Icon icon={startIcon} className="mr-1.5" />
+      <Icon icon={resolvedStartIcon} />
       {children}
-      <Icon icon={endIcon} className="ml-1.5" />
+      <Icon icon={resolvedEndIcon} />
     </Component>
   );
 }
