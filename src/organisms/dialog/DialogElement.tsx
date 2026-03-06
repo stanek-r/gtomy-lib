@@ -1,4 +1,4 @@
-import { cloneElement, createElement, FunctionComponent, ReactElement, useMemo } from 'react';
+import { cloneElement, createElement, FunctionComponent, memo, ReactElement, useMemo } from 'react';
 import { BaseDialogProps } from '@/organisms/dialog/BaseDialog.core';
 
 export interface DialogElementProps {
@@ -7,7 +7,7 @@ export interface DialogElementProps {
   onOpenChange: (open: boolean) => void;
 }
 
-export function DialogElement({ dialog, open, onOpenChange }: DialogElementProps) {
+export const DialogElement = memo(({ dialog, open, onOpenChange }: DialogElementProps) => {
   const props = useMemo(() => ({ onOpenChange }), [onOpenChange]);
 
   if (!open) {
@@ -19,4 +19,4 @@ export function DialogElement({ dialog, open, onOpenChange }: DialogElementProps
   }
 
   return cloneElement(dialog, props);
-}
+});

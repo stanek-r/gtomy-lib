@@ -1,9 +1,14 @@
-import { ReactElement } from 'react';
-import { WithComponentProps } from '@/layout/WithComponent.core';
+import { FunctionComponent, memo, ReactElement } from 'react';
 
-export function WithComponent({ Component }: WithComponentProps): ReactElement | undefined {
+export type WithComponentComponent = FunctionComponent | ReactElement;
+
+export interface WithComponentProps {
+  Component?: WithComponentComponent;
+}
+
+export const WithComponent = memo(({ Component }: WithComponentProps): ReactElement | undefined => {
   if (typeof Component === 'function') {
     return <Component />;
   }
   return Component;
-}
+});
