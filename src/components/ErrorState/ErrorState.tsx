@@ -1,10 +1,18 @@
 import { ReactElement } from 'react';
 import { ArrowPathIcon, LockClosedIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { twMerge } from 'tailwind-merge';
-import { ErrorStateProps } from '@/components/ErrorState/ErrorState.core';
 import { isAxiosError } from 'axios';
 import { Typography } from '@/components/Typography/Typography';
 import { Button } from '@/components/Button/Button';
+import { ErrorTranslations } from '@/types/translations';
+
+export interface ErrorStateProps {
+  error?: unknown;
+  showRetry?: boolean;
+  refetch?: () => void;
+  className?: string;
+  translation: ErrorTranslations;
+}
 
 export function ErrorState({ error, refetch, showRetry, className, translation }: ErrorStateProps) {
   const isBadRequest = isAxiosError(error) && error.response?.status === 400;

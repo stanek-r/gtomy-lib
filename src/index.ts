@@ -18,7 +18,7 @@ export * from './components/Checkbox/Checkbox.core';
 export * from './components/Checkbox/Checkbox';
 export * from './components/CodeMockup/CodeMockup.core';
 export * from './components/CodeMockup/CodeMockup';
-export * from './components/ErrorState/ErrorState.core';
+export * from './components/ErrorCard/ErrorCard';
 export * from './components/ErrorState/ErrorState';
 export * from './components/FileInput/FileInput.core';
 export * from './components/FileInput/FileInput';
