@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.9](https://github.com/stanek-r/gtomy-lib/compare/v2.3.8...v2.3.9) (2026-03-06)
+
+
+### Bug Fixes
+
+* use useMemo for resolving loading icons in Button component ([7b1caff](https://github.com/stanek-r/gtomy-lib/commit/7b1caff3b405e8e08f13d8db0acd4b1e884b8e33))
+
 ### [2.3.8](https://github.com/stanek-r/gtomy-lib/compare/v2.3.7...v2.3.8) (2025-12-25)
 
 
