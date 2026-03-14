@@ -12,6 +12,7 @@ export function FullScreenDialog({
   actions,
   children,
   spacing = true,
+  grow = false,
   icon,
   title,
 }: ExtendedBaseDialogProps) {
@@ -26,6 +27,8 @@ export function FullScreenDialog({
 
   const onClose = useCallback(() => onOpenChange?.(false), [onOpenChange]);
 
+  const classes = twJoin(grow && 'flex flex-col min-h-full', spacing && (grow ? 'gap-y-4' : 'space-y-4'));
+
   return (
     <Dialog.Root open={true} onOpenChange={onOpenChangeHandler}>
       <Dialog.Portal>
@@ -38,10 +41,10 @@ export function FullScreenDialog({
           {icon ? (
             <div className="flex gap-4">
               <Icon icon={icon} size="xl" />
-              <div className={twJoin(spacing && 'space-y-4')}>{children}</div>
+              <div className={classes}>{children}</div>
             </div>
           ) : (
-            <div className={twJoin(spacing && 'space-y-4')}>{children}</div>
+            <div className={classes}>{children}</div>
           )}
           {actions && <div className="flex justify-end gap-x-2 pt-4">{actions}</div>}
           {closable && (

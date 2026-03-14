@@ -20,5 +20,6 @@ export interface ExtendedBaseDialogProps extends BaseDialogProps {
   actions?: ReactNode;
   children?: ReactNode;
   spacing?: boolean;
+  grow?: boolean;
   icon?: IconType;
 }
