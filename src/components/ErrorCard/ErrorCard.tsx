@@ -6,13 +6,14 @@ import { Typography } from '@/components/Typography/Typography';
 import { useMemo } from 'react';
 import { isAxiosError } from 'axios';
 import { Button } from '@/components/Button/Button';
+import { CONFIG } from '@/utils/config';
 
 export interface ErrorCardProps {
   error?: unknown;
   showRetry?: boolean;
   refetch?: () => void;
   className?: string;
-  translation: ErrorTranslations;
+  translation?: ErrorTranslations;
 }
 
 export function ErrorCard({ error, refetch, showRetry, className, translation }: ErrorCardProps) {
@@ -20,12 +21,14 @@ export function ErrorCard({ error, refetch, showRetry, className, translation }:
   const isForbiddenError = isAxiosError(error) && error.response?.status === 403;
   const isBadGateway = isAxiosError(error) && error.response?.status === 502;
 
+  const mergedTranslations = useMemo(() => translation ?? CONFIG.errorTranslations, [translation]);
+
   const message: string | null = useMemo(() => {
     if (isUnauthorizedError || isForbiddenError) {
-      return translation.noPermission;
+      return mergedTranslations.noPermission;
     }
     if (isBadGateway) {
-      return translation.badGateway;
+      return mergedTranslations.badGateway;
     }
     if (isAxiosError(error)) {
       if (error.response?.data?.message) {
@@ -40,7 +43,7 @@ export function ErrorCard({ error, refetch, showRetry, className, translation }:
       return error.message;
     }
     return null;
-  }, [error, isBadGateway, isForbiddenError, isUnauthorizedError, translation]);
+  }, [error, isBadGateway, isForbiddenError, isUnauthorizedError, mergedTranslations]);
 
   const icon = useMemo(() => {
     if (isUnauthorizedError || isForbiddenError) {
@@ -82,14 +85,14 @@ export function ErrorCard({ error, refetch, showRetry, className, translation }:
         <Icon icon={icon} color={color} content={false} size="2xl" />
 
         <Typography color={color} content={false} size="xl" weight="semibold">
-          {translation.error}
+          {mergedTranslations.error}
         </Typography>
         {message != null && <Typography size="sm">{message}</Typography>}
 
         <div className="card-actions w-full justify-center mt-4">
           {displayRetry && (
             <Button startIcon={ArrowPathIcon} size="sm" onClick={refetch} color={color}>
-              {translation.retry}
+              {mergedTranslations.retry}
             </Button>
           )}
         </div>

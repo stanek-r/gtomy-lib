@@ -1,9 +1,28 @@
-import { useCallback, useState } from 'react';
-import { ConfirmationDialogProps } from '@/organisms/dialog/confirmation/ConfirmationDialog.core';
+import { ReactNode, useCallback, useMemo, useState } from 'react';
 import { BaseDialog } from '@/organisms/dialog/BaseDialog';
 import { Button } from '@/components/Button/Button';
 import { Typography } from '@/components/Typography/Typography';
 import { ErrorState } from '@/components/ErrorState/ErrorState';
+import { BaseDialogProps } from '@/organisms/dialog/BaseDialog.core';
+import { ErrorTranslations } from '@/types/translations';
+import { CONFIG } from '@/utils/config';
+
+export type ConfirmationDialogOnAction = ({
+  onClose,
+  onError,
+}: {
+  onClose: () => void;
+  onError: (error: unknown) => void;
+}) => Promise<void> | void;
+
+export interface ConfirmationDialogProps extends BaseDialogProps {
+  title: string;
+  text: ReactNode;
+  confirm: string;
+  cancel: string;
+  onAction: ConfirmationDialogOnAction;
+  translation?: ErrorTranslations;
+}
 
 export function ConfirmationDialog({
   text,
@@ -16,6 +35,8 @@ export function ConfirmationDialog({
   ...props
 }: ConfirmationDialogProps) {
   const [error, setError] = useState<unknown>();
+
+  const mergedTranslations = useMemo(() => translation ?? CONFIG.errorTranslations, [translation]);
 
   const onClose = useCallback(() => onOpenChange?.(false), [onOpenChange]);
 
@@ -35,7 +56,7 @@ export function ConfirmationDialog({
     >
       <Typography size="3xl">{title}</Typography>
       <Typography as="p">{text}</Typography>
-      {error != null && <ErrorState error={error} translation={translation} />}
+      {error != null && <ErrorState error={error} translation={mergedTranslations} />}
     </BaseDialog>
   );
 }

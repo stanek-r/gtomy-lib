@@ -1,4 +1,4 @@
-import { QueryWrapperPropsWithoutChildren } from '@/components/QueryWrapper/QueryWrapper.core';
+import { QueryWrapperPropsWithoutChildren } from '@/components/QueryWrapper/QueryWrapper';
 
 export function combineQueryWrapperProps(
   wrapperProps1: Omit<QueryWrapperPropsWithoutChildren, 'translation'>,
