@@ -5,4 +5,4 @@ export interface Config {
   errorTranslations: ErrorWithLoadingTranslations;
 }
 
-export const CONFIG: Config = null!;
+export const CONFIG: Config = {} as Config;
