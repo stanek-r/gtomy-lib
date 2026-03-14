@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.1](https://github.com/stanek-r/gtomy-lib/compare/v2.4.0...v2.4.1) (2026-03-14)
+
+
+### Bug Fixes
+
+* initialize CONFIG with a default empty object to prevent runtime errors ([930ee57](https://github.com/stanek-r/gtomy-lib/commit/930ee57876ad739e61f28b8264d63c741e65e65b))
+
 ## [2.4.0](https://github.com/stanek-r/gtomy-lib/compare/v2.3.9...v2.4.0) (2026-03-14)
 
 
