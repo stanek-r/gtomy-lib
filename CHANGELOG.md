@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/stanek-r/gtomy-lib/compare/v2.3.9...v2.4.0) (2026-03-14)
+
+
+### Features
+
+* add `grow` prop to dialogs for flexible layout configuration ([0a26a02](https://github.com/stanek-r/gtomy-lib/commit/0a26a020639e5f0149eec7faedcd5f383617debe))
+* add ErrorCard component ([894ccb2](https://github.com/stanek-r/gtomy-lib/commit/894ccb24a3344a313374305f46552d26ba469192))
+
 ### [2.3.9](https://github.com/stanek-r/gtomy-lib/compare/v2.3.8...v2.3.9) (2026-03-06)
 
 
