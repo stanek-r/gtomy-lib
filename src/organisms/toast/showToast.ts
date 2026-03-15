@@ -20,7 +20,7 @@ export interface ShowToastSettings {
     | 'error';
 }
 
-export function showToast({ message, duration, icon, iconColor = 'base' }: ShowToastSettings) {
+export function showToast({ message, duration = 5000, icon, iconColor = 'base' }: ShowToastSettings) {
   return toast(message, {
     icon: createElement(Icon, {
       icon,
