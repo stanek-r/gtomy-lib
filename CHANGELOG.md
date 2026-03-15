@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.3](https://github.com/stanek-r/gtomy-lib/compare/v2.4.2...v2.4.3) (2026-03-15)
+
+
+### Features
+
+* remove deprecated comments and unused code in ErrorState component ([b72c147](https://github.com/stanek-r/gtomy-lib/commit/b72c14787fa9537a32b7c7314d668179b44da0f3))
+
 ### [2.4.2](https://github.com/stanek-r/gtomy-lib/compare/v2.4.1...v2.4.2) (2026-03-15)
 
 
