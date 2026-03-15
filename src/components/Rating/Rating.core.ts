@@ -12,6 +12,6 @@ export interface RatingProps extends Omit<ComponentPropsWithRef<'input'>, 'size'
   hint?: string;
   error?: string;
   amount: number;
-  half?: true;
+  half?: boolean;
   size?: 'xs' | 'sm' | 'md' | 'lg';
 }

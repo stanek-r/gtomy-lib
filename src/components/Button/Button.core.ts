@@ -27,6 +27,6 @@ export interface ButtonProps<T extends ElementType> {
   glass?: boolean;
   startIcon?: IconType;
   endIcon?: IconType;
-  outline?: true;
-  loading?: true;
+  outline?: boolean;
+  loading?: boolean;
 }
