@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.2](https://github.com/stanek-r/gtomy-lib/compare/v2.4.1...v2.4.2) (2026-03-15)
+
+
+### Features
+
+* add customizable props to ToastProvider for enhanced flexibility ([5441dc4](https://github.com/stanek-r/gtomy-lib/commit/5441dc4412f821c69b924a8e29ba6ee873c385ed))
+
+
+### Bug Fixes
+
+* add default duration to `showToast` to prevent undefined behavior ([e71bce7](https://github.com/stanek-r/gtomy-lib/commit/e71bce7cc9d616dadf75b11c82a2a066ae48585c))
+* update prop typings in core components for consistent boolean handling ([d5a72c3](https://github.com/stanek-r/gtomy-lib/commit/d5a72c3b82747e3781084e916a402fbc2e182486))
+
 ### [2.4.1](https://github.com/stanek-r/gtomy-lib/compare/v2.4.0...v2.4.1) (2026-03-14)
 
 
