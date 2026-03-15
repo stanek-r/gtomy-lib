@@ -1,4 +1,4 @@
-import { ReactElement, useMemo } from 'react';
+import { useMemo } from 'react';
 import { ArrowPathIcon, LockClosedIcon, XCircleIcon } from '@heroicons/react/24/outline';
 import { twMerge } from 'tailwind-merge';
 import { isAxiosError } from 'axios';
@@ -7,9 +7,6 @@ import { Button } from '@/components/Button/Button';
 import { ErrorTranslations } from '@/types/translations';
 import { CONFIG } from '@/utils/config';
 
-/**
- * @deprecated Use ErrorCard instead.
- */
 export interface ErrorStateProps {
   error?: unknown;
   showRetry?: boolean;
@@ -18,9 +15,6 @@ export interface ErrorStateProps {
   translation?: ErrorTranslations;
 }
 
-/**
- * @deprecated Use ErrorCard instead.
- */
 export function ErrorState({ error, refetch, showRetry, className, translation }: ErrorStateProps) {
   const isBadRequest = isAxiosError(error) && error.response?.status === 400;
   const isUnauthorizedError = isAxiosError(error) && error.response?.status === 401;
@@ -62,7 +56,7 @@ export function ErrorState({ error, refetch, showRetry, className, translation }
         <XCircleIcon className="size-8" />
         <div className="flex flex-col">
           <Typography size="xl" color="error">
-            {mergedTranslations.badGateway}
+            {mergedTranslations.error}
           </Typography>
           {error.response?.data?.message && <Typography color="error">{error.response.data.message}</Typography>}
         </div>
@@ -75,24 +69,12 @@ export function ErrorState({ error, refetch, showRetry, className, translation }
     );
   }
 
-  let message: ReactElement | null = null;
-  if (error != null && isAxiosError(error)) {
-    if (error.response?.data?.message) {
-      message = <Typography color="error">{error.response.data.message}</Typography>;
-    } else if (error.message) {
-      message = <Typography color="error">{error.message}</Typography>;
-    } else if (error.response?.status) {
-      message = <Typography color="error">Status code: {error.response?.status}</Typography>;
-    }
-  }
-
   return (
     <div role="alert" className={twMerge('alert alert-error', className)}>
       <XCircleIcon className="size-8" />
       <Typography size="xl" color="error">
         {mergedTranslations.error}
       </Typography>
-      {message}
       {showRetry && (
         <Button startIcon={ArrowPathIcon} color="ghost" onClick={refetch}>
           {mergedTranslations.retry}
