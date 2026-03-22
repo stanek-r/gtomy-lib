@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.5](https://github.com/stanek-r/gtomy-lib/compare/v2.4.4...v2.4.5) (2026-03-22)
+
+
+### Features
+
+* add color customization to BaseDialog and FullScreenDialog components ([fae3bb6](https://github.com/stanek-r/gtomy-lib/commit/fae3bb6a0b7a736c14338fe0ca892682352010a5))
+
 ### [2.4.4](https://github.com/stanek-r/gtomy-lib/compare/v2.4.3...v2.4.4) (2026-03-22)
 
 
