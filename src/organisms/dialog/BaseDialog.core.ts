@@ -9,6 +9,11 @@ export const maxWidthOptions = {
   '2xl': 'max-w-screen-2xl',
 };
 
+export const colorOptions = {
+  neutral: 'bg-neutral text-neutral-content',
+  'base-100': 'bg-base-100 text-base-content',
+};
+
 export interface BaseDialogProps {
   onOpenChange?: (open: boolean) => void;
 }
@@ -22,4 +27,5 @@ export interface ExtendedBaseDialogProps extends BaseDialogProps {
   spacing?: boolean;
   grow?: boolean;
   icon?: IconType;
+  color?: 'neutral' | 'base-100';
 }
