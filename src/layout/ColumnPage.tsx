@@ -18,11 +18,11 @@ export interface ColumnPageProps extends PropsWithChildren {
 }
 
 export const ColumnPage = memo(
-  ({ MenuComponent, FooterComponent, children, width = 'xl', className }: ColumnPageProps) => {
+  ({ MenuComponent, FooterComponent, children, width = 'xl', className, ...other }: ColumnPageProps) => {
     const widthClass = useMemo(() => columnPageWidthClasses[width], [width]);
 
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col" {...other}>
         <WithComponent Component={MenuComponent} />
         <div className={twMerge('max-w-full mx-auto flex flex-col gap-4 px-4 py-8 flex-1', widthClass, className)}>
           {children}
